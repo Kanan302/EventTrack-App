@@ -22,8 +22,7 @@ class AuthVerificationService {
 
       var responseData = response.data;
       String? message = responseData['message'];
-      var data =
-          responseData['response']?['data'] ?? {}; 
+      var data = responseData['response']?['data'] ?? {};
 
       debugPrint('Message: $message');
       debugPrint('Data: $data');
@@ -60,9 +59,18 @@ class AuthVerificationService {
     required BuildContext context,
   }) async {
     try {
-      final response = await baseDio.post('/auth/otpReset', data: {"otp": otp});
-      debugPrint(response.data);
-      debugPrint('code: ${response.statusCode}');
+      final response = await baseDio.post(
+        '/auth/otpReset',
+        data: {"otp": otp},
+        options: Options(validateStatus: (status) => status != null),
+      );
+
+      var responseData = response.data;
+      String? message = responseData['message'];
+      var data = responseData['response']?['data'] ?? {};
+
+      debugPrint('Message: $message');
+      debugPrint('Data: $data');
 
       if (response.statusCode == 200) {
         SnackBarService.showSnackBar(

@@ -8,10 +8,12 @@ import 'data/local/secure_service.dart';
 import 'features/auth/login/presentation/pages/login.dart';
 import 'features/auth/login/services/cubit/auth_login_cubit.dart';
 import 'features/auth/login/services/toggle_provider.dart';
-import 'features/auth/newPassword/new_password.dart';
+import 'features/auth/new_password/new_password.dart';
+import 'features/auth/new_password/services/cubit/auth_new_password_service_cubit.dart';
 import 'features/auth/register/presentation/pages/register.dart';
 import 'features/auth/register/services/cubit/auth_registration_service_cubit.dart';
-import 'features/auth/resetPassword/reset_password.dart';
+import 'features/auth/reset_password/reset_password.dart';
+import 'features/auth/reset_password/services/cubit/auth_reset_password_service_cubit.dart';
 import 'features/onboarding/presentation/pages/onboarding.dart';
 import 'features/onboarding/services/onboarding_provider.dart';
 import 'features/splash/splash.dart';
@@ -64,7 +66,11 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.resetPassword.path,
-        builder: (context, state) => const ResetPasswordPage(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => AuthResetPasswordCubit(),
+              child: const ResetPasswordPage(),
+            ),
       ),
       // GoRoute(
       //   path: AppRoutes.verification.path,
@@ -81,8 +87,11 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.newPassword.path,
         builder:
-            (context, state) => ChangeNotifierProvider(
-              create: (_) => Toggle(),
+            (context, state) => MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => Toggle()),
+                BlocProvider(create: (context) => AuthNewPasswordCubit()),
+              ],
               child: const NewPasswordPage(),
             ),
       ),

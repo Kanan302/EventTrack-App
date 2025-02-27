@@ -1,11 +1,12 @@
-import 'package:ascca_app/core/constants/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_texts.dart';
+import '../../../core/errors/flushbar.dart';
 import '../../../core/widgets/app_elevated_button.dart';
 import '../../../core/widgets/app_text_form_field.dart';
+import 'services/cubit/auth_reset_password_service_cubit.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -17,8 +18,6 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  // final AuthResetPasswordService authResetPasswordService =
-  //     AuthResetPasswordService();
 
   @override
   Widget build(BuildContext context) {
@@ -78,22 +77,41 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       },
                     ),
                     SizedBox(height: height * 0.01),
-                    Align(
-                      alignment: Alignment.center,
-                      child: AppElevatedButton(
-                        onPressed: () {
-                          context.push(AppRoutes.verification.path);
-                          // if (_formKey.currentState!.validate()) {
-                          // authResetPasswordService.resetPassword(
-                          //   context: context,
-                          //   email: _emailController.text.trim(),
-                          // );
-                          // }
-                        },
-                        buttonColor: AppColors.lavenderBlue,
-                        text: AppTexts.send,
-                        textColor: AppColors.white,
-                      ),
+                    BlocConsumer<
+                      AuthResetPasswordCubit,
+                      AuthResetPasswordState
+                    >(
+                      listener: (context, state) {
+                        if (state is AuthResetPasswordLoading) {
+                          CircularProgressIndicator();
+                        } else if (state is AuthResetPasswordFailure) {
+                          FlushbarService.showFlushbar(
+                            context: context,
+                            message: state.errorMessage,
+                            isSuccess: false,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        return Align(
+                          alignment: Alignment.center,
+                          child: AppElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                context
+                                    .read<AuthResetPasswordCubit>()
+                                    .resetPassword(
+                                      context: context,
+                                      email: _emailController.text.trim(),
+                                    );
+                              }
+                            },
+                            buttonColor: AppColors.lavenderBlue,
+                            text: AppTexts.send,
+                            textColor: AppColors.white,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
