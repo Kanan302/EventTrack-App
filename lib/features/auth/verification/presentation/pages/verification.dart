@@ -1,12 +1,13 @@
-import 'package:ascca_app/core/constants/app_routes.dart';
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
-// import 'package:go_router/go_router.dart';
-
 import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/app_routes.dart';
 import '../../../../../core/constants/app_texts.dart';
+import '../../../../../core/errors/snackbar.dart';
 import '../../../../../core/widgets/app_elevated_button.dart';
+import '../../services/auth_verification.dart';
 import '../widgets/validity_time.dart';
 import '../widgets/verification_form.dart';
 
@@ -19,61 +20,57 @@ class VerificationPage extends StatefulWidget {
 
 class _VerificationPageState extends State<VerificationPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final AuthVerificationService _authService = AuthVerificationService();
-  // String _otp = '';
-  // bool _isWaitingForOTP = false;
+  final AuthVerificationService _authService = AuthVerificationService();
+  String _otp = '';
+  bool _isWaitingForOTP = false;
 
   Future<void> _handleVerification(bool fromReset) async {
-    context.push(AppRoutes.newPassword.path);
-    //   if (_formKey.currentState!.validate()) {
-    //     _formKey.currentState!.save();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
 
-    //     if (_isWaitingForOTP) {
-    //       bool tempResponse = await _authService.verification(
-    //         otp: int.parse(_otp),
-    //         context: context,
-    //       );
-    //       if (!tempResponse) {
-    //         SnackBarService.showSnackBar(
-    //           context,
-    //           'Xahiş edirik, yanlış OTP daxil etdiyiniz üçün 30 saniyə gözləyin.',
-    //           AppColors.red,
-    //         );
-    //         return;
-    //       } else {
-    //         setState(() {
-    //           _isWaitingForOTP = false;
-    //           _otp = '';
-    //         });
-    //       }
-    //     }
+      if (_isWaitingForOTP) {
+        bool tempResponse = await _authService.verification(
+          otp: _otp,
+          context: context,
+        );
+        if (!tempResponse) {
+          SnackBarService.showSnackBar(
+            context,
+            'Xahiş edirik, yanlış OTP daxil etdiyiniz üçün 30 saniyə gözləyin.',
+            AppColors.red,
+          );
+          return;
+        } else {
+          setState(() {
+            _isWaitingForOTP = false;
+            _otp = '';
+          });
+        }
+      }
 
-    //     bool response;
-    //     if (fromReset) {
-    //       response = await _authService.verificationForResetPassword(
-    //         otp: _otp,
-    //         context: context,
-    //       );
-    //     } else {
-    //       response = await _authService.verification(
-    //         otp: int.parse(_otp),
-    //         context: context,
-    //       );
-    //     }
+      bool response;
+      if (fromReset) {
+        response = await _authService.verificationForResetPassword(
+          otp: _otp,
+          context: context,
+        );
+      } else {
+        response = await _authService.verification(otp: _otp, context: context);
+      }
 
-    //     if (response) {
-    //       if (fromReset) {
-    //         context.push(AppRoutes.newPassword.path);
-    //       } else {
-    //         context.go(AppRoutes.login.path);
-    //       }
-    //     } else {
-    //       setState(() {
-    //         _isWaitingForOTP = true;
-    //         _otp = '';
-    //       });
-    //     }
-    //   }
+      if (response) {
+        if (fromReset) {
+          context.push(AppRoutes.newPassword.path);
+        } else {
+          context.go(AppRoutes.login.path);
+        }
+      } else {
+        setState(() {
+          _isWaitingForOTP = true;
+          _otp = '';
+        });
+      }
+    }
   }
 
   @override
@@ -137,7 +134,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   VerificationForm(
                     formKey: _formKey,
                     onSavedOtp: (otp) {
-                      // _otp = otp;
+                      _otp = otp;
                     },
                   ),
                   SizedBox(height: height * 0.04),

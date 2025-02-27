@@ -6,12 +6,12 @@ import 'package:provider/provider.dart';
 import 'core/constants/app_routes.dart';
 import 'data/local/secure_service.dart';
 import 'features/auth/login/presentation/pages/login.dart';
-import 'features/auth/login/services/auth_login_cubit/cubit/auth_login_cubit.dart';
+import 'features/auth/login/services/cubit/auth_login_cubit.dart';
 import 'features/auth/login/services/toggle_provider.dart';
 import 'features/auth/newPassword/new_password.dart';
 import 'features/auth/register/presentation/pages/register.dart';
+import 'features/auth/register/services/cubit/auth_registration_service_cubit.dart';
 import 'features/auth/resetPassword/reset_password.dart';
-import 'features/auth/verification/presentation/pages/verification.dart';
 import 'features/onboarding/presentation/pages/onboarding.dart';
 import 'features/onboarding/services/onboarding_provider.dart';
 import 'features/splash/splash.dart';
@@ -54,8 +54,11 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.register.path,
         builder:
-            (context, state) => ChangeNotifierProvider(
-              create: (_) => Toggle(),
+            (context, state) => MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => Toggle()),
+                BlocProvider(create: (context) => AuthRegistrationCubit()),
+              ],
               child: const RegisterPage(),
             ),
       ),
@@ -63,10 +66,18 @@ class AppRouter {
         path: AppRoutes.resetPassword.path,
         builder: (context, state) => const ResetPasswordPage(),
       ),
-      GoRoute(
-        path: AppRoutes.verification.path,
-        builder: (context, state) => const VerificationPage(),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.verification.path,
+      //   builder: (context, state) {
+      //     final args = state.extra as Map<String, dynamic>?;
+      //     final fromReset = args?['fromReset'] ?? false;
+
+      //     return BlocProvider(
+      //       create: (context) => AuthVerificationCubit(),
+      //       child: VerificationPage(fromReset: fromReset),
+      //     );
+      //   },
+      // ),
       GoRoute(
         path: AppRoutes.newPassword.path,
         builder:

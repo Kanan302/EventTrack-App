@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'ASCCA App',
-      debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
     );
   }
