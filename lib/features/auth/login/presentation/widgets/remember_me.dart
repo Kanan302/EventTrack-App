@@ -1,37 +1,37 @@
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_texts.dart';
-import '../../services/toggle_provider.dart';
+import '../../services/remember_me_notifier.dart';
 
-class RememberMe extends StatelessWidget {
-  const RememberMe({super.key});
+class RememberMe extends StatefulWidget {
+  final RememberMeNotifier rememberMeNotifier;
+
+  const RememberMe({super.key, required this.rememberMeNotifier});
 
   @override
+  State<RememberMe> createState() => _RememberMeState();
+}
+
+class _RememberMeState extends State<RememberMe> {
+  @override
   Widget build(BuildContext context) {
-    return Consumer<Toggle>(
-      builder: (context, rememberProvider, child) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: widget.rememberMeNotifier,
+      builder: (context, isRememberMe, child) {
         return Row(
           children: [
             Transform.scale(
               scale: 0.8,
               child: Switch(
-                value: rememberProvider.isRememberMe,
+                value: !isRememberMe,
                 onChanged: (value) {
-                  rememberProvider.toggleRemember();
+                  widget.rememberMeNotifier.toggleRemember();
                 },
                 activeColor: AppColors.lavenderBlue,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
-            const Text(
-              AppTexts.rememberMe,
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
+            const Text(AppTexts.rememberMe, style: TextStyle(fontSize: 15)),
           ],
         );
       },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_texts.dart';
@@ -8,7 +7,7 @@ import '../../../core/errors/flushbar.dart';
 import '../../../core/errors/snackbar.dart';
 import '../../../core/widgets/app_elevated_button.dart';
 import '../../../core/widgets/app_text_form_field.dart';
-import '../login/services/toggle_provider.dart';
+
 import 'services/cubit/auth_new_password_service_cubit.dart';
 
 class NewPasswordPage extends StatefulWidget {
@@ -24,6 +23,11 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  final ValueNotifier<bool> _isPasswordVisible = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _isConfirmPasswordVisible = ValueNotifier<bool>(
+    false,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +65,22 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                         ),
                       ),
                     ),
-                    Consumer<Toggle>(
-                      builder: (context, visibilityProvider, child) {
+
+                    ValueListenableBuilder(
+                      valueListenable: _isPasswordVisible,
+                      builder: (context, isVisible, child) {
                         return AppTextFormField(
-                          obscureText: !visibilityProvider.isPasswordVisible,
+                          obscureText: !isVisible,
                           hintText: AppTexts.yourNewPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
-                              visibilityProvider.isPasswordVisible
+                              isVisible
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                          onPressed: visibilityProvider.toggleVisibility,
+                          onPressed: () {
+                            _isPasswordVisible.value =
+                                !_isPasswordVisible.value;
+                          },
                           controller: _passwordController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -84,17 +93,21 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                         );
                       },
                     ),
-                    Consumer<Toggle>(
-                      builder: (context, visibilityProvider, child) {
+                    ValueListenableBuilder(
+                      valueListenable: _isConfirmPasswordVisible,
+                      builder: (context, isConfirmVisible, child) {
                         return AppTextFormField(
-                          obscureText: !visibilityProvider.isConfirmVisible,
+                          obscureText: !isConfirmVisible,
                           hintText: AppTexts.confirmYourNewPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
-                              visibilityProvider.isConfirmVisible
+                              isConfirmVisible
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                          onPressed: visibilityProvider.toggleConfirm,
+                          onPressed: () {
+                            _isConfirmPasswordVisible.value =
+                                !_isConfirmPasswordVisible.value;
+                          },
                           controller: _confirmPasswordController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_routes.dart';
@@ -12,7 +11,8 @@ import '../../../../../core/widgets/app_elevated_button.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
 import '../../services/cubit/auth_login_cubit.dart';
 import '../../services/cubit/auth_login_state.dart';
-import '../../services/toggle_provider.dart';
+
+import '../../services/remember_me_notifier.dart';
 import '../widgets/navigation_sign_up.dart';
 import '../widgets/remember_me.dart';
 
@@ -27,6 +27,8 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final ValueNotifier<bool> _isPasswordVisible = ValueNotifier<bool>(false);
+  final RememberMeNotifier _rememberMeNotifier = RememberMeNotifier();
 
   void _handleLogin(BuildContext context) {
     if (_formKey.currentState!.validate()) {
@@ -82,19 +84,21 @@ class _LoginPageState extends State<LoginPage> {
                             return null;
                           },
                         ),
-                        Consumer<Toggle>(
-                          builder: (context, visibilityProvider, child) {
+
+                        ValueListenableBuilder<bool>(
+                          valueListenable: _isPasswordVisible,
+                          builder: (context, isVisible, child) {
                             return AppTextFormField(
-                              obscureText:
-                                  !visibilityProvider.isPasswordVisible,
+                              obscureText: !isVisible,
                               hintText: AppTexts.yourPassword,
                               prefixIcon: Icons.lock_outline,
                               suffixIcon:
-                                  visibilityProvider.isPasswordVisible
+                                  isVisible
                                       ? Icons.visibility_outlined
                                       : Icons.visibility_off_outlined,
                               onPressed: () {
-                                visibilityProvider.toggleVisibility();
+                                _isPasswordVisible.value =
+                                    !_isPasswordVisible.value;
                               },
                               controller: _passwordController,
                               validator: (value) {
@@ -111,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const RememberMe(),
+                            RememberMe(rememberMeNotifier: _rememberMeNotifier),
                             GestureDetector(
                               onTap:
                                   () => context.push(
@@ -167,5 +171,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _rememberMeNotifier.dispose();
+    super.dispose();
   }
 }

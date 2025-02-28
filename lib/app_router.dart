@@ -1,13 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 import 'core/constants/app_routes.dart';
 import 'data/local/secure_service.dart';
 import 'features/auth/login/presentation/pages/login.dart';
 import 'features/auth/login/services/cubit/auth_login_cubit.dart';
-import 'features/auth/login/services/toggle_provider.dart';
 import 'features/auth/new_password/new_password.dart';
 import 'features/auth/new_password/services/cubit/auth_new_password_service_cubit.dart';
 import 'features/auth/register/presentation/pages/register.dart';
@@ -15,7 +13,6 @@ import 'features/auth/register/services/cubit/auth_registration_service_cubit.da
 import 'features/auth/reset_password/reset_password.dart';
 import 'features/auth/reset_password/services/cubit/auth_reset_password_service_cubit.dart';
 import 'features/onboarding/presentation/pages/onboarding.dart';
-import 'features/onboarding/services/onboarding_provider.dart';
 import 'features/splash/splash.dart';
 import 'features/home/home.dart';
 
@@ -29,38 +26,26 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.onboarding.path,
-        builder:
-            (context, state) => ChangeNotifierProvider(
-              create: (_) => OnboardingProvider(),
-              child: const OnboardingPage(),
-            ),
+        builder: (context, state) => const OnboardingPage(),
       ),
       GoRoute(
         path: AppRoutes.login.path,
         builder:
-            (context, state) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => Toggle()),
-                BlocProvider(
-                  create:
-                      (context) => AuthLoginCubit(
-                        secureStorage: SecureService(
-                          secureStorage: const FlutterSecureStorage(),
-                        ),
-                      ),
-                ),
-              ],
+            (context, state) => BlocProvider(
+              create:
+                  (context) => AuthLoginCubit(
+                    secureStorage: SecureService(
+                      secureStorage: const FlutterSecureStorage(),
+                    ),
+                  ),
               child: const LoginPage(),
             ),
       ),
       GoRoute(
         path: AppRoutes.register.path,
         builder:
-            (context, state) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => Toggle()),
-                BlocProvider(create: (context) => AuthRegistrationCubit()),
-              ],
+            (context, state) => BlocProvider(
+              create: (context) => AuthRegistrationCubit(),
               child: const RegisterPage(),
             ),
       ),
@@ -87,28 +72,21 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.newPassword.path,
         builder:
-            (context, state) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) => Toggle()),
-                BlocProvider(create: (context) => AuthNewPasswordCubit()),
-              ],
+            (context, state) => BlocProvider(
+              create: (context) => AuthNewPasswordCubit(),
               child: const NewPasswordPage(),
             ),
       ),
       GoRoute(
         path: AppRoutes.home.path,
         builder: (context, state) {
-          return MultiProvider(
-            providers: [
-              BlocProvider(
-                create:
-                    (context) => AuthLoginCubit(
-                      secureStorage: SecureService(
-                        secureStorage: const FlutterSecureStorage(),
-                      ),
-                    ),
-              ),
-            ],
+          return BlocProvider(
+            create:
+                (context) => AuthLoginCubit(
+                  secureStorage: SecureService(
+                    secureStorage: const FlutterSecureStorage(),
+                  ),
+                ),
             child: HomePage(),
           );
         },
