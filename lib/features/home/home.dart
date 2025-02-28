@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/constants/app_routes.dart';
 import '../../core/errors/flushbar.dart';
 import '../../data/local/secure_service.dart';
 import '../../injection.dart';
@@ -31,13 +30,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     setState(() {
       userStatus = status;
     });
-  }
-
-  Future<void> _logout() async {
-    await _secureStorage.clearToken();
-    if (mounted) {
-      context.go(AppRoutes.login.path);
-    }
   }
 
   @override
@@ -77,13 +69,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        actions: [IconButton(icon: Icon(Icons.logout), onPressed: _logout)],
-      ),
       body: TabBarView(
         controller: tabController,
-        children: [EventsPage(), TrendingPage(), CalendarPage(), ProfilePage()],
+        children: [
+          EventsPage(tabController: tabController),
+          TrendingPage(),
+          CalendarPage(),
+          ProfilePage(),
+        ],
       ),
       bottomNavigationBar: BottomNavBar(tabController: tabController),
       floatingActionButton: userStatus == "1" ? FloatingButton() : null,

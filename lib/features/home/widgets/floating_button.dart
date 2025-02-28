@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_routes.dart';
 
 class FloatingButton extends StatelessWidget {
   const FloatingButton({super.key});
@@ -11,8 +13,7 @@ class FloatingButton extends StatelessWidget {
       data: ThemeData(useMaterial3: false),
       child: FloatingActionButton(
         backgroundColor: AppColors.lavenderBlue,
-        onPressed: () {},
-        // => context.push(AppRoutes.createEvent.path),
+        onPressed: () => context.push(AppRoutes.createEvent.path),
         child: const Icon(Icons.add_box, size: 25),
       ),
     );

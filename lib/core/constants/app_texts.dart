@@ -51,4 +51,11 @@ class AppTexts {
   static const String trending = 'Trendlər';
   static const String calendar = 'Təqvim';
   static const String profile = 'Profil';
+
+  // drawer
+  static const String myProfile = 'Profilim';
+  static const String message = 'Mesajlar';
+  static const String bookmark = 'Seçilmişlər';
+  static const String settings = 'Ayarlar';
+  static const String signOut = 'Çıxış';
 }

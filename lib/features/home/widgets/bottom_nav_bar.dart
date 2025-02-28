@@ -1,14 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_texts.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({
-    super.key,
-    required this.tabController,
-  });
+  const BottomNavBar({super.key, required this.tabController});
 
   final TabController tabController;
 
@@ -35,32 +31,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
       tabs: const [
         Tab(
           text: AppTexts.events,
-          icon: Icon(
-            Icons.explore,
-            size: 25,
-          ),
+          icon: Icon(Icons.event_seat_outlined, size: 25),
         ),
         Tab(
           text: AppTexts.trending,
-          icon: Icon(
-            Icons.calendar_month,
-            size: 25,
-          ),
+          icon: Icon(Icons.trending_up_outlined, size: 25),
         ),
         Tab(
           text: AppTexts.calendar,
-          icon: Icon(
-            Icons.location_on,
-            size: 25,
-          ),
+          icon: Icon(Icons.calendar_month, size: 25),
         ),
-        Tab(
-          text: AppTexts.profile,
-          icon: Icon(
-            Icons.person,
-            size: 25,
-          ),
-        ),
+        Tab(text: AppTexts.profile, icon: Icon(Icons.person, size: 25)),
       ],
     );
   }
