@@ -19,7 +19,6 @@ class AppTexts {
   static const String signInUppercase = 'DAXİL OLUN';
   static const String or = 'VƏ YA';
   static const String loginWithGoogle = 'Google ilə daxil olun';
-  static const String loginWithFacebook = 'Facebook ilə daxil olun';
   static const String dontHaveAccount = 'Hesabınız yoxdur?';
 
   // register
@@ -47,15 +46,15 @@ class AppTexts {
   static const String update = 'Yenilə';
 
   // home
+  static const String trends = 'Trendlər';
   static const String events = 'Tədbirlər';
-  static const String trending = 'Trendlər';
   static const String calendar = 'Təqvim';
   static const String profile = 'Profil';
 
-  // drawer
-  static const String myProfile = 'Profilim';
-  static const String message = 'Mesajlar';
+  // profile
   static const String bookmark = 'Seçilmişlər';
   static const String settings = 'Ayarlar';
-  static const String signOut = 'Çıxış';
+  static const String logOut = 'Çıxış et';
+  static const String about = 'Haqqında';
+  static const String notifications = 'Bildirişlər';
 }

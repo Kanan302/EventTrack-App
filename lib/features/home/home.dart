@@ -5,10 +5,10 @@ import '../../core/errors/flushbar.dart';
 import '../../data/local/secure_service.dart';
 import '../../injection.dart';
 
-import 'calendar/calendar.dart';
-import 'events/events.dart';
-import 'profile/profile.dart';
-import 'trending/trending.dart';
+import 'calendar_tab/calendar_tab.dart';
+import 'events_tab/events_tab.dart';
+import 'profile_tab/presentation/pages/profile_tab.dart';
+import 'trends_tab/trends_tab.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/floating_button.dart';
 
@@ -72,10 +72,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       body: TabBarView(
         controller: tabController,
         children: [
-          EventsPage(tabController: tabController),
-          TrendingPage(),
-          CalendarPage(),
-          ProfilePage(),
+          TrendingTab(),
+          EventsTab(),
+          CalendarTab(),
+          ProfileTab(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(tabController: tabController),

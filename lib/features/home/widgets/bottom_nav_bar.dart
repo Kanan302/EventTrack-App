@@ -30,12 +30,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
       padding: const EdgeInsets.only(bottom: 8, top: 8),
       tabs: const [
         Tab(
-          text: AppTexts.events,
-          icon: Icon(Icons.event_seat_outlined, size: 25),
+          text: AppTexts.trends,
+          icon: Icon(Icons.trending_up_outlined, size: 25),
         ),
         Tab(
-          text: AppTexts.trending,
-          icon: Icon(Icons.trending_up_outlined, size: 25),
+          text: AppTexts.events,
+          icon: Icon(Icons.event_seat_outlined, size: 25),
         ),
         Tab(
           text: AppTexts.calendar,
