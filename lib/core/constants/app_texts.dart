@@ -52,9 +52,10 @@ class AppTexts {
   static const String profile = 'Profil';
 
   // profile
-  static const String bookmark = 'Seçilmişlər';
-  static const String settings = 'Ayarlar';
-  static const String logOut = 'Çıxış et';
-  static const String about = 'Haqqında';
+  static const String bookmarkedEvents = 'Seçilmiş tədbirlər';
   static const String notifications = 'Bildirişlər';
+  static const String about = 'Haqqında';
+  static const String language = 'Dil';
+  static const String darkMode = 'Tünd rejim';
+  static const String logOut = 'Çıxış et';
 }

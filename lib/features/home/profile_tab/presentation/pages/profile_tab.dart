@@ -1,6 +1,6 @@
 import 'package:ascca_app/core/constants/app_colors.dart';
 import 'package:ascca_app/core/constants/app_routes.dart';
-import 'package:ascca_app/features/home/profile_tab/presentation/widgets/profile_card.dart';
+import 'package:ascca_app/features/home/profile_tab/presentation/widgets/profile_card_item.dart';
 import 'package:ascca_app/features/home/profile_tab/presentation/widgets/profile_log_out_dialog.dart';
 import 'package:ascca_app/features/home/profile_tab/presentation/widgets/profile_name.dart';
 import 'package:ascca_app/features/home/profile_tab/presentation/widgets/profile_photo.dart';
@@ -11,9 +11,18 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/constants/app_texts.dart';
 import '../widgets/profile_app_bar.dart';
 
-class ProfileTab extends StatelessWidget {
+class ProfileTab extends StatefulWidget {
+  const ProfileTab({super.key});
+
+  @override
+  State<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends State<ProfileTab> {
   final LogOut _logOut = LogOut();
-  ProfileTab({super.key});
+
+  final ValueNotifier<String> selectedLanguage = ValueNotifier<String>("AZ");
+  final ValueNotifier<bool> isDarkMode = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -28,35 +37,42 @@ class ProfileTab extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               spacing: height * 0.012,
               children: [
-                SizedBox(height: height * 0.008),
                 ProfilePhoto(),
                 ProfileName(),
                 SizedBox(height: height * 0.02),
-                ProfileCard(
+                ProfileCardItem(
                   leadingIcon: Icons.bookmark_outline,
                   leadingIconColor: AppColors.lavenderBlue,
-                  title: AppTexts.bookmark,
-                  onTap: () {},
+                  title: AppTexts.bookmarkedEvents,
+                  onTap: () => context.push(AppRoutes.bookmarkedEvents.path),
                 ),
-                ProfileCard(
+                ProfileCardItem(
                   leadingIcon: Icons.notifications_none_outlined,
                   leadingIconColor: AppColors.lavenderBlue,
                   title: AppTexts.notifications,
                   onTap: () => context.push(AppRoutes.notification.path),
                 ),
-                ProfileCard(
-                  leadingIcon: Icons.settings_outlined,
-                  leadingIconColor: AppColors.lavenderBlue,
-                  title: AppTexts.settings,
-                  onTap: () {},
-                ),
-                ProfileCard(
+                ProfileCardItem(
                   leadingIcon: Icons.info_outline,
                   leadingIconColor: AppColors.lavenderBlue,
                   title: AppTexts.about,
-                  onTap: () {},
+                  onTap: () => context.push(AppRoutes.about.path),
                 ),
-                ProfileCard(
+                ProfileCardItem(
+                  leadingIcon: Icons.language_outlined,
+                  leadingIconColor: AppColors.lavenderBlue,
+                  title: AppTexts.language,
+                  isLanguageSelection: true,
+                  selectedLanguage: selectedLanguage,
+                ),
+                ProfileCardItem(
+                  leadingIcon: Icons.dark_mode_outlined,
+                  leadingIconColor: AppColors.lavenderBlue,
+                  title: AppTexts.darkMode,
+                  isDarkMode: true,
+                  darkModeNotifier: isDarkMode,
+                ),
+                ProfileCardItem(
                   leadingIcon: Icons.logout,
                   leadingIconColor: AppColors.red,
                   title: AppTexts.logOut,
@@ -78,5 +94,11 @@ class ProfileTab extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectedLanguage.dispose();
+    super.dispose();
   }
 }

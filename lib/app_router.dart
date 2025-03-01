@@ -1,5 +1,7 @@
 import 'package:ascca_app/features/home/create_event/presentation/pages/create_event.dart';
-import 'package:ascca_app/features/home/notifications/presentation/pages/notifications.dart';
+import 'package:ascca_app/features/home/profile_tab/features/about/about.dart';
+import 'package:ascca_app/features/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
+import 'package:ascca_app/features/home/profile_tab/features/notifications/presentation/pages/notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -100,6 +102,15 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.notification.path,
         builder: (context, state) => NotificationsPage(),
+      ),
+     
+      GoRoute(
+        path: AppRoutes.about.path,
+        builder: (context, state) => AboutPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.bookmarkedEvents.path,
+        builder: (context, state) => BookmarkedEventsPage(),
       ),
     ],
   );

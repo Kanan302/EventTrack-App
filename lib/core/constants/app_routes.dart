@@ -8,7 +8,9 @@ enum AppRoutes {
   newPassword(path: '/newPassword'),
   home(path: '/home'),
   createEvent(path: '/createEvent'),
-  notification(path: '/notification');
+  notification(path: '/notification'),
+  about(path: '/about'),
+  bookmarkedEvents(path: '/bookmarkedEvents');
 
   const AppRoutes({required this.path});
   final String path;
