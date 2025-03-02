@@ -1,7 +1,9 @@
 import 'package:ascca_app/core/services/local/secure_service.dart';
+import 'package:ascca_app/cubits/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/cubits/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/cubits/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/cubits/auth_reset_password/auth_reset_password_cubit.dart';
+import 'package:ascca_app/repositories/auth_login/auth_login_repository.dart';
 import 'package:ascca_app/repositories/auth_new_password/auth_new_password_repository.dart';
 import 'package:ascca_app/repositories/auth_registration/auth_registration_repository.dart';
 import 'package:ascca_app/repositories/auth_reset_password/auth_reset_password_repository.dart';
@@ -17,6 +19,10 @@ Future<void> init() async {
   );
 
   // Repository qeydiyyatı
+  getIt.registerLazySingleton<AuthLoginRepository>(
+    () => AuthLoginRepository(secureStorage: getIt<SecureService>()),
+  );
+
   getIt.registerLazySingleton<AuthRegistrationRepository>(
     () => AuthRegistrationRepository(),
   );
@@ -29,6 +35,10 @@ Future<void> init() async {
   );
 
   // Cubit qeydiyyatı
+  getIt.registerFactory<AuthLoginCubit>(
+    () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
+  );
+
   getIt.registerFactory<AuthRegistrationCubit>(
     () =>
         AuthRegistrationCubit(repository: getIt<AuthRegistrationRepository>()),

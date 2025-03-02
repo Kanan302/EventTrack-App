@@ -5,11 +5,9 @@ import 'package:ascca_app/views/home/profile_tab/features/about/about.dart';
 import 'package:ascca_app/views/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
 import 'package:ascca_app/views/home/profile_tab/features/notifications/pages/notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/utils/app_routes.dart';
-import 'core/services/local/secure_service.dart';
 import 'views/auth/login/pages/login.dart';
 import 'views/auth/new_password/new_password.dart';
 import 'cubits/auth_new_password/auth_new_password_cubit.dart';
@@ -37,12 +35,7 @@ class AppRouter {
         path: AppRoutes.login.path,
         builder:
             (context, state) => BlocProvider(
-              create:
-                  (context) => AuthLoginCubit(
-                    secureStorage: SecureService(
-                      secureStorage: const FlutterSecureStorage(),
-                    ),
-                  ),
+              create: (context) => getIt<AuthLoginCubit>(),
               child: const LoginPage(),
             ),
       ),
@@ -86,12 +79,7 @@ class AppRouter {
         path: AppRoutes.home.path,
         builder: (context, state) {
           return BlocProvider(
-            create:
-                (context) => AuthLoginCubit(
-                  secureStorage: SecureService(
-                    secureStorage: const FlutterSecureStorage(),
-                  ),
-                ),
+            create: (context) => getIt<AuthLoginCubit>(),
             child: HomePage(),
           );
         },
@@ -101,17 +89,16 @@ class AppRouter {
         builder: (context, state) => CreateEventPage(),
       ),
       GoRoute(
+        path: AppRoutes.bookmarkedEvents.path,
+        builder: (context, state) => BookmarkedEventsPage(),
+      ),
+      GoRoute(
         path: AppRoutes.notification.path,
         builder: (context, state) => NotificationsPage(),
       ),
-
       GoRoute(
         path: AppRoutes.about.path,
         builder: (context, state) => AboutPage(),
-      ),
-      GoRoute(
-        path: AppRoutes.bookmarkedEvents.path,
-        builder: (context, state) => BookmarkedEventsPage(),
       ),
     ],
   );
