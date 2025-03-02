@@ -1,19 +1,14 @@
 import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthResetPasswordRepository {
-  Future<void> resetPassword(String email) async {
+class AuthNewPasswordRepository {
+  Future<void> newPassword(String newPassword, String confirmPassword) async {
     try {
       final response = await baseDio.post(
-        '/auth/requestPasswordReset',
-        data: {'email': email},
+        '/auth/resetPassword',
+        data: {'newPassword': newPassword, 'confirmPassword': confirmPassword},
       );
-
-      if (response.statusCode == 200) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('resetEmail', email);
-      } else {
+      if (response.statusCode != 200) {
         throw Exception('Naməlum xəta baş verdi.');
       }
     } on DioException catch (e) {

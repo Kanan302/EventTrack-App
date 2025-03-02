@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:ascca_app/repositories/auth_new_password/auth_new_password_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,12 +8,13 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/app_routes.dart';
 import '../../core/errors/flushbar.dart';
 import '../../core/errors/snackbar.dart';
-import '../../core/services/jwt/dio_configuration.dart';
 
 part 'auth_new_password_state.dart';
 
 class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
-  AuthNewPasswordCubit() : super(AuthNewPasswordInitial());
+  final AuthNewPasswordRepository repository;
+  AuthNewPasswordCubit({required this.repository})
+    : super(AuthNewPasswordInitial());
 
   Future<void> newPassword({
     required BuildContext context,
@@ -23,49 +24,25 @@ class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
     emit(AuthNewPasswordLoading());
 
     try {
-      final response = await baseDio.post(
-        '/auth/resetPassword',
-        data: {'newPassword': newPassword, 'confirmPassword': confirmPassword},
-      );
+      await repository.newPassword(newPassword, confirmPassword);
+      emit(AuthNewPasswordSuccess());
 
-      if (response.statusCode == 200) {
-        emit(AuthNewPasswordSuccess());
-
-        SnackBarService.showSnackBar(
-          context,
-          'Şifrə uğurla yeniləndi!',
-          AppColors.black,
-        );
-
-        context.go(AppRoutes.login.path);
-      } else {
-        _handleError(context, 'Naməlum xəta baş verdi.');
-      }
-    } on DioException catch (e) {
-      _handleDioError(e, context);
-    } catch (e) {
-      _handleError(context, 'Bilinməyən xəta baş verdi: $e');
-    }
-  }
-
-  void _handleDioError(DioException e, BuildContext context) {
-    final statusCode = e.response?.statusCode;
-    final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
-
-    if (statusCode == 404) {
-      _handleError(
+      SnackBarService.showSnackBar(
         context,
-        'stifadəçi tapılmadı. Zəhmət olmasa, e-poçt ünvanını yoxlayın',
+        'Şifrə uğurla yeniləndi!',
+        AppColors.black,
       );
-    } else if (statusCode == 500) {
-      _handleError(context, 'Sistemdə problem var, üzr istəyirik.');
-    } else {
-      _handleError(context, 'Xəta baş verdi: $errorMessage');
+
+      context.go(AppRoutes.login.path);
+    } catch (e) {
+      _handleError(context, e.toString());
     }
   }
 
   void _handleError(BuildContext context, String message) {
-    emit(AuthNewPasswordFailure(message));
+    final cleanMessage = message.replaceFirst('Exception: ', '');
+
+    emit(AuthNewPasswordFailure(cleanMessage));
     FlushbarService.showFlushbar(
       context: context,
       message: message,

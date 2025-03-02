@@ -2,19 +2,26 @@ import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthResetPasswordRepository {
-  Future<void> resetPassword(String email) async {
+class AuthRegistrationRepository {
+  Future<void> register(
+    String fullName,
+    String email,
+    String password,
+    String confirmPassword,
+  ) async {
     try {
       final response = await baseDio.post(
-        '/auth/requestPasswordReset',
-        data: {'email': email},
+        '/auth/register',
+        data: {
+          'fullName': fullName,
+          'email': email,
+          'password': password,
+          'confirmPassword': confirmPassword,
+        },
       );
 
       if (response.statusCode == 200) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('resetEmail', email);
-      } else {
-        throw Exception('Naməlum xəta baş verdi.');
+        await _saveRegistrationData(fullName, email, password, confirmPassword);
       }
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
@@ -31,5 +38,18 @@ class AuthResetPasswordRepository {
     } catch (e) {
       throw Exception('Gözlənilməz xəta baş verdi: $e');
     }
+  }
+
+  Future<void> _saveRegistrationData(
+    String fullName,
+    String email,
+    String password,
+    String confirmPassword,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('registerFullName', fullName);
+    await prefs.setString('registerEmail', email);
+    await prefs.setString('registerPassword', password);
+    await prefs.setString('registerConfirmPassword', confirmPassword);
   }
 }

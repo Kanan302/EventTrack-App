@@ -14,7 +14,7 @@ import 'views/auth/login/pages/login.dart';
 import 'views/auth/new_password/new_password.dart';
 import 'cubits/auth_new_password/auth_new_password_cubit.dart';
 import 'views/auth/register/pages/register.dart';
-import 'cubits/auth_register/auth_registration_cubit.dart';
+import 'cubits/auth_registration/auth_registration_cubit.dart';
 import 'views/auth/reset_password/reset_password.dart';
 import 'cubits/auth_reset_password/auth_reset_password_cubit.dart';
 import 'views/onboarding/presentation/pages/onboarding.dart';
@@ -50,7 +50,7 @@ class AppRouter {
         path: AppRoutes.register.path,
         builder:
             (context, state) => BlocProvider(
-              create: (context) => AuthRegistrationCubit(),
+              create: (context) => getIt<AuthRegistrationCubit>(),
               child: const RegisterPage(),
             ),
       ),
@@ -78,7 +78,7 @@ class AppRouter {
         path: AppRoutes.newPassword.path,
         builder:
             (context, state) => BlocProvider(
-              create: (context) => AuthNewPasswordCubit(),
+              create: (context) => getIt<AuthNewPasswordCubit>(),
               child: const NewPasswordPage(),
             ),
       ),
@@ -104,7 +104,7 @@ class AppRouter {
         path: AppRoutes.notification.path,
         builder: (context, state) => NotificationsPage(),
       ),
-     
+
       GoRoute(
         path: AppRoutes.about.path,
         builder: (context, state) => AboutPage(),
