@@ -1,6 +1,7 @@
 import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
 import 'package:ascca_app/core/services/local/secure_service.dart';
 import 'package:ascca_app/core/utils/app_keys.dart';
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:dio/dio.dart';
 
 class AuthLoginRepository {
@@ -8,11 +9,11 @@ class AuthLoginRepository {
   AuthLoginRepository({required SecureService secureStorage})
     : _secureStorage = secureStorage;
 
-  Future<void> loginUser(String email, String password) async {
+  Future<void> loginUser(AuthModel model) async {
     try {
       final response = await baseDio.post(
         '/auth/login',
-        data: {'email': email.trim(), 'password': password.trim()},
+        data: model.toJson(),
       );
 
       if (response.statusCode == 200) {

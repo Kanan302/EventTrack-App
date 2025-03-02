@@ -1,3 +1,4 @@
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:ascca_app/repositories/auth_new_password/auth_new_password_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,11 @@ class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
     emit(AuthNewPasswordLoading());
 
     try {
-      await repository.newPassword(newPassword, confirmPassword);
+      AuthModel model = AuthModel(
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+      );
+      await repository.newPassword(model);
       emit(AuthNewPasswordSuccess());
 
       SnackBarService.showSnackBar(

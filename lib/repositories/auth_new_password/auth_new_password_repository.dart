@@ -1,12 +1,13 @@
 import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:dio/dio.dart';
 
 class AuthNewPasswordRepository {
-  Future<void> newPassword(String newPassword, String confirmPassword) async {
+  Future<void> newPassword(AuthModel model) async {
     try {
       final response = await baseDio.post(
         '/auth/resetPassword',
-        data: {'newPassword': newPassword, 'confirmPassword': confirmPassword},
+        data: model.toJson(),
       );
       if (response.statusCode != 200) {
         throw Exception('Naməlum xəta baş verdi.');

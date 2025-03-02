@@ -1,18 +1,19 @@
 import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthResetPasswordRepository {
-  Future<void> resetPassword(String email) async {
+  Future<void> resetPassword(AuthModel model) async {
     try {
       final response = await baseDio.post(
         '/auth/requestPasswordReset',
-        data: {'email': email},
+        data: model.toJson(),
       );
 
       if (response.statusCode == 200) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('resetEmail', email);
+        await prefs.setString('resetEmail', model.email!);
       } else {
         throw Exception('Naməlum xəta baş verdi.');
       }

@@ -1,27 +1,18 @@
 import 'package:ascca_app/core/services/jwt/dio_configuration.dart';
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRegistrationRepository {
-  Future<void> register(
-    String fullName,
-    String email,
-    String password,
-    String confirmPassword,
-  ) async {
+  Future<void> register(AuthModel model) async {
     try {
       final response = await baseDio.post(
         '/auth/register',
-        data: {
-          'fullName': fullName,
-          'email': email,
-          'password': password,
-          'confirmPassword': confirmPassword,
-        },
+        data: model.toJson(),
       );
 
       if (response.statusCode == 200) {
-        await _saveRegistrationData(fullName, email, password, confirmPassword);
+        await _saveRegistrationData(model.fullName!, model.email!, model.password!, model.confirmPassword!);
       }
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;

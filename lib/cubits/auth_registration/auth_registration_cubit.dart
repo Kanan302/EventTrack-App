@@ -1,3 +1,4 @@
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:ascca_app/repositories/auth_registration/auth_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,13 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
     emit(AuthRegistrationLoading());
 
     try {
-      await repository.register(fullName, email, password, confirmPassword);
+      AuthModel model = AuthModel(
+        fullName: fullName,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      );
+      await repository.register(model);
       emit(AuthRegistrationSuccess());
 
       Navigator.push(

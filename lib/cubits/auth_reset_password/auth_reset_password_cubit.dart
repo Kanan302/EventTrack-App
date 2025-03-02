@@ -1,3 +1,4 @@
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:ascca_app/repositories/auth_reset_password/auth_reset_password_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class AuthResetPasswordCubit extends Cubit<AuthResetPasswordState> {
     emit(AuthResetPasswordLoading());
 
     try {
-      await repository.resetPassword(email);
+      AuthModel model = AuthModel(email: email);
+      await repository.resetPassword(model);
       emit(AuthResetPasswordSuccess());
 
       Navigator.push(

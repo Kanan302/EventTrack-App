@@ -1,4 +1,5 @@
 import 'package:ascca_app/core/errors/flushbar.dart';
+import 'package:ascca_app/models/auth_model.dart';
 import 'package:ascca_app/repositories/auth_login/auth_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +12,7 @@ import 'auth_login_state.dart';
 class AuthLoginCubit extends Cubit<AuthLoginState> {
   final AuthLoginRepository repository;
 
-   AuthLoginCubit({required this.repository})
-    : super(AuthLoginInitial());
+  AuthLoginCubit({required this.repository}) : super(AuthLoginInitial());
 
   Future<void> loginUser({
     required String email,
@@ -22,7 +22,8 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
     emit(AuthLoginLoading());
 
     try {
-      await repository.loginUser(email, password);
+      AuthModel model = AuthModel(email: email, password: password);
+      await repository.loginUser(model);
       emit(AuthLoginSuccess());
 
       debugPrint('Message: ${AppKeys.message}');
@@ -38,7 +39,7 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
     }
   }
 
-   void _handleError(BuildContext context, String message) {
+  void _handleError(BuildContext context, String message) {
     final cleanMessage = message.replaceFirst('Exception: ', '');
 
     emit(AuthLoginFailure(cleanMessage));
