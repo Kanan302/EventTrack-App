@@ -1,24 +1,24 @@
-import 'package:ascca_app/features/home/create_event/presentation/pages/create_event.dart';
-import 'package:ascca_app/features/home/profile_tab/features/about/about.dart';
-import 'package:ascca_app/features/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
-import 'package:ascca_app/features/home/profile_tab/features/notifications/presentation/pages/notifications.dart';
+import 'package:ascca_app/cubits/auth_login_cubit/auth_login_cubit.dart';
+import 'package:ascca_app/views/home/create_event/pages/create_event.dart';
+import 'package:ascca_app/views/home/profile_tab/features/about/about.dart';
+import 'package:ascca_app/views/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
+import 'package:ascca_app/views/home/profile_tab/features/notifications/pages/notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
-import 'core/constants/app_routes.dart';
-import 'data/local/secure_service.dart';
-import 'features/auth/login/presentation/pages/login.dart';
-import 'features/auth/login/services/cubit/auth_login_cubit.dart';
-import 'features/auth/new_password/new_password.dart';
-import 'features/auth/new_password/services/cubit/auth_new_password_service_cubit.dart';
-import 'features/auth/register/presentation/pages/register.dart';
-import 'features/auth/register/services/cubit/auth_registration_service_cubit.dart';
-import 'features/auth/reset_password/reset_password.dart';
-import 'features/auth/reset_password/services/cubit/auth_reset_password_service_cubit.dart';
-import 'features/onboarding/presentation/pages/onboarding.dart';
-import 'features/splash/splash.dart';
-import 'features/home/home.dart';
+import 'core/utils/app_routes.dart';
+import 'core/services/local/secure_service.dart';
+import 'views/auth/login/pages/login.dart';
+import 'views/auth/new_password/new_password.dart';
+import 'cubits/auth_new_password/auth_new_password_cubit.dart';
+import 'views/auth/register/pages/register.dart';
+import 'cubits/auth_register_cubit/auth_registration_cubit.dart';
+import 'views/auth/reset_password/reset_password.dart';
+import 'cubits/auth_reset_password/auth_reset_password_cubit.dart';
+import 'views/onboarding/presentation/pages/onboarding.dart';
+import 'views/splash/splash.dart';
+import 'views/home/home.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
