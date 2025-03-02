@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_routes.dart';
-import '../../services/onboarding_notifier.dart';
+import '../../../core/utils/app_routes.dart';
+import '../services/onboarding_notifier.dart';
 import '../widgets/onboarding_section.dart';
 
 class OnboardingPage extends StatefulWidget {

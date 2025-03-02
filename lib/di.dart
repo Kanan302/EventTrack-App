@@ -13,12 +13,12 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 Future<void> init() async {
-  // Secure Storage üçün service qeydiyyatı
+  // Secure Storage
   getIt.registerLazySingleton(
     () => SecureService(secureStorage: const FlutterSecureStorage()),
   );
 
-  // Repository qeydiyyatı
+  // Repository
   getIt.registerLazySingleton<AuthLoginRepository>(
     () => AuthLoginRepository(secureStorage: getIt<SecureService>()),
   );
@@ -30,11 +30,12 @@ Future<void> init() async {
   getIt.registerLazySingleton<AuthResetPasswordRepository>(
     () => AuthResetPasswordRepository(),
   );
+
   getIt.registerLazySingleton<AuthNewPasswordRepository>(
     () => AuthNewPasswordRepository(),
   );
 
-  // Cubit qeydiyyatı
+  // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
   );
@@ -49,6 +50,7 @@ Future<void> init() async {
       repository: getIt<AuthResetPasswordRepository>(),
     ),
   );
+
   getIt.registerFactory<AuthNewPasswordCubit>(
     () => AuthNewPasswordCubit(repository: getIt<AuthNewPasswordRepository>()),
   );

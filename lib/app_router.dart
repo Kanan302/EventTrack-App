@@ -1,9 +1,9 @@
 import 'package:ascca_app/cubits/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/di.dart';
 import 'package:ascca_app/views/home/create_event/pages/create_event.dart';
-import 'package:ascca_app/views/home/profile_tab/features/about/about.dart';
-import 'package:ascca_app/views/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
-import 'package:ascca_app/views/home/profile_tab/features/notifications/pages/notifications.dart';
+import 'package:ascca_app/views/home/profile_tab/pages/about/about.dart';
+import 'package:ascca_app/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
+import 'package:ascca_app/views/home/profile_tab/pages/notifications/pages/notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +15,7 @@ import 'views/auth/register/pages/register.dart';
 import 'cubits/auth_registration/auth_registration_cubit.dart';
 import 'views/auth/reset_password/reset_password.dart';
 import 'cubits/auth_reset_password/auth_reset_password_cubit.dart';
-import 'views/onboarding/presentation/pages/onboarding.dart';
+import 'views/onboarding/pages/onboarding.dart';
 import 'views/splash/splash.dart';
 import 'views/home/home.dart';
 
