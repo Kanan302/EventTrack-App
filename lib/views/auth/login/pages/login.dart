@@ -1,5 +1,5 @@
 import 'package:ascca_app/core/utils/app_images.dart';
-import 'package:ascca_app/cubits/auth_login_cubit/auth_login_cubit.dart';
+import 'package:ascca_app/cubits/auth_login/auth_login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +10,7 @@ import '../../../../core/utils/app_routes.dart';
 import '../../../../core/utils/app_texts.dart';
 import '../../../../widgets/app_elevated_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
-import '../../../../cubits/auth_login_cubit/auth_login_state.dart';
+import '../../../../cubits/auth_login/auth_login_state.dart';
 
 import '../services/remember_me_notifier.dart';
 import '../widgets/navigation_sign_up.dart';

@@ -9,8 +9,8 @@ import '../../../../core/utils/app_texts.dart';
 import '../../../../core/errors/snackbar.dart';
 import '../../../../widgets/app_elevated_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
-import '../../../../cubits/auth_register_cubit/auth_registration_cubit.dart';
-import '../../../../cubits/auth_register_cubit/auth_registration_state.dart';
+import '../../../../cubits/auth_register/auth_registration_cubit.dart';
+import '../../../../cubits/auth_register/auth_registration_state.dart';
 import '../widgets/navigation_sign_in.dart';
 
 class RegisterPage extends StatefulWidget {

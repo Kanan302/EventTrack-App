@@ -2,7 +2,7 @@ import 'package:ascca_app/core/utils/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../injection.dart';
+import '../../../di.dart';
 import '../local/secure_service.dart';
 import 'dio_configuration.dart';
 

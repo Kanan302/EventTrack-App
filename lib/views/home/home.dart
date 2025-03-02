@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/errors/flushbar.dart';
 import '../../core/services/local/secure_service.dart';
-import '../../core/services/injection.dart';
+import '../../di.dart';
 
 import 'calendar_tab/calendar_tab.dart';
 import 'events_tab/events_tab.dart';

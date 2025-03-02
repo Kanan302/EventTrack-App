@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/utils/app_routes.dart';
 import '../../../core/services/local/secure_service.dart';
-import '../../../core/services/injection.dart';
+import '../../../di.dart';
 
 class LogOut {
   final _secureStorage = getIt.get<SecureService>();

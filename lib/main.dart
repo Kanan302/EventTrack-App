@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_router.dart';
-import 'core/services/injection.dart';
+import 'di.dart';
 
 Future<void> main() async {
   await init();

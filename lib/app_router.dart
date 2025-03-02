@@ -1,4 +1,5 @@
-import 'package:ascca_app/cubits/auth_login_cubit/auth_login_cubit.dart';
+import 'package:ascca_app/cubits/auth_login/auth_login_cubit.dart';
+import 'package:ascca_app/di.dart';
 import 'package:ascca_app/views/home/create_event/pages/create_event.dart';
 import 'package:ascca_app/views/home/profile_tab/features/about/about.dart';
 import 'package:ascca_app/views/home/profile_tab/features/bookmarked_events/bookmarked_events.dart';
@@ -13,7 +14,7 @@ import 'views/auth/login/pages/login.dart';
 import 'views/auth/new_password/new_password.dart';
 import 'cubits/auth_new_password/auth_new_password_cubit.dart';
 import 'views/auth/register/pages/register.dart';
-import 'cubits/auth_register_cubit/auth_registration_cubit.dart';
+import 'cubits/auth_register/auth_registration_cubit.dart';
 import 'views/auth/reset_password/reset_password.dart';
 import 'cubits/auth_reset_password/auth_reset_password_cubit.dart';
 import 'views/onboarding/presentation/pages/onboarding.dart';
@@ -57,7 +58,7 @@ class AppRouter {
         path: AppRoutes.resetPassword.path,
         builder:
             (context, state) => BlocProvider(
-              create: (context) => AuthResetPasswordCubit(),
+              create: (context) => getIt<AuthResetPasswordCubit>(),
               child: const ResetPasswordPage(),
             ),
       ),
