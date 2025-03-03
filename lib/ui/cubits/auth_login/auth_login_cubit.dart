@@ -1,12 +1,10 @@
 import 'package:ascca_app/data/models/auth_login/auth_login_request_model.dart';
 import 'package:ascca_app/ui/utils/flushbar.dart';
-// import 'package:ascca_app/data/models/auth_model.dart';
 import 'package:ascca_app/data/repositories/auth_login/auth_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../shared/utils/app_keys.dart';
 import '../../../shared/utils/app_routes.dart';
 import 'auth_login_state.dart';
 
@@ -30,7 +28,7 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
       await repository.loginUser(authLoginRequestModel);
       emit(AuthLoginSuccess());
 
-      debugPrint('Message: ${AppKeys.message}');
+      // debugPrint('Message: ${'message'}');
 
       if (context.mounted) {
         context.go(

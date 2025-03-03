@@ -1,3 +1,4 @@
+import 'package:ascca_app/shared/utils/app_keys.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
@@ -15,24 +16,28 @@ class AuthLoginResponseModel {
   });
 
   factory AuthLoginResponseModel.fromJson(Map<String, dynamic> json) {
-    if (json['response']['data'] == null) {
+    if (json[AppKeys.response][AppKeys.data] == null) {
       throw Exception('Cavabda "data" tapılmadı.');
     }
     return AuthLoginResponseModel(
-      accessToken: json['response']['data']['accessToken'] as String?,
-      refreshToken: json['response']['data']['refreshToken'] as String?,
-      userId: json['response']['data']['userId'] as String?,
-      status: json['response']['data']['status'] as String?,
+      accessToken:
+          json[AppKeys.response][AppKeys.data][AppKeys.accessToken] as String?,
+      refreshToken:
+          json[AppKeys.response][AppKeys.data][AppKeys.refreshToken] as String?,
+      userId: json[AppKeys.response][AppKeys.data][AppKeys.userId] as String?,
+      status: json[AppKeys.response][AppKeys.data][AppKeys.status] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'data': {
-        if (accessToken != null) 'accessToken': accessToken,
-        if (refreshToken != null) 'refreshToken': refreshToken,
-        if (userId != null) 'userId': userId,
-        if (status != null) 'status': status,
+      AppKeys.response: {
+        AppKeys.data: {
+          if (accessToken != null) AppKeys.accessToken: accessToken,
+          if (refreshToken != null) AppKeys.refreshToken: refreshToken,
+          if (userId != null) AppKeys.userId: userId,
+          if (status != null) AppKeys.status: status,
+        },
       },
     };
   }

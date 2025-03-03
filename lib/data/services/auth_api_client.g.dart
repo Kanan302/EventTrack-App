@@ -20,12 +20,14 @@ class _AuthApiClient implements AuthApiClient {
   ParseErrorLogger? errorLogger;
 
   @override
-  Future<AuthLoginResponseModel> login(AuthLoginRequestModel model) async {
+  Future<AuthLoginResponseModel> login(
+    AuthLoginRequestModel authLoginRequestModel,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(model.toJson());
+    _data.addAll(authLoginRequestModel.toJson());
     final _options = _setStreamType<AuthLoginResponseModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
