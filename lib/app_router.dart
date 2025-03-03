@@ -1,23 +1,23 @@
-import 'package:ascca_app/cubits/auth_login/auth_login_cubit.dart';
+import 'package:ascca_app/ui/cubits/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/di.dart';
-import 'package:ascca_app/views/home/create_event/pages/create_event.dart';
-import 'package:ascca_app/views/home/profile_tab/pages/about/about.dart';
-import 'package:ascca_app/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
-import 'package:ascca_app/views/home/profile_tab/pages/notifications/pages/notifications.dart';
+import 'package:ascca_app/ui/views/home/create_event/pages/create_event.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/pages/about/about.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'core/utils/app_routes.dart';
-import 'views/auth/login/pages/login.dart';
-import 'views/auth/new_password/new_password.dart';
-import 'cubits/auth_new_password/auth_new_password_cubit.dart';
-import 'views/auth/register/pages/register.dart';
-import 'cubits/auth_registration/auth_registration_cubit.dart';
-import 'views/auth/reset_password/reset_password.dart';
-import 'cubits/auth_reset_password/auth_reset_password_cubit.dart';
-import 'views/onboarding/pages/onboarding.dart';
-import 'views/splash/splash.dart';
-import 'views/home/home.dart';
+import 'shared/utils/app_routes.dart';
+import 'ui/views/auth/login/pages/login.dart';
+import 'ui/views/auth/new_password/new_password.dart';
+import 'ui/cubits/auth_new_password/auth_new_password_cubit.dart';
+import 'ui/views/auth/register/pages/register.dart';
+import 'ui/cubits/auth_registration/auth_registration_cubit.dart';
+import 'ui/views/auth/reset_password/reset_password.dart';
+import 'ui/cubits/auth_reset_password/auth_reset_password_cubit.dart';
+import 'ui/views/onboarding/pages/onboarding.dart';
+import 'ui/views/splash/splash.dart';
+import 'ui/views/home/home.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
