@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/utils/app_texts.dart';
+import '../../../../../shared/constants/app_texts.dart';
 import '../services/remember_me_notifier.dart';
 
 class RememberMe extends StatefulWidget {

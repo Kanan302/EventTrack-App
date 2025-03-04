@@ -1,5 +1,5 @@
-import 'package:ascca_app/shared/utils/app_images.dart';
-import 'package:ascca_app/shared/utils/app_routes.dart';
+import 'package:ascca_app/shared/constants/app_images.dart';
+import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';

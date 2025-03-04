@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../utils/app_keys.dart';
+import '../../constants/app_keys.dart';
 import 'jwt_interceptor.dart';
 
 final baseDio =

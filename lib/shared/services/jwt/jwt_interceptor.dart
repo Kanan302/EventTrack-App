@@ -1,8 +1,8 @@
-import 'package:ascca_app/shared/utils/app_keys.dart';
+import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../../di.dart';
+import '../injection/di.dart';
 import '../local/secure_service.dart';
 import 'dio_configuration.dart';
 

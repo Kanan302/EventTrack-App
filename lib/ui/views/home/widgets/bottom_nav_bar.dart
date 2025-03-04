@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/app_colors.dart';
-import '../../../../shared/utils/app_texts.dart';
+import '../../../../shared/constants/app_texts.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key, required this.tabController});

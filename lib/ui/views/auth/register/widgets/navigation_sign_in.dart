@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/utils/app_routes.dart';
-import '../../../../../shared/utils/app_texts.dart';
+import '../../../../../shared/constants/app_routes.dart';
+import '../../../../../shared/constants/app_texts.dart';
 
 class NavigationSignIn extends StatelessWidget {
   const NavigationSignIn({super.key});

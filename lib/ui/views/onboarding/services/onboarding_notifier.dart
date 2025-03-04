@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../shared/utils/app_images.dart';
-import '../../../../shared/utils/app_texts.dart';
+import '../../../../shared/constants/app_images.dart';
+import '../../../../shared/constants/app_texts.dart';
 
 class OnboardingNotifier extends ValueNotifier<int> {
   OnboardingNotifier() : super(0); 

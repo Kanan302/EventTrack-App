@@ -1,15 +1,15 @@
-import 'package:ascca_app/shared/utils/app_images.dart';
+import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/utils/app_texts.dart';
-import '../../../../utils/snackbar.dart';
+import '../../../../../shared/constants/app_texts.dart';
+import '../../../../utils/notifications/snackbar.dart';
 import '../../../../widgets/app_elevated_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
-import '../../../../cubits/auth_registration/auth_registration_cubit.dart';
-import '../../../../cubits/auth_registration/auth_registration_state.dart';
+import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
+import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
 import '../widgets/navigation_sign_in.dart';
 
 class RegisterPage extends StatefulWidget {

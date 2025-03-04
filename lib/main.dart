@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'app_router.dart';
-import 'di.dart';
+import 'ui/utils/navigation/app_router.dart';
+import 'shared/services/injection/di.dart';
 
 Future<void> main() async {
   await init();

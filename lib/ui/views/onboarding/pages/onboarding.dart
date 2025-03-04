@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/utils/app_routes.dart';
+import '../../../../shared/constants/app_routes.dart';
 import '../services/onboarding_notifier.dart';
 import '../widgets/onboarding_section.dart';
 

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/theme/app_colors.dart';
-import '../../../../shared/utils/app_texts.dart';
-import '../../../utils/flushbar.dart';
+import '../../../../shared/constants/app_texts.dart';
+import '../../../utils/notifications/flushbar.dart';
 import '../../../widgets/app_elevated_button.dart';
 import '../../../widgets/app_text_form_field.dart';
-import '../../../cubits/auth_reset_password/auth_reset_password_cubit.dart';
+import '../../../cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});

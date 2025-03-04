@@ -1,11 +1,11 @@
-import 'package:ascca_app/shared/utils/app_routes.dart';
+import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../utils/snackbar.dart';
+import '../../../../utils/notifications/snackbar.dart';
 import '../../../../../shared/services/jwt/dio_configuration.dart';
 
 class AuthVerificationService {

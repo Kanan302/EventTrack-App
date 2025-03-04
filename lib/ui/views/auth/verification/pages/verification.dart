@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/utils/app_routes.dart';
-import '../../../../../shared/utils/app_texts.dart';
-import '../../../../utils/snackbar.dart';
+import '../../../../../shared/constants/app_routes.dart';
+import '../../../../../shared/constants/app_texts.dart';
+import '../../../../utils/notifications/snackbar.dart';
 import '../../../../widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
 import '../widgets/validity_time.dart';

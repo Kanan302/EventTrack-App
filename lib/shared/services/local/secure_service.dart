@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../../utils/app_keys.dart';
+import '../../constants/app_keys.dart';
 
 abstract interface class ISecureService {
   Future<void> saveAccessToken(String value);

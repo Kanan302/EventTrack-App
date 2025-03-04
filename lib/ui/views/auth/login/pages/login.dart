@@ -1,16 +1,16 @@
-import 'package:ascca_app/shared/utils/app_images.dart';
-import 'package:ascca_app/ui/cubits/auth_login/auth_login_cubit.dart';
+import 'package:ascca_app/shared/constants/app_images.dart';
+import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/utils/app_routes.dart';
-import '../../../../../shared/utils/app_texts.dart';
+import '../../../../../shared/constants/app_routes.dart';
+import '../../../../../shared/constants/app_texts.dart';
 import '../../../../widgets/app_elevated_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
-import '../../../../cubits/auth_login/auth_login_state.dart';
+import '../../../../cubits/auth/auth_login/auth_login_state.dart';
 
 import '../services/remember_me_notifier.dart';
 import '../widgets/navigation_sign_up.dart';
@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleLogin(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthLoginCubit>().loginUser(
+      context.read<AuthLoginCubit>().login(
         email: _emailController.text,
         password: _passwordController.text,
         context: context,

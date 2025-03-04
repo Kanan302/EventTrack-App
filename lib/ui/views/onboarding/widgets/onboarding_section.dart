@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../shared/theme/app_colors.dart';
-import '../../../../shared/utils/app_texts.dart';
+import '../../../../shared/constants/app_texts.dart';
 
 class OnboardingSection extends StatelessWidget {
   final String imagePath;

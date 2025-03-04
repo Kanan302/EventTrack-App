@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/utils/app_texts.dart';
+import '../../../../shared/constants/app_texts.dart';
 
 class EventsTab extends StatelessWidget {
   const EventsTab({super.key});

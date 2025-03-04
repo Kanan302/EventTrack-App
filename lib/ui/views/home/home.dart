@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../utils/flushbar.dart';
+import '../../utils/notifications/flushbar.dart';
 import '../../../shared/services/local/secure_service.dart';
-import '../../../di.dart';
+import '../../../shared/services/injection/di.dart';
 
 import 'calendar_tab/calendar_tab.dart';
 import 'events_tab/events_tab.dart';

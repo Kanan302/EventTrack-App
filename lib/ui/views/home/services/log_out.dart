@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../shared/utils/app_routes.dart';
+import '../../../../shared/constants/app_routes.dart';
 import '../../../../shared/services/local/secure_service.dart';
-import '../../../../di.dart';
+import '../../../../shared/services/injection/di.dart';
 
 class LogOut {
   final _secureStorage = getIt.get<SecureService>();

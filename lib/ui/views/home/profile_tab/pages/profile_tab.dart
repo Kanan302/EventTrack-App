@@ -1,5 +1,5 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/shared/utils/app_routes.dart';
+import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_card_item.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_log_out_dialog.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_name.dart';
@@ -8,7 +8,7 @@ import 'package:ascca_app/ui/views/home/services/log_out.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../shared/utils/app_texts.dart';
+import '../../../../../shared/constants/app_texts.dart';
 import '../widgets/profile_app_bar.dart';
 
 class ProfileTab extends StatefulWidget {
