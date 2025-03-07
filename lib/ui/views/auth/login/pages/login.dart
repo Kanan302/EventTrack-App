@@ -8,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/constants/app_texts.dart';
-import '../../../../widgets/app_elevated_button.dart';
-import '../../../../widgets/app_text_form_field.dart';
+import '../../../../utils/widgets/app_elevated_button.dart';
+import '../../../../utils/widgets/app_text_form_field.dart';
 import '../../../../cubits/auth/auth_login/auth_login_state.dart';
 
 import '../services/remember_me_notifier.dart';

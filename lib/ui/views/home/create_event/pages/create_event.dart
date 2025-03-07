@@ -7,7 +7,7 @@ import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_locati
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_name.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_photo.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_title.dart';
-import 'package:ascca_app/ui/widgets/app_elevated_button.dart';
+import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class CreateEventPage extends StatefulWidget {

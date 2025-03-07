@@ -5,8 +5,8 @@ import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/constants/app_texts.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
-import '../../../widgets/app_elevated_button.dart';
-import '../../../widgets/app_text_form_field.dart';
+import '../../../utils/widgets/app_elevated_button.dart';
+import '../../../utils/widgets/app_text_form_field.dart';
 
 import '../../../cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 

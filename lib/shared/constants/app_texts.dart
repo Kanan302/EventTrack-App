@@ -68,4 +68,10 @@ class AppTexts {
   static const String eventStartDate = 'Tədbirin başlama tarixi';
   static const String eventEndDate = 'Tədbirin bitmə tarixi';
   static const String create = 'Yarat';
+
+  // event details page
+  static const String eventDetails = 'Tədbir Təfərrüatları';
+  static const String organizer = 'Təşkilatçı';
+  static const String aboutEvent = 'Tədbir Haqqında';
+  static const String buyTicket = 'BİLET AL';
 }

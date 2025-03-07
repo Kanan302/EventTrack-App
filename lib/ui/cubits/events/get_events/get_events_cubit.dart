@@ -16,7 +16,7 @@ class GetEventsCubit extends Cubit<GetEventsState> {
 
     try {
       final events = await repository.getEvents();
-      debugPrint('Events from api: ${events.length}');
+      // debugPrint('Events from api: ${events.length}');
       emit(GetEventsSuccess(events: events));
     } catch (e) {
       debugPrint("Error: ${e.toString()}");

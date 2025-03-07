@@ -1,6 +1,6 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/widgets/app_elevated_button.dart';
+import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class LogoutDialog extends StatelessWidget {

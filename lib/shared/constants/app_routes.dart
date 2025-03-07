@@ -10,7 +10,8 @@ enum AppRoutes {
   createEvent('/createEvent'),
   notification('/notification'),
   about('/about'),
-  bookmarkedEvents('/bookmarkedEvents');
+  bookmarkedEvents('/bookmarkedEvents'),
+  eventDetails('/eventDetails');
 
   const AppRoutes(this.path);
   final String path;

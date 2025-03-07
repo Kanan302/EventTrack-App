@@ -48,7 +48,7 @@ class GetEventsModel {
       about: json['about'],
       startDate: json['startDate'],
       endDate: json['endDate'],
-      image: json['image'] ?? 'assets/images/international.svg',
+      image: json['image'],
       location: json['location'],
       price: json['price']?.toDouble(),
       organizerId: json['organizerId']?.toString(),

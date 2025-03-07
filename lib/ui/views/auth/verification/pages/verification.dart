@@ -6,7 +6,7 @@ import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/constants/app_texts.dart';
 import '../../../../utils/notifications/snackbar.dart';
-import '../../../../widgets/app_elevated_button.dart';
+import '../../../../utils/widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
 import '../widgets/validity_time.dart';
 import '../widgets/verification_form.dart';
