@@ -1,5 +1,6 @@
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
+import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/views/home/create_event/pages/create_event.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/about/about.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
@@ -78,8 +79,11 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home.path,
         builder: (context, state) {
-          return BlocProvider(
-            create: (context) => getIt<AuthLoginCubit>(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt<AuthLoginCubit>()),
+              BlocProvider(create: (context) => getIt<GetEventsCubit>()),
+            ],
             child: HomePage(),
           );
         },

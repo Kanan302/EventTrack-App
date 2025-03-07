@@ -46,9 +46,9 @@ class AppTexts {
   static const String update = 'Yenilə';
 
   // home
-  static const String trends = 'Trendlər';
   static const String events = 'Tədbirlər';
   static const String calendar = 'Təqvim';
+  static const String map = 'Xəritə';
   static const String profile = 'Profil';
 
   // profile
@@ -58,4 +58,14 @@ class AppTexts {
   static const String language = 'Dil';
   static const String darkMode = 'Tünd rejim';
   static const String logOut = 'Çıxış et';
+
+  // create event
+  static const String createYourEvent = 'Tədbirinizi yaradın';
+  static const String eventName = 'Tədbirin adı';
+  static const String eventDescription = 'Tədbirin təsviri';
+  static const String eventPrice = 'Tədbirin qiyməti';
+  static const String eventLocation = 'Tədbirin ünvanı';
+  static const String eventStartDate = 'Tədbirin başlama tarixi';
+  static const String eventEndDate = 'Tədbirin bitmə tarixi';
+  static const String create = 'Yarat';
 }

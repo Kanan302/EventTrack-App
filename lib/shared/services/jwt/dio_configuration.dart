@@ -10,4 +10,5 @@ final baseDio =
         // connectTimeout: const Duration(seconds: 6),
         // receiveTimeout: const Duration(seconds: 12),
       )
-      ..interceptors.add(JwtInterceptor());
+      ..interceptors.add(JwtInterceptor())
+      ..transformer = BackgroundTransformer();

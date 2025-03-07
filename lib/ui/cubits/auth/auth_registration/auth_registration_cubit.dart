@@ -11,6 +11,7 @@ import 'auth_registration_state.dart';
 
 class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
   final AuthRegistrationRepository repository;
+
   AuthRegistrationCubit({required this.repository})
     : super(AuthRegistrationInitial());
 

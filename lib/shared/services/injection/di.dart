@@ -1,3 +1,5 @@
+import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
+import 'package:ascca_app/data/services/events/events_api_client.dart';
 import 'package:ascca_app/shared/services/jwt/dio_configuration.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
@@ -5,10 +7,11 @@ import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cub
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 import 'package:ascca_app/data/repositories/auth/auth_login/auth_login_repository.dart';
-import 'package:ascca_app/data/services/auth_api_client.dart';
+import 'package:ascca_app/data/services/auth/auth_api_client.dart';
 import 'package:ascca_app/data/repositories/auth/auth_new_password/auth_new_password_repository.dart';
 import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registration_repository.dart';
 import 'package:ascca_app/data/repositories/auth/auth_reset_password/auth_reset_password_repository.dart';
+import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -27,6 +30,10 @@ Future<void> init() async {
   // Retrofit (API Client)
   getIt.registerLazySingleton<AuthApiClient>(() => AuthApiClient(getIt<Dio>()));
 
+  getIt.registerLazySingleton<EventsApiClient>(
+    () => EventsApiClient(getIt<Dio>()),
+  );
+
   // Repository
   getIt.registerLazySingleton<AuthLoginRepository>(
     () => AuthLoginRepository(getIt<SecureService>(), getIt<AuthApiClient>()),
@@ -42,6 +49,10 @@ Future<void> init() async {
 
   getIt.registerLazySingleton<AuthNewPasswordRepository>(
     () => AuthNewPasswordRepository(getIt<AuthApiClient>()),
+  );
+
+  getIt.registerLazySingleton<GetEventsRepository>(
+    () => GetEventsRepository(getIt<EventsApiClient>()),
   );
 
   // Cubit
@@ -62,5 +73,9 @@ Future<void> init() async {
 
   getIt.registerFactory<AuthNewPasswordCubit>(
     () => AuthNewPasswordCubit(repository: getIt<AuthNewPasswordRepository>()),
+  );
+
+  getIt.registerLazySingleton<GetEventsCubit>(
+    () => GetEventsCubit(repository: getIt<GetEventsRepository>()),
   );
 }

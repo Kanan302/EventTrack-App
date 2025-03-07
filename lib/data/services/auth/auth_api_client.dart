@@ -10,6 +10,7 @@ import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+
 part 'auth_api_client.g.dart';
 
 @RestApi(baseUrl: AppKeys.baseUrl)

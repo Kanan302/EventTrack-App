@@ -14,6 +14,7 @@ part 'auth_new_password_state.dart';
 
 class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
   final AuthNewPasswordRepository repository;
+
   AuthNewPasswordCubit({required this.repository})
     : super(AuthNewPasswordInitial());
 

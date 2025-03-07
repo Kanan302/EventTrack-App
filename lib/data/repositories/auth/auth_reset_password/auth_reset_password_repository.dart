@@ -1,5 +1,5 @@
 import 'package:ascca_app/data/models/auth/auth_reset_password/auth_reset_password_request_model.dart';
-import 'package:ascca_app/data/services/auth_api_client.dart';
+import 'package:ascca_app/data/services/auth/auth_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

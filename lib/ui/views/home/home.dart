@@ -8,7 +8,7 @@ import '../../../shared/services/injection/di.dart';
 import 'calendar_tab/calendar_tab.dart';
 import 'events_tab/events_tab.dart';
 import 'profile_tab/pages/profile_tab.dart';
-import 'trends_tab/trends_tab.dart';
+import 'map_tab/map_tab.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/floating_button.dart';
 
@@ -71,12 +71,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       body: TabBarView(
         controller: tabController,
-        children: [
-          TrendingTab(),
-          EventsTab(),
-          CalendarTab(),
-          ProfileTab(),
-        ],
+        children: [EventsTab(), CalendarTab(), MapTab(), ProfileTab()],
       ),
       bottomNavigationBar: BottomNavBar(tabController: tabController),
       floatingActionButton: userStatus == "1" ? FloatingButton() : null,

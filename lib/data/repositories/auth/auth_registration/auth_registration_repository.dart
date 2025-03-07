@@ -1,5 +1,5 @@
 import 'package:ascca_app/data/models/auth/auth_registration/auth_registration_request.dart';
-import 'package:ascca_app/data/services/auth_api_client.dart';
+import 'package:ascca_app/data/services/auth/auth_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
