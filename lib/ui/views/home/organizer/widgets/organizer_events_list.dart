@@ -25,7 +25,7 @@ class OrganizerEventsList extends StatelessWidget {
               child: EventsCardItem(
                 cardId: event.id.toString(),
                 onTapCard: () {},
-                imageUrl: AppImages.example.path,
+                imageUrl: event.imageURL ?? AppImages.example.path,
                 startDate:
                     event.startDate != null
                         ? DateFormat(

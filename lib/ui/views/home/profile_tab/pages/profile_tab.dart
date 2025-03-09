@@ -53,12 +53,6 @@ class _ProfileTabState extends State<ProfileTab> {
                   onTap: () => context.push(AppRoutes.notification.path),
                 ),
                 ProfileCardItem(
-                  leadingIcon: Icons.info_outline,
-                  leadingIconColor: AppColors.lavenderBlue,
-                  title: AppTexts.about,
-                  onTap: () => context.push(AppRoutes.about.path),
-                ),
-                ProfileCardItem(
                   leadingIcon: Icons.language_outlined,
                   leadingIconColor: AppColors.lavenderBlue,
                   title: AppTexts.language,

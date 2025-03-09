@@ -7,7 +7,7 @@ class GetEventsModel {
   final String? about;
   final String? startDate;
   final String? endDate;
-  final String? image;
+  final String? imageURL;
   final String? location;
   final double? price;
   final String? organizerName;
@@ -19,7 +19,7 @@ class GetEventsModel {
     this.about,
     this.startDate,
     this.endDate,
-    this.image,
+    this.imageURL,
     this.location,
     this.price,
     this.organizerName,
@@ -33,7 +33,7 @@ class GetEventsModel {
       'about': about,
       'startDate': startDate,
       'endDate': endDate,
-      'image': image,
+      'imageURL': imageURL,
       'location': location,
       'price': price,
       'organizerId': organizerId,
@@ -48,7 +48,7 @@ class GetEventsModel {
       about: json['about'],
       startDate: json['startDate'],
       endDate: json['endDate'],
-      image: json['image'],
+      imageURL: json['imageURL'],
       location: json['location'],
       price: json['price']?.toDouble(),
       organizerId: json['organizerId']?.toString(),

@@ -62,7 +62,7 @@ class _EventsTabState extends State<EventsTab> {
                           AppRoutes.eventDetails.path,
                           extra: event,
                         ),
-                    imageUrl: AppImages.example.path,
+                    imageUrl: event.imageURL ?? AppImages.example.path,
                     startDate:
                         event.startDate != null
                             ? DateFormat(

@@ -9,7 +9,6 @@ enum AppRoutes {
   home('/home'),
   createEvent('/createEvent'),
   notification('/notification'),
-  about('/about'),
   bookmarkedEvents('/bookmarkedEvents'),
   eventDetails('/eventDetails'),
   organizer('/organizer');

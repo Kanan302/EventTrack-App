@@ -8,10 +8,15 @@ import 'package:go_router/go_router.dart';
 class EventDetailOrganizer extends StatelessWidget {
   final String organizerId;
   final String eventOrganizer;
+  final String profilePictureUrl;
+  final String? aboutOrganizer;
+
   const EventDetailOrganizer({
     super.key,
     required this.eventOrganizer,
     required this.organizerId,
+    required this.profilePictureUrl,
+    this.aboutOrganizer,
   });
 
   @override
@@ -35,7 +40,18 @@ class EventDetailOrganizer extends StatelessWidget {
             ),
           ],
         ),
-        child: Icon(Icons.person, size: 30, color: AppColors.lavenderBlue),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child:
+              profilePictureUrl.isNotEmpty
+                  ? Image.network(
+                    profilePictureUrl,
+                    width: 48,
+                    height: 48,
+                    fit: BoxFit.cover,
+                  )
+                  : Icon(Icons.person, size: 30, color: AppColors.lavenderBlue),
+        ),
       ),
       title: Text(
         eventOrganizer,
@@ -45,8 +61,10 @@ class EventDetailOrganizer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: const Text(
-        AppTexts.organizer,
+      subtitle: Text(
+        (aboutOrganizer == null || aboutOrganizer!.isEmpty)
+            ? AppTexts.organizer
+            : aboutOrganizer ?? '',
         style: TextStyle(fontSize: 14, color: AppColors.graphiteGray),
       ),
     );

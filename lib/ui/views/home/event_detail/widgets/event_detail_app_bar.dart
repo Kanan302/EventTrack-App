@@ -28,7 +28,7 @@ class EventDetailAppBar extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 1000),
             child: Container(
               padding: const EdgeInsets.all(8),
               color: AppColors.softWhite,

@@ -47,7 +47,10 @@ class _OrganizerPageState extends State<OrganizerPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    OrganizerPhoto(),
+                    OrganizerPhoto(
+                      profilePictureUrl: organizer.profilePictureUrl,
+                    ),
+                    SizedBox(height: height * 0.01),
                     OrganizerName(name: organizer.fullName ?? ''),
                     SizedBox(height: height * 0.01),
                     OrganizerAbout(about: organizer.aboutMe ?? ''),

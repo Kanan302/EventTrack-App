@@ -16,7 +16,6 @@ import 'package:ascca_app/ui/views/home/create_event/pages/create_event.dart';
 import 'package:ascca_app/ui/views/home/event_detail/pages/event_detail.dart';
 import 'package:ascca_app/ui/views/home/home.dart';
 import 'package:ascca_app/ui/views/home/organizer/pages/organizer.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/pages/about/about.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
 import 'package:ascca_app/ui/views/onboarding/pages/onboarding.dart';
@@ -109,14 +108,13 @@ class AppRouter {
         builder: (context, state) => NotificationsPage(),
       ),
       GoRoute(
-        path: AppRoutes.about.path,
-        builder: (context, state) => AboutPage(),
-      ),
-      GoRoute(
         path: AppRoutes.eventDetails.path,
         builder: (context, state) {
           final eventModel = state.extra as GetEventsModel;
-          return EventDetailPage(eventModel: eventModel);
+          return BlocProvider(
+            create: (context) => getIt<OrganizerProfileCubit>(),
+            child: EventDetailPage(eventModel: eventModel),
+          );
         },
       ),
       GoRoute(
