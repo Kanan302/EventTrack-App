@@ -7,6 +7,7 @@ import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cub
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/views/auth/login/pages/login.dart';
 import 'package:ascca_app/ui/views/auth/new_password/new_password.dart';
 import 'package:ascca_app/ui/views/auth/register/pages/register.dart';
@@ -122,7 +123,10 @@ class AppRouter {
         path: AppRoutes.organizer.path,
         builder: (context, state) {
           final organizerId = state.extra as int? ?? 0;
-          return OrganizerPage(organizerId: organizerId);
+          return BlocProvider(
+            create: (context) => getIt<OrganizerProfileCubit>(),
+            child: OrganizerPage(organizerId: organizerId),
+          );
         },
       ),
     ],

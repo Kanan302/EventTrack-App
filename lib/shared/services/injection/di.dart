@@ -1,6 +1,8 @@
 import 'package:ascca_app/data/repositories/events/create_event/create_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
+import 'package:ascca_app/data/repositories/profile/organizer/organizer_profile_repository.dart';
 import 'package:ascca_app/data/services/events/events_api_client.dart';
+import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:ascca_app/shared/services/jwt/dio_configuration.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
@@ -14,6 +16,7 @@ import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registra
 import 'package:ascca_app/data/repositories/auth/auth_reset_password/auth_reset_password_repository.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -34,6 +37,10 @@ Future<void> init() async {
 
   getIt.registerLazySingleton<EventsApiClient>(
     () => EventsApiClient(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ProfileApiClient>(
+    () => ProfileApiClient(getIt<Dio>()),
   );
 
   // Repository
@@ -59,6 +66,10 @@ Future<void> init() async {
 
   getIt.registerLazySingleton<CreateEventRepository>(
     () => CreateEventRepository(getIt<EventsApiClient>()),
+  );
+
+  getIt.registerLazySingleton<OrganizerProfileRepository>(
+    () => OrganizerProfileRepository(getIt<ProfileApiClient>()),
   );
 
   // Cubit
@@ -90,5 +101,10 @@ Future<void> init() async {
       secureService: getIt<SecureService>(),
       repository: getIt<CreateEventRepository>(),
     ),
+  );
+
+  getIt.registerFactory<OrganizerProfileCubit>(
+    () =>
+        OrganizerProfileCubit(repository: getIt<OrganizerProfileRepository>()),
   );
 }

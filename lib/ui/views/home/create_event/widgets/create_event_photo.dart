@@ -25,7 +25,7 @@ class CreateEventPhoto extends StatelessWidget {
                   Text(
                     'Şəkil yükləmək üçün klikləyin',
                     style: TextStyle(
-                      color: AppColors.lavenderBlue,
+                      color: AppColors.graphiteGray,
                       fontSize: 16,
                     ),
                   ),

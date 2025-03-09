@@ -18,10 +18,7 @@ class EventDetailOrganizer extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        context.push(
-          AppRoutes.organizer.path,
-          extra: int.parse(organizerId),
-        );
+        context.push(AppRoutes.organizer.path, extra: int.parse(organizerId));
       },
       contentPadding: EdgeInsets.zero,
       leading: Container(
@@ -38,6 +35,7 @@ class EventDetailOrganizer extends StatelessWidget {
             ),
           ],
         ),
+        child: Icon(Icons.person, size: 30, color: AppColors.lavenderBlue),
       ),
       title: Text(
         eventOrganizer,
