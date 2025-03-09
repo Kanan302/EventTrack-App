@@ -52,6 +52,51 @@ class _EventsApiClient implements EventsApiClient {
     return _value;
   }
 
+  @override
+  Future<CreateEventResponseModel> createEvent(
+    String name,
+    String about,
+    String location,
+    String startDate,
+    String endDate,
+    String organizerId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.fields.add(MapEntry('name', name));
+    _data.fields.add(MapEntry('about', about));
+    _data.fields.add(MapEntry('location', location));
+    _data.fields.add(MapEntry('startDate', startDate));
+    _data.fields.add(MapEntry('endDate', endDate));
+    _data.fields.add(MapEntry('organizerId', organizerId));
+    final _options = _setStreamType<CreateEventResponseModel>(
+      Options(
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'multipart/form-data',
+          )
+          .compose(
+            _dio.options,
+            '/events',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CreateEventResponseModel _value;
+    try {
+      _value = CreateEventResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

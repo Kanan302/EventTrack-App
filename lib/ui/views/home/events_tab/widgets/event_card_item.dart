@@ -1,6 +1,5 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class EventsCardItem extends StatelessWidget {
   final String cardId;
@@ -49,7 +48,8 @@ class EventsCardItem extends StatelessWidget {
                 height: height * 0.2,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  child: SvgPicture.asset(imageUrl, fit: BoxFit.contain),
+                  child: Image.asset(imageUrl, fit: BoxFit.cover),
+                  // SvgPicture.asset(imageUrl, fit: BoxFit.contain),
                 ),
               ),
               const SizedBox(width: 8),

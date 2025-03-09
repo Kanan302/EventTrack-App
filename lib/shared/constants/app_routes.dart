@@ -11,7 +11,8 @@ enum AppRoutes {
   notification('/notification'),
   about('/about'),
   bookmarkedEvents('/bookmarkedEvents'),
-  eventDetails('/eventDetails');
+  eventDetails('/eventDetails'),
+  organizer('/organizer');
 
   const AppRoutes(this.path);
   final String path;

@@ -1,7 +1,9 @@
+import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EventDetailOrganizer extends StatelessWidget {
   final String organizerId;
@@ -16,10 +18,10 @@ class EventDetailOrganizer extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        // context.push(
-        //   AppRoutes.organizer.path,
-        //   extra: int.parse(organizerId),
-        // );
+        context.push(
+          AppRoutes.organizer.path,
+          extra: int.parse(organizerId),
+        );
       },
       contentPadding: EdgeInsets.zero,
       leading: Container(

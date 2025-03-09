@@ -7,7 +7,7 @@ class CreateEventPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {},
+      onTap: () {},
       child: Container(
         width: double.infinity,
         height: 100.0,
@@ -23,7 +23,7 @@ class CreateEventPhoto extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Yükləmək üçün klikləyin',
+                    'Şəkil yükləmək üçün klikləyin',
                     style: TextStyle(
                       color: AppColors.lavenderBlue,
                       fontSize: 16,

@@ -1,18 +1,60 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
+import 'package:ascca_app/ui/views/home/create_event/service/create_event_date_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'create_event_formfield.dart';
 
 class CreateEventDate extends StatelessWidget {
-  final TextEditingController? eventStartDateTimeController;
-  final TextEditingController? eventEndDateTimeController;
+  final TextEditingController eventStartDateTimeController;
+  final TextEditingController eventEndDateTimeController;
+  final CreateEventDateService dateService;
 
   const CreateEventDate({
     super.key,
-    this.eventStartDateTimeController,
-    this.eventEndDateTimeController,
+    required this.eventStartDateTimeController,
+    required this.eventEndDateTimeController,
+    required this.dateService,
   });
+
+  Future<void> _pickDateTime(
+    BuildContext context,
+    TextEditingController controller,
+    bool isStart,
+  ) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null) {
+      final TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
+
+      if (pickedTime != null) {
+        final DateTime fullDateTime = DateTime(
+          pickedDate.year,
+          pickedDate.month,
+          pickedDate.day,
+          pickedTime.hour,
+          pickedTime.minute,
+        );
+
+        final String formattedDateTime = DateFormat(
+          'dd.MM.yyyy HH:mm',
+        ).format(fullDateTime);
+        controller.text = formattedDateTime;
+
+        if (isStart) {
+          dateService.setStartDate(fullDateTime);
+        } else {
+          dateService.setEndDate(fullDateTime);
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,85 +62,30 @@ class CreateEventDate extends StatelessWidget {
       children: [
         Expanded(
           child: CreateEventFormfield(
-            labelText: AppTexts.eventStartDate,
+            labelText: 'Başlanğıc Tarixi',
             controller: eventStartDateTimeController,
-            onTap: () async {
-              final DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2101),
-              );
-              if (pickedDate != null) {
-                final TimeOfDay? pickedTime = await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.now(),
-                );
-                if (pickedTime != null) {
-                  final DateTime fullDateTime = DateTime(
-                    pickedDate.year,
-                    pickedDate.month,
-                    pickedDate.day,
-                    pickedTime.hour,
-                    pickedTime.minute,
-                  );
-                  final String formattedDateTime = DateFormat(
-                    'dd-MM-yyyy HH:mm',
-                  ).format(fullDateTime);
-                  eventStartDateTimeController?.text = formattedDateTime;
-
-                  // context.read<CreateEventProvider>().startDate = fullDateTime;
-                }
-              }
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Zəhmət olmasa, başlanğıc tarixini seçin';
-              }
-              return null;
-            },
+            onTap:
+                () =>
+                    _pickDateTime(context, eventStartDateTimeController, true),
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Zəhmət olmasa, başlanğıc tarixini seçin'
+                        : null,
           ),
         ),
         const SizedBox(width: 20),
         Expanded(
           child: CreateEventFormfield(
-            labelText: AppTexts.eventEndDate,
+            labelText: 'Bitiş Tarixi',
             controller: eventEndDateTimeController,
-            onTap: () async {
-              final DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2101),
-              );
-              if (pickedDate != null) {
-                final TimeOfDay? pickedTime = await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.now(),
-                );
-                if (pickedTime != null) {
-                  final DateTime fullDateTime = DateTime(
-                    pickedDate.year,
-                    pickedDate.month,
-                    pickedDate.day,
-                    pickedTime.hour,
-                    pickedTime.minute,
-                  );
-                  final String formattedDateTime = DateFormat(
-                    'dd-MM-yyyy HH:mm',
-                  ).format(fullDateTime);
-                  eventEndDateTimeController?.text = formattedDateTime;
-
-                  // context.read<CreateEventProvider>().endDate = fullDateTime;
-                }
-              }
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Zəhmət olmasa, bitiş tarixini seçin';
-              }
-              return null;
-            },
+            onTap:
+                () => _pickDateTime(context, eventEndDateTimeController, false),
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Zəhmət olmasa, bitiş tarixini seçin'
+                        : null,
           ),
         ),
       ],

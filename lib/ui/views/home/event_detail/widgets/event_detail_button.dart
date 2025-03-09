@@ -4,8 +4,7 @@ import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class EventDetailButton extends StatelessWidget {
-  final double eventPrice;
-  const EventDetailButton({super.key, required this.eventPrice});
+  const EventDetailButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class EventDetailButton extends StatelessWidget {
       child: AppElevatedButton(
         onPressed: () {},
         buttonColor: AppColors.lavenderBlue,
-        text: '${AppTexts.buyTicket} \$${eventPrice.toStringAsFixed(2)}',
+        text: AppTexts.buyTicket,
         textColor: AppColors.white,
       ),
     );

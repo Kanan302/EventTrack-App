@@ -5,6 +5,7 @@ import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/views/auth/login/pages/login.dart';
 import 'package:ascca_app/ui/views/auth/new_password/new_password.dart';
@@ -13,6 +14,7 @@ import 'package:ascca_app/ui/views/auth/reset_password/reset_password.dart';
 import 'package:ascca_app/ui/views/home/create_event/pages/create_event.dart';
 import 'package:ascca_app/ui/views/home/event_detail/pages/event_detail.dart';
 import 'package:ascca_app/ui/views/home/home.dart';
+import 'package:ascca_app/ui/views/home/organizer/pages/organizer.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/about/about.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
@@ -91,7 +93,11 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.createEvent.path,
-        builder: (context, state) => CreateEventPage(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<CreateEventCubit>(),
+              child: CreateEventPage(),
+            ),
       ),
       GoRoute(
         path: AppRoutes.bookmarkedEvents.path,
@@ -110,6 +116,13 @@ class AppRouter {
         builder: (context, state) {
           final eventModel = state.extra as GetEventsModel;
           return EventDetailPage(eventModel: eventModel);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.organizer.path,
+        builder: (context, state) {
+          final organizerId = state.extra as int? ?? 0;
+          return OrganizerPage(organizerId: organizerId);
         },
       ),
     ],

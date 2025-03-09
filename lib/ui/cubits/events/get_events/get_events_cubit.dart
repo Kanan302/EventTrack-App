@@ -12,9 +12,8 @@ class GetEventsCubit extends Cubit<GetEventsState> {
   GetEventsCubit({required this.repository}) : super(GetEventsInitial());
 
   Future<void> getEvents() async {
-    emit(GetEventsLoading());
-
     try {
+      emit(GetEventsLoading());
       final events = await repository.getEvents();
       // debugPrint('Events from api: ${events.length}');
       emit(GetEventsSuccess(events: events));

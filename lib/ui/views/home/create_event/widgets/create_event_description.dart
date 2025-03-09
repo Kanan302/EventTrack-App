@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'create_event_formfield.dart';
 
 class CreateEventDescription extends StatelessWidget {
-  final TextEditingController? eventDescriptionController;
+  final TextEditingController eventDescriptionController;
 
-  const CreateEventDescription({super.key, this.eventDescriptionController});
+  const CreateEventDescription({super.key, required this.eventDescriptionController});
 
   @override
   Widget build(BuildContext context) {

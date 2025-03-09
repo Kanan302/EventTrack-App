@@ -17,11 +17,11 @@ class EventDetailAppBar extends StatelessWidget {
       elevation: 0,
       leading: IconButton(
         onPressed: Navigator.of(context).pop,
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.black),
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.white),
       ),
       title: const Text(
         AppTexts.eventDetails,
-        style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.black),
+        style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.white),
       ),
       titleSpacing: 0,
       actions: [

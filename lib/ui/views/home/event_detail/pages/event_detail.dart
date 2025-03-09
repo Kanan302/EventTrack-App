@@ -8,7 +8,6 @@ import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_locati
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_organizer.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_title.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class EventDetailPage extends StatelessWidget {
   final GetEventsModel eventModel;
@@ -17,6 +16,7 @@ class EventDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final ValueNotifier<bool> isBookmarked = ValueNotifier<bool>(false);
 
     return Scaffold(
       // appBar: AppBar(title: Text('event detail')),
@@ -28,11 +28,16 @@ class EventDetailPage extends StatelessWidget {
             right: 0,
             child: SizedBox(
               height: 250,
-              child: SvgPicture.asset(
-                AppImages.logo.path,
+              child: Image.asset(
+                AppImages.example.path,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
+              //  SvgPicture.asset(
+              //   AppImages.logo.path,
+              //   fit: BoxFit.cover,
+              //   width: double.infinity,
+              // ),
             ),
           ),
           const Positioned(
@@ -45,7 +50,17 @@ class EventDetailPage extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                EventDetailAppBar(onTap: () {}, icon: Icons.bookmark),
+                ValueListenableBuilder(
+                  valueListenable: isBookmarked,
+                  builder: (context, value, child) {
+                    return EventDetailAppBar(
+                      onTap: () {
+                        isBookmarked.value = !isBookmarked.value;
+                      },
+                      icon: value ? Icons.bookmark : Icons.bookmark_border,
+                    );
+                  },
+                ),
                 SizedBox(height: height * 0.18),
                 Expanded(
                   child: SingleChildScrollView(
@@ -69,17 +84,15 @@ class EventDetailPage extends StatelessWidget {
                             eventOrganizer: eventModel.organizerName ?? '',
                             organizerId: eventModel.organizerId.toString(),
                           ),
-
                           const SizedBox(height: 30),
                           EventDetailAbout(eventAbout: eventModel.about ?? ''),
                           const SizedBox(height: 20),
-                          EventDetailButton(eventPrice: eventModel.price ?? 0),
+                          EventDetailButton(),
                         ],
                       ),
                     ),
                   ),
                 ),
-                // Center(child: Text(eventModel.name!)),
               ],
             ),
           ),

@@ -5,7 +5,7 @@ enum AppImages {
   onboarding1('assets/images/onboarding1.svg'),
   onboarding2('assets/images/onboarding2.svg'),
   onboarding3('assets/images/onboarding3.svg'),
-  example('assets/images/example.svg');
+  example('assets/images/example.png');
 
   const AppImages(this.path);
   final String path;

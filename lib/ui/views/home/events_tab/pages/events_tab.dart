@@ -1,6 +1,5 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +18,7 @@ class EventsTab extends StatefulWidget {
 class _EventsTabState extends State<EventsTab> {
   @override
   void initState() {
-    getIt<GetEventsCubit>().getEvents();
+    context.read<GetEventsCubit>().getEvents();
     super.initState();
   }
 
@@ -63,7 +62,7 @@ class _EventsTabState extends State<EventsTab> {
                           AppRoutes.eventDetails.path,
                           extra: event,
                         ),
-                    imageUrl: AppImages.logo.path,
+                    imageUrl: AppImages.example.path,
                     startDate:
                         event.startDate != null
                             ? DateFormat(
