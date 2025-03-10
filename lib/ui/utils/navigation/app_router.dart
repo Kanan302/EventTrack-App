@@ -5,6 +5,7 @@ import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
@@ -101,7 +102,11 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.bookmarkedEvents.path,
-        builder: (context, state) => BookmarkedEventsPage(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<BookmarkedEventsCubit>(),
+              child: BookmarkedEventsPage(),
+            ),
       ),
       GoRoute(
         path: AppRoutes.notification.path,

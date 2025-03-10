@@ -1,3 +1,4 @@
+import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/create_event/create_event_response_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/shared/constants/app_keys.dart';
@@ -23,5 +24,10 @@ abstract class EventsApiClient {
     @Part(name: "startDate") String startDate,
     @Part(name: "endDate") String endDate,
     @Part(name: "organizerId") String organizerId,
+  );
+
+  @GET("/bookmarks/{id}")
+  Future<List<BookmarkedEventsModel>> getBookmarkedEvents(
+    @Path("id") int userId,
   );
 }

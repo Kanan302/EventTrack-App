@@ -17,7 +17,7 @@ class _ProfileApiClient implements ProfileApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<OrganizerProfileModel> getOrganizerData(int organizerId) async {

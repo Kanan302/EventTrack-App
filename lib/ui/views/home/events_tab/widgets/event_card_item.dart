@@ -86,7 +86,7 @@ class EventsCardItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: height * 0.01),
                     if (location != null && location!.isNotEmpty)
                       Row(
                         children: [
