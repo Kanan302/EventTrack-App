@@ -1,7 +1,7 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

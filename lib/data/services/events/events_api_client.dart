@@ -30,4 +30,16 @@ abstract class EventsApiClient {
   Future<List<BookmarkedEventsModel>> getBookmarkedEvents(
     @Path("id") int userId,
   );
+
+  @POST("/bookmarks/{userId}/{eventId}")
+  Future<String> bookmarkEvent(
+    @Path("userId") String userId,
+    @Path("eventId") String eventId,
+  );
+
+  @DELETE("/bookmarks/{userId}/{eventId}")
+  Future<String> deleteBookmarkEvent(
+    @Path("userId") String userId,
+    @Path("eventId") String eventId,
+  );
 }

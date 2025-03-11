@@ -47,7 +47,7 @@ class _ProfileApiClient implements ProfileApiClient {
   }
 
   @override
-  Future<UserProfileModel> getUserData(int profileId) async {
+  Future<UserProfileModel> getUserData(int userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -56,7 +56,7 @@ class _ProfileApiClient implements ProfileApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/profiles/${profileId}',
+            '/profiles/${userId}',
             queryParameters: queryParameters,
             data: _data,
           )

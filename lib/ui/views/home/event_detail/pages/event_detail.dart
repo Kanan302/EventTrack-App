@@ -2,6 +2,8 @@ import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_about.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_app_bar.dart';
@@ -23,13 +25,18 @@ class EventDetailPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final ValueNotifier<bool> isBookmarked = ValueNotifier<bool>(false);
     String? organizerId;
+    String? eventId;
+
     if (eventModel is GetEventsModel) {
       organizerId = eventModel.organizerId;
+      eventId = eventModel.id.toString();
     } else if (eventModel is BookmarkedEventsModel) {
       organizerId = eventModel.organizerId;
+      eventId = eventModel.id.toString();
+
+      isBookmarked.value = true;
     }
 
-    // Organizer məlumatını gətir
     if (organizerId != null) {
       context.read<OrganizerProfileCubit>().getOrganizerData(
         int.parse(organizerId),
@@ -87,7 +94,19 @@ class EventDetailPage extends StatelessWidget {
                         builder: (context, value, child) {
                           return EventDetailAppBar(
                             onTap: () {
-                              isBookmarked.value = !isBookmarked.value;
+                              if (eventId != null) {
+                                if (value) {
+                                  context
+                                      .read<DeleteBookmarkedEventsCubit>()
+                                      .deleteBookmarkEvent(eventId);
+                                  isBookmarked.value = false;
+                                } else {
+                                  context
+                                      .read<BookmarkEventsCubit>()
+                                      .bookmarkEvent(eventId);
+                                  isBookmarked.value = true;
+                                }
+                              }
                             },
                             icon:
                                 value ? Icons.bookmark : Icons.bookmark_border,

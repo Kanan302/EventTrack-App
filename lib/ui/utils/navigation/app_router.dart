@@ -6,7 +6,9 @@ import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
@@ -120,19 +122,23 @@ class AppRouter {
         path: AppRoutes.eventDetails.path,
         builder: (context, state) {
           final eventModel = state.extra;
-          if (eventModel is GetEventsModel) {
-            return BlocProvider(
-              create: (context) => getIt<OrganizerProfileCubit>(),
+
+          if (eventModel is GetEventsModel ||
+              eventModel is BookmarkedEventsModel) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => getIt<OrganizerProfileCubit>(),
+                ),
+                BlocProvider(create: (context) => getIt<BookmarkEventsCubit>()),
+                BlocProvider(
+                  create: (context) => getIt<DeleteBookmarkedEventsCubit>(),
+                ),
+              ],
               child: EventDetailPage(eventModel: eventModel),
             );
-          } else if (eventModel is BookmarkedEventsModel) {
-            return BlocProvider(
-              create: (context) => getIt<OrganizerProfileCubit>(),
-              child: EventDetailPage(eventModel: eventModel),
-            );
-          } else {
-            return Center(child: Text('yanlis model gonderildi'));
           }
+          return Scaffold(body: Center(child: Text('Yanlış model göndərildi')));
         },
       ),
       GoRoute(

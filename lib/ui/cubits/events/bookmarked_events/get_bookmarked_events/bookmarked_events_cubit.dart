@@ -1,5 +1,5 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
-import 'package:ascca_app/data/repositories/events/bookmarked_events/bookmarked_events_repository.dart';
+import 'package:ascca_app/data/repositories/events/bookmark_events/get_bookmarked_events/bookmarked_events_repository.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
