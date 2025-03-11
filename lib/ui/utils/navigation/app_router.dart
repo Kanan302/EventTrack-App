@@ -10,6 +10,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/bookmarked_events_c
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
+import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
 import 'package:ascca_app/ui/views/auth/login/pages/login.dart';
 import 'package:ascca_app/ui/views/auth/new_password/new_password.dart';
 import 'package:ascca_app/ui/views/auth/register/pages/register.dart';
@@ -89,6 +90,7 @@ class AppRouter {
             providers: [
               BlocProvider(create: (context) => getIt<AuthLoginCubit>()),
               BlocProvider(create: (context) => getIt<GetEventsCubit>()),
+              BlocProvider(create: (context) => getIt<UserProfileCubit>()),
             ],
             child: HomePage(),
           );

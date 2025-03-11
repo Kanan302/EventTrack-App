@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ProfileName extends StatelessWidget {
-  const ProfileName({super.key});
+  final String fullName;
+  final String aboutMe;
+
+  const ProfileName({super.key, required this.fullName, required this.aboutMe});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          'username',
+          fullName,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         Text(
-          'about',
+          aboutMe,
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ],

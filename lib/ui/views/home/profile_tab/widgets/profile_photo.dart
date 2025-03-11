@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import '../../../../../shared/theme/app_colors.dart';
 
 class ProfilePhoto extends StatefulWidget {
-  const ProfilePhoto({super.key});
+  final String? profilePictureUrl;
+  const ProfilePhoto({super.key, this.profilePictureUrl});
 
   @override
   State<ProfilePhoto> createState() => _ProfilePhotoState();
@@ -13,20 +11,6 @@ class ProfilePhoto extends StatefulWidget {
 
 class _ProfilePhotoState extends State<ProfilePhoto> {
   final ValueNotifier<bool> _isEditing = ValueNotifier<bool>(false);
-  File? _image;
-
-  // Future<void> _pickImage() async {
-  //   final pickedFile = await ImagePicker().pickImage(
-  //     source: ImageSource.gallery,
-  //   );
-
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _image = File(pickedFile.path);
-  //       _isEditing = false;
-  //     });
-  //   }
-  // }
 
   void _toggleEditMode() {
     _isEditing.value = !_isEditing.value;
@@ -34,42 +18,44 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
 
   @override
   Widget build(BuildContext context) {
+    final bool hasImage =
+        widget.profilePictureUrl != null &&
+        widget.profilePictureUrl!.isNotEmpty;
+
     return Stack(
+      alignment: Alignment.center,
       children: [
         ValueListenableBuilder(
           valueListenable: _isEditing,
           builder: (context, isEditing, child) {
-            return CircleAvatar(
-              backgroundColor: AppColors.lavenderBlue,
-              radius: 40,
-              backgroundImage: _image != null ? FileImage(_image!) : null,
-              child:
-                  _image == null
-                      ? Icon(
-                        isEditing ? Icons.upload : Icons.person,
-                        size: 40,
-                        color: AppColors.white,
-                      )
-                      : null,
-            );
+            if (isEditing) {
+              return CircleAvatar(
+                backgroundColor: AppColors.lavenderBlue,
+                radius: 40,
+                child: IconButton(
+                  icon: Icon(Icons.upload, size: 40, color: AppColors.white),
+                  onPressed: () {},
+                ),
+              );
+            } else if (hasImage) {
+              return ClipOval(
+                child: Image.network(
+                  widget.profilePictureUrl!,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                ),
+              );
+            } else {
+              return CircleAvatar(
+                backgroundColor: AppColors.lavenderBlue,
+                radius: 40,
+                child: Icon(Icons.person, size: 40, color: AppColors.white),
+              );
+            }
           },
         ),
-        Positioned.fill(
-          child: ValueListenableBuilder(
-            valueListenable: _isEditing,
-            builder: (context, isEditing, child) {
-              return isEditing
-                  ? Material(
-                    color: AppColors.transparent,
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  )
-                  : SizedBox.shrink();
-            },
-          ),
-        ),
+
         Positioned(
           right: 0,
           top: 0,

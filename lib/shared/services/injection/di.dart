@@ -2,6 +2,7 @@ import 'package:ascca_app/data/repositories/events/bookmarked_events/bookmarked_
 import 'package:ascca_app/data/repositories/events/create_event/create_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
 import 'package:ascca_app/data/repositories/profile/organizer/organizer_profile_repository.dart';
+import 'package:ascca_app/data/repositories/profile/user/user_profile_repository.dart';
 import 'package:ascca_app/data/services/events/events_api_client.dart';
 import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:ascca_app/shared/services/jwt/dio_configuration.dart';
@@ -19,6 +20,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/bookmarked_events_c
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
+import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -78,6 +80,10 @@ Future<void> init() async {
     () => OrganizerProfileRepository(getIt<ProfileApiClient>()),
   );
 
+  getIt.registerLazySingleton<UserProfileRepository>(
+    () => UserProfileRepository(getIt<ProfileApiClient>()),
+  );
+
   // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
@@ -119,5 +125,12 @@ Future<void> init() async {
   getIt.registerFactory<OrganizerProfileCubit>(
     () =>
         OrganizerProfileCubit(repository: getIt<OrganizerProfileRepository>()),
+  );
+
+  getIt.registerFactory<UserProfileCubit>(
+    () => UserProfileCubit(
+      repository: getIt<UserProfileRepository>(),
+      secureService: getIt<SecureService>(),
+    ),
   );
 }
