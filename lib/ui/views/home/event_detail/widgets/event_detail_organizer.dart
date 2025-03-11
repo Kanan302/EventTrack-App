@@ -1,6 +1,7 @@
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -44,8 +45,8 @@ class EventDetailOrganizer extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           child:
               profilePictureUrl.isNotEmpty
-                  ? Image.network(
-                    profilePictureUrl,
+                  ? CachedNetworkImage(
+                    imageUrl: profilePictureUrl,
                     width: 48,
                     height: 48,
                     fit: BoxFit.cover,

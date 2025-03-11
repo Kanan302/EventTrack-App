@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../../shared/theme/app_colors.dart';
 
@@ -39,8 +40,8 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
               );
             } else if (hasImage) {
               return ClipOval(
-                child: Image.network(
-                  widget.profilePictureUrl!,
+                child: CachedNetworkImage(
+                  imageUrl: widget.profilePictureUrl!,
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,

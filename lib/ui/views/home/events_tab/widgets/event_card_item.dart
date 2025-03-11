@@ -1,4 +1,5 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class EventsCardItem extends StatelessWidget {
@@ -48,10 +49,10 @@ class EventsCardItem extends StatelessWidget {
                 height: height * 0.2,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  child: Image.network(
-                    imageUrl,
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
+                    errorWidget: (context, error, url) {
                       return Icon(
                         Icons.broken_image,
                         size: 50,
@@ -59,8 +60,6 @@ class EventsCardItem extends StatelessWidget {
                       );
                     },
                   ),
-                  // Image.asset(imageUrl, fit: BoxFit.cover),
-                  // SvgPicture.asset(imageUrl, fit: BoxFit.contain),
                 ),
               ),
               const SizedBox(width: 8),

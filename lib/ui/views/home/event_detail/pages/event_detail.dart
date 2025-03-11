@@ -10,18 +10,19 @@ import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_date.d
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_location.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_organizer.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_title.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetailPage extends StatelessWidget {
-  final dynamic eventModel; 
+  final dynamic eventModel;
   const EventDetailPage({super.key, required this.eventModel});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final ValueNotifier<bool> isBookmarked = ValueNotifier<bool>(false);
-        String? organizerId;
+    String? organizerId;
     if (eventModel is GetEventsModel) {
       organizerId = eventModel.organizerId;
     } else if (eventModel is BookmarkedEventsModel) {
@@ -30,7 +31,9 @@ class EventDetailPage extends StatelessWidget {
 
     // Organizer məlumatını gətir
     if (organizerId != null) {
-      context.read<OrganizerProfileCubit>().getOrganizerData(int.parse(organizerId));
+      context.read<OrganizerProfileCubit>().getOrganizerData(
+        int.parse(organizerId),
+      );
     }
 
     return Scaffold(
@@ -68,10 +71,11 @@ class EventDetailPage extends StatelessWidget {
                   right: 0,
                   child: SizedBox(
                     height: 250,
-                    child: Image.network(
-                      eventModel.imageURL ?? AppImages.example.path,
+                    child: CachedNetworkImage(
+                      imageUrl: eventModel.imageURL ?? AppImages.example.path,
                       fit: BoxFit.cover,
                       width: double.infinity,
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ),
