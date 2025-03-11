@@ -1,3 +1,4 @@
+import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
@@ -13,16 +14,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetailPage extends StatelessWidget {
-  final GetEventsModel eventModel;
+  final dynamic eventModel; 
   const EventDetailPage({super.key, required this.eventModel});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final ValueNotifier<bool> isBookmarked = ValueNotifier<bool>(false);
-    context.read<OrganizerProfileCubit>().getOrganizerData(
-      int.parse(eventModel.organizerId!),
-    );
+        String? organizerId;
+    if (eventModel is GetEventsModel) {
+      organizerId = eventModel.organizerId;
+    } else if (eventModel is BookmarkedEventsModel) {
+      organizerId = eventModel.organizerId;
+    }
+
+    // Organizer məlumatını gətir
+    if (organizerId != null) {
+      context.read<OrganizerProfileCubit>().getOrganizerData(int.parse(organizerId));
+    }
 
     return Scaffold(
       body: BlocBuilder<OrganizerProfileCubit, OrganizerProfileState>(

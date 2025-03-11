@@ -1,3 +1,4 @@
+import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
@@ -21,6 +22,7 @@ import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/book
 import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
 import 'package:ascca_app/ui/views/onboarding/pages/onboarding.dart';
 import 'package:ascca_app/ui/views/splash/splash.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -115,11 +117,20 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.eventDetails.path,
         builder: (context, state) {
-          final eventModel = state.extra as GetEventsModel;
-          return BlocProvider(
-            create: (context) => getIt<OrganizerProfileCubit>(),
-            child: EventDetailPage(eventModel: eventModel),
-          );
+          final eventModel = state.extra;
+          if (eventModel is GetEventsModel) {
+            return BlocProvider(
+              create: (context) => getIt<OrganizerProfileCubit>(),
+              child: EventDetailPage(eventModel: eventModel),
+            );
+          } else if (eventModel is BookmarkedEventsModel) {
+            return BlocProvider(
+              create: (context) => getIt<OrganizerProfileCubit>(),
+              child: EventDetailPage(eventModel: eventModel),
+            );
+          } else {
+            return Center(child: Text('yanlis model gonderildi'));
+          }
         },
       ),
       GoRoute(
