@@ -10,6 +10,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_e
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
@@ -93,6 +94,7 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<AuthLoginCubit>()),
               BlocProvider(create: (context) => getIt<GetEventsCubit>()),
               BlocProvider(create: (context) => getIt<UserProfileCubit>()),
+              BlocProvider(create: (context) => getIt<DeleteEventCubit>()),
             ],
             child: HomePage(),
           );
@@ -109,8 +111,13 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.bookmarkedEvents.path,
         builder:
-            (context, state) => BlocProvider(
-              create: (context) => getIt<BookmarkedEventsCubit>(),
+            (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => getIt<BookmarkedEventsCubit>(),
+                ),
+                BlocProvider(create: (context) => getIt<DeleteEventCubit>()),
+              ],
               child: BookmarkedEventsPage(),
             ),
       ),

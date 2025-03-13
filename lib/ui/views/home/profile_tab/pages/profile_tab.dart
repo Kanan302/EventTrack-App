@@ -26,6 +26,8 @@ class _ProfileTabState extends State<ProfileTab> {
   final ValueNotifier<String> selectedLanguage = ValueNotifier<String>("AZ");
   final ValueNotifier<bool> isDarkMode = ValueNotifier<bool>(false);
 
+  final ValueNotifier<bool> isEditingProfile = ValueNotifier<bool>(false);
+
   @override
   void initState() {
     context.read<UserProfileCubit>().getUserData();
@@ -54,10 +56,12 @@ class _ProfileTabState extends State<ProfileTab> {
                     children: [
                       ProfilePhoto(
                         profilePictureUrl: state.user.profilePictureUrl,
+                        isEditingNotifier: isEditingProfile,
                       ),
                       ProfileName(
                         fullName: state.user.fullName ?? '',
                         aboutMe: state.user.aboutMe ?? '',
+                        isEditingNotifier: isEditingProfile,
                       ),
                       SizedBox(height: height * 0.02),
                       ProfileCardItem(
@@ -119,6 +123,7 @@ class _ProfileTabState extends State<ProfileTab> {
   @override
   void dispose() {
     selectedLanguage.dispose();
+    isEditingProfile.dispose();
     super.dispose();
   }
 }

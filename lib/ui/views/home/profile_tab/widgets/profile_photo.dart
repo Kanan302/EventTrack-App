@@ -2,32 +2,26 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../../shared/theme/app_colors.dart';
 
-class ProfilePhoto extends StatefulWidget {
+class ProfilePhoto extends StatelessWidget {
   final String? profilePictureUrl;
-  const ProfilePhoto({super.key, this.profilePictureUrl});
+  final ValueNotifier<bool> isEditingNotifier;
 
-  @override
-  State<ProfilePhoto> createState() => _ProfilePhotoState();
-}
-
-class _ProfilePhotoState extends State<ProfilePhoto> {
-  final ValueNotifier<bool> _isEditing = ValueNotifier<bool>(false);
-
-  void _toggleEditMode() {
-    _isEditing.value = !_isEditing.value;
-  }
+  const ProfilePhoto({
+    super.key,
+    this.profilePictureUrl,
+    required this.isEditingNotifier,
+  });
 
   @override
   Widget build(BuildContext context) {
     final bool hasImage =
-        widget.profilePictureUrl != null &&
-        widget.profilePictureUrl!.isNotEmpty;
+        profilePictureUrl != null && profilePictureUrl!.isNotEmpty;
 
     return Stack(
       alignment: Alignment.center,
       children: [
         ValueListenableBuilder(
-          valueListenable: _isEditing,
+          valueListenable: isEditingNotifier,
           builder: (context, isEditing, child) {
             if (isEditing) {
               return CircleAvatar(
@@ -41,7 +35,7 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
             } else if (hasImage) {
               return ClipOval(
                 child: CachedNetworkImage(
-                  imageUrl: widget.profilePictureUrl!,
+                  imageUrl: profilePictureUrl!,
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,
@@ -61,9 +55,11 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
           right: 0,
           top: 0,
           child: GestureDetector(
-            onTap: _toggleEditMode,
+            onTap: () {
+              isEditingNotifier.value = !isEditingNotifier.value;
+            },
             child: ValueListenableBuilder(
-              valueListenable: _isEditing,
+              valueListenable: isEditingNotifier,
               builder: (context, isEditing, child) {
                 return Container(
                   decoration: BoxDecoration(
@@ -78,6 +74,34 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
                     color: AppColors.black,
                   ),
                 );
+              },
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          child: GestureDetector(
+            onTap: () {},
+            child: ValueListenableBuilder(
+              valueListenable: isEditingNotifier,
+              builder: (context, isEditing, child) {
+                if (isEditing) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                      border: Border.all(color: AppColors.softGray, width: 2),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(
+                      Icons.save_as_outlined,
+                      size: 18,
+                      color: AppColors.black,
+                    ),
+                  );
+                }
+                return SizedBox.shrink();
               },
             ),
           ),

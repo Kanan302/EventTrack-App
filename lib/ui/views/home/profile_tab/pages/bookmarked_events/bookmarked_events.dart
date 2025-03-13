@@ -1,6 +1,8 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
+import 'package:ascca_app/shared/services/injection/di.dart';
+import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +18,21 @@ class BookmarkedEventsPage extends StatefulWidget {
 }
 
 class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
+  final _secureStorage = getIt.get<SecureService>();
+  String? userStatus;
+
+  Future<void> _loadUserStatus() async {
+    final status = await _secureStorage.userStatus;
+    setState(() {
+      userStatus = status;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     context.read<BookmarkedEventsCubit>().getBookmarkedEvents();
+    _loadUserStatus();
   }
 
   @override
@@ -57,6 +70,8 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
                               : 'No Date Available',
                       title: event.name!,
                       location: event.location,
+                      onDelete: () {},
+                      userStatus: userStatus ?? '',
                     ),
                   );
                 },

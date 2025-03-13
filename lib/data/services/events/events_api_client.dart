@@ -1,5 +1,6 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/create_event/create_event_response_model.dart';
+import 'package:ascca_app/data/models/events/delete_event/delete_event_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
@@ -42,4 +43,7 @@ abstract class EventsApiClient {
     @Path("userId") String userId,
     @Path("eventId") String eventId,
   );
+
+  @DELETE("/events/{eventId}")
+  Future<DeleteEventModel> deleteEvent(@Path("eventId") String eventId);
 }

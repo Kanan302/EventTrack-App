@@ -34,6 +34,8 @@ class OrganizerEventsList extends StatelessWidget {
                         : 'Tarix mövcud deyil',
                 title: event.name ?? 'Adsız tədbir',
                 location: event.location ?? 'Məlumat yoxdur',
+                onDelete: () {},
+                userStatus: '0',
               ),
             );
           })

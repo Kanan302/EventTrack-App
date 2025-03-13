@@ -25,6 +25,7 @@ class DeleteBookmarkedEventsCubit extends Cubit<DeleteBookmarkedEventsState> {
         return;
       }
       await repository.deleteBookmarkEvent(userId, eventId);
+      emit(DeleteBookmarkedEventsSuccess());
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
       final errorMessage = e.toString().replaceFirst('Exception: ', '');

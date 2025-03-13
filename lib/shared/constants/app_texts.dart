@@ -74,4 +74,5 @@ class AppTexts {
   static const String organizer = 'Təşkilatçı';
   static const String aboutEvent = 'Tədbir Haqqında';
   static const String buyTicket = 'BİLET AL';
+  static const String delete = 'Sil';
 }
