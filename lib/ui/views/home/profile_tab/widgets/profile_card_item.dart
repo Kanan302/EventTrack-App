@@ -1,5 +1,7 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileCardItem extends StatelessWidget {
   final IconData leadingIcon;
@@ -11,7 +13,6 @@ class ProfileCardItem extends StatelessWidget {
   final bool isLanguageSelection;
   final ValueNotifier<String>? selectedLanguage;
   final bool isDarkMode;
-  final ValueNotifier<bool>? darkModeNotifier;
 
   const ProfileCardItem({
     super.key,
@@ -24,7 +25,6 @@ class ProfileCardItem extends StatelessWidget {
     this.isLanguageSelection = false,
     this.selectedLanguage,
     this.isDarkMode = false,
-    this.darkModeNotifier,
   });
 
   @override
@@ -49,15 +49,14 @@ class ProfileCardItem extends StatelessWidget {
         ),
         leading: Icon(leadingIcon, color: leadingIconColor, size: 27),
         trailing:
-            isDarkMode && darkModeNotifier != null
-                ? ValueListenableBuilder<bool>(
-                  valueListenable: darkModeNotifier!,
-                  builder: (context, isDark, child) {
+            isDarkMode
+                ? BlocBuilder<ThemeCubit, ThemeMode>(
+                  builder: (context, themeMode) {
                     return Switch(
-                      value: isDark,
+                      value: themeMode == ThemeMode.dark,
                       activeColor: AppColors.lavenderBlue,
                       onChanged: (value) {
-                        darkModeNotifier!.value = value;
+                        context.read<ThemeCubit>().toggleTheme(value);
                       },
                     );
                   },

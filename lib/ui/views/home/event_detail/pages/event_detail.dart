@@ -1,6 +1,5 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
-import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
@@ -79,7 +78,7 @@ class EventDetailPage extends StatelessWidget {
                   child: SizedBox(
                     height: 250,
                     child: CachedNetworkImage(
-                      imageUrl: eventModel.imageURL ?? AppImages.example.path,
+                      imageUrl: eventModel.imageURL ?? '',
                       fit: BoxFit.cover,
                       width: double.infinity,
                       errorWidget: (context, url, error) => Icon(Icons.error),

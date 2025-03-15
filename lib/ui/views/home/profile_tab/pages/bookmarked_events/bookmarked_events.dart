@@ -1,4 +1,3 @@
-import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
@@ -61,7 +60,7 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
                             AppRoutes.eventDetails.path,
                             extra: event,
                           ),
-                      imageUrl: event.imageURL ?? AppImages.example.path,
+                      imageUrl: event.imageURL ?? '',
                       startDate:
                           event.startDate != null
                               ? DateFormat(

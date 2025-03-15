@@ -57,6 +57,7 @@ class _EventsApiClient implements EventsApiClient {
     String name,
     String about,
     String location,
+    String imageUrl,
     String startDate,
     String endDate,
     String organizerId,
@@ -68,6 +69,7 @@ class _EventsApiClient implements EventsApiClient {
     _data.fields.add(MapEntry('name', name));
     _data.fields.add(MapEntry('about', about));
     _data.fields.add(MapEntry('location', location));
+    _data.fields.add(MapEntry('imageUrl', imageUrl));
     _data.fields.add(MapEntry('startDate', startDate));
     _data.fields.add(MapEntry('endDate', endDate));
     _data.fields.add(MapEntry('organizerId', organizerId));

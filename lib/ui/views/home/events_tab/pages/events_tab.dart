@@ -1,10 +1,10 @@
-import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
@@ -88,21 +88,29 @@ class _EventsTabState extends State<EventsTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ValueListenableBuilder<bool>(
-          valueListenable: isSearching,
-          builder: (context, isSearchActive, child) {
-            return isSearchActive
-                ? TextField(
-                  controller: _searchController,
-                  focusNode: _searchFocusNode,
-                  onChanged: _filterEvents,
-                  decoration: InputDecoration(
-                    hintText: "Tədbir axtarın...",
-                    border: InputBorder.none,
-                  ),
-                  style: TextStyle(color: AppColors.black),
-                )
-                : Text(AppTexts.events);
+        title: BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, themeMode) {
+            final bool isDarkMode = themeMode == ThemeMode.dark;
+            final Color textColor =
+                isDarkMode ? AppColors.white : AppColors.black;
+
+            return ValueListenableBuilder<bool>(
+              valueListenable: isSearching,
+              builder: (context, isSearchActive, child) {
+                return isSearchActive
+                    ? TextField(
+                      controller: _searchController,
+                      focusNode: _searchFocusNode,
+                      onChanged: _filterEvents,
+                      decoration: InputDecoration(
+                        hintText: "Tədbir axtarın...",
+                        border: InputBorder.none,
+                      ),
+                      style: TextStyle(color: textColor),
+                    )
+                    : Text(AppTexts.events);
+              },
+            );
           },
         ),
         centerTitle: true,
@@ -155,7 +163,7 @@ class _EventsTabState extends State<EventsTab> {
                                 AppRoutes.eventDetails.path,
                                 extra: event,
                               ),
-                          imageUrl: event.imageURL ?? AppImages.example.path,
+                          imageUrl: event.imageURL ?? '',
                           startDate:
                               event.startDate != null
                                   ? DateFormat(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
@@ -28,6 +30,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final eventNameController = TextEditingController();
   final eventDescriptionController = TextEditingController();
   final eventLocationController = TextEditingController();
+  final ValueNotifier<File?> _selectedImage = ValueNotifier<File?>(null);
+  final ValueNotifier<String?> _imageErrorNotifier = ValueNotifier<String?>(
+    null,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +64,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     eventEndDateTimeController: eventEndDateTimeController,
                     dateService: eventDateService,
                   ),
-                  CreateEventPhoto(),
+                  CreateEventPhoto(
+                    imageNotifier: _selectedImage,
+                    onImageSelected: (File? image) {
+                      _selectedImage.value = image;
+                    },
+                    errorNotifier: _imageErrorNotifier,
+                  ),
                   SizedBox(height: height * 0.01),
                   BlocBuilder<CreateEventCubit, CreateEventState>(
                     builder: (context, state) {
@@ -68,6 +80,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 ? () {}
                                 : () {
                                   if (_formKey.currentState!.validate()) {
+                                    if (_selectedImage.value == null) {
+                                      _imageErrorNotifier.value =
+                                          "Zəhmət olmasa, şəkil yükləyin";
+                                      return;
+                                    }
                                     context
                                         .read<CreateEventCubit>()
                                         .createEvent(
@@ -77,6 +94,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               eventDescriptionController.text,
                                           location:
                                               eventLocationController.text,
+                                          imageURL:
+                                              _selectedImage.value?.path ?? '',
                                           startDate:
                                               eventDateService.startDate!,
                                           endDate: eventDateService.endDate!,

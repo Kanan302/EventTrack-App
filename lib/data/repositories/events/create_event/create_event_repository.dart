@@ -15,6 +15,7 @@ class CreateEventRepository {
         createEventRequestModel.name!,
         createEventRequestModel.about!,
         createEventRequestModel.location!,
+        createEventRequestModel.imageURL!,
         createEventRequestModel.startDate!.toIso8601String(),
         createEventRequestModel.endDate!.toIso8601String(),
         createEventRequestModel.organizerId!,

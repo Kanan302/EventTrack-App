@@ -22,6 +22,7 @@ abstract class EventsApiClient {
     @Part(name: "name") String name,
     @Part(name: "about") String about,
     @Part(name: "location") String location,
+    @Part(name: "imageUrl") String imageUrl,
     @Part(name: "startDate") String startDate,
     @Part(name: "endDate") String endDate,
     @Part(name: "organizerId") String organizerId,

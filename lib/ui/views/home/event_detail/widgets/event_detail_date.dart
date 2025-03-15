@@ -1,5 +1,7 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class EventDetailDate extends StatelessWidget {
@@ -36,30 +38,39 @@ class EventDetailDate extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: DateFormat(
-                  'd MMMM, yyyy',
-                ).format(DateTime.parse(eventStartDate)),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.black,
-                ),
+        BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, themeMode) {
+            final bool isDarkMode = themeMode == ThemeMode.dark;
+
+            return RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: DateFormat(
+                      'd MMMM, yyyy',
+                    ).format(DateTime.parse(eventStartDate)),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: isDarkMode ? AppColors.white : AppColors.black,
+                    ),
+                  ),
+                  TextSpan(
+                    text:
+                        '\n${DateFormat('EEEE').format(DateTime.parse(eventStartDate))}, ${DateFormat('h:mma').format(DateTime.parse(eventStartDate))} - ${DateFormat('h:mma').format(DateTime.parse(eventEndDate))}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color:
+                          isDarkMode
+                              ? AppColors.white70
+                              : AppColors.graphiteGray,
+                      height: 1.5,
+                    ),
+                  ),
+                ],
               ),
-              TextSpan(
-                text:
-                    '\n${DateFormat('EEEE').format(DateTime.parse(eventStartDate))}, ${DateFormat('h:mma').format(DateTime.parse(eventStartDate))} - ${DateFormat('h:mma').format(DateTime.parse(eventEndDate))}',
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.graphiteGray,
-                  height: 1.5,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

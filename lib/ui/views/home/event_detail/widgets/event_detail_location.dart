@@ -1,5 +1,7 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetailLocation extends StatelessWidget {
   final String eventLocation;
@@ -30,26 +32,37 @@ class EventDetailLocation extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              eventLocation.toString().split(',')[0],
-              style: const TextStyle(
-                fontSize: 16,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 1.5),
-            Text(
-              eventLocation.toString().split(',').sublist(1).join(',').trim(),
-              style: const TextStyle(
-                fontSize: 14,
-                color: AppColors.graphiteGray,
-              ),
-            ),
-          ],
+        BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, themeMode) {
+            final bool isDarkMode = themeMode == ThemeMode.dark;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  eventLocation.toString().split(',')[0],
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: isDarkMode ? AppColors.white : AppColors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 1.5),
+                Text(
+                  eventLocation
+                      .toString()
+                      .split(',')
+                      .sublist(1)
+                      .join(',')
+                      .trim(),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color:
+                        isDarkMode ? AppColors.white70 : AppColors.graphiteGray,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ],
     );

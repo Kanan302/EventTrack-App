@@ -21,6 +21,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     required String name,
     required String about,
     required String location,
+    required String imageURL,
     required DateTime startDate,
     required DateTime endDate,
   }) async {
@@ -36,6 +37,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             name: name,
             about: about,
             location: location,
+            imageURL: imageURL,
             startDate: startDate,
             endDate: endDate,
             organizerId: userId,

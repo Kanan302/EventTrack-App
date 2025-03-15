@@ -1,5 +1,4 @@
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
-import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_event_title.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class OrganizerEventsList extends StatelessWidget {
               child: EventsCardItem(
                 cardId: event.id.toString(),
                 onTapCard: () {},
-                imageUrl: event.imageURL ?? AppImages.example.path,
+                imageUrl: event.imageURL ?? '',
                 startDate:
                     event.startDate != null
                         ? DateFormat(

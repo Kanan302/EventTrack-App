@@ -80,7 +80,6 @@ class _ProfileTabState extends State<ProfileTab> {
                           isEditingProfile.value = false;
                         },
                         onCancelEdit: () {
-                          // Reset controllers to their initial values
                           _nameController.text = _initialName ?? '';
                           _aboutMeController.text = _initialAboutMe ?? '';
                           isEditingProfile.value = false;
@@ -90,7 +89,6 @@ class _ProfileTabState extends State<ProfileTab> {
                         isEditingNotifier: isEditingProfile,
                         nameController: _nameController,
                         aboutMeController: _aboutMeController,
-                        
                       ),
                       SizedBox(height: height * 0.02),
                       ProfileCardItem(
@@ -127,7 +125,6 @@ class _ProfileTabState extends State<ProfileTab> {
                         leadingIconColor: AppColors.lavenderBlue,
                         title: AppTexts.darkMode,
                         isDarkMode: true,
-                        darkModeNotifier: isDarkMode,
                       ),
                       ProfileCardItem(
                         leadingIcon: Icons.logout,

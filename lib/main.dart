@@ -1,7 +1,8 @@
+import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
-
-import 'ui/utils/navigation/app_router.dart';
-import 'shared/services/injection/di.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ascca_app/ui/utils/navigation/app_router.dart';
+import 'package:ascca_app/shared/services/injection/di.dart';
 
 Future<void> main() async {
   await init();
@@ -13,9 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'ASCCA App',
-      routerConfig: AppRouter.router,
+    return BlocProvider(
+      create: (_) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+          return MaterialApp.router(
+            title: 'ASCCA App',
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            themeMode: themeMode,
+            routerConfig: AppRouter.router,
+          );
+        },
+      ),
     );
   }
 }
