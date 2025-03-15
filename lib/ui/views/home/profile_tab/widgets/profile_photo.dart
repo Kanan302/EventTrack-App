@@ -5,11 +5,15 @@ import '../../../../../shared/theme/app_colors.dart';
 class ProfilePhoto extends StatelessWidget {
   final String? profilePictureUrl;
   final ValueNotifier<bool> isEditingNotifier;
+  final VoidCallback onSave;
+  final VoidCallback onCancelEdit;
 
   const ProfilePhoto({
     super.key,
     this.profilePictureUrl,
     required this.isEditingNotifier,
+    required this.onSave,
+    required this.onCancelEdit,
   });
 
   @override
@@ -29,7 +33,7 @@ class ProfilePhoto extends StatelessWidget {
                 radius: 40,
                 child: IconButton(
                   icon: Icon(Icons.upload, size: 40, color: AppColors.white),
-                  onPressed: () {},
+                  onPressed: () {}, // Şəkil yükləmə funksiyası əlavə olunacaq
                 ),
               );
             } else if (hasImage) {
@@ -51,6 +55,7 @@ class ProfilePhoto extends StatelessWidget {
           },
         ),
 
+        // Edit düyməsi (Profilə düzəliş etmək üçün)
         Positioned(
           right: 0,
           top: 0,
@@ -61,28 +66,29 @@ class ProfilePhoto extends StatelessWidget {
             child: ValueListenableBuilder(
               valueListenable: isEditingNotifier,
               builder: (context, isEditing, child) {
-                return Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.white,
-                    border: Border.all(color: AppColors.softGray, width: 2),
-                  ),
-                  padding: const EdgeInsets.all(4),
-                  child: Icon(
-                    isEditing ? Icons.close : Icons.edit,
-                    size: 16,
-                    color: AppColors.black,
-                  ),
-                );
+                if (!isEditing) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                      border: Border.all(color: AppColors.softGray, width: 2),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(Icons.edit, size: 16, color: AppColors.black),
+                  );
+                }
+                return SizedBox.shrink();
               },
             ),
           ),
         ),
+
+        // Save düyməsi (Xərçivədə ad və şəkil düzəldiləndə görünəcək)
         Positioned(
           left: 0,
           top: 0,
           child: GestureDetector(
-            onTap: () {},
+            onTap: onSave,
             child: ValueListenableBuilder(
               valueListenable: isEditingNotifier,
               builder: (context, isEditing, child) {
@@ -99,6 +105,31 @@ class ProfilePhoto extends StatelessWidget {
                       size: 18,
                       color: AppColors.black,
                     ),
+                  );
+                }
+                return SizedBox.shrink();
+              },
+            ),
+          ),
+        ),
+        // X düyməsi (Düzəlişi ləğv etmək üçün)
+        Positioned(
+          right: 0,
+          top: 0,
+          child: GestureDetector(
+            onTap: onCancelEdit,
+            child: ValueListenableBuilder(
+              valueListenable: isEditingNotifier,
+              builder: (context, isEditing, child) {
+                if (isEditing) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                      border: Border.all(color: AppColors.softGray, width: 2),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(Icons.close, size: 18, color: AppColors.black),
                   );
                 }
                 return SizedBox.shrink();

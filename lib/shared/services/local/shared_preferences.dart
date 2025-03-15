@@ -8,6 +8,6 @@ class SharedPreferenceService {
 
   Future<bool> readRememberMe() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('remember_me') ?? false;
+    return prefs.getBool('remember_me') ?? true;
   }
 }

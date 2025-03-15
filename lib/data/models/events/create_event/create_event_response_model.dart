@@ -27,23 +27,6 @@ class CreateEventResponseModel {
     this.imageUrl,
   });
 
-  factory CreateEventResponseModel.fromJson(Map<String, dynamic> json) {
-    final data = json[AppKeys.response][AppKeys.data];
-    return CreateEventResponseModel(
-      id: data['id'] as int?,
-      name: data['name'] as String?,
-      about: data['about'] as String?,
-      location: data['location'] as String?,
-      startDate:
-          data['startDate'] != null ? DateTime.parse(data['startDate']) : null,
-      endDate: data['endDate'] != null ? DateTime.parse(data['endDate']) : null,
-      organizerId: data['organizerId']?.toString(),
-      organizerName: data['organizerName'] as String?,
-      price: data['price'] as int?,
-      imageUrl: data['imageUrl'] as String?,
-    );
-  }
-
   Map<String, dynamic> toJson() {
     return {
       AppKeys.response: {
@@ -61,5 +44,22 @@ class CreateEventResponseModel {
         },
       },
     };
+  }
+
+  factory CreateEventResponseModel.fromJson(Map<String, dynamic> json) {
+    final data = json[AppKeys.response][AppKeys.data];
+    return CreateEventResponseModel(
+      id: data['id'] as int?,
+      name: data['name'] as String?,
+      about: data['about'] as String?,
+      location: data['location'] as String?,
+      startDate:
+          data['startDate'] != null ? DateTime.parse(data['startDate']) : null,
+      endDate: data['endDate'] != null ? DateTime.parse(data['endDate']) : null,
+      organizerId: data['organizerId']?.toString(),
+      organizerName: data['organizerName'] as String?,
+      price: data['price'] as int?,
+      imageUrl: data['imageUrl'] as String?,
+    );
   }
 }
