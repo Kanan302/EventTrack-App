@@ -12,7 +12,7 @@ class CreateEventResponseModel {
   final String? organizerId;
   final String? organizerName;
   final int? price;
-  final String? imageUrl;
+  final String? imageURL;
 
   CreateEventResponseModel({
     this.id,
@@ -24,7 +24,7 @@ class CreateEventResponseModel {
     this.organizerId,
     this.organizerName,
     this.price,
-    this.imageUrl,
+    this.imageURL,
   });
 
   Map<String, dynamic> toJson() {
@@ -40,7 +40,7 @@ class CreateEventResponseModel {
           if (organizerId != null) 'organizerId': organizerId,
           if (organizerName != null) 'organizerName': organizerName,
           if (price != null) 'price': price,
-          if (imageUrl != null) 'imageUrl': imageUrl,
+          if (imageURL != null) 'imageURL': imageURL,
         },
       },
     };
@@ -59,7 +59,7 @@ class CreateEventResponseModel {
       organizerId: data['organizerId']?.toString(),
       organizerName: data['organizerName'] as String?,
       price: data['price'] as int?,
-      imageUrl: data['imageUrl'] as String?,
+      imageURL: data['imageURL'] as String?,
     );
   }
 }

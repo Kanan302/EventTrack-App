@@ -46,10 +46,12 @@ class CreateEventCubit extends Cubit<CreateEventState> {
 
       emit(CreateEventSuccess());
 
+      final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
       SnackBarService.showSnackBar(
         context,
         'Tədbir uğurla yarandı!',
-        AppColors.black,
+        isDarkMode ? AppColors.white : AppColors.black,
       );
 
       Navigator.of(context).pop();
