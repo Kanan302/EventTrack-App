@@ -64,7 +64,8 @@ class AppTexts {
   static const String eventName = 'Tədbirin adı';
   static const String eventDescription = 'Tədbirin təsviri';
   static const String eventPrice = 'Tədbirin qiyməti';
-  static const String eventLocation = 'Tədbirin ünvanı';
+  static const String eventCity = 'Tədbirin şəhəri';
+  static const String eventStreet = 'Tədbirin küçəsi';
   static const String eventStartDate = 'Tədbirin başlama tarixi';
   static const String eventEndDate = 'Tədbirin bitmə tarixi';
   static const String create = 'Yarat';

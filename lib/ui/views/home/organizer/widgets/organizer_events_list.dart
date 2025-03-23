@@ -32,7 +32,8 @@ class OrganizerEventsList extends StatelessWidget {
                         ).format(DateTime.parse(event.startDate!))
                         : 'Tarix mövcud deyil',
                 title: event.name ?? 'Adsız tədbir',
-                location: event.location ?? 'Məlumat yoxdur',
+                street: event.street ?? 'Məlumat yoxdur',
+                city: event.city ?? 'Məlumat yoxdur',
                 onDelete: () {},
                 userStatus: '0',
               ),

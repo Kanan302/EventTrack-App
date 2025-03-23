@@ -7,9 +7,10 @@ import 'package:ascca_app/ui/views/home/create_event/service/create_event_date_s
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_app_bar.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_date.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_description.dart';
-import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_location.dart';
+import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_city.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_name.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_photo.dart';
+import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_street.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_title.dart';
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final eventEndDateTimeController = TextEditingController();
   final eventNameController = TextEditingController();
   final eventDescriptionController = TextEditingController();
-  final eventLocationController = TextEditingController();
+  final eventCityController = TextEditingController();
+  final eventStreetController = TextEditingController();
   final ValueNotifier<File?> _selectedImage = ValueNotifier<File?>(null);
   final ValueNotifier<String?> _imageErrorNotifier = ValueNotifier<String?>(
     null,
@@ -56,8 +58,20 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   CreateEventDescription(
                     eventDescriptionController: eventDescriptionController,
                   ),
-                  CreateEventLocation(
-                    eventLocationController: eventLocationController,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CreateEventCity(
+                          eventCityController: eventCityController,
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: CreateEventStreet(
+                          eventStreetController: eventStreetController,
+                        ),
+                      ),
+                    ],
                   ),
                   CreateEventDate(
                     eventStartDateTimeController: eventStartDateTimeController,
@@ -92,8 +106,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                           name: eventNameController.text,
                                           about:
                                               eventDescriptionController.text,
-                                          location:
-                                              eventLocationController.text,
+                                          city: eventCityController.text,
+                                          street: eventStreetController.text,
                                           imageURL:
                                               _selectedImage.value?.path ?? '',
                                           startDate:
@@ -123,7 +137,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
     eventEndDateTimeController.dispose();
     eventNameController.dispose();
     eventDescriptionController.dispose();
-    eventLocationController.dispose();
+    eventCityController.dispose();
+    eventStreetController.dispose();
     super.dispose();
   }
 }

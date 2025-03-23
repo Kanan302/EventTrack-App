@@ -56,7 +56,8 @@ class _EventsApiClient implements EventsApiClient {
   Future<CreateEventResponseModel> createEvent(
     String name,
     String about,
-    String location,
+    String city,
+    String street,
     String imageUrl,
     String startDate,
     String endDate,
@@ -68,7 +69,8 @@ class _EventsApiClient implements EventsApiClient {
     final _data = FormData();
     _data.fields.add(MapEntry('name', name));
     _data.fields.add(MapEntry('about', about));
-    _data.fields.add(MapEntry('location', location));
+    _data.fields.add(MapEntry('city', city));
+    _data.fields.add(MapEntry('street', street));
     _data.fields.add(MapEntry('imageUrl', imageUrl));
     _data.fields.add(MapEntry('startDate', startDate));
     _data.fields.add(MapEntry('endDate', endDate));

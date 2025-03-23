@@ -6,13 +6,13 @@ import 'package:ascca_app/shared/theme/app_colors.dart';
 class CreateEventPhoto extends StatelessWidget {
   final ValueNotifier<File?> imageNotifier;
   final Function(File?) onImageSelected;
-  final ValueNotifier<String?> errorNotifier; // ❗ Yeni əlavə etdik
+  final ValueNotifier<String?> errorNotifier;
 
   const CreateEventPhoto({
     super.key,
     required this.imageNotifier,
     required this.onImageSelected,
-    required this.errorNotifier, // ❗ Yeni əlavə etdik
+    required this.errorNotifier,
   });
 
   Future<void> _pickImage() async {
@@ -21,8 +21,7 @@ class CreateEventPhoto extends StatelessWidget {
     if (pickedFile != null) {
       imageNotifier.value = File(pickedFile.path);
       onImageSelected(imageNotifier.value);
-      errorNotifier.value =
-          null; // ❗ Şəkil seçiləndə error mesajını təmizləyirik
+      errorNotifier.value = null;
     }
   }
 
@@ -64,7 +63,7 @@ class CreateEventPhoto extends StatelessWidget {
                                   imageNotifier.value = null;
                                   onImageSelected(null);
                                   errorNotifier.value =
-                                      "Zəhmət olmasa, şəkil yükləyin"; // ❗ Şəkil silindikdə error göstəririk
+                                      "Zəhmət olmasa, şəkil yükləyin";
                                 },
                                 child: const CircleAvatar(
                                   backgroundColor: Colors.white,
@@ -97,7 +96,6 @@ class CreateEventPhoto extends StatelessWidget {
           ),
         ),
 
-        // ❗ Error Mesajını göstər
         ValueListenableBuilder<String?>(
           valueListenable: errorNotifier,
           builder: (context, error, _) {

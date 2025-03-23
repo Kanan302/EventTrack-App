@@ -171,7 +171,8 @@ class _EventsTabState extends State<EventsTab> {
                                   ).format(DateTime.parse(event.startDate!))
                                   : 'No Date Available',
                           title: event.name!,
-                          location: event.location,
+                          street: event.street ?? 'Məlumat yoxdur',
+                          city: event.city ?? 'Məlumat yoxdur',
                           onDelete: () {
                             _deleteEvent(event.id.toString());
                           },

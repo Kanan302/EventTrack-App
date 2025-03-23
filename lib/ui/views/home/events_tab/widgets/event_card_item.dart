@@ -12,7 +12,8 @@ class EventsCardItem extends StatelessWidget {
   final String imageUrl;
   final String startDate;
   final String title;
-  final String? location;
+  final String? city;
+  final String? street;
   final VoidCallback onDelete;
   final String userStatus;
 
@@ -23,7 +24,8 @@ class EventsCardItem extends StatelessWidget {
     required this.imageUrl,
     required this.startDate,
     required this.title,
-    this.location,
+    this.city,
+    this.street,
     required this.onDelete,
     required this.userStatus,
   });
@@ -100,26 +102,25 @@ class EventsCardItem extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: height * 0.01),
-                          if (location != null && location!.isNotEmpty)
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.location_on,
-                                  color: AppColors.graphiteGray,
-                                  size: 20,
-                                ),
-                                const SizedBox(width: 5),
-                                Expanded(
-                                  child: Text(
-                                    location!,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: AppColors.graphiteGray,
-                                    ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: AppColors.graphiteGray,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 5),
+                              Expanded(
+                                child: Text(
+                                  "${street ?? ''} - ${city ?? ''} ",
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: AppColors.graphiteGray,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -230,26 +231,25 @@ class EventsCardItem extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: height * 0.01),
-                          if (location != null && location!.isNotEmpty)
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.location_on,
-                                  color: AppColors.graphiteGray,
-                                  size: 20,
-                                ),
-                                const SizedBox(width: 5),
-                                Expanded(
-                                  child: Text(
-                                    location!,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: AppColors.graphiteGray,
-                                    ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: AppColors.graphiteGray,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 5),
+                              Expanded(
+                                child: Text(
+                                  "${street ?? ''} - ${city ?? ''} ",
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: AppColors.graphiteGray,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

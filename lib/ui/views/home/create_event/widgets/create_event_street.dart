@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 
 import 'create_event_formfield.dart';
 
-class CreateEventLocation extends StatelessWidget {
-  final TextEditingController eventLocationController;
+class CreateEventStreet extends StatelessWidget {
+  final TextEditingController eventStreetController;
 
-  const CreateEventLocation({super.key, required this.eventLocationController});
+  const CreateEventStreet({super.key, required this.eventStreetController});
 
   @override
   Widget build(BuildContext context) {
     return CreateEventFormfield(
-      labelText: AppTexts.eventLocation,
-      controller: eventLocationController,
+      labelText: AppTexts.eventStreet,
+      controller: eventStreetController,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Zəhmət olmasa, tədbirin yerini daxil edin';
+          return 'Zəhmət olmasa, tədbirin küçəsini daxil edin';
         }
         return null;
       },

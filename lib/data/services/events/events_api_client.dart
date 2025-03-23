@@ -21,7 +21,8 @@ abstract class EventsApiClient {
   Future<CreateEventResponseModel> createEvent(
     @Part(name: "name") String name,
     @Part(name: "about") String about,
-    @Part(name: "location") String location,
+    @Part(name: "city") String city,
+    @Part(name: "street") String street,
     @Part(name: "imageUrl") String imageUrl,
     @Part(name: "startDate") String startDate,
     @Part(name: "endDate") String endDate,

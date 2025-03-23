@@ -68,7 +68,8 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
                               ).format(DateTime.parse(event.startDate!))
                               : 'No Date Available',
                       title: event.name!,
-                      location: event.location,
+                      street: event.street ?? 'Məlumat yoxdur',
+                      city: event.city ?? 'Məlumat yoxdur',
                       onDelete: () {},
                       userStatus: userStatus ?? '',
                     ),

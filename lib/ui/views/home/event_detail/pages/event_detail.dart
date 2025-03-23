@@ -132,7 +132,10 @@ class EventDetailPage extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 20),
                                 EventDetailLocation(
-                                  eventLocation: eventModel.location ?? '',
+                                  eventCity:
+                                      eventModel.city ?? 'Məlumat yoxdur',
+                                  eventStreet:
+                                      eventModel.street ?? 'Məlumat yoxdur',
                                 ),
                                 const SizedBox(height: 10),
                                 EventDetailOrganizer(

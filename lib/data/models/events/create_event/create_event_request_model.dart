@@ -4,7 +4,8 @@ import 'package:json_annotation/json_annotation.dart';
 class CreateEventRequestModel {
   final String? name;
   final String? about;
-  final String? location;
+  final String? city;
+  final String? street;
   final String? imageURL;
   final DateTime? startDate;
   final DateTime? endDate;
@@ -13,7 +14,8 @@ class CreateEventRequestModel {
   CreateEventRequestModel({
     this.name,
     this.about,
-    this.location,
+    this.city,
+    this.street,
     this.imageURL,
     this.startDate,
     this.endDate,
@@ -24,7 +26,8 @@ class CreateEventRequestModel {
     return {
       if (name != null) 'name': name,
       if (about != null) 'about': about,
-      if (location != null) 'location': location,
+      if (city != null) 'city': city,
+      if (street != null) 'street': street,
       if (imageURL != null) 'imageURL': imageURL,
       if (startDate != null) 'startDate': startDate!.toIso8601String(),
       if (endDate != null) 'endDate': endDate!.toIso8601String(),
@@ -36,7 +39,8 @@ class CreateEventRequestModel {
     return CreateEventRequestModel(
       name: json['name'],
       about: json['about'],
-      location: json['location'],
+      city: json['city'],
+      street: json['street'],
       imageURL: json['imageURL'],
       startDate:
           json['startDate'] != null ? DateTime.parse(json['startDate']) : null,

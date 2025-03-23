@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetailLocation extends StatelessWidget {
-  final String eventLocation;
-  const EventDetailLocation({super.key, required this.eventLocation});
+  final String eventCity;
+  final String eventStreet;
+
+  const EventDetailLocation({
+    super.key,
+    required this.eventCity,
+    required this.eventStreet,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class EventDetailLocation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  eventLocation.toString().split(',')[0],
+                  eventStreet,
                   style: TextStyle(
                     fontSize: 16,
                     color: isDarkMode ? AppColors.white : AppColors.black,
@@ -48,12 +54,7 @@ class EventDetailLocation extends StatelessWidget {
                 ),
                 const SizedBox(height: 1.5),
                 Text(
-                  eventLocation
-                      .toString()
-                      .split(',')
-                      .sublist(1)
-                      .join(',')
-                      .trim(),
+                  eventCity,
                   style: TextStyle(
                     fontSize: 14,
                     color:

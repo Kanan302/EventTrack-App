@@ -14,7 +14,8 @@ class CreateEventRepository {
       final response = await _eventsApiClient.createEvent(
         createEventRequestModel.name!,
         createEventRequestModel.about!,
-        createEventRequestModel.location!,
+        createEventRequestModel.city!,
+        createEventRequestModel.street!,
         createEventRequestModel.imageURL!,
         createEventRequestModel.startDate!.toIso8601String(),
         createEventRequestModel.endDate!.toIso8601String(),
