@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ascca_app/data/models/events/create_event/create_event_request_model.dart';
 import 'package:ascca_app/data/repositories/events/create_event/create_event_repository.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
@@ -22,7 +24,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     required String about,
     required String city,
     required String street,
-    required String imageURL,
+    required File image,
     required DateTime startDate,
     required DateTime endDate,
   }) async {
@@ -39,7 +41,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             about: about,
             city: city,
             street: street,
-            imageURL: imageURL,
+            image: image,
             startDate: startDate,
             endDate: endDate,
             organizerId: userId,

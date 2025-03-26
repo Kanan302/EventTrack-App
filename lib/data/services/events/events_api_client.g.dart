@@ -53,28 +53,11 @@ class _EventsApiClient implements EventsApiClient {
   }
 
   @override
-  Future<CreateEventResponseModel> createEvent(
-    String name,
-    String about,
-    String city,
-    String street,
-    String imageUrl,
-    String startDate,
-    String endDate,
-    String organizerId,
-  ) async {
+  Future<CreateEventResponseModel> createEvent(FormData formData) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry('name', name));
-    _data.fields.add(MapEntry('about', about));
-    _data.fields.add(MapEntry('city', city));
-    _data.fields.add(MapEntry('street', street));
-    _data.fields.add(MapEntry('imageUrl', imageUrl));
-    _data.fields.add(MapEntry('startDate', startDate));
-    _data.fields.add(MapEntry('endDate', endDate));
-    _data.fields.add(MapEntry('organizerId', organizerId));
+    final _data = formData;
     final _options = _setStreamType<CreateEventResponseModel>(
       Options(
             method: 'POST',

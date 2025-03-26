@@ -11,16 +11,20 @@ class CreateEventRepository {
     CreateEventRequestModel createEventRequestModel,
   ) async {
     try {
-      final response = await _eventsApiClient.createEvent(
-        createEventRequestModel.name!,
-        createEventRequestModel.about!,
-        createEventRequestModel.city!,
-        createEventRequestModel.street!,
-        createEventRequestModel.imageURL!,
-        createEventRequestModel.startDate!.toIso8601String(),
-        createEventRequestModel.endDate!.toIso8601String(),
-        createEventRequestModel.organizerId!,
-      );
+      FormData formData = FormData.fromMap({
+        "name": createEventRequestModel.name,
+        "about": createEventRequestModel.about,
+        "city": createEventRequestModel.city,
+        "street": createEventRequestModel.street,
+        "image": await MultipartFile.fromFile(
+          createEventRequestModel.image!.path,
+        ),
+        "startDate": createEventRequestModel.startDate!.toIso8601String(),
+        "endDate": createEventRequestModel.endDate!.toIso8601String(),
+        "organizerId": createEventRequestModel.organizerId,
+      });
+
+      final response = await _eventsApiClient.createEvent(formData);
 
       // print(createEventRequestModel.toJson());
 

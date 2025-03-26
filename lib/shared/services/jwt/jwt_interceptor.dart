@@ -44,7 +44,7 @@ class JwtInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    super.onError(err, handler);
+    // super.onError(err, handler);
     if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
       final newAccessToken = await refreshToken();
       if (newAccessToken != null) {
@@ -53,9 +53,10 @@ class JwtInterceptor extends Interceptor {
       } else {
         await _secureStorage.clearToken();
         debugPrint('User must re-login');
-        return handler.next(err);
+        // return handler.next(err);
       }
     }
+    super.onError(err, handler);
     // return handler.next(err);
   }
 

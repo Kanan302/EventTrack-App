@@ -19,14 +19,15 @@ abstract class EventsApiClient {
   @POST("/events")
   @MultiPart()
   Future<CreateEventResponseModel> createEvent(
-    @Part(name: "name") String name,
-    @Part(name: "about") String about,
-    @Part(name: "city") String city,
-    @Part(name: "street") String street,
-    @Part(name: "imageUrl") String imageUrl,
-    @Part(name: "startDate") String startDate,
-    @Part(name: "endDate") String endDate,
-    @Part(name: "organizerId") String organizerId,
+    // @Part(name: "name") String name,
+    // @Part(name: "about") String about,
+    // @Part(name: "city") String city,
+    // @Part(name: "street") String street,
+    // @Part(name: "image") MultipartFile image,
+    // @Part(name: "startDate") String startDate,
+    // @Part(name: "endDate") String endDate,
+    // @Part(name: "organizerId") String organizerId,
+    @Body() FormData formData,
   );
 
   @GET("/bookmarks/{id}")

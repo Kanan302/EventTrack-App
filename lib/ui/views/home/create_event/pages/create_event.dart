@@ -61,14 +61,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   Row(
                     children: [
                       Expanded(
-                        child: CreateEventCity(
-                          eventCityController: eventCityController,
+                        child: CreateEventStreet(
+                          eventStreetController: eventStreetController,
                         ),
                       ),
                       SizedBox(width: 20),
                       Expanded(
-                        child: CreateEventStreet(
-                          eventStreetController: eventStreetController,
+                        child: CreateEventCity(
+                          eventCityController: eventCityController,
                         ),
                       ),
                     ],
@@ -108,8 +108,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               eventDescriptionController.text,
                                           city: eventCityController.text,
                                           street: eventStreetController.text,
-                                          imageURL:
-                                              _selectedImage.value?.path ?? '',
+                                          image: _selectedImage.value!,
                                           startDate:
                                               eventDateService.startDate!,
                                           endDate: eventDateService.endDate!,
