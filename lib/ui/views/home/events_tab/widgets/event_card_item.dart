@@ -99,6 +99,7 @@ class EventsCardItem extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
+                              color: AppColors.graphiteGray,
                             ),
                           ),
                           SizedBox(height: height * 0.01),
@@ -228,6 +229,7 @@ class EventsCardItem extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
+                              color: AppColors.graphiteGray,
                             ),
                           ),
                           SizedBox(height: height * 0.01),

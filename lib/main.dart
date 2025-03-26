@@ -14,8 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSystemDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return BlocProvider(
-      create: (_) => ThemeCubit(),
+      create: (_) {
+        final themeCubit = ThemeCubit();
+        themeCubit.setSystemTheme(
+          isSystemDarkMode ? Brightness.dark : Brightness.light,
+        );
+        return themeCubit;
+      },
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {
           return MaterialApp.router(
