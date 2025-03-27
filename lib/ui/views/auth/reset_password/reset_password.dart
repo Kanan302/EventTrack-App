@@ -109,6 +109,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             buttonColor: AppColors.lavenderBlue,
                             text: AppTexts.send,
                             textColor: AppColors.white,
+                            isLoading: state is AuthResetPasswordLoading,
                           ),
                         );
                       },

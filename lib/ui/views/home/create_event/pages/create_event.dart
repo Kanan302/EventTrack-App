@@ -118,6 +118,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                         buttonColor: AppColors.lavenderBlue,
                         text: AppTexts.create,
                         textColor: AppColors.white,
+                        isLoading: state is CreateEventLoading,
                       );
                     },
                   ),

@@ -160,6 +160,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                             buttonColor: AppColors.lavenderBlue,
                             text: AppTexts.update,
                             textColor: AppColors.white,
+                            isLoading: state is AuthNewPasswordLoading,
                           ),
                         );
                       },

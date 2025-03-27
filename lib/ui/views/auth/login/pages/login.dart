@@ -77,9 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _emailController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter an email';
+                              return 'Mail daxil edin';
                             } else if (!value.contains('@')) {
-                              return 'Please include an "@" in the email';
+                              return 'Mailda @ simvolu yoxdur';
                             }
                             return null;
                           },
@@ -139,6 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                               buttonColor: AppColors.lavenderBlue,
                               text: AppTexts.signInUppercase,
                               textColor: AppColors.white,
+                              isLoading: state is AuthLoginLoading,
                             );
                           },
                         ),
