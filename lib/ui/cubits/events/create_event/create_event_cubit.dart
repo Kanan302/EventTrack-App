@@ -46,7 +46,16 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             endDate: endDate,
             organizerId: userId,
           );
+
       await repository.createEvent(createEventRequestModel);
+      // .timeout(
+      //   const Duration(seconds: 10),
+      //   onTimeout: () {
+      //     throw Exception(
+      //       "Server cavab vermir, zəhmət olmasa sonra yenidən yoxlayın!",
+      //     );
+      //   },
+      // );
 
       emit(CreateEventSuccess());
 
