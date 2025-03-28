@@ -56,6 +56,20 @@ class CreateEventDate extends StatelessWidget {
     }
   }
 
+  String? validateDateTimeFormat(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Zəhmət olmasa, tarixi seçin';
+    }
+
+    try {
+      DateFormat("dd.MM.yyyy HH:mm").parseStrict(value);
+    } catch (e) {
+      return 'Tarixi düzgün formatda daxil edin (dd.MM.yyyy HH:mm)';
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -67,11 +81,7 @@ class CreateEventDate extends StatelessWidget {
             onTap:
                 () =>
                     _pickDateTime(context, eventStartDateTimeController, true),
-            validator:
-                (value) =>
-                    value == null || value.isEmpty
-                        ? 'Zəhmət olmasa, başlanğıc tarixini seçin'
-                        : null,
+            validator: validateDateTimeFormat,
           ),
         ),
         const SizedBox(width: 20),
@@ -81,11 +91,7 @@ class CreateEventDate extends StatelessWidget {
             controller: eventEndDateTimeController,
             onTap:
                 () => _pickDateTime(context, eventEndDateTimeController, false),
-            validator:
-                (value) =>
-                    value == null || value.isEmpty
-                        ? 'Zəhmət olmasa, bitiş tarixini seçin'
-                        : null,
+            validator: validateDateTimeFormat,
           ),
         ),
       ],
