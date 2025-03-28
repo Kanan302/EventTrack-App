@@ -5,7 +5,7 @@ import '../../utils/notifications/flushbar.dart';
 import '../../../shared/services/local/secure_service.dart';
 import '../../../shared/services/injection/di.dart';
 
-import 'calendar_tab/calendar_tab.dart';
+import 'calendar_tab/pages/calendar_tab.dart';
 import 'events_tab/pages/events_tab.dart';
 import 'profile_tab/pages/profile_tab.dart';
 import 'map_tab/map_tab.dart';
