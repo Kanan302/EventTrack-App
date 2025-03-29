@@ -1,10 +1,9 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
+import 'package:ascca_app/shared/services/local/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../shared/services/local/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,13 +18,13 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigateBasedOnRememberMe() async {
     bool isRememberMe = await _sharedPrefService.readRememberMe();
     Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        if (isRememberMe) {
-          context.go(AppRoutes.onboarding.path);
-        } else {
-          context.go(AppRoutes.home.path);
-        }
+      // if (mounted) {
+      if (isRememberMe) {
+        context.go(AppRoutes.onboarding.path);
+      } else {
+        context.go(AppRoutes.home.path);
       }
+      // }
     });
   }
 
