@@ -8,6 +8,7 @@ class CreateEventFormfield extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function()? onTap;
+  final Icon? prefixIcon;
 
   const CreateEventFormfield({
     super.key,
@@ -15,6 +16,7 @@ class CreateEventFormfield extends StatelessWidget {
     this.controller,
     this.validator,
     this.onTap,
+    this.prefixIcon,
   });
 
   @override
@@ -31,6 +33,8 @@ class CreateEventFormfield extends StatelessWidget {
             labelStyle: TextStyle(
               color: isDarkMode ? AppColors.softGray : AppColors.graphiteGray,
             ),
+            prefixIcon: prefixIcon,
+            prefixIconColor: AppColors.dustyGray,
             border: const OutlineInputBorder(),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),

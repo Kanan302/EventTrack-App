@@ -13,6 +13,7 @@ import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart'
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
@@ -98,6 +99,7 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<UserProfileCubit>()),
               BlocProvider(create: (context) => getIt<DeleteEventCubit>()),
               BlocProvider(create: (context) => getIt<UpdateProfileCubit>()),
+              BlocProvider(create: (context) => getIt<TopEventsCubit>()),
             ],
             child: HomePage(),
           );

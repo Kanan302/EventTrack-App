@@ -14,8 +14,8 @@ class EventsCardItem extends StatelessWidget {
   final String title;
   final String? city;
   final String? street;
-  final VoidCallback onDelete;
-  final String userStatus;
+  final VoidCallback? onDelete;
+  final String? userStatus;
 
   const EventsCardItem({
     super.key,
@@ -26,8 +26,8 @@ class EventsCardItem extends StatelessWidget {
     required this.title,
     this.city,
     this.street,
-    required this.onDelete,
-    required this.userStatus,
+    this.onDelete,
+    this.userStatus,
   });
 
   @override
@@ -142,7 +142,7 @@ class EventsCardItem extends StatelessWidget {
             motion: StretchMotion(),
             children: [
               CustomSlidableAction(
-                onPressed: (context) => onDelete(),
+                onPressed: (context) => onDelete!(),
                 backgroundColor: AppColors.red,
                 borderRadius: BorderRadius.circular(16),
                 child: Column(

@@ -5,6 +5,7 @@ import 'package:ascca_app/data/repositories/events/create_event/create_event_rep
 import 'package:ascca_app/data/repositories/events/delete_event/delete_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
 import 'package:ascca_app/data/repositories/events/register_event/register_event_repository.dart';
+import 'package:ascca_app/data/repositories/events/top_events/top_events_repository.dart';
 import 'package:ascca_app/data/repositories/profile/organizer/organizer_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/update_profile/update_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/user/user_profile_repository.dart';
@@ -28,6 +29,7 @@ import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart'
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
@@ -114,6 +116,10 @@ Future<void> init() async {
     () => RegisterEventRepository(getIt<EventsApiClient>()),
   );
 
+  getIt.registerLazySingleton<TopEventsRepository>(
+    () => TopEventsRepository(getIt<EventsApiClient>()),
+  );
+
   // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
@@ -194,5 +200,9 @@ Future<void> init() async {
       repository: getIt<RegisterEventRepository>(),
       secureService: getIt<SecureService>(),
     ),
+  );
+
+  getIt.registerFactory<TopEventsCubit>(
+    () => TopEventsCubit(repository: getIt<TopEventsRepository>()),
   );
 }
