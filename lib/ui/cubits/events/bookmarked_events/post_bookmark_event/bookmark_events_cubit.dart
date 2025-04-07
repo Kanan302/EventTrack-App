@@ -23,6 +23,7 @@ class BookmarkEventsCubit extends Cubit<BookmarkEventsState> {
         return;
       }
       await repository.bookmarkEvent(userId, eventId);
+      emit(BookmarkEventsSuccess());
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
 

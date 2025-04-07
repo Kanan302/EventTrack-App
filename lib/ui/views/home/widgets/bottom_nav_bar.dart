@@ -37,7 +37,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           text: AppTexts.calendar,
           icon: Icon(Icons.calendar_month, size: 25),
         ),
-        Tab(text: AppTexts.map, icon: Icon(Icons.map_outlined, size: 25)),
+        Tab(
+          text: AppTexts.top,
+          icon: Icon(Icons.trending_up_outlined, size: 25),
+        ),
         Tab(text: AppTexts.profile, icon: Icon(Icons.person, size: 25)),
       ],
     );

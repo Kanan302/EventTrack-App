@@ -9,7 +9,7 @@ class CreateEventRequestModel {
   final String? about;
   final String? city;
   final String? street;
-  @JsonKey(ignore: true) 
+  @JsonKey(ignore: true)
   final File? image;
   final DateTime? startDate;
   final DateTime? endDate;

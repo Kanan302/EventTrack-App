@@ -4,6 +4,7 @@ import 'package:ascca_app/data/repositories/events/bookmark_events/post_bookmark
 import 'package:ascca_app/data/repositories/events/create_event/create_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/delete_event/delete_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
+import 'package:ascca_app/data/repositories/events/register_event/register_event_repository.dart';
 import 'package:ascca_app/data/repositories/profile/organizer/organizer_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/update_profile/update_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/user/user_profile_repository.dart';
@@ -26,6 +27,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
@@ -108,6 +110,10 @@ Future<void> init() async {
     () => UpdateProfileRepository(getIt<ProfileApiClient>()),
   );
 
+  getIt.registerLazySingleton<RegisterEventRepository>(
+    () => RegisterEventRepository(getIt<EventsApiClient>()),
+  );
+
   // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
@@ -179,6 +185,13 @@ Future<void> init() async {
   getIt.registerFactory<UpdateProfileCubit>(
     () => UpdateProfileCubit(
       repository: getIt<UpdateProfileRepository>(),
+      secureService: getIt<SecureService>(),
+    ),
+  );
+
+  getIt.registerFactory<RegisterEventCubit>(
+    () => RegisterEventCubit(
+      repository: getIt<RegisterEventRepository>(),
       secureService: getIt<SecureService>(),
     ),
   );

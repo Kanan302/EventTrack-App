@@ -48,7 +48,7 @@ class AppTexts {
   // home
   static const String events = 'Tədbirlər';
   static const String calendar = 'Təqvim';
-  static const String map = 'Xəritə';
+  static const String top = 'Populyar';
   static const String profile = 'Profil';
 
   // profile
@@ -70,10 +70,13 @@ class AppTexts {
   static const String eventEndDate = 'Tədbirin bitmə tarixi';
   static const String create = 'Yarat';
 
-  // event details page
+  // event details
   static const String eventDetails = 'Tədbir Təfərrüatları';
   static const String organizer = 'Təşkilatçı';
   static const String aboutEvent = 'Tədbir Haqqında';
-  static const String buyTicket = 'BİLET AL';
+  static const String registerEvent = 'QEYDİYYATDAN KEÇ';
   static const String delete = 'Sil';
+
+  // top events
+  static const String topEvents = 'Populyar Tədbirlər';
 }

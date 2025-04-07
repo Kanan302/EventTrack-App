@@ -1,4 +1,5 @@
 import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class OrganizerPhoto extends StatelessWidget {
@@ -13,7 +14,7 @@ class OrganizerPhoto extends StatelessWidget {
       radius: 40,
       foregroundImage:
           profilePictureUrl != null && profilePictureUrl!.isNotEmpty
-              ? NetworkImage(profilePictureUrl!)
+              ? CachedNetworkImageProvider(profilePictureUrl!)
               : null,
       child:
           profilePictureUrl == null || profilePictureUrl!.isEmpty
