@@ -55,14 +55,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   decoration: const BoxDecoration(
                     color: AppColors.lavenderBlue,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(48),
-                      topRight: Radius.circular(48),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // const SizedBox(height: 25),
                       SizedBox(
                         width: 300,
                         child: Text(
@@ -143,7 +142,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ),
                         ],
                       ),
-                      // const SizedBox(height: 40),
                     ],
                   ),
                 ),
