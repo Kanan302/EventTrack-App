@@ -17,7 +17,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   Future<void> updateProfile(
     String fullName,
     String aboutMe,
-    String profilePictureUrl,
+    String profilePicture,
   ) async {
     emit(UpdateProfileLoading());
     try {
@@ -31,7 +31,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           UpdateProfileRequestModel(
             fullName: fullName,
             aboutMe: aboutMe,
-            profilePictureUrl: profilePictureUrl,
+            profilePicture: profilePicture,
           );
 
       await repository.updateProfile(userId, updateProfileRequestModel);

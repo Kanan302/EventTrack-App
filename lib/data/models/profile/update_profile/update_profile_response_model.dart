@@ -1,7 +1,5 @@
 import 'package:ascca_app/shared/constants/app_keys.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-@JsonSerializable()
 class UpdateProfileResponseModel {
   final int? id;
   final String? fullName;

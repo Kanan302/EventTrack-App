@@ -23,6 +23,6 @@ abstract class ProfileApiClient {
     @Path("userId") String userId,
     @Part(name: "fullName") String fullName,
     @Part(name: "aboutMe") String aboutMe,
-    @Part(name: "profilePictureUrl") String profilePictureUrl,
+    @Part(name: "profilePicture") String profilePicture,
   );
 }

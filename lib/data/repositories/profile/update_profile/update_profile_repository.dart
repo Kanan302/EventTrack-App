@@ -17,7 +17,7 @@ class UpdateProfileRepository {
         userId,
         updateProfileRequestModel.fullName ?? '',
         updateProfileRequestModel.aboutMe ?? '',
-        updateProfileRequestModel.profilePictureUrl ?? '',
+        updateProfileRequestModel.profilePicture ?? '',
       );
       debugPrint('Response: $response');
     } on DioException catch (e) {

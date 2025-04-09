@@ -7,6 +7,7 @@ class TopEventsModel {
   String? imageURL;
   String? street;
   String? city;
+  String? organizerId;
   int? registrationCount;
 
   TopEventsModel({
@@ -18,6 +19,7 @@ class TopEventsModel {
     this.imageURL,
     this.street,
     this.city,
+    this.organizerId,
     this.registrationCount,
   });
 
@@ -31,6 +33,7 @@ class TopEventsModel {
       'imageURL': imageURL,
       'street': street,
       'city': city,
+      'organizerId': organizerId,
       'registrationCount': registrationCount,
     };
   }
@@ -45,6 +48,7 @@ class TopEventsModel {
       imageURL: json['imageURL'],
       street: json['street'],
       city: json['city'],
+      organizerId: json['organizerId'],
       registrationCount: json['registrationCount'],
     );
   }

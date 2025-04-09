@@ -1,5 +1,6 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
+import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
@@ -136,7 +137,8 @@ class AppRouter {
           final eventModel = state.extra;
 
           if (eventModel is GetEventsModel ||
-              eventModel is BookmarkedEventsModel) {
+              eventModel is BookmarkedEventsModel ||
+              eventModel is TopEventsModel) {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(

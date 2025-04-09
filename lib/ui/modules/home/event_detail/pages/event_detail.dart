@@ -1,5 +1,6 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
+import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
@@ -30,6 +31,11 @@ class EventDetailPage extends StatelessWidget {
       organizerId = eventModel.organizerId;
       eventId = eventModel.id.toString();
     } else if (eventModel is BookmarkedEventsModel) {
+      organizerId = eventModel.organizerId;
+      eventId = eventModel.id.toString();
+
+      isBookmarked.value = true;
+    } else if (eventModel is TopEventsModel) {
       organizerId = eventModel.organizerId;
       eventId = eventModel.id.toString();
 
