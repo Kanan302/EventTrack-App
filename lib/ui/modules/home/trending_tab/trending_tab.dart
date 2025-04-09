@@ -107,51 +107,58 @@ class _TrendingTabState extends State<TrendingTab> {
                           child: Text('Heç bir tədbir tapılmadı.'),
                         );
                       }
-                      return ListView.builder(
-                        itemCount: topEvents.length,
-                        itemBuilder: (context, index) {
-                          final event = topEvents[index];
-                          return Stack(
-                            children: [
-                              EventsCardItem(
-                                cardId: event.id.toString(),
-                                onTapCard:
-                                    () => context.push(
-                                      AppRoutes.eventDetails.path,
-                                      extra: event,
-                                    ),
-                                imageUrl: event.imageURL ?? '',
-                                startDate:
-                                    event.startDate != null
-                                        ? DateFormat(
-                                          'MMM d - EEE - h:mm a',
-                                        ).format(
-                                          DateTime.parse(event.startDate!),
-                                        )
-                                        : 'No Date Available',
-                                title: event.name!,
-                                street: event.street ?? 'Məlumat yoxdur',
-                                city: event.city ?? 'Məlumat yoxdur',
-                              ),
-                              Positioned(
-                                top: 0,
-                                right: 10,
-                                child: Container(
-                                  width: 45,
-                                  padding: const EdgeInsets.all(6),
-                                  child: Text(
-                                    '🔥${event.registrationCount}',
-                                    style: TextStyle(
-                                      color: AppColors.graphiteGray,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          await context.read<TopEventsCubit>().getTopEvents(
+                            forceRefresh: true,
+                          );
+                        },
+                        child: ListView.builder(
+                          itemCount: topEvents.length,
+                          itemBuilder: (context, index) {
+                            final event = topEvents[index];
+                            return Stack(
+                              children: [
+                                EventsCardItem(
+                                  cardId: event.id.toString(),
+                                  onTapCard:
+                                      () => context.push(
+                                        AppRoutes.eventDetails.path,
+                                        extra: event,
+                                      ),
+                                  imageUrl: event.imageURL ?? '',
+                                  startDate:
+                                      event.startDate != null
+                                          ? DateFormat(
+                                            'MMM d - EEE - h:mm a',
+                                          ).format(
+                                            DateTime.parse(event.startDate!),
+                                          )
+                                          : 'No Date Available',
+                                  title: event.name!,
+                                  street: event.street ?? 'Məlumat yoxdur',
+                                  city: event.city ?? 'Məlumat yoxdur',
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 10,
+                                  child: Container(
+                                    width: 45,
+                                    padding: const EdgeInsets.all(6),
+                                    child: Text(
+                                      '🔥${event.registrationCount}',
+                                      style: TextStyle(
+                                        color: AppColors.graphiteGray,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
+                              ],
+                            );
+                          },
+                        ),
                       );
                     }
                     return const SizedBox.shrink();

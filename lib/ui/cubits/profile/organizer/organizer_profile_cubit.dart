@@ -8,15 +8,22 @@ part 'organizer_profile_state.dart';
 
 class OrganizerProfileCubit extends Cubit<OrganizerProfileState> {
   final OrganizerProfileRepository repository;
+  bool _hasFetched = false;
 
   OrganizerProfileCubit({required this.repository})
     : super(OrganizerProfileInitial());
 
-  Future<void> getOrganizerData(int organizerId) async {
+  Future<void> getOrganizerData(
+    int organizerId, {
+    bool forceRefresh = false,
+  }) async {
+    if (_hasFetched && !forceRefresh) return;
+
     emit(OrganizerProfileLoading());
     try {
       final organizer = await repository.getOrganizerData(organizerId);
       emit(OrganizerProfileSuccess(organizer));
+      _hasFetched = true;
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
       final errorMessage = e.toString().replaceFirst('Exception: ', '');

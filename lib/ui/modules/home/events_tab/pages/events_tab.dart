@@ -150,36 +150,41 @@ class _EventsTabState extends State<EventsTab> {
                   if (eventList.isEmpty) {
                     return Center(child: Text('Heç bir tədbir tapılmadı.'));
                   }
-                  return ListView.builder(
-                    itemCount: eventList.length,
-                    itemBuilder: (context, index) {
-                      final event = eventList[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: EventsCardItem(
-                          cardId: event.id.toString(),
-                          onTapCard:
-                              () => context.push(
-                                AppRoutes.eventDetails.path,
-                                extra: event,
-                              ),
-                          imageUrl: event.imageURL ?? '',
-                          startDate:
-                              event.startDate != null
-                                  ? DateFormat(
-                                    'MMM d - EEE - h:mm a',
-                                  ).format(DateTime.parse(event.startDate!))
-                                  : 'No Date Available',
-                          title: event.name!,
-                          street: event.street ?? 'Məlumat yoxdur',
-                          city: event.city ?? 'Məlumat yoxdur',
-                          onDelete: () {
-                            _deleteEvent(event.id.toString());
-                          },
-                          userStatus: userStatus ?? '',
-                        ),
-                      );
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      await getEventsCubit.getEvents(forceRefresh: true);
                     },
+                    child: ListView.builder(
+                      itemCount: eventList.length,
+                      itemBuilder: (context, index) {
+                        final event = eventList[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: EventsCardItem(
+                            cardId: event.id.toString(),
+                            onTapCard:
+                                () => context.push(
+                                  AppRoutes.eventDetails.path,
+                                  extra: event,
+                                ),
+                            imageUrl: event.imageURL ?? '',
+                            startDate:
+                                event.startDate != null
+                                    ? DateFormat(
+                                      'MMM d - EEE - h:mm a',
+                                    ).format(DateTime.parse(event.startDate!))
+                                    : 'No Date Available',
+                            title: event.name!,
+                            street: event.street ?? 'Məlumat yoxdur',
+                            city: event.city ?? 'Məlumat yoxdur',
+                            onDelete: () {
+                              _deleteEvent(event.id.toString());
+                            },
+                            userStatus: userStatus ?? '',
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               );

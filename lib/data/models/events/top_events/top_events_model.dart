@@ -7,7 +7,7 @@ class TopEventsModel {
   String? imageURL;
   String? street;
   String? city;
-  String? organizerId;
+  int? organizerId;
   int? registrationCount;
 
   TopEventsModel({

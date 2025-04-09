@@ -8,13 +8,18 @@ part 'top_events_state.dart';
 
 class TopEventsCubit extends Cubit<TopEventsState> {
   final TopEventsRepository repository;
+  bool _hasFetched = false;
+
   TopEventsCubit({required this.repository}) : super(TopEventsInitial());
 
-  Future<void> getTopEvents() async {
+  Future<void> getTopEvents({bool forceRefresh = false}) async {
+    if (_hasFetched && !forceRefresh) return;
+
     emit(TopEventsLoading());
     try {
       final topEvents = await repository.getTopEvents();
       emit(TopEventsSuccess(topEvents: topEvents));
+      _hasFetched = true;
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
       final errorMessage = e.toString().replaceFirst('Exception: ', '');

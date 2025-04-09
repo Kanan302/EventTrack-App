@@ -36,7 +36,7 @@ class EventDetailPage extends StatelessWidget {
 
       isBookmarked.value = true;
     } else if (eventModel is TopEventsModel) {
-      organizerId = eventModel.organizerId;
+      organizerId = eventModel.organizerId.toString();
       eventId = eventModel.id.toString();
 
       isBookmarked.value = true;
@@ -75,97 +75,111 @@ class EventDetailPage extends StatelessWidget {
           if (state is OrganizerProfileSuccess) {
             final organizer = state.organizer;
 
-            return Stack(
-              children: [
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: SizedBox(
-                    height: 250,
-                    child: CachedNetworkImage(
-                      imageUrl: eventModel.imageURL ?? '',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+            return RefreshIndicator(
+              onRefresh: () async {
+                if (organizerId != null) {
+                  context.read<OrganizerProfileCubit>().getOrganizerData(
+                    forceRefresh: true,
+                    int.parse(organizerId),
+                  );
+                }
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: SizedBox(
+                      height: 250,
+                      child: CachedNetworkImage(
+                        imageUrl: eventModel.imageURL ?? '',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
-                ),
-                SafeArea(
-                  child: Column(
-                    children: [
-                      ValueListenableBuilder(
-                        valueListenable: isBookmarked,
-                        builder: (context, value, child) {
-                          return EventDetailAppBar(
-                            onTap: () {
-                              if (eventId != null) {
-                                if (value) {
-                                  context
-                                      .read<DeleteBookmarkedEventsCubit>()
-                                      .deleteBookmarkEvent(eventId);
-                                  isBookmarked.value = false;
-                                } else {
-                                  context
-                                      .read<BookmarkEventsCubit>()
-                                      .bookmarkEvent(eventId);
-                                  isBookmarked.value = true;
+                  SafeArea(
+                    child: Column(
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: isBookmarked,
+                          builder: (context, value, child) {
+                            return EventDetailAppBar(
+                              onTap: () {
+                                if (eventId != null) {
+                                  if (value) {
+                                    context
+                                        .read<DeleteBookmarkedEventsCubit>()
+                                        .deleteBookmarkEvent(eventId);
+                                    isBookmarked.value = false;
+                                  } else {
+                                    context
+                                        .read<BookmarkEventsCubit>()
+                                        .bookmarkEvent(eventId);
+                                    isBookmarked.value = true;
+                                  }
                                 }
-                              }
-                            },
-                            icon:
-                                value ? Icons.bookmark : Icons.bookmark_border,
-                          );
-                        },
-                      ),
-                      SizedBox(height: height * 0.18),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                EventDetailTitle(
-                                  eventTitle: eventModel.name ?? '',
-                                ),
-                                const SizedBox(height: 20),
-                                EventDetailDate(
-                                  eventStartDate: eventModel.startDate ?? '',
-                                  eventEndDate: eventModel.endDate ?? '',
-                                ),
-                                const SizedBox(height: 20),
-                                EventDetailLocation(
-                                  eventCity:
-                                      eventModel.city ?? 'Məlumat yoxdur',
-                                  eventStreet:
-                                      eventModel.street ?? 'Məlumat yoxdur',
-                                ),
-                                const SizedBox(height: 10),
-                                EventDetailOrganizer(
-                                  eventOrganizer: organizer.fullName ?? '',
-                                  organizerId: organizer.id.toString(),
-                                  profilePictureUrl:
-                                      organizer.profilePictureUrl ?? '',
-                                  aboutOrganizer: organizer.aboutMe ?? '',
-                                ),
-                                const SizedBox(height: 30),
-                                EventDetailAbout(
-                                  eventAbout: eventModel.about ?? '',
-                                ),
-                                const SizedBox(height: 20),
-                                EventDetailButton(eventId: eventModel.id),
-                              ],
+                              },
+                              icon:
+                                  value
+                                      ? Icons.bookmark
+                                      : Icons.bookmark_border,
+                            );
+                          },
+                        ),
+                        SizedBox(height: height * 0.18),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  EventDetailTitle(
+                                    eventTitle: eventModel.name ?? '',
+                                  ),
+                                  const SizedBox(height: 20),
+                                  EventDetailDate(
+                                    eventStartDate: eventModel.startDate ?? '',
+                                    eventEndDate: eventModel.endDate ?? '',
+                                  ),
+                                  const SizedBox(height: 20),
+                                  EventDetailLocation(
+                                    eventCity:
+                                        eventModel.city ?? 'Məlumat yoxdur',
+                                    eventStreet:
+                                        eventModel.street ?? 'Məlumat yoxdur',
+                                  ),
+                                  const SizedBox(height: 10),
+                                  EventDetailOrganizer(
+                                    eventOrganizer: organizer.fullName ?? '',
+                                    organizerId: organizer.id.toString(),
+                                    profilePictureUrl:
+                                        organizer.profilePictureUrl ?? '',
+                                    aboutOrganizer: organizer.aboutMe ?? '',
+                                  ),
+                                  const SizedBox(height: 30),
+                                  EventDetailAbout(
+                                    eventAbout: eventModel.about ?? '',
+                                  ),
+                                  const SizedBox(height: 20),
+                                  EventDetailButton(
+                                    eventId: eventModel.id.toString(),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
 

@@ -1,5 +1,6 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,6 +39,15 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
       );
     }
+  }
+
+  @override
+  void initState() {
+    if (kDebugMode) {
+      _emailController.text = 'alizadekanan6@gmail.com';
+      _passwordController.text = 'password123';
+    }
+    super.initState();
   }
 
   @override

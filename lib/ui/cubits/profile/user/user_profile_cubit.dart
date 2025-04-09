@@ -10,11 +10,14 @@ part 'user_profile_state.dart';
 class UserProfileCubit extends Cubit<UserProfileState> {
   final UserProfileRepository repository;
   final SecureService secureService;
+  // bool _hasFetched = false;
 
   UserProfileCubit({required this.repository, required this.secureService})
     : super(UserProfileInitial());
 
-  Future<void> getUserData() async {
+  Future<void> getUserData({bool forceRefresh = false}) async {
+    // if (_hasFetched && !forceRefresh) return;
+
     emit(UserProfileLoading());
     try {
       final userId = await secureService.userId;
@@ -32,6 +35,7 @@ class UserProfileCubit extends Cubit<UserProfileState> {
 
       final user = await repository.getUserData(intUserId);
       emit(UserProfileSuccess(user));
+      // _hasFetched = true;
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
       final errorMessage = e.toString().replaceFirst('Exception: ', '');

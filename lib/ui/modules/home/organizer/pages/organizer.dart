@@ -42,21 +42,29 @@ class _OrganizerPageState extends State<OrganizerPage> {
           } else if (state is OrganizerProfileSuccess) {
             final OrganizerProfileModel organizer = state.organizer;
             return SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    OrganizerPhoto(
-                      profilePictureUrl: organizer.profilePictureUrl,
-                    ),
-                    SizedBox(height: height * 0.01),
-                    OrganizerName(name: organizer.fullName ?? ''),
-                    SizedBox(height: height * 0.01),
-                    OrganizerAbout(about: organizer.aboutMe ?? ''),
-                    SizedBox(height: height * 0.04),
-                    OrganizerEventsList(events: organizer.events ?? []),
-                  ],
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  await context.read<OrganizerProfileCubit>().getOrganizerData(
+                    widget.organizerId,
+                    forceRefresh: true,
+                  );
+                },
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      OrganizerPhoto(
+                        profilePictureUrl: organizer.profilePictureUrl,
+                      ),
+                      SizedBox(height: height * 0.01),
+                      OrganizerName(name: organizer.fullName ?? ''),
+                      SizedBox(height: height * 0.01),
+                      OrganizerAbout(about: organizer.aboutMe ?? ''),
+                      SizedBox(height: height * 0.04),
+                      OrganizerEventsList(events: organizer.events ?? []),
+                    ],
+                  ),
                 ),
               ),
             );
