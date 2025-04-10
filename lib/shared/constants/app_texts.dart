@@ -53,6 +53,7 @@ class AppTexts {
 
   // profile
   static const String bookmarkedEvents = 'Seçilmiş tədbirlər';
+  static const String editProfile = 'Redaktə et';
   static const String notifications = 'Bildirişlər';
   static const String about = 'Haqqında';
   static const String language = 'Dil';
@@ -79,4 +80,10 @@ class AppTexts {
 
   // calendar
   static const String topEvents = 'Populyar Tədbirlər';
+
+  // update profile
+  static const String yourName = 'Adınız';
+  static const String yourAbout = 'Haqqınızda';
+  static const String add = 'Əlavə edin';
+  static const String updateYourProfile = 'Məlumatlarınızı yeniləyin';
 }

@@ -47,7 +47,7 @@ class ProfileCardItem extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading: Icon(leadingIcon, color: leadingIconColor, size: 27),
+        leading: Icon(leadingIcon, color: leadingIconColor, size: 26),
         trailing:
             isDarkMode
                 ? BlocBuilder<ThemeCubit, ThemeMode>(

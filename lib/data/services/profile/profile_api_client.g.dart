@@ -76,17 +76,24 @@ class _ProfileApiClient implements ProfileApiClient {
   @override
   Future<UpdateProfileResponseModel> updateProfile(
     String userId,
-    String fullName,
-    String aboutMe,
-    String profilePictureUrl,
+    String? fullName,
+    String? aboutMe,
+    MultipartFile? profilePicture,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
-    _data.fields.add(MapEntry('fullName', fullName));
-    _data.fields.add(MapEntry('aboutMe', aboutMe));
-    _data.fields.add(MapEntry('profilePictureUrl', profilePictureUrl));
+    if (fullName != null) {
+      _data.fields.add(MapEntry('fullName', fullName));
+    }
+    if (aboutMe != null) {
+      _data.fields.add(MapEntry('aboutMe', aboutMe));
+    }
+    if (profilePicture != null) {
+      _data.files.add(MapEntry('profilePicture', profilePicture));
+    }
     final _options = _setStreamType<UpdateProfileResponseModel>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(

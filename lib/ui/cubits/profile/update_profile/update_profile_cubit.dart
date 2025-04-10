@@ -1,4 +1,5 @@
-import 'package:ascca_app/data/models/profile/update_profile/update_profile_request_model.dart';
+import 'dart:io';
+
 import 'package:ascca_app/data/repositories/profile/update_profile/update_profile_repository.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:equatable/equatable.dart';
@@ -11,30 +12,31 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   final UpdateProfileRepository repository;
   final SecureService secureService;
 
+  // bool _hasFetched = false;
+
   UpdateProfileCubit({required this.repository, required this.secureService})
     : super(UpdateProfileInitial());
 
   Future<void> updateProfile(
-    String fullName,
-    String aboutMe,
-    String profilePicture,
+    String? fullName,
+    String? aboutMe,
+    File? profilePictureFile,
   ) async {
     emit(UpdateProfileLoading());
     try {
       final userId = await secureService.userId;
-
-      if (userId == null || userId.isEmpty) {
+      if (userId == null) {
         emit(UpdateProfileFailure(errorMessage: "User ID tapılmadı!"));
         return;
       }
-      final UpdateProfileRequestModel updateProfileRequestModel =
-          UpdateProfileRequestModel(
-            fullName: fullName,
-            aboutMe: aboutMe,
-            profilePicture: profilePicture,
-          );
 
-      await repository.updateProfile(userId, updateProfileRequestModel);
+      await repository.updateProfile(
+        userId,
+        fullName,
+        aboutMe,
+        profilePictureFile,
+      );
+      emit(UpdateProfileSuccess());
     } catch (e) {
       debugPrint("Error: ${e.toString()}");
       final errorMessage = e.toString().replaceFirst('Exception: ', '');

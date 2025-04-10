@@ -3,18 +3,14 @@ class UpdateProfileRequestModel {
   final String? aboutMe;
   final String? profilePicture;
 
-  UpdateProfileRequestModel({
-    this.fullName,
-    this.aboutMe,
-    this.profilePicture,
-  });
+  UpdateProfileRequestModel({this.fullName, this.aboutMe, this.profilePicture});
 
   Map<String, dynamic> toJson() {
-    return {
-      if (fullName != null) 'fullName': fullName,
-      if (aboutMe != null) 'aboutMe': aboutMe,
-      if (profilePicture != null) 'profilePicture': profilePicture,
-    };
+    final Map<String, dynamic> data = {};
+    if (fullName != null) data['fullName'] = fullName;
+    if (aboutMe != null) data['aboutMe'] = aboutMe;
+    if (profilePicture != null) data['profilePicture'] = profilePicture;
+    return data;
   }
 
   factory UpdateProfileRequestModel.fromJson(Map<String, dynamic> json) {

@@ -2,8 +2,8 @@ import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
+import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
@@ -33,6 +33,8 @@ import 'package:ascca_app/ui/modules/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../modules/home/update_profile/update_profile.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -99,7 +101,6 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<GetEventsCubit>()),
               BlocProvider(create: (context) => getIt<UserProfileCubit>()),
               BlocProvider(create: (context) => getIt<DeleteEventCubit>()),
-              BlocProvider(create: (context) => getIt<UpdateProfileCubit>()),
               BlocProvider(create: (context) => getIt<TopEventsCubit>()),
             ],
             child: HomePage(),
@@ -165,6 +166,14 @@ class AppRouter {
             child: OrganizerPage(organizerId: organizerId),
           );
         },
+      ),
+      GoRoute(
+        path: AppRoutes.updateProfile.path,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<UpdateProfileCubit>(),
+              child: UpdateProfilePage(),
+            ),
       ),
     ],
   );

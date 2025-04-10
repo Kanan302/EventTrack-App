@@ -1,4 +1,5 @@
-import 'package:ascca_app/data/models/profile/update_profile/update_profile_request_model.dart';
+import 'dart:io';
+
 import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +11,27 @@ class UpdateProfileRepository {
 
   Future<void> updateProfile(
     String userId,
-    UpdateProfileRequestModel updateProfileRequestModel,
+    String? fullName,
+    String? aboutMe,
+    File? profilePictureFile,
   ) async {
     try {
+      MultipartFile? profilePicture;
+
+      if (profilePictureFile != null) {
+        profilePicture = await MultipartFile.fromFile(
+          profilePictureFile.path,
+          filename: profilePictureFile.path.split('/').last,
+        );
+      }
+
       final response = await _profileApiClient.updateProfile(
         userId,
-        updateProfileRequestModel.fullName ?? '',
-        updateProfileRequestModel.aboutMe ?? '',
-        updateProfileRequestModel.profilePicture ?? '',
+        fullName,
+        aboutMe,
+        profilePicture,
       );
+
       debugPrint('Response: $response');
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;

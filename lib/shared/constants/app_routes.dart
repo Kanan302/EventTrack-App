@@ -11,8 +11,10 @@ enum AppRoutes {
   notification('/notification'),
   bookmarkedEvents('/bookmarkedEvents'),
   eventDetails('/eventDetails'),
-  organizer('/organizer');
+  organizer('/organizer'),
+  updateProfile('/updateProfile');
 
   const AppRoutes(this.path);
+
   final String path;
 }

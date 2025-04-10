@@ -21,8 +21,9 @@ abstract class ProfileApiClient {
   @PATCH("/profiles/{userId}")
   Future<UpdateProfileResponseModel> updateProfile(
     @Path("userId") String userId,
-    @Part(name: "fullName") String fullName,
-    @Part(name: "aboutMe") String aboutMe,
-    @Part(name: "profilePicture") String profilePicture,
+    @Part(name: "fullName") String? fullName,
+    @Part(name: "aboutMe") String? aboutMe,
+    @Part(name: "profilePicture") MultipartFile? profilePicture,
+    // @Body() UpdateProfileRequestModel body,
   );
 }
