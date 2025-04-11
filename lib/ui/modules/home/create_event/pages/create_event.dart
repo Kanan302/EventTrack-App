@@ -5,9 +5,9 @@ import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/modules/home/create_event/service/create_event_date_service.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_app_bar.dart';
+import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_city.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_date.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_description.dart';
-import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_city.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_name.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_photo.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_street.dart';
@@ -15,6 +15,10 @@ import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_titl
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+import '../../widgets/map_widget.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({super.key});
@@ -36,10 +40,36 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final ValueNotifier<String?> _imageErrorNotifier = ValueNotifier<String?>(
     null,
   );
+  final MapController _mapController = MapController();
+
+  LatLng? _selectedLocation;
+
+  void _handleMapTap(TapPosition tapPosition, LatLng latlng) {
+    setState(() {
+      _selectedLocation = latlng;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+
+    List<Marker> markers = [];
+
+    if (_selectedLocation != null) {
+      markers.add(
+        Marker(
+          width: 50,
+          height: 50,
+          point: _selectedLocation!,
+          child: const Icon(
+            Icons.location_on,
+            color: AppColors.lavenderBlue,
+            size: 40,
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: const CreateEventAppbar(),
@@ -85,6 +115,32 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     },
                     errorNotifier: _imageErrorNotifier,
                   ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Xəritədən nöqtə seçin:",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  MapWidget(
+                    mapController: _mapController,
+                    onTap: _handleMapTap,
+                    markers: markers,
+                    height: 250,
+                  ),
+                  const SizedBox(height: 16),
+                  if (_selectedLocation != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        'Seçilmiş nöqtə: Lat: ${_selectedLocation!.latitude.toStringAsFixed(5)}, '
+                        'Lng: ${_selectedLocation!.longitude.toStringAsFixed(5)}',
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
                   SizedBox(height: height * 0.01),
                   BlocBuilder<CreateEventCubit, CreateEventState>(
                     builder: (context, state) {
@@ -139,6 +195,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
     eventDescriptionController.dispose();
     eventCityController.dispose();
     eventStreetController.dispose();
+    _mapController.dispose();
     super.dispose();
   }
 }

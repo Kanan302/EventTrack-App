@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../widgets/map_widget.dart';
+
 class MapTab extends StatefulWidget {
   const MapTab({super.key});
 
@@ -12,7 +14,6 @@ class MapTab extends StatefulWidget {
 
 class _MapTabState extends State<MapTab> {
   final MapController _mapController = MapController();
-  double _currentZoom = 12.0;
 
   final Map<String, LatLng> locations = {
     'Baku Center': LatLng(40.409264, 49.867092),
@@ -24,63 +25,38 @@ class _MapTabState extends State<MapTab> {
 
   String? _selectedLocationName;
 
-  void _zoomIn() {
-    setState(() {
-      _currentZoom += 1;
-      _mapController.move(_mapController.camera.center, _currentZoom);
-    });
-  }
-
-  void _zoomOut() {
-    setState(() {
-      _currentZoom -= 1;
-      _mapController.move(_mapController.camera.center, _currentZoom);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final markers =
+        locations.entries.map((entry) {
+          final isSelected = _selectedLocationName == entry.key;
+          return Marker(
+            width: isSelected ? 60 : 40,
+            height: isSelected ? 60 : 40,
+            point: entry.value,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedLocationName = entry.key;
+                });
+              },
+              child: Icon(
+                Icons.location_on,
+                size: isSelected ? 60 : 40,
+                color: AppColors.red,
+              ),
+            ),
+          );
+        }).toList();
+
     return Scaffold(
       body: Stack(
         children: [
-          FlutterMap(
+          MapWidget(
             mapController: _mapController,
-            options: MapOptions(
-              initialCenter: LatLng(40.409264, 49.867092),
-              initialZoom: _currentZoom,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
-              ),
-              MarkerLayer(
-                markers:
-                    locations.entries.map((entry) {
-                      final isSelected = _selectedLocationName == entry.key;
-
-                      return Marker(
-                        width: isSelected ? 60.0 : 40.0,
-                        height: isSelected ? 60.0 : 40.0,
-                        point: entry.value,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedLocationName = entry.key;
-                            });
-                          },
-                          child: Icon(
-                            Icons.location_on,
-                            size: isSelected ? 60 : 40,
-                            color: AppColors.red,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-              ),
-            ],
+            markers: markers,
+            height: MediaQuery.of(context).size.height,
           ),
-
           if (_selectedLocationName != null)
             Positioned(
               top: 70,
@@ -91,7 +67,7 @@ class _MapTabState extends State<MapTab> {
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: AppColors.black,
                       blurRadius: 8,
@@ -109,26 +85,6 @@ class _MapTabState extends State<MapTab> {
                 ),
               ),
             ),
-
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: Column(
-              children: [
-                FloatingActionButton(
-                  mini: true,
-                  onPressed: _zoomIn,
-                  child: const Icon(Icons.zoom_in),
-                ),
-                const SizedBox(height: 6),
-                FloatingActionButton(
-                  mini: true,
-                  onPressed: _zoomOut,
-                  child: const Icon(Icons.zoom_out),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
