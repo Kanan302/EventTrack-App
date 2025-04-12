@@ -89,4 +89,10 @@ class _MapTabState extends State<MapTab> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _mapController.dispose();
+    super.dispose();
+  }
 }

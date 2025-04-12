@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
+import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../../../../utils/widgets/app_text_form_field.dart';
-import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
-import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
 import '../widgets/navigation_sign_in.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -185,6 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           buttonColor: AppColors.lavenderBlue,
                           text: AppTexts.signUpUppercase,
                           textColor: AppColors.white,
+                          isLoading: state is AuthRegistrationLoading,
                         );
                       },
                     ),

@@ -74,12 +74,14 @@ class _MapWidgetState extends State<MapWidget> {
           child: Column(
             children: [
               FloatingActionButton(
+                heroTag: "zoomInButton",
                 mini: true,
                 onPressed: _zoomIn,
                 child: const Icon(Icons.zoom_in),
               ),
               const SizedBox(height: 6),
               FloatingActionButton(
+                heroTag: "zoomOutButton",
                 mini: true,
                 onPressed: _zoomOut,
                 child: const Icon(Icons.zoom_out),
