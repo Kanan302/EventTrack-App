@@ -52,6 +52,8 @@ class AppTexts {
   static const String profile = 'Profil';
 
   // profile
+  static const String doScan = 'Skan et';
+  static const String myEvents = 'Tədbirlərim';
   static const String bookmarkedEvents = 'Seçilmiş tədbirlər';
   static const String editProfile = 'Redaktə et';
   static const String notifications = 'Bildirişlər';

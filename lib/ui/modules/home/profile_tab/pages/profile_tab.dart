@@ -11,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/services/injection/di.dart';
+import '../../../../../shared/services/local/secure_service.dart';
 import '../widgets/profile_app_bar.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -26,8 +28,19 @@ class _ProfileTabState extends State<ProfileTab> {
   final ValueNotifier<String> selectedLanguage = ValueNotifier<String>("AZ");
   final ValueNotifier<bool> isDarkMode = ValueNotifier<bool>(false);
 
+  final _secureStorage = getIt.get<SecureService>();
+  String? userStatus;
+
+  Future<void> _loadUserStatus() async {
+    final status = await _secureStorage.userStatus;
+    setState(() {
+      userStatus = status;
+    });
+  }
+
   @override
   void initState() {
+    _loadUserStatus();
     context.read<UserProfileCubit>().getUserData();
     super.initState();
   }
@@ -80,18 +93,39 @@ class _ProfileTabState extends State<ProfileTab> {
                           aboutMe: state.user.aboutMe ?? '',
                         ),
                         SizedBox(height: height * 0.02),
-                        ProfileCardItem(
-                          leadingIcon: Icons.bookmark_outline,
-                          leadingIconColor: AppColors.lavenderBlue,
-                          title: AppTexts.bookmarkedEvents,
-                          onTap: () {
-                            context.push(AppRoutes.bookmarkedEvents.path).then((
-                              _,
-                            ) {
-                              context.read<UserProfileCubit>().getUserData();
-                            });
-                          },
-                        ),
+                        if (userStatus == '1')
+                          ProfileCardItem(
+                            leadingIcon: Icons.document_scanner_outlined,
+                            leadingIconColor: AppColors.lavenderBlue,
+                            title: AppTexts.doScan,
+                            onTap: () {
+                              context.push(AppRoutes.doScan.path);
+                            },
+                          ),
+                        if (userStatus == '1')
+                          ProfileCardItem(
+                            leadingIcon: Icons.event_seat_outlined,
+                            leadingIconColor: AppColors.lavenderBlue,
+                            title: AppTexts.myEvents,
+                            onTap: () {
+                              context.push(AppRoutes.myEvents.path);
+                            },
+                          ),
+                        if (userStatus == '0')
+                          ProfileCardItem(
+                            leadingIcon: Icons.bookmark_outline,
+                            leadingIconColor: AppColors.lavenderBlue,
+                            title: AppTexts.bookmarkedEvents,
+                            onTap: () {
+                              context
+                                  .push(AppRoutes.bookmarkedEvents.path)
+                                  .then((_) {
+                                    context
+                                        .read<UserProfileCubit>()
+                                        .getUserData();
+                                  });
+                            },
+                          ),
                         ProfileCardItem(
                           leadingIcon: Icons.edit,
                           leadingIconColor: AppColors.lavenderBlue,
@@ -111,9 +145,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           leadingIconColor: AppColors.lavenderBlue,
                           title: AppTexts.notifications,
                           onTap: () {
-                            context.push(AppRoutes.notification.path).then((_) {
-                              context.read<UserProfileCubit>().getUserData();
-                            });
+                            context.push(AppRoutes.notification.path);
                           },
                         ),
                         ProfileCardItem(
@@ -146,7 +178,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           showTrailing: false,
                           textColor: AppColors.red,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 30),
                       ],
                     ),
                   ),

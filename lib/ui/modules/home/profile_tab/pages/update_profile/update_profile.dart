@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../shared/theme/app_colors.dart';
-import '../../../cubits/profile/update_profile/update_profile_cubit.dart';
+import '../../../../../../shared/theme/app_colors.dart';
+import '../../../../../cubits/profile/update_profile/update_profile_cubit.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});

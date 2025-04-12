@@ -12,7 +12,9 @@ enum AppRoutes {
   bookmarkedEvents('/bookmarkedEvents'),
   eventDetails('/eventDetails'),
   organizer('/organizer'),
-  updateProfile('/updateProfile');
+  updateProfile('/updateProfile'),
+  doScan('/doScan'),
+  myEvents('/myEvents');
 
   const AppRoutes(this.path);
 

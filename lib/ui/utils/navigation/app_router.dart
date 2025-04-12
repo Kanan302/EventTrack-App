@@ -27,6 +27,7 @@ import 'package:ascca_app/ui/modules/home/event_detail/pages/event_detail.dart';
 import 'package:ascca_app/ui/modules/home/home.dart';
 import 'package:ascca_app/ui/modules/home/organizer/pages/organizer.dart';
 import 'package:ascca_app/ui/modules/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
+import 'package:ascca_app/ui/modules/home/profile_tab/pages/my_events/my_events.dart';
 import 'package:ascca_app/ui/modules/home/profile_tab/pages/notifications/pages/notifications.dart';
 import 'package:ascca_app/ui/modules/onboarding/pages/onboarding.dart';
 import 'package:ascca_app/ui/modules/splash/splash.dart';
@@ -34,7 +35,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../modules/home/update_profile/update_profile.dart';
+import '../../modules/home/profile_tab/pages/do_scan/do_scan.dart';
+import '../../modules/home/profile_tab/pages/update_profile/update_profile.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -173,6 +175,23 @@ class AppRouter {
             (context, state) => BlocProvider(
               create: (context) => getIt<UpdateProfileCubit>(),
               child: UpdateProfilePage(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.doScan.path,
+        builder: (context, state) => const DoScanPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.myEvents.path,
+        builder:
+            (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => getIt<OrganizerProfileCubit>(),
+                ),
+                BlocProvider(create: (context) => getIt<DeleteEventCubit>()),
+              ],
+              child: MyEventsPage(),
             ),
       ),
     ],
