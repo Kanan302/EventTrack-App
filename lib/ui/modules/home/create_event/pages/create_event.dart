@@ -5,12 +5,10 @@ import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/modules/home/create_event/service/create_event_date_service.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_app_bar.dart';
-import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_city.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_date.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_description.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_name.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_photo.dart';
-import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_street.dart';
 import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_title.dart';
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -69,21 +67,21 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   CreateEventDescription(
                     eventDescriptionController: eventDescriptionController,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CreateEventStreet(
-                          eventStreetController: eventStreetController,
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: CreateEventCity(
-                          eventCityController: eventCityController,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: CreateEventStreet(
+                  //         eventStreetController: eventStreetController,
+                  //       ),
+                  //     ),
+                  //     const SizedBox(width: 20),
+                  //     Expanded(
+                  //       child: CreateEventCity(
+                  //         eventCityController: eventCityController,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   CreateEventDate(
                     eventStartDateTimeController: eventStartDateTimeController,
                     eventEndDateTimeController: eventEndDateTimeController,

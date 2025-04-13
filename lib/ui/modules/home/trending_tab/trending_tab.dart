@@ -1,13 +1,12 @@
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
-import 'package:ascca_app/ui/modules/home/create_event/service/create_event_date_service.dart';
-import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_formfield.dart';
 import 'package:ascca_app/ui/modules/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
 import '../../../../shared/constants/app_texts.dart';
 
 class TrendingTab extends StatefulWidget {
@@ -18,9 +17,9 @@ class TrendingTab extends StatefulWidget {
 }
 
 class _TrendingTabState extends State<TrendingTab> {
-  final eventDateService = CreateEventDateService();
-  final eventStartDateTimeController = TextEditingController();
-  final eventEndDateTimeController = TextEditingController();
+  // final eventDateService = CreateEventDateService();
+  // final eventStartDateTimeController = TextEditingController();
+  // final eventEndDateTimeController = TextEditingController();
 
   @override
   void initState() {
@@ -36,48 +35,48 @@ class _TrendingTabState extends State<TrendingTab> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 60,
-                      child: CreateEventFormfield(
-                        labelText: 'Başlanğıc Tarixi',
-                        controller: eventStartDateTimeController,
-                        onTap:
-                            () => pickDateTime(
-                              context,
-                              eventStartDateTimeController,
-                              true,
-                              eventDateService,
-                            ),
-                        validator: validateDateTimeFormat,
-                        prefixIcon: Icon(Icons.calendar_month_outlined),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: SizedBox(
-                      height: 60,
-                      child: CreateEventFormfield(
-                        labelText: 'Bitiş Tarixi',
-                        controller: eventEndDateTimeController,
-                        onTap:
-                            () => pickDateTime(
-                              context,
-                              eventEndDateTimeController,
-                              false,
-                              eventDateService,
-                            ),
-                        validator: validateDateTimeFormat,
-                        prefixIcon: Icon(Icons.calendar_month_outlined),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // SizedBox(height: 20),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: SizedBox(
+              //         height: 60,
+              //         child: CreateEventFormfield(
+              //           labelText: 'Başlanğıc Tarixi',
+              //           controller: eventStartDateTimeController,
+              //           onTap:
+              //               () => pickDateTime(
+              //                 context,
+              //                 eventStartDateTimeController,
+              //                 true,
+              //                 eventDateService,
+              //               ),
+              //           validator: validateDateTimeFormat,
+              //           prefixIcon: Icon(Icons.calendar_month_outlined),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 10),
+              //     Expanded(
+              //       child: SizedBox(
+              //         height: 60,
+              //         child: CreateEventFormfield(
+              //           labelText: 'Bitiş Tarixi',
+              //           controller: eventEndDateTimeController,
+              //           onTap:
+              //               () => pickDateTime(
+              //                 context,
+              //                 eventEndDateTimeController,
+              //                 false,
+              //                 eventDateService,
+              //               ),
+              //           validator: validateDateTimeFormat,
+              //           prefixIcon: Icon(Icons.calendar_month_outlined),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
@@ -170,12 +169,5 @@ class _TrendingTabState extends State<TrendingTab> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    eventStartDateTimeController.dispose();
-    eventEndDateTimeController.dispose();
-    super.dispose();
   }
 }

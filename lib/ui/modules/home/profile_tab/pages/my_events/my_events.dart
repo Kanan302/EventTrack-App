@@ -66,21 +66,24 @@ class _MyEventsPageState extends State<MyEventsPage> {
                       itemCount: organizer.events!.length,
                       itemBuilder: (context, index) {
                         final event = organizer.events![index];
-                        return EventsCardItem(
-                          cardId: event.id.toString(),
-                          onTapCard: () {},
-                          imageUrl: event.imageURL ?? '',
-                          startDate:
-                              event.startDate != null
-                                  ? DateFormat(
-                                    'MMM d - EEE - h:mm a',
-                                  ).format(DateTime.parse(event.startDate!))
-                                  : 'Tarix mövcud deyil',
-                          title: event.name ?? 'Adsız tədbir',
-                          street: event.street ?? 'Məlumat yoxdur',
-                          city: event.city ?? 'Məlumat yoxdur',
-                          onDelete: () {},
-                          userStatus: '0',
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: EventsCardItem(
+                            cardId: event.id.toString(),
+                            onTapCard: () {},
+                            imageUrl: event.imageURL ?? '',
+                            startDate:
+                                event.startDate != null
+                                    ? DateFormat(
+                                      'MMM d - EEE - h:mm a',
+                                    ).format(DateTime.parse(event.startDate!))
+                                    : 'Tarix mövcud deyil',
+                            title: event.name ?? 'Adsız tədbir',
+                            street: event.street ?? 'Məlumat yoxdur',
+                            city: event.city ?? 'Məlumat yoxdur',
+                            onDelete: () {},
+                            userStatus: '0',
+                          ),
                         );
                       },
                     ),

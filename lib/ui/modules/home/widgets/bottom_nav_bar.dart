@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/constants/app_texts.dart';
+import '../../../../shared/theme/app_colors.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key, required this.tabController});
@@ -34,8 +34,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           icon: Icon(Icons.event_seat_outlined, size: 25),
         ),
         Tab(
-          text: AppTexts.calendar,
-          icon: Icon(Icons.calendar_month, size: 25),
+          text: AppTexts.popular,
+          icon: Icon(Icons.trending_up_outlined, size: 25),
         ),
         Tab(text: AppTexts.map, icon: Icon(Icons.map, size: 25)),
         Tab(text: AppTexts.profile, icon: Icon(Icons.person, size: 25)),

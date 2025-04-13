@@ -47,7 +47,7 @@ class AppTexts {
 
   // home
   static const String events = 'Tədbirlər';
-  static const String calendar = 'Təqvim';
+  static const String popular = 'Populyar';
   static const String map = 'Xəritə';
   static const String profile = 'Profil';
 
@@ -80,7 +80,7 @@ class AppTexts {
   static const String registerEvent = 'QEYDİYYATDAN KEÇ';
   static const String delete = 'Sil';
 
-  // calendar
+  // popular
   static const String topEvents = 'Populyar Tədbirlər';
 
   // update profile
