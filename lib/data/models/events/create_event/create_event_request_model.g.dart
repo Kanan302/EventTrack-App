@@ -25,17 +25,3 @@ CreateEventRequestModel _$CreateEventRequestModelFromJson(
           : DateTime.parse(json['endDate'] as String),
   organizerId: json['organizerId'] as String?,
 );
-
-Map<String, dynamic> _$CreateEventRequestModelToJson(
-  CreateEventRequestModel instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'about': instance.about,
-  'city': instance.city,
-  'street': instance.street,
-  'lat': instance.lat,
-  'lng': instance.lng,
-  'startDate': instance.startDate?.toIso8601String(),
-  'endDate': instance.endDate?.toIso8601String(),
-  'organizerId': instance.organizerId,
-};
