@@ -15,10 +15,9 @@ import 'package:ascca_app/ui/modules/home/create_event/widgets/create_event_titl
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../widgets/map_widget.dart';
+import '../widgets/create_event_map.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({super.key});
@@ -43,36 +42,15 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final ValueNotifier<String?> _locationErrorNotifier = ValueNotifier<String?>(
     null,
   );
+  final ValueNotifier<String?> _addressNotifier = ValueNotifier(null);
+  final ValueNotifier<String?> _cityNotifier = ValueNotifier(null);
+  final ValueNotifier<String?> _streetNotifier = ValueNotifier(null);
 
-  final MapController _mapController = MapController();
   LatLng? _selectedLocation;
-
-  void _handleMapTap(TapPosition tapPosition, LatLng latlng) {
-    setState(() {
-      _selectedLocation = latlng;
-      _locationErrorNotifier.value = null;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-
-    List<Marker> markers = [];
-    if (_selectedLocation != null) {
-      markers.add(
-        Marker(
-          width: 50,
-          height: 50,
-          point: _selectedLocation!,
-          child: const Icon(
-            Icons.location_on,
-            color: AppColors.lavenderBlue,
-            size: 40,
-          ),
-        ),
-      );
-    }
 
     return Scaffold(
       appBar: const CreateEventAppbar(),
@@ -118,40 +96,18 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     },
                     errorNotifier: _imageErrorNotifier,
                   ),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Xəritədən ünvan seçin:",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  MapWidget(
-                    mapController: _mapController,
-                    onTap: _handleMapTap,
-                    markers: markers,
-                    height: 250,
-                  ),
 
-                  ValueListenableBuilder<String?>(
-                    valueListenable: _locationErrorNotifier,
-                    builder: (context, error, child) {
-                      if (error == null) return const SizedBox.shrink();
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          error,
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 14,
-                          ),
-                        ),
-                      );
+                  CreateEventMap(
+                    addressNotifier: _addressNotifier,
+                    locationErrorNotifier: _locationErrorNotifier,
+                    cityNotifier: _cityNotifier,
+                    streetNotifier: _streetNotifier,
+                    cityController: eventCityController,
+                    streetController: eventStreetController,
+                    onLocationSelected: (LatLng selected) {
+                      _selectedLocation = selected;
                     },
                   ),
-
                   SizedBox(height: height * 0.01),
                   BlocBuilder<CreateEventCubit, CreateEventState>(
                     builder: (context, state) {
@@ -219,7 +175,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
     eventDescriptionController.dispose();
     eventCityController.dispose();
     eventStreetController.dispose();
-    _mapController.dispose();
     super.dispose();
   }
 }
