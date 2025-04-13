@@ -13,7 +13,9 @@ class AuthRegistrationRepository {
     AuthRegistrationRequestModel authRegistrationRequestModel,
   ) async {
     try {
-      final response = _authApiClient.register(authRegistrationRequestModel);
+      final response = await _authApiClient.register(
+        authRegistrationRequestModel,
+      );
 
       debugPrint('Response: $response');
 
@@ -25,15 +27,16 @@ class AuthRegistrationRepository {
       );
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
-      if (statusCode == 404) {
-        throw Exception(
-          'İstifadəçi tapılmadı. Zəhmət olmasa, e-poçt ünvanını yoxlayın.',
-        );
+      final serverMessage =
+          e.response?.data['message'] ?? 'Bilinməyən xəta baş verdi.';
+      debugPrint('Dio error: $serverMessage');
+
+      if (statusCode == 404 || statusCode == 403) {
+        throw Exception(serverMessage);
       } else if (statusCode == 500) {
         throw Exception('Sistemdə problem var, üzr istəyirik.');
       } else {
-        throw Exception('Xəta baş verdi: $errorMessage');
+        throw Exception('Xəta baş verdi: $serverMessage');
       }
     } catch (e) {
       throw Exception('Gözlənilməz xəta baş verdi: $e');
