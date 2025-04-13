@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_event_request_model.g.dart';
@@ -9,6 +10,8 @@ class CreateEventRequestModel {
   final String? about;
   final String? city;
   final String? street;
+  final String? lat;
+  final String? lng;
   @JsonKey(ignore: true)
   final File? image;
   final DateTime? startDate;
@@ -20,6 +23,8 @@ class CreateEventRequestModel {
     this.about,
     this.city,
     this.street,
+    this.lat,
+    this.lng,
     this.image,
     this.startDate,
     this.endDate,
@@ -32,6 +37,8 @@ class CreateEventRequestModel {
       if (about != null) 'about': about,
       if (city != null) 'city': city,
       if (street != null) 'street': street,
+      if (lat != null) 'lat': lat,
+      if (lng != null) 'lng': lng,
       if (image != null) 'image': image,
       if (startDate != null) 'startDate': startDate!.toIso8601String(),
       if (endDate != null) 'endDate': endDate!.toIso8601String(),

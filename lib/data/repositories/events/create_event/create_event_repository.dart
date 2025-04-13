@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 
 class CreateEventRepository {
   final EventsApiClient _eventsApiClient;
+
   CreateEventRepository(this._eventsApiClient);
 
   Future<void> createEvent(
@@ -16,6 +17,8 @@ class CreateEventRepository {
         "about": createEventRequestModel.about,
         "city": createEventRequestModel.city,
         "street": createEventRequestModel.street,
+        "lat": createEventRequestModel.lat,
+        "lng": createEventRequestModel.lng,
         "image": await MultipartFile.fromFile(
           createEventRequestModel.image!.path,
         ),

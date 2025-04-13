@@ -10,6 +10,8 @@ class GetEventsModel {
   final String? imageURL;
   final String? city;
   final String? street;
+  final String? lat;
+  final String? lng;
   final double? price;
   final String? organizerName;
   final String? organizerId;
@@ -23,6 +25,8 @@ class GetEventsModel {
     this.imageURL,
     this.city,
     this.street,
+    this.lat,
+    this.lng,
     this.price,
     this.organizerName,
     this.organizerId,
@@ -38,6 +42,8 @@ class GetEventsModel {
       'imageURL': imageURL,
       'city': city,
       'street': street,
+      'lat': lat,
+      'lng': lng,
       'price': price,
       'organizerId': organizerId,
       'organizerName': organizerName,
@@ -54,6 +60,8 @@ class GetEventsModel {
       imageURL: json['imageURL'],
       city: json['city'],
       street: json['street'],
+      lat: json['lat'],
+      lng: json['lng'],
       price: json['price']?.toDouble(),
       organizerId: json['organizerId']?.toString(),
       organizerName: json['organizerName'],

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetailButton extends StatelessWidget {
   final String eventId;
+
   const EventDetailButton({super.key, required this.eventId});
 
   @override

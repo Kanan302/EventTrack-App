@@ -40,13 +40,17 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final ValueNotifier<String?> _imageErrorNotifier = ValueNotifier<String?>(
     null,
   );
-  final MapController _mapController = MapController();
+  final ValueNotifier<String?> _locationErrorNotifier = ValueNotifier<String?>(
+    null,
+  );
 
+  final MapController _mapController = MapController();
   LatLng? _selectedLocation;
 
   void _handleMapTap(TapPosition tapPosition, LatLng latlng) {
     setState(() {
       _selectedLocation = latlng;
+      _locationErrorNotifier.value = null;
     });
   }
 
@@ -55,7 +59,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
     final height = MediaQuery.of(context).size.height;
 
     List<Marker> markers = [];
-
     if (_selectedLocation != null) {
       markers.add(
         Marker(
@@ -95,7 +98,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           eventStreetController: eventStreetController,
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: CreateEventCity(
                           eventCityController: eventCityController,
@@ -115,10 +118,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     },
                     errorNotifier: _imageErrorNotifier,
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
-                    child: const Text(
-                      "Xəritədən nöqtə seçin:",
+                    child: Text(
+                      "Xəritədən ünvan seçin:",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -131,16 +134,24 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     markers: markers,
                     height: 250,
                   ),
-                  const SizedBox(height: 16),
-                  if (_selectedLocation != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        'Seçilmiş nöqtə: Lat: ${_selectedLocation!.latitude.toStringAsFixed(5)}, '
-                        'Lng: ${_selectedLocation!.longitude.toStringAsFixed(5)}',
-                        style: const TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                    ),
+
+                  ValueListenableBuilder<String?>(
+                    valueListenable: _locationErrorNotifier,
+                    builder: (context, error, child) {
+                      if (error == null) return const SizedBox.shrink();
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          error,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 14,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
                   SizedBox(height: height * 0.01),
                   BlocBuilder<CreateEventCubit, CreateEventState>(
                     builder: (context, state) {
@@ -155,6 +166,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                           "Zəhmət olmasa, şəkil yükləyin";
                                       return;
                                     }
+
+                                    if (_selectedLocation == null) {
+                                      _locationErrorNotifier.value =
+                                          "Zəhmət olmasa, xəritədən ünvan seçin";
+                                      return;
+                                    }
+
                                     context
                                         .read<CreateEventCubit>()
                                         .createEvent(
@@ -164,6 +182,12 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               eventDescriptionController.text,
                                           city: eventCityController.text,
                                           street: eventStreetController.text,
+                                          lng:
+                                              _selectedLocation!.longitude
+                                                  .toString(),
+                                          lat:
+                                              _selectedLocation!.latitude
+                                                  .toString(),
                                           image: _selectedImage.value!,
                                           startDate:
                                               eventDateService.startDate!,
