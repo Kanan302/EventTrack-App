@@ -9,7 +9,7 @@ part of 'events_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _EventsApiClient implements EventsApiClient {
-  _EventsApiClient(this._dio, {this.baseUrl}) {
+  _EventsApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://ascca.onrender.com/eventTrack';
   }
 
@@ -17,7 +17,7 @@ class _EventsApiClient implements EventsApiClient {
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<List<GetEventsModel>> getEvents() async {
