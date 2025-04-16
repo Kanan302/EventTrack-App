@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/notifications/flushbar.dart';
-import '../../../modules/auth/verification/pages/verification.dart';
+import '../../../views/auth/verification/pages/verification.dart';
 
 part 'auth_reset_password_state.dart';
 

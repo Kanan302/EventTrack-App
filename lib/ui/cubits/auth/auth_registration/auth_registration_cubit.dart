@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/theme/app_colors.dart';
-import '../../../modules/auth/verification/pages/verification.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
+import '../../../views/auth/verification/pages/verification.dart';
 import 'auth_registration_state.dart';
 
 class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {

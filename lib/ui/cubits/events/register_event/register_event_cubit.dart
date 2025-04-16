@@ -24,6 +24,7 @@ class RegisterEventCubit extends Cubit<RegisterEventState> {
         return;
       }
       await repository.registerEvent(userId, eventId);
+
       emit(RegisterEventSuccess());
     } catch (e) {
       debugPrint("Error: ${e.toString()}");

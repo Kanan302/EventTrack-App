@@ -1,27 +1,22 @@
+import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/theme/app_colors.dart';
-
-class AppTextFormField extends StatelessWidget {
-  final bool obscureText;
-  final String hintText;
-  final IconData prefixIcon;
-  final IconData? suffixIcon;
-  final VoidCallback? onPressed;
+class CreateEventFormfield extends StatelessWidget {
+  final String labelText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final Function()? onTap;
+  final Icon? prefixIcon;
 
-  const AppTextFormField({
+  const CreateEventFormfield({
     super.key,
-    required this.obscureText,
-    required this.hintText,
-    required this.prefixIcon,
-    this.suffixIcon,
-    this.onPressed,
+    required this.labelText,
     this.controller,
     this.validator,
+    this.onTap,
+    this.prefixIcon,
   });
 
   @override
@@ -32,15 +27,15 @@ class AppTextFormField extends StatelessWidget {
         return TextFormField(
           controller: controller,
           validator: validator,
-          obscureText: obscureText,
+          onTap: onTap,
           decoration: InputDecoration(
-            prefixIcon: Icon(prefixIcon, color: AppColors.dustyGray),
-            hintText: hintText,
-            hintStyle: const TextStyle(color: AppColors.graphiteGray),
-            suffixIcon: IconButton(
-              icon: Icon(suffixIcon, color: AppColors.dustyGray),
-              onPressed: onPressed,
+            labelText: labelText,
+            labelStyle: TextStyle(
+              color: isDarkMode ? AppColors.softGray : AppColors.graphiteGray,
             ),
+            prefixIcon: prefixIcon,
+            prefixIconColor: AppColors.dustyGray,
+            border: const OutlineInputBorder(),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
               borderSide: BorderSide(

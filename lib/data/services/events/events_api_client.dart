@@ -52,7 +52,7 @@ abstract class EventsApiClient {
   @DELETE("/events/{eventId}")
   Future<DeleteEventModel> deleteEvent(@Path("eventId") String eventId);
 
-  @POST("/register/{userId}/{eventId}")
+  @POST("/events/register/{userId}/{eventId}")
   Future<RegisterEventResponseModel> registerEvent(
     @Path("userId") String userId,
     @Path("eventId") String eventId,

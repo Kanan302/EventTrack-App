@@ -2,6 +2,7 @@ class AppTexts {
   // onboarding
   static const String next = 'Növbəti';
   static const String skip = 'Keçmək';
+
   static const String loremDescryption =
       'Nəşriyyat və qrafik dizaynda Lorem geniş istifadə olunan nümunə mətnidir';
   static const String firstOnboardingTitle = 'Xoş gəlmisiniz: Tədbir Mərkəzi';
