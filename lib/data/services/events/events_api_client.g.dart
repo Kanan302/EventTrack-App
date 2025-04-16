@@ -211,7 +211,7 @@ class _EventsApiClient implements EventsApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/register/${userId}/${eventId}',
+            '/events/register/${userId}/${eventId}',
             queryParameters: queryParameters,
             data: _data,
           )

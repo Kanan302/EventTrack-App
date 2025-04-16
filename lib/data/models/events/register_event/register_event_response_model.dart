@@ -12,8 +12,9 @@ class RegisterEventResponseModel {
   }
 
   factory RegisterEventResponseModel.fromJson(Map<String, dynamic> json) {
-    return RegisterEventResponseModel(
-      data: json[AppKeys.response][AppKeys.data] as String?,
-    );
+    final response = json[AppKeys.response];
+    final data = response != null ? response[AppKeys.data] as String? : null;
+
+    return RegisterEventResponseModel(data: data);
   }
 }

@@ -143,9 +143,8 @@ class _TrendingTabState extends State<TrendingTab> {
                                   Positioned(
                                     top: 0,
                                     right: 10,
-                                    child: Container(
-                                      width: 45,
-                                      padding: const EdgeInsets.all(6),
+                                    child: SizedBox(
+                                      width: 50,
                                       child: Text(
                                         '🔥${event.registrationCount}',
                                         style: TextStyle(
