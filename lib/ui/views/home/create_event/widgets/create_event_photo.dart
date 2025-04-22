@@ -1,7 +1,11 @@
 import 'dart:io';
+
+import 'package:ascca_app/shared/theme/app_colors.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
+
+import '../../../../../shared/constants/app_texts.dart';
 
 class CreateEventPhoto extends StatelessWidget {
   final ValueNotifier<File?> imageNotifier;
@@ -62,8 +66,7 @@ class CreateEventPhoto extends StatelessWidget {
                                 onTap: () {
                                   imageNotifier.value = null;
                                   onImageSelected(null);
-                                  errorNotifier.value =
-                                      "Zəhmət olmasa, şəkil yükləyin";
+                                  errorNotifier.value = Messages.uploadImage;
                                 },
                                 child: const CircleAvatar(
                                   backgroundColor: Colors.white,
@@ -78,7 +81,7 @@ class CreateEventPhoto extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Şəkil yükləmək üçün klikləyin',
+                                AppTexts.clickToUploadImage,
                                 style: TextStyle(
                                   color: AppColors.graphiteGray,
                                   fontSize: 16,

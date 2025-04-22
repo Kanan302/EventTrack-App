@@ -1,3 +1,4 @@
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 
 import 'verification_formfield.dart';
@@ -31,12 +32,7 @@ class VerificationForm extends StatelessWidget {
               }
             },
             onSaved: (pin1) {},
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Daxil edin';
-              }
-              return null;
-            },
+            validator: Validators.isEmpty,
           ),
           VerificationTextField(
             onChanged: (value) {
@@ -48,12 +44,7 @@ class VerificationForm extends StatelessWidget {
               }
             },
             onSaved: (pin2) {},
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Daxil edin';
-              }
-              return null;
-            },
+            validator: Validators.isEmpty,
           ),
           VerificationTextField(
             onChanged: (value) {
@@ -65,12 +56,7 @@ class VerificationForm extends StatelessWidget {
               }
             },
             onSaved: (pin3) {},
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Daxil edin';
-              }
-              return null;
-            },
+            validator: Validators.isEmpty,
           ),
           VerificationTextField(
             onChanged: (value) {
@@ -84,12 +70,7 @@ class VerificationForm extends StatelessWidget {
             onSaved: (pin4) {
               onSavedOtp(otp);
             },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Daxil edin';
-              }
-              return null;
-            },
+            validator: Validators.isEmpty,
           ),
         ],
       ),

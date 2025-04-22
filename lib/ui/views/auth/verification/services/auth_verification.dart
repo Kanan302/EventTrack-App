@@ -1,12 +1,13 @@
+import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:dio/dio.dart';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../shared/theme/app_colors.dart';
-import '../../../../utils/notifications/snackbar.dart';
 import '../../../../../shared/services/jwt/dio_configuration.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../utils/messages/messages.dart';
+import '../../../../utils/notifications/snackbar.dart';
 
 class AuthVerificationService {
   Future<bool> verification({
@@ -21,16 +22,16 @@ class AuthVerificationService {
       );
 
       var responseData = response.data;
-      String? message = responseData['message'];
-      var data = responseData['response']?['data'] ?? {};
+      String? message = responseData[AppKeys.message];
+      var data = responseData[AppKeys.response]?[AppKeys.data] ?? {};
 
-      debugPrint('Message: $message');
-      debugPrint('Data: $data');
+      debugPrint('${AppKeys.message}: $message');
+      debugPrint('${AppKeys.data}: $data');
 
       if (response.statusCode == 200) {
         SnackBarService.showSnackBar(
           context,
-          'Təsdiqləmə uğurla tamamlandı!',
+          Messages.verificationSuccessfully,
           AppColors.black,
         );
         context.go(AppRoutes.home.path);
@@ -38,16 +39,16 @@ class AuthVerificationService {
       } else {
         SnackBarService.showSnackBar(
           context,
-          'Təsdiqləmə xəta verdi: ${response.statusCode}',
+          '${Messages.errorDuringVerification} ${response.statusCode}',
           AppColors.red,
         );
         return false;
       }
     } catch (e) {
-      debugPrint('Təsdiqləmə zamanı xəta oldu: $e');
+      debugPrint('${Messages.errorDuringVerification} $e');
       SnackBarService.showSnackBar(
         context,
-        'Təsdiqləmə zamanı xəta oldu: $e',
+        '${Messages.errorDuringVerification} $e',
         AppColors.red,
       );
       return false;
@@ -66,42 +67,42 @@ class AuthVerificationService {
       );
 
       var responseData = response.data;
-      String? message = responseData['message'];
-      var data = responseData['response']?['data'] ?? {};
+      String? message = responseData[AppKeys.message];
+      var data = responseData[AppKeys.response]?[AppKeys.data] ?? {};
 
-      debugPrint('Message: $message');
-      debugPrint('Data: $data');
+      debugPrint('${AppKeys.message}: $message');
+      debugPrint('${AppKeys.data}: $data');
 
       if (response.statusCode == 200) {
         SnackBarService.showSnackBar(
           context,
-          'Təsdiqləmə uğurla tamamlandı',
+          Messages.verificationSuccessfully,
           AppColors.black,
         );
         return true;
       } else {
         SnackBarService.showSnackBar(
           context,
-          'Təsdiqləmə vaxtı xəta: ${response.statusCode}',
+          '${Messages.errorDuringVerification} ${response.statusCode}',
           AppColors.red,
         );
         return false;
       }
     } catch (e) {
-      debugPrint('Təsdiqləmə vaxtı xəta: $e');
+      debugPrint('${Messages.errorDuringVerification} $e');
 
       if (e is DioException &&
           e.response != null &&
           e.response!.statusCode == 404) {
         SnackBarService.showSnackBar(
           context,
-          'Yanlış OTP. Zəhmət olmasa, e-poçtunuzu yoxlayın və yenidən cəhd edin.',
+          Messages.checkMail,
           AppColors.red,
         );
       } else {
         SnackBarService.showSnackBar(
           context,
-          'Təsdiqləmə zamanı xəta oldu: $e',
+          '${Messages.errorDuringVerification} $e',
           AppColors.red,
         );
       }

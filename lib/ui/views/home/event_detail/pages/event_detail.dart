@@ -5,6 +5,7 @@ import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_about.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_app_bar.dart';
 import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_button.dart';
@@ -64,7 +65,7 @@ class EventDetailPage extends StatelessWidget {
                   Icon(Icons.error, color: AppColors.red, size: 40),
                   const SizedBox(height: 20),
                   Text(
-                    'Xəta baş verdi: ${state.errorMessage}',
+                    '${Messages.anErrorOccurred} ${state.errorMessage}',
                     style: TextStyle(color: AppColors.red, fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
@@ -151,9 +152,9 @@ class EventDetailPage extends StatelessWidget {
                                   const SizedBox(height: 20),
                                   EventDetailLocation(
                                     eventCity:
-                                        eventModel.city ?? 'Məlumat yoxdur',
+                                        eventModel.city ?? Messages.noData,
                                     eventStreet:
-                                        eventModel.street ?? 'Məlumat yoxdur',
+                                        eventModel.street ?? Messages.noData,
                                   ),
                                   const SizedBox(height: 10),
                                   EventDetailOrganizer(
@@ -184,7 +185,7 @@ class EventDetailPage extends StatelessWidget {
             );
           }
 
-          return const Center(child: Text('Məlumat tapılmadı'));
+          return const Center(child: Text(Messages.noData));
         },
       ),
     );

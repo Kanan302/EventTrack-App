@@ -18,6 +18,7 @@ import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/views/auth/login/pages/login.dart';
 import 'package:ascca_app/ui/views/auth/new_password/new_password.dart';
 import 'package:ascca_app/ui/views/auth/register/pages/register.dart';
@@ -156,7 +157,7 @@ class AppRouter {
               child: EventDetailPage(eventModel: eventModel),
             );
           }
-          return Scaffold(body: Center(child: Text('Yanlış model göndərildi')));
+          return Scaffold(body: Center(child: Text(Messages.wrongModel)));
         },
       ),
       GoRoute(

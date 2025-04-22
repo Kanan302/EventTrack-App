@@ -1,4 +1,5 @@
 import 'package:ascca_app/shared/constants/app_texts.dart';
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 
 import 'create_event_formfield.dart';
@@ -10,15 +11,10 @@ class CreateEventCity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CreateEventFormfield(
+    return CreateEventFormField(
       labelText: AppTexts.eventCity,
       controller: eventCityController,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Zəhmət olmasa, tədbirin şəhərini daxil edin';
-        }
-        return null;
-      },
+      validator: Validators.writeEventCity,
     );
   }
 }

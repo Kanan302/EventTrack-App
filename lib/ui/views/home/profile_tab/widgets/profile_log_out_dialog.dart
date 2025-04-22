@@ -1,5 +1,5 @@
-import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/shared/constants/app_texts.dart';
+import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +13,12 @@ class LogoutDialog extends StatelessWidget {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
-        "Çıxış",
+        AppTexts.exit,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
       content: const Text(
-        "Çıxış etmək istədiyinizdən əminsiniz?",
+        AppTexts.sureToExit,
         style: TextStyle(fontSize: 16),
         textAlign: TextAlign.center,
       ),
@@ -30,7 +30,7 @@ class LogoutDialog extends StatelessWidget {
               child: AppElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 buttonColor: AppColors.white,
-                text: "Ləğv et",
+                text: AppTexts.cancel,
                 textColor: AppColors.lavenderBlue,
                 borderColor: AppColors.lavenderBlue,
               ),

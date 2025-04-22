@@ -1,4 +1,5 @@
 import 'package:ascca_app/data/models/auth/auth_login/auth_login_request_model.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/utils/notifications/flushbar.dart';
 import 'package:ascca_app/data/repositories/auth/auth_login/auth_login_repository.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
       if (context.mounted) {
         context.go(
           AppRoutes.home.path,
-          extra: {'message': 'Daxil olma uğurlu oldu', 'isSuccess': true},
+          extra: {'message': Messages.successLogin, 'isSuccess': true},
         );
       }
     } catch (e) {

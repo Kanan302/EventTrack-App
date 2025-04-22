@@ -1,18 +1,18 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/auth/auth_login/auth_login_state.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../../../../utils/widgets/app_text_form_field.dart';
-import '../../../../cubits/auth/auth_login/auth_login_state.dart';
-
 import '../services/remember_me_notifier.dart';
 import '../widgets/navigation_sign_up.dart';
 import '../widgets/remember_me.dart';
@@ -85,14 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: AppTexts.abc,
                           prefixIcon: Icons.email_outlined,
                           controller: _emailController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Mail daxil edin';
-                            } else if (!value.contains('@')) {
-                              return 'Mailda @ simvolu yoxdur';
-                            }
-                            return null;
-                          },
+                          validator: Validators.writeMail,
                         ),
 
                         ValueListenableBuilder<bool>(
@@ -111,14 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                     !_isPasswordVisible.value;
                               },
                               controller: _passwordController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Parol daxil edin';
-                                } else if (value.length < 6) {
-                                  return 'Parol ən azı 6 simvol uzunluğunda olmalıdır';
-                                }
-                                return null;
-                              },
+                              validator: Validators.writePassword,
                             );
                           },
                         ),

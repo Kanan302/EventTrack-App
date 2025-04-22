@@ -1,9 +1,10 @@
 import 'package:ascca_app/app/app.dart';
-import 'package:flutter/material.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
+import 'package:flutter/material.dart';
 
 Future<void> main() async {
   await init();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

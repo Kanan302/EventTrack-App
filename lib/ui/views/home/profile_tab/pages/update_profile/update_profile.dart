@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ascca_app/shared/constants/app_texts.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/utils/notifications/snackbar.dart';
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                     if (state is UpdateProfileSuccess) {
                       SnackBarService.showSnackBar(
                         context,
-                        'Məlumatlarınız uğurla yeniləndi',
+                        Messages.dataUpdatedSuccessfully,
                         AppColors.blue,
                       );
                     }
@@ -96,7 +97,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                   builder: (context, state) {
                     if (state is UpdateProfileFailure) {
                       return Center(
-                        child: Text('Xəta baş verdi: ${state.errorMessage}'),
+                        child: Text(
+                          '${Messages.anErrorOccurred} ${state.errorMessage}',
+                        ),
                       );
                     }
                     return AppElevatedButton(

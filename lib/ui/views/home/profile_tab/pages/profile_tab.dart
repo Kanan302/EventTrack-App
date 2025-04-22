@@ -73,20 +73,6 @@ class _ProfileTabState extends State<ProfileTab> {
                       children: [
                         ProfilePhoto(
                           profilePictureUrl: state.user.profilePictureUrl,
-                          // isEditingNotifier: isEditingProfile,
-                          // onSave: () {
-                          //   context.read<UpdateProfileCubit>().updateProfile(
-                          //     _nameController.text.trim(),
-                          //     _aboutMeController.text.trim(),
-                          //     state.user.profilePictureUrl ?? '',
-                          //   );
-                          //   isEditingProfile.value = false;
-                          // },
-                          // onCancelEdit: () {
-                          //   _nameController.text = _initialName ?? '';
-                          //   _aboutMeController.text = _initialAboutMe ?? '';
-                          //   isEditingProfile.value = false;
-                          // },
                         ),
                         ProfileName(
                           name: state.user.fullName ?? '',
@@ -111,7 +97,7 @@ class _ProfileTabState extends State<ProfileTab> {
                               context.push(AppRoutes.myEvents.path);
                             },
                           ),
-                        if (userStatus == '0')
+                        if (userStatus != '1')
                           ProfileCardItem(
                             leadingIcon: Icons.bookmark_outline,
                             leadingIconColor: AppColors.lavenderBlue,

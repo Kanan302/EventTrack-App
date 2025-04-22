@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
+import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:ascca_app/ui/views/home/create_event/service/create_event_date_service.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_app_bar.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_date.dart';
@@ -10,7 +12,6 @@ import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_descri
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_name.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_photo.dart';
 import 'package:ascca_app/ui/views/home/create_event/widgets/create_event_title.dart';
-import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlong2/latlong.dart';
@@ -117,13 +118,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                   if (_formKey.currentState!.validate()) {
                                     if (_selectedImage.value == null) {
                                       _imageErrorNotifier.value =
-                                          "Zəhmət olmasa, şəkil yükləyin";
+                                          Messages.uploadImage;
                                       return;
                                     }
 
                                     if (_selectedLocation == null) {
                                       _locationErrorNotifier.value =
-                                          "Zəhmət olmasa, xəritədən ünvan seçin";
+                                          AppTexts.choosePlaceFromMap;
                                       return;
                                     }
 

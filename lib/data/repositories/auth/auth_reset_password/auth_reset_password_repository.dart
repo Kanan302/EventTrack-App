@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../ui/utils/messages/messages.dart';
+
 class AuthResetPasswordRepository {
   final AuthApiClient _authApiClient;
 
@@ -17,7 +19,7 @@ class AuthResetPasswordRepository {
         authResetPasswordRequestModel,
       );
 
-      debugPrint('Resonse $response');
+      debugPrint('Response: $response');
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -26,18 +28,16 @@ class AuthResetPasswordRepository {
       debugPrint('Şifrəniz sıfırlandı, e-poçt qeyd olundu.');
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
+      final errorMessage = e.message ?? Messages.unknownError;
       if (statusCode == 404) {
-        throw Exception(
-          'İstifadəçi tapılmadı. Zəhmət olmasa, e-poçt ünvanını yoxlayın.',
-        );
+        throw Exception(Messages.notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception('Sistemdə problem var, üzr istəyirik.');
+        throw Exception(Messages.problemWithSystem);
       } else {
-        throw Exception('Xəta baş verdi: $errorMessage');
+        throw Exception('${Messages.anErrorOccurred} $errorMessage');
       }
     } catch (e) {
-      throw Exception('Gözlənilməz xəta baş verdi: $e');
+      throw Exception('${Messages.anErrorOccurred} $e');
     }
   }
 }

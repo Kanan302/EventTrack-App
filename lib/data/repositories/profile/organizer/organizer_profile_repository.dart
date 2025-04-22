@@ -2,6 +2,8 @@ import 'package:ascca_app/data/models/profile/organizer/organizer_profile_model.
 import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../ui/utils/messages/messages.dart';
+
 class OrganizerProfileRepository {
   final ProfileApiClient _profileApiClient;
 
@@ -14,18 +16,16 @@ class OrganizerProfileRepository {
       return response;
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
+      final errorMessage = e.message ?? Messages.unknownError;
       if (statusCode == 404) {
-        throw Exception(
-          'Təşkilatçı məlumatı tapılmadı. Zəhmət olmasa, sorğunu yoxlayın və yenidən cəhd edin.',
-        );
+        throw Exception(Messages.notFoundAdmin);
       } else if (statusCode == 500) {
-        throw Exception('Sistemdə problem var, üzr istəyirik.');
+        throw Exception(Messages.problemWithSystem);
       } else {
-        throw Exception('Xəta baş verdi: $errorMessage');
+        throw Exception('${Messages.anErrorOccurred} $errorMessage');
       }
     } catch (e) {
-      throw Exception('Gözlənilməz xəta baş verdi: $e');
+      throw Exception('${Messages.anErrorOccurred} $e');
     }
   }
 }

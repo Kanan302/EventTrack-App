@@ -1,13 +1,16 @@
 import 'package:ascca_app/data/models/auth/auth_login/auth_login_request_model.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
 // import 'package:ascca_app/shared/utils/app_keys.dart';
 import 'package:ascca_app/data/services/auth/auth_api_client.dart';
+import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../ui/utils/messages/messages.dart';
 
 class AuthLoginRepository {
   final SecureService _secureStorage;
   final AuthApiClient _authApiClient;
+
   AuthLoginRepository(this._secureStorage, this._authApiClient);
 
   Future<void> login(AuthLoginRequestModel authLoginRequestModel) async {
@@ -34,18 +37,16 @@ class AuthLoginRepository {
       await _secureStorage.saveUserStatus(status.toString());
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
+      final errorMessage = e.message ?? Messages.unknownError;
       if (statusCode == 404) {
-        throw Exception(
-          'İstifadəçi tapılmadı. Zəhmət olmasa, e-poçt ünvanını yoxlayın.',
-        );
+        throw Exception(Messages.notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception('Sistemdə problem var, üzr istəyirik.');
+        throw Exception(Messages.problemWithSystem);
       } else {
-        throw Exception('Xəta baş verdi: $errorMessage');
+        throw Exception('${Messages.anErrorOccurred} $errorMessage');
       }
     } catch (e) {
-      throw Exception('Gözlənilməz xəta baş verdi: $e');
+      throw Exception('${Messages.anErrorOccurred} $e');
     }
   }
 }

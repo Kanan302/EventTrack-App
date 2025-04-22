@@ -1,14 +1,15 @@
+import 'package:ascca_app/ui/utils/messages/messages.dart';
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/constants/app_texts.dart';
+import '../../../../shared/theme/app_colors.dart';
+import '../../../cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
 import '../../../utils/widgets/app_elevated_button.dart';
 import '../../../utils/widgets/app_text_form_field.dart';
-
-import '../../../cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 
 class NewPasswordPage extends StatefulWidget {
   const NewPasswordPage({super.key});
@@ -82,14 +83,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                 !_isPasswordVisible.value;
                           },
                           controller: _passwordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Şifrənizi daxil edin';
-                            } else if (value.length < 6) {
-                              return 'Şifrə ən azı 6 simvoldan ibarət olmalıdır';
-                            }
-                            return null;
-                          },
+                          validator: Validators.writePassword,
                         );
                       },
                     ),
@@ -109,14 +103,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                 !_isConfirmPasswordVisible.value;
                           },
                           controller: _confirmPasswordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Şifrənizi daxil edin';
-                            } else if (value.length < 6) {
-                              return 'Şifrə ən azı 6 simvoldan ibarət olmalıdır';
-                            }
-                            return null;
-                          },
+                          validator: Validators.writePassword,
                         );
                       },
                     ),
@@ -142,7 +129,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                     _confirmPasswordController.text) {
                                   SnackBarService.showSnackBar(
                                     context,
-                                    'Şifrələr uyğun gəlmir',
+                                    Messages.passwordsDoNotMatch,
                                     AppColors.red,
                                   );
                                   return;

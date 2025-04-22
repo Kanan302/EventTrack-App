@@ -13,7 +13,7 @@ class AppTexts {
 
   // login
   static const String signIn = 'Daxil olun';
-  static const String abc = 'abc@gmail.com';
+  static const String abc = ' abc@gmail.com';
   static const String yourPassword = 'Parolunuz';
   static const String rememberMe = 'Məni xatırla';
   static const String forgotPassword = 'Şifrəni unutmusunuz?';
@@ -39,6 +39,7 @@ class AppTexts {
   static const String verification = 'Təsdiqləmə';
   static const String sendOTP = 'Təsdiqləmə kodu sizə göndərildi';
   static const String send = 'Göndər';
+  static const String validityTime = 'Validity time:';
 
   // new password
   static const String newPassword = 'Yeni Şifrə';
@@ -52,6 +53,9 @@ class AppTexts {
   static const String map = 'Xəritə';
   static const String profile = 'Profil';
 
+  // event tab
+  static const String searchEvent = 'Tədbir axtarın...';
+
   // profile
   static const String doScan = 'Skan et';
   static const String myEvents = 'Tədbirlərim';
@@ -62,6 +66,9 @@ class AppTexts {
   static const String language = 'Dil';
   static const String darkMode = 'Tünd rejim';
   static const String logOut = 'Çıxış et';
+  static const String exit = 'Çıxış';
+  static const String sureToExit = 'Çıxış etmək istədiyinizdən əminsiniz?';
+  static const String cancel = 'Ləğv et';
 
   // create event
   static const String createYourEvent = 'Tədbirinizi yaradın';
@@ -73,6 +80,12 @@ class AppTexts {
   static const String eventStartDate = 'Tədbirin başlama tarixi';
   static const String eventEndDate = 'Tədbirin bitmə tarixi';
   static const String create = 'Yarat';
+  static const String clickToUploadImage = 'Şəkil yükləmək üçün klikləyin';
+  static const String startDate = 'Başlanğıc Tarixi';
+  static const String endDate = 'Bitiş Tarixi';
+  static const String choosePlaceFromMap = 'Xəritədən ünvan seçin: ';
+  static const String coordinates = 'Koordinatlar: ';
+  static const String address = 'Ünvan';
 
   // event details
   static const String eventDetails = 'Tədbir Təfərrüatları';

@@ -1,12 +1,13 @@
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/constants/app_texts.dart';
+import '../../../../shared/theme/app_colors.dart';
+import '../../../cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/widgets/app_elevated_button.dart';
 import '../../../utils/widgets/app_text_form_field.dart';
-import '../../../cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -67,14 +68,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       hintText: AppTexts.abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'E-poçt ünvanınızı daxil edin';
-                        } else if (!value.contains('@')) {
-                          return 'E-poçt ünvanında "@" işarəsi olmalıdır';
-                        }
-                        return null;
-                      },
+                      validator: Validators.writeMail,
                     ),
                     SizedBox(height: height * 0.01),
                     BlocConsumer<

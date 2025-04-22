@@ -1,16 +1,18 @@
 import 'package:ascca_app/shared/constants/app_routes.dart';
+import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../utils/messages/messages.dart';
 
 class EventsTab extends StatefulWidget {
   const EventsTab({super.key});
@@ -103,7 +105,7 @@ class _EventsTabState extends State<EventsTab> {
                       focusNode: _searchFocusNode,
                       onChanged: _filterEvents,
                       decoration: InputDecoration(
-                        hintText: "Tədbir axtarın...",
+                        hintText: AppTexts.searchEvent,
                         border: InputBorder.none,
                       ),
                       style: TextStyle(color: textColor),
@@ -148,7 +150,7 @@ class _EventsTabState extends State<EventsTab> {
                 builder: (context, events, child) {
                   final eventList = isSearching.value ? events : state.events;
                   if (eventList.isEmpty) {
-                    return Center(child: Text('Heç bir tədbir tapılmadı.'));
+                    return Center(child: Text(Messages.noEventFound));
                   }
                   return RefreshIndicator(
                     onRefresh: () async {
@@ -173,10 +175,10 @@ class _EventsTabState extends State<EventsTab> {
                                     ? DateFormat(
                                       'MMM d - EEE - h:mm a',
                                     ).format(DateTime.parse(event.startDate!))
-                                    : 'No Date Available',
+                                    : Messages.noData,
                             title: event.name!,
-                            street: event.street ?? 'Məlumat yoxdur',
-                            city: event.city ?? 'Məlumat yoxdur',
+                            street: event.street ?? Messages.noData,
+                            city: event.city ?? Messages.noData,
                             onDelete: () {
                               _deleteEvent(event.id.toString());
                             },

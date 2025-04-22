@@ -1,6 +1,7 @@
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/utils/notifications/snackbar.dart';
 import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,13 @@ class EventDetailButton extends StatelessWidget {
           if (state is RegisterEventSuccess) {
             SnackBarService.showSnackBar(
               context,
-              'QR kod e-poçt ünvanınıza göndərildi.',
+              Messages.qrCodeSent,
               AppColors.black,
             );
           } else if (state is RegisterEventFailure) {
             SnackBarService.showSnackBar(
               context,
-              'Xəta baş verdi: ${state.errorMessage}',
+              '${Messages.anErrorOccurred} ${state.errorMessage}',
               AppColors.red,
             );
           }

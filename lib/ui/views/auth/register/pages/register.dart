@@ -1,4 +1,6 @@
 import 'package:ascca_app/shared/constants/app_images.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
+import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -74,26 +76,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: AppTexts.fullName,
                       prefixIcon: Icons.person_2_outlined,
                       controller: _fullNameController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Adınızı daxil edin';
-                        }
-                        return null;
-                      },
+                      validator: Validators.writeName,
                     ),
                     AppTextFormField(
                       obscureText: false,
                       hintText: AppTexts.abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'E-poçt ünvanınızı daxil edin';
-                        } else if (!value.contains('@')) {
-                          return 'E-poçt ünvanında "@" işarəsi olmalıdır';
-                        }
-                        return null;
-                      },
+                      validator: Validators.writeMail,
                     ),
                     ValueListenableBuilder(
                       valueListenable: _isPasswordVisible,
@@ -111,14 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 !_isPasswordVisible.value;
                           },
                           controller: _passwordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Şifrənizi daxil edin';
-                            } else if (value.length < 6) {
-                              return 'Şifrə ən azı 6 simvoldan ibarət olmalıdır';
-                            }
-                            return null;
-                          },
+                          validator: Validators.writePassword,
                         );
                       },
                     ),
@@ -138,14 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 !_isConfirmPasswordVisible.value;
                           },
                           controller: _confirmPasswordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Şifrənizi daxil edin';
-                            } else if (value.length < 6) {
-                              return 'Şifrə ən azı 6 simvoldan ibarət olmalıdır';
-                            }
-                            return null;
-                          },
+                          validator: Validators.writePassword,
                         );
                       },
                     ),
@@ -162,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           _confirmPasswordController.text) {
                                         SnackBarService.showSnackBar(
                                           context,
-                                          'Şifrələr uyğun gəlmir',
+                                          Messages.passwordsDoNotMatch,
                                           AppColors.red,
                                         );
                                       } else {

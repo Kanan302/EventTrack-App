@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
 
 class ValidityTimer extends StatefulWidget {
@@ -47,7 +49,7 @@ class ValidityTimerState extends State<ValidityTimer> {
     return Column(
       children: [
         Text(
-          'Etibarlılıq müddəti: $timerText',
+          '${AppTexts.validityTime} $timerText',
           style: const TextStyle(fontSize: 16),
         ),
       ],

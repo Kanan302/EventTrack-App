@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -76,7 +77,7 @@ class _DoScanPageState extends State<DoScanPage> {
                 ),
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  'Code: $scannedCode',
+                  '${Messages.code} $scannedCode',
                   style: const TextStyle(color: AppColors.white),
                 ),
               ),

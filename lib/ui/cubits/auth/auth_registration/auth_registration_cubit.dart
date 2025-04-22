@@ -1,5 +1,6 @@
 import 'package:ascca_app/data/models/auth/auth_registration/auth_registration_request.dart';
 import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registration_repository.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,7 +46,7 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
       );
       SnackBarService.showSnackBar(
         context,
-        'Qeydiyyat uğurlu oldu',
+        Messages.registrationSuccessfully,
         AppColors.black,
       );
     } catch (e) {

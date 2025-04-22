@@ -1,6 +1,8 @@
 import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../ui/utils/messages/messages.dart';
+
 @JsonSerializable()
 class AuthLoginResponseModel {
   final String? accessToken;
@@ -30,7 +32,7 @@ class AuthLoginResponseModel {
 
   factory AuthLoginResponseModel.fromJson(Map<String, dynamic> json) {
     if (json[AppKeys.response][AppKeys.data] == null) {
-      throw Exception('Cavabda "data" tapılmadı.');
+      throw Exception(Messages.notFoundData);
     }
     return AuthLoginResponseModel(
       accessToken:

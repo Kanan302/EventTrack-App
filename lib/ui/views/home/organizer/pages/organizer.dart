@@ -7,6 +7,8 @@ import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../utils/messages/messages.dart';
+
 class OrganizerPage extends StatefulWidget {
   final int organizerId;
 
@@ -70,7 +72,7 @@ class _OrganizerPageState extends State<OrganizerPage> {
               ),
             );
           }
-          return const Center(child: Text('Məlumat tapılmadı'));
+          return const Center(child: Text(Messages.noData));
         },
       ),
     );

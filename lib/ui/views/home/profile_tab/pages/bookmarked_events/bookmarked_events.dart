@@ -3,6 +3,7 @@ import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +46,7 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
               return const Center(child: CircularProgressIndicator());
             } else if (state is BookmarkedEventsSuccess) {
               if (state.events.isEmpty) {
-                return const Center(child: Text("Heç bir tədbir tapılmadı"));
+                return const Center(child: Text(Messages.noEventFound));
               }
               return ListView.builder(
                 itemCount: state.events.length,
@@ -66,10 +67,10 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
                               ? DateFormat(
                                 'MMM d - EEE - h:mm a',
                               ).format(DateTime.parse(event.startDate!))
-                              : 'No Date Available',
+                              : Messages.dateNotAvailable,
                       title: event.name!,
-                      street: event.street ?? 'Məlumat yoxdur',
-                      city: event.city ?? 'Məlumat yoxdur',
+                      street: event.street ?? Messages.noData,
+                      city: event.city ?? Messages.noData,
                       onDelete: () {},
                       userStatus: userStatus ?? '',
                     ),
@@ -79,7 +80,7 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
             } else if (state is BookmarkedEventsFailure) {
               return Center(child: Text(state.errorMessage));
             }
-            return const Center(child: Text("Tədbirlər yüklənəcək..."));
+            return const Center(child: Text(Messages.eventsWillUpdate));
           },
         ),
       ),

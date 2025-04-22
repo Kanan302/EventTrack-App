@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/constants/app_routes.dart';
+import '../../../utils/messages/messages.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
 
@@ -37,7 +38,7 @@ class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
 
       SnackBarService.showSnackBar(
         context,
-        'Şifrə uğurla yeniləndi!',
+        Messages.passwordsUpdated,
         AppColors.black,
       );
 

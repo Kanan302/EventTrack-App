@@ -1,5 +1,6 @@
 import 'package:ascca_app/data/repositories/events/bookmark_events/delete_bookmarked_event/delete_bookmark_event_repository.dart';
 import 'package:ascca_app/shared/services/local/secure_service.dart';
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,9 @@ class DeleteBookmarkedEventsCubit extends Cubit<DeleteBookmarkedEventsState> {
       final userId = await secureService.userId;
 
       if (userId == null || userId.isEmpty) {
-        emit(DeleteBookmarkedEventsFailure(errorMessage: "User ID tapılmadı!"));
+        emit(
+          DeleteBookmarkedEventsFailure(errorMessage: Messages.userIdNotFound),
+        );
         return;
       }
       await repository.deleteBookmarkEvent(userId, eventId);

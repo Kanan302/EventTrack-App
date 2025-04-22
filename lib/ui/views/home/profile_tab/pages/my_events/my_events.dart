@@ -1,3 +1,4 @@
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -77,10 +78,10 @@ class _MyEventsPageState extends State<MyEventsPage> {
                                     ? DateFormat(
                                       'MMM d - EEE - h:mm a',
                                     ).format(DateTime.parse(event.startDate!))
-                                    : 'Tarix mövcud deyil',
-                            title: event.name ?? 'Adsız tədbir',
-                            street: event.street ?? 'Məlumat yoxdur',
-                            city: event.city ?? 'Məlumat yoxdur',
+                                    : Messages.dateNotAvailable,
+                            title: event.name ?? Messages.noNamedEvent,
+                            street: event.street ?? Messages.noData,
+                            city: event.city ?? Messages.noData,
                             onDelete: () {},
                             userStatus: '0',
                           ),
@@ -92,7 +93,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
               ),
             );
           }
-          return const Center(child: Text('Məlumat tapılmadı'));
+          return const Center(child: Text(Messages.noData));
         },
       ),
     );

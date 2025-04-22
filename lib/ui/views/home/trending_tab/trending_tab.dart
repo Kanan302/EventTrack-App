@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../shared/constants/app_texts.dart';
+import '../../../utils/messages/messages.dart';
 
 class TrendingTab extends StatefulWidget {
   const TrendingTab({super.key});
@@ -97,14 +98,14 @@ class _TrendingTabState extends State<TrendingTab> {
                       return Center(child: CircularProgressIndicator());
                     } else if (state is TopEventsFailure) {
                       return Center(
-                        child: Text('Xəta baş verdi: ${state.errorMessage}'),
+                        child: Text(
+                          '${Messages.anErrorOccurred} ${state.errorMessage}',
+                        ),
                       );
                     } else if (state is TopEventsSuccess) {
                       final topEvents = state.topEvents;
                       if (topEvents.isEmpty) {
-                        return const Center(
-                          child: Text('Heç bir tədbir tapılmadı.'),
-                        );
+                        return const Center(child: Text(Messages.noEventFound));
                       }
                       return RefreshIndicator(
                         onRefresh: () async {
@@ -135,10 +136,10 @@ class _TrendingTabState extends State<TrendingTab> {
                                             ).format(
                                               DateTime.parse(event.startDate!),
                                             )
-                                            : 'No Date Available',
+                                            : Messages.noData,
                                     title: event.name!,
-                                    street: event.street ?? 'Məlumat yoxdur',
-                                    city: event.city ?? 'Məlumat yoxdur',
+                                    street: event.street ?? Messages.noData,
+                                    city: event.city ?? Messages.noData,
                                   ),
                                   Positioned(
                                     top: 0,

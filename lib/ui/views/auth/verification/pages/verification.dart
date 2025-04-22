@@ -1,10 +1,10 @@
+import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
-import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/theme/app_colors.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
@@ -36,7 +36,7 @@ class _VerificationPageState extends State<VerificationPage> {
         if (!tempResponse) {
           SnackBarService.showSnackBar(
             context,
-            'Xahiş edirik, yanlış OTP daxil etdiyiniz üçün 30 saniyə gözləyin.',
+            Messages.wrongOTP,
             AppColors.red,
           );
           return;
@@ -120,7 +120,7 @@ class _VerificationPageState extends State<VerificationPage> {
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           TextSpan(
-                            text: ' abc@gmail.com',
+                            text: AppTexts.abc,
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.lavenderBlue,

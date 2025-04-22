@@ -3,14 +3,14 @@ import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateEventFormfield extends StatelessWidget {
+class CreateEventFormField extends StatelessWidget {
   final String labelText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function()? onTap;
   final Icon? prefixIcon;
 
-  const CreateEventFormfield({
+  const CreateEventFormField({
     super.key,
     required this.labelText,
     this.controller,

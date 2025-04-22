@@ -2,6 +2,8 @@ import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
 import 'package:ascca_app/data/services/events/events_api_client.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../ui/utils/messages/messages.dart';
+
 class TopEventsRepository {
   final EventsApiClient _eventsApiClient;
 
@@ -12,18 +14,16 @@ class TopEventsRepository {
       return await _eventsApiClient.getTopEvents();
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? 'Bilinməyən xəta baş verdi.';
+      final errorMessage = e.message ?? Messages.unknownError;
       if (statusCode == 404) {
-        throw Exception(
-          'Tədbirlər tapılmadı. Zəhmət olmasa, sorğunu yoxlayın və yenidən cəhd edin.',
-        );
+        throw Exception(Messages.notFoundEvents);
       } else if (statusCode == 500) {
-        throw Exception('Sistemdə problem var, üzr istəyirik.');
+        throw Exception(Messages.problemWithSystem);
       } else {
-        throw Exception('Xəta baş verdi: $errorMessage');
+        throw Exception('${Messages.anErrorOccurred} $errorMessage');
       }
     } catch (e) {
-      throw Exception('Gözlənilməz xəta baş verdi: $e');
+      throw Exception('${Messages.anErrorOccurred} $e');
     }
   }
 }

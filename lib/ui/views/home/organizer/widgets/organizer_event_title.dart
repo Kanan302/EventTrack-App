@@ -9,7 +9,7 @@ class OrganizerEventTitle extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        '${AppTexts.events}i',
+        AppTexts.events,
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
