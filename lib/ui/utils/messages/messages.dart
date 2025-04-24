@@ -37,4 +37,6 @@ class Messages {
       'Təşkilatçı məlumatı tapılmadı. Zəhmət olmasa, sorğunu yoxlayın və yenidən cəhd edin.';
   static const String notFoundEvents =
       'Tədbir tapılmadı. Zəhmət olmasa, yenidən yoxlayın.';
+  static const String attendanceConfirmed = 'Yoxlama uğurla tamamlandı';
+  static const String alreadyScanned = 'QR kod scan edilib';
 }

@@ -14,6 +14,7 @@ import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart'
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/scan_event/scan_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
@@ -180,7 +181,11 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.doScan.path,
-        builder: (context, state) => const DoScanPage(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<ScanEventCubit>(),
+              child: DoScanPage(),
+            ),
       ),
       GoRoute(
         path: AppRoutes.myEvents.path,

@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../../../../shared/theme/app_colors.dart';
+import '../../../../../cubits/events/scan_event/scan_event_cubit.dart';
 
 class DoScanPage extends StatefulWidget {
   const DoScanPage({super.key});
@@ -29,7 +31,11 @@ class _DoScanPageState extends State<DoScanPage> {
           scannedCode = code;
           isScanned = true;
         });
+
+        context.read<ScanEventCubit>().scanEvent(code);
+
         debugPrint('scanned code is: $scannedCode');
+
         Future.delayed(const Duration(seconds: 2), () {
           setState(() => isScanned = false);
         });
@@ -49,12 +55,13 @@ class _DoScanPageState extends State<DoScanPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.arrow_back_ios_new_outlined),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
       ),
       body: Stack(
         children: [
           MobileScanner(controller: controller, fit: BoxFit.cover),
+
           Center(
             child: Container(
               width: 250,
@@ -66,22 +73,39 @@ class _DoScanPageState extends State<DoScanPage> {
             ),
           ),
 
-          if (scannedCode != null)
-            Positioned(
-              left: 10,
-              bottom: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.6 * 255),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(12),
-                child: Text(
-                  '${Messages.code} $scannedCode',
-                  style: const TextStyle(color: AppColors.white),
-                ),
-              ),
-            ),
+          BlocBuilder<ScanEventCubit, ScanEventState>(
+            builder: (context, state) {
+              if (state is ScanEventLoading) {
+                return CircularProgressIndicator();
+              } else if (state is ScanEventSuccess) {
+                return _buildMessageBox(
+                  Messages.attendanceConfirmed,
+                  AppColors.lavenderBlue,
+                );
+              } else if (state is ScanEventFailure) {
+                return _buildMessageBox(state.errorMessage, AppColors.red);
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+
+          // Scan edilmiş kodun göstərilməsi
+          // if (scannedCode != null)
+          //   Positioned(
+          //     left: 10,
+          //     bottom: 80,
+          //     child: Container(
+          //       decoration: BoxDecoration(
+          //         color: Colors.black.withOpacity(0.6),
+          //         borderRadius: BorderRadius.circular(12),
+          //       ),
+          //       padding: const EdgeInsets.all(12),
+          //       child: Text(
+          //         '${Messages.code} $scannedCode',
+          //         style: const TextStyle(color: AppColors.white),
+          //       ),
+          //     ),
+          //   ),
         ],
       ),
     );
@@ -92,5 +116,32 @@ class _DoScanPageState extends State<DoScanPage> {
     subscription?.cancel();
     controller.dispose();
     super.dispose();
+  }
+
+  Widget _buildMessageBox(String message, Color color) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 20.0),
+        child: Positioned(
+          left: 10,
+          bottom: 10,
+          child: Opacity(
+            opacity: 0.85,
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                message,
+                style: const TextStyle(color: AppColors.white),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

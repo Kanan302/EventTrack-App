@@ -27,4 +27,5 @@ class AppColors {
   static Color purpleAccent = Colors.purpleAccent.shade100;
   static const Color white70 = Colors.white70;
   static const Color grey = Colors.grey;
+  static const Color black45 = Colors.black45;
 }

@@ -3,11 +3,14 @@ import 'package:ascca_app/data/models/events/create_event/create_event_response_
 import 'package:ascca_app/data/models/events/delete_event/delete_event_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/data/models/events/register_event/register_event_response_model.dart';
+import 'package:ascca_app/data/models/events/scan_event/scan_event_response_model.dart';
 import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
 import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+
+import '../../models/events/scan_event/scan_event_request_model.dart';
 
 part 'events_api_client.g.dart';
 
@@ -60,4 +63,9 @@ abstract class EventsApiClient {
 
   @GET("/events/top5")
   Future<List<TopEventsModel>> getTopEvents();
+
+  @POST("/events/qrScan")
+  Future<ScanEventResponseModel> scanEvent(
+    @Body() ScanEventRequestModel request,
+  );
 }

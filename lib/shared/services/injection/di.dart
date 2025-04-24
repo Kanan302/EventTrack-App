@@ -1,3 +1,7 @@
+import 'package:ascca_app/data/repositories/auth/auth_login/auth_login_repository.dart';
+import 'package:ascca_app/data/repositories/auth/auth_new_password/auth_new_password_repository.dart';
+import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registration_repository.dart';
+import 'package:ascca_app/data/repositories/auth/auth_reset_password/auth_reset_password_repository.dart';
 import 'package:ascca_app/data/repositories/events/bookmark_events/delete_bookmarked_event/delete_bookmark_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/bookmark_events/get_bookmarked_events/bookmarked_events_repository.dart';
 import 'package:ascca_app/data/repositories/events/bookmark_events/post_bookmark_event/bookmark_events_repository.dart';
@@ -5,10 +9,12 @@ import 'package:ascca_app/data/repositories/events/create_event/create_event_rep
 import 'package:ascca_app/data/repositories/events/delete_event/delete_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
 import 'package:ascca_app/data/repositories/events/register_event/register_event_repository.dart';
+import 'package:ascca_app/data/repositories/events/scan_event/scan_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/top_events/top_events_repository.dart';
 import 'package:ascca_app/data/repositories/profile/organizer/organizer_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/update_profile/update_profile_repository.dart';
 import 'package:ascca_app/data/repositories/profile/user/user_profile_repository.dart';
+import 'package:ascca_app/data/services/auth/auth_api_client.dart';
 import 'package:ascca_app/data/services/events/events_api_client.dart';
 import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:ascca_app/shared/services/jwt/dio_configuration.dart';
@@ -17,11 +23,6 @@ import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
 import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
-import 'package:ascca_app/data/repositories/auth/auth_login/auth_login_repository.dart';
-import 'package:ascca_app/data/services/auth/auth_api_client.dart';
-import 'package:ascca_app/data/repositories/auth/auth_new_password/auth_new_password_repository.dart';
-import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registration_repository.dart';
-import 'package:ascca_app/data/repositories/auth/auth_reset_password/auth_reset_password_repository.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
@@ -29,6 +30,7 @@ import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart'
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/scan_event/scan_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
 import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
@@ -120,6 +122,10 @@ Future<void> init() async {
     () => TopEventsRepository(getIt<EventsApiClient>()),
   );
 
+  getIt.registerLazySingleton<ScanEventRepository>(
+    () => ScanEventRepository(getIt<EventsApiClient>()),
+  );
+
   // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
@@ -204,5 +210,9 @@ Future<void> init() async {
 
   getIt.registerFactory<TopEventsCubit>(
     () => TopEventsCubit(repository: getIt<TopEventsRepository>()),
+  );
+
+  getIt.registerFactory<ScanEventCubit>(
+    () => ScanEventCubit(repository: getIt<ScanEventRepository>()),
   );
 }
