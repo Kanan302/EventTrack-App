@@ -84,6 +84,7 @@ class JwtInterceptor extends Interceptor {
       }
     } catch (e) {
       debugPrint('Refresh token error: $e');
+      // await _secureStorage.clearToken();
       return null;
     }
   }
