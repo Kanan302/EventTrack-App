@@ -12,6 +12,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_even
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/export_event/export_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/scan_event/scan_event_cubit.dart';
@@ -154,6 +155,7 @@ class AppRouter {
                   create: (context) => getIt<DeleteBookmarkedEventsCubit>(),
                 ),
                 BlocProvider(create: (context) => getIt<RegisterEventCubit>()),
+                BlocProvider(create: (context) => getIt<ExportEventCubit>()),
               ],
               child: EventDetailPage(eventModel: eventModel),
             );

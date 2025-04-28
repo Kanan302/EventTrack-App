@@ -1,6 +1,7 @@
 import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import 'package:ascca_app/data/models/events/create_event/create_event_response_model.dart';
 import 'package:ascca_app/data/models/events/delete_event/delete_event_model.dart';
+import 'package:ascca_app/data/models/events/export_event/export_event_response_model.dart';
 import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
 import 'package:ascca_app/data/models/events/register_event/register_event_response_model.dart';
 import 'package:ascca_app/data/models/events/scan_event/scan_event_response_model.dart';
@@ -67,5 +68,11 @@ abstract class EventsApiClient {
   @POST("/events/qrScan")
   Future<ScanEventResponseModel> scanEvent(
     @Body() ScanEventRequestModel request,
+  );
+
+  @GET("/events/export/{userId}/{eventId}")
+  Future<ExportEventResponseModel> exportEvent(
+    @Path("userId") String userId,
+    @Path("eventId") String eventId,
   );
 }

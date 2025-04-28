@@ -7,6 +7,7 @@ import 'package:ascca_app/data/repositories/events/bookmark_events/get_bookmarke
 import 'package:ascca_app/data/repositories/events/bookmark_events/post_bookmark_event/bookmark_events_repository.dart';
 import 'package:ascca_app/data/repositories/events/create_event/create_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/delete_event/delete_event_repository.dart';
+import 'package:ascca_app/data/repositories/events/export_event/export_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/get_events/get_events_repository.dart';
 import 'package:ascca_app/data/repositories/events/register_event/register_event_repository.dart';
 import 'package:ascca_app/data/repositories/events/scan_event/scan_event_repository.dart';
@@ -28,6 +29,7 @@ import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_even
 import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
+import 'package:ascca_app/ui/cubits/events/export_event/export_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
 import 'package:ascca_app/ui/cubits/events/scan_event/scan_event_cubit.dart';
@@ -126,6 +128,10 @@ Future<void> init() async {
     () => ScanEventRepository(getIt<EventsApiClient>()),
   );
 
+  getIt.registerLazySingleton<ExportEventRepository>(
+    () => ExportEventRepository(getIt<EventsApiClient>()),
+  );
+
   // Cubit
   getIt.registerFactory<AuthLoginCubit>(
     () => AuthLoginCubit(repository: getIt<AuthLoginRepository>()),
@@ -214,5 +220,12 @@ Future<void> init() async {
 
   getIt.registerFactory<ScanEventCubit>(
     () => ScanEventCubit(repository: getIt<ScanEventRepository>()),
+  );
+
+  getIt.registerFactory<ExportEventCubit>(
+    () => ExportEventCubit(
+      repository: getIt<ExportEventRepository>(),
+      secureService: getIt<SecureService>(),
+    ),
   );
 }

@@ -39,4 +39,5 @@ class Messages {
       'Tədbir tapılmadı. Zəhmət olmasa, yenidən yoxlayın.';
   static const String attendanceConfirmed = 'Yoxlama uğurla tamamlandı';
   static const String alreadyScanned = 'QR kod scan edilib';
+  static const String exported = 'İxrac edildi';
 }
