@@ -93,6 +93,9 @@ class AppTexts {
   static const String aboutEvent = 'Tədbir Haqqında';
   static const String registerEvent = 'QEYDİYYATDAN KEÇ';
   static const String delete = 'Sil';
+  static const String export = 'İxrac';
+  static const String more = 'Daha çox';
+  static const String less = 'Daha az';
 
   // popular
   static const String topEvents = 'Populyar Tədbirlər';
