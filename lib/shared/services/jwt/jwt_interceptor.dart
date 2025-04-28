@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,9 @@ import 'dio_configuration.dart';
 
 class JwtInterceptor extends Interceptor {
   final _secureStorage = getIt.get<SecureService>();
+
+  bool _isRefreshing = false;
+  final List<void Function()> _queuedRequests = [];
 
   @override
   Future<void> onRequest(
@@ -42,22 +47,80 @@ class JwtInterceptor extends Interceptor {
     handler.next(response);
   }
 
+  // @override
+  // void onError(DioException err, ErrorInterceptorHandler handler) async {
+  //   // super.onError(err, handler);
+  //   if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
+  //     final newAccessToken = await refreshToken();
+  //     if (newAccessToken != null) {
+  //       baseDio.options.headers['Authorization'] = 'Bearer $newAccessToken';
+  //       return handler.resolve(await baseDio.fetch(err.requestOptions));
+  //     } else {
+  //       await _secureStorage.clearToken();
+  //       debugPrint('User must re-login');
+  //       // return handler.next(err);
+  //     }
+  //   }
+  //   super.onError(err, handler);
+  //   // return handler.next(err);
+  // }
+
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) async {
-    // super.onError(err, handler);
-    if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
-      final newAccessToken = await refreshToken();
-      if (newAccessToken != null) {
-        baseDio.options.headers['Authorization'] = 'Bearer $newAccessToken';
-        return handler.resolve(await baseDio.fetch(err.requestOptions));
+  Future<void> onError(
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
+    if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
+      if (!_isRefreshing) {
+        _isRefreshing = true;
+
+        final newToken = await refreshToken();
+
+        _isRefreshing = false;
+
+        if (newToken != null) {
+          // Bütün saxlanmış request-ləri icra et
+          for (final queued in _queuedRequests) {
+            queued();
+          }
+          _queuedRequests.clear();
+
+          // Retry the current request
+          final retryRequest = err.requestOptions;
+          retryRequest.headers['Authorization'] = 'Bearer $newToken';
+          final response = await baseDio.fetch(retryRequest);
+          return handler.resolve(response);
+        } else {
+          await _secureStorage.clearToken();
+          debugPrint('User must re-login');
+          return handler.reject(err);
+        }
       } else {
-        await _secureStorage.clearToken();
-        debugPrint('User must re-login');
-        // return handler.next(err);
+        // Refresh gedir, bu request-i saxla
+        final completer = Completer<void>();
+        _queuedRequests.add(() async {
+          final retryRequest = err.requestOptions;
+          final newAccessToken = await _secureStorage.accessToken;
+          if (newAccessToken != null) {
+            retryRequest.headers['Authorization'] = 'Bearer $newAccessToken';
+            try {
+              final response = await baseDio.fetch(retryRequest);
+              handler.resolve(response);
+            } catch (e) {
+              handler.reject(
+                DioException(requestOptions: retryRequest, error: e),
+              );
+            }
+          } else {
+            handler.reject(err);
+          }
+          completer.complete();
+        });
+        await completer.future;
       }
+    } else {
+      return handler.next(err);
     }
-    super.onError(err, handler);
-    // return handler.next(err);
   }
 
   Future<String?> refreshToken() async {
