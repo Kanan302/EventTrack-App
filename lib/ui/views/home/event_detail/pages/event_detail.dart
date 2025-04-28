@@ -172,6 +172,7 @@ class EventDetailPage extends StatelessWidget {
                                   EventDetailButton(
                                     eventId: eventModel.id.toString(),
                                   ),
+                                  const SizedBox(height: 40),
                                 ],
                               ),
                             ),
