@@ -27,6 +27,7 @@ class _VerificationPageState extends State<VerificationPage> {
   Future<void> _handleVerification(bool fromReset) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      debugPrint('OTP entered: $_otp');
 
       if (_isWaitingForOTP) {
         bool tempResponse = await _authService.verification(

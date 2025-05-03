@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import '../../../../../shared/theme/app_colors.dart';
 
 class VerificationTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
 
   const VerificationTextField({
     super.key,
+    this.controller,
     this.onChanged,
     this.onSaved,
     this.validator,
@@ -21,6 +23,7 @@ class VerificationTextField extends StatelessWidget {
       height: 60,
       width: 60,
       child: TextFormField(
+        controller: controller,
         onChanged: onChanged,
         onSaved: onSaved,
         validator: validator,
