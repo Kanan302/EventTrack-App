@@ -1,13 +1,13 @@
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../shared/constants/app_texts.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/auth/auth_new_password/auth_new_password_cubit.dart';
+import '../../../utils/messages/messages.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
+import '../../../utils/validators/validators.dart';
 import '../../../utils/widgets/app_elevated_button.dart';
 import '../../../utils/widgets/app_text_form_field.dart';
 
@@ -56,10 +56,10 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                   spacing: height * 0.02,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        AppTexts.newPassword,
+                        AppLocalizations.of(context).newPassword,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -72,7 +72,8 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                       builder: (context, isVisible, child) {
                         return AppTextFormField(
                           obscureText: !isVisible,
-                          hintText: AppTexts.yourNewPassword,
+                          hintText:
+                              AppLocalizations.of(context).yourNewPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
                               isVisible
@@ -92,7 +93,10 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                       builder: (context, isConfirmVisible, child) {
                         return AppTextFormField(
                           obscureText: !isConfirmVisible,
-                          hintText: AppTexts.confirmYourNewPassword,
+                          hintText:
+                              AppLocalizations.of(
+                                context,
+                              ).confirmYourNewPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
                               isConfirmVisible
@@ -145,7 +149,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                               }
                             },
                             buttonColor: AppColors.lavenderBlue,
-                            text: AppTexts.update,
+                            text: AppLocalizations.of(context).update,
                             textColor: AppColors.white,
                             isLoading: state is AuthNewPasswordLoading,
                           ),

@@ -1,14 +1,13 @@
-import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
-import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../shared/constants/app_texts.dart';
+import '../../../../shared/constants/app_routes.dart';
+import '../../../../shared/theme/app_colors.dart';
+import '../../../cubits/events/top_events/top_events_cubit.dart';
 import '../../../utils/messages/messages.dart';
+import '../events_tab/widgets/event_card_item.dart';
 
 class TrendingTab extends StatefulWidget {
   const TrendingTab({super.key});
@@ -82,7 +81,7 @@ class _TrendingTabState extends State<TrendingTab> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  AppTexts.topEvents,
+                  AppLocalizations.of(context).topEvents,
                   style: TextStyle(
                     color: AppColors.graphiteGray,
                     fontSize: 17,

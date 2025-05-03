@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ValidityTimer extends StatefulWidget {
   const ValidityTimer({super.key});
@@ -49,7 +49,7 @@ class ValidityTimerState extends State<ValidityTimer> {
     return Column(
       children: [
         Text(
-          '${AppTexts.validityTime} $timerText',
+          '${AppLocalizations.of(context).validityTime} $timerText',
           style: const TextStyle(fontSize: 16),
         ),
       ],

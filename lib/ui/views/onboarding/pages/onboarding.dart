@@ -1,6 +1,7 @@
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../shared/constants/app_routes.dart';
@@ -96,8 +97,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                   context,
                                   AppRoutes.login.path,
                                 ),
-                            child: const Text(
-                              AppTexts.skip,
+                            child: Text(
+                              AppLocalizations.of(context).skip,
                               style: TextStyle(
                                 color: AppColors.white,
                                 fontSize: 18,
@@ -132,8 +133,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                   AppRoutes.login.path,
                                   _pageController,
                                 ),
-                            child: const Text(
-                              AppTexts.next,
+                            child: Text(
+                              AppLocalizations.of(context).next,
                               style: TextStyle(
                                 color: AppColors.white,
                                 fontSize: 18,

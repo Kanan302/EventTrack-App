@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/utils/notifications/snackbar.dart';
-import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../shared/theme/app_colors.dart';
 import '../../../../../cubits/profile/update_profile/update_profile_cubit.dart';
+import '../../../../../utils/messages/messages.dart';
+import '../../../../../utils/notifications/snackbar.dart';
+import '../../../../../utils/widgets/app_elevated_button.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});
@@ -20,12 +20,19 @@ class UpdateProfilePage extends StatefulWidget {
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
   File? _selectedImage;
+  late TextEditingController nameController;
+  late TextEditingController aboutController;
+
+  @override
+  void initState() {
+    nameController = TextEditingController();
+    aboutController = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController aboutController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +51,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    AppTexts.updateYourProfile,
+                    AppLocalizations.of(context).updateYourProfile,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -81,8 +88,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           )
                           : null,
                 ),
-                updateProfileTextField(AppTexts.yourName, nameController),
-                updateProfileTextField(AppTexts.yourAbout, aboutController),
+                updateProfileTextField(
+                  AppLocalizations.of(context).yourName,
+                  nameController,
+                ),
+                updateProfileTextField(
+                  AppLocalizations.of(context).yourAbout,
+                  aboutController,
+                ),
                 SizedBox(height: 30),
                 BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
                   listener: (context, state) {
@@ -116,7 +129,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                               ),
 
                       buttonColor: AppColors.lavenderBlue,
-                      text: AppTexts.add,
+                      text: AppLocalizations.of(context).add,
                       textColor: AppColors.white,
                       isLoading: state is UpdateProfileLoading,
                     );
@@ -157,5 +170,12 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    aboutController.dispose();
+    super.dispose();
   }
 }

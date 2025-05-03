@@ -1,0 +1,290 @@
+{
+  "next": "Next",
+  "@next": {
+    "description": "Next button"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign In button"
+  },
+  "abc": " abc@gmail.com",
+  "@abc": {
+    "description": "Example email address"
+  },
+  "yourPassword": "Your password",
+  "@yourPassword": {
+    "description": "Text for password field"
+  },
+  "rememberMe": "Remember me",
+  "@rememberMe": {
+    "description": "Remember me checkbox"
+  },
+  "forgotPassword": "Forgot password?",
+  "@forgotPassword": {
+    "description": "Password recovery link"
+  },
+  "signInUppercase": "SIGN IN",
+  "@signInUppercase": {
+    "description": "SIGN IN text in uppercase"
+  },
+  "or": "OR",
+  "@or": {
+    "description": "Text 'or'"
+  },
+  "loginWithGoogle": "Login with Google",
+  "@loginWithGoogle": {
+    "description": "Button to login with Google"
+  },
+  "dontHaveAccount": "Don’t have an account?",
+  "@dontHaveAccount": {
+    "description": "Text 'Don’t have an account?'"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign Up button"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Text for name field"
+  },
+  "confirmPassword": "Confirm your password",
+  "@confirmPassword": {
+    "description": "Text for confirm password field"
+  },
+  "signUpUppercase": "SIGN UP",
+  "@signUpUppercase": {
+    "description": "SIGN UP text in uppercase"
+  },
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Text 'Already have an account?'"
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Reset Password button"
+  },
+  "resetDecryption": "Enter your email address to reset your password",
+  "@resetDecryption": {
+    "description": "Description text for reset password page"
+  },
+  "contine": "Continue",
+  "@contine": {
+    "description": "Continue button"
+  },
+  "verification": "Verification",
+  "@verification": {
+    "description": "Verification title"
+  },
+  "sendOTP": "Verification code has been sent to you",
+  "@sendOTP": {
+    "description": "Text indicating verification code was sent"
+  },
+  "send": "Send",
+  "@send": {
+    "description": "Send button"
+  },
+  "validityTime": "Validity time:",
+  "@validityTime": {
+    "description": "Text for code validity time"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password title"
+  },
+  "yourNewPassword": "Your new password",
+  "@yourNewPassword": {
+    "description": "Text for new password field"
+  },
+  "confirmYourNewPassword": "Confirm new password",
+  "@confirmYourNewPassword": {
+    "description": "Text for confirm new password field"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button"
+  },
+  "events": "Events",
+  "@events": {
+    "description": "events"
+  },
+  "popular": "Popular",
+  "@popular": {
+    "description": "popular"
+  },
+  "map": "Map",
+  "@map": {
+    "description": "map"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "profile"
+  },
+  "searchEvent": "Search event...",
+  "@searchEvent": {
+    "description": "Text for search field"
+  },
+  "doScan": "Scan",
+  "@doScan": {
+    "description": "Scan button"
+  },
+  "myEvents": "My Events",
+  "@myEvents": {
+    "description": "Text for user's events page"
+  },
+  "bookmarkedEvents": "Bookmarked Events",
+  "@bookmarkedEvents": {
+    "description": "Text for bookmarked events"
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile button"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Text for notifications"
+  },
+  "about": "About",
+  "@about": {
+    "description": "Text for about page"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language selection text"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode toggle"
+  },
+  "logOut": "Log Out",
+  "@logOut": {
+    "description": "Log out button"
+  },
+  "exit": "Exit",
+  "@exit": {
+    "description": "Exit text"
+  },
+  "sureToExit": "Are you sure you want to exit?",
+  "@sureToExit": {
+    "description": "Exit confirmation text"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "createYourEvent": "Create Your Event",
+  "@createYourEvent": {
+    "description": "Title for creating a new event"
+  },
+  "eventName": "Event Name",
+  "@eventName": {
+    "description": "Text for event name input"
+  },
+  "eventDescription": "Event Description",
+  "@eventDescription": {
+    "description": "Text for event description input"
+  },
+  "eventPrice": "Event Price",
+  "@eventPrice": {
+    "description": "Text for event price input"
+  },
+  "eventCity": "Event City",
+  "@eventCity": {
+    "description": "City where the event will be held"
+  },
+  "eventStreet": "Event Street",
+  "@eventStreet": {
+    "description": "Street where the event will be held"
+  },
+  "eventStartDate": "Event Start Date",
+  "@eventStartDate": {
+    "description": "Date when the event starts"
+  },
+  "eventEndDate": "Event End Date",
+  "@eventEndDate": {
+    "description": "Date when the event ends"
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Button text for creating event"
+  },
+  "clickToUploadImage": "Click to upload image",
+  "@clickToUploadImage": {
+    "description": "Button to upload event image"
+  },
+  "startDate": "Start Date",
+  "@startDate": {
+    "description": "Text for start date"
+  },
+  "endDate": "End Date",
+  "@endDate": {
+    "description": "Text for end date"
+  },
+  "choosePlaceFromMap": "Choose place from map: ",
+  "@choosePlaceFromMap": {
+    "description": "Text for choosing location on map"
+  },
+  "coordinates": "Coordinates: ",
+  "@coordinates": {
+    "description": "Text to show coordinates"
+  },
+  "address": "Address",
+  "@address": {
+    "description": "Text for address"
+  },
+  "eventDetails": "Event Details",
+  "@eventDetails": {
+    "description": "Title for event details page"
+  },
+  "organizer": "Organizer",
+  "@organizer": {
+    "description": "Text for organizer's name"
+  },
+  "aboutEvent": "About Event",
+  "@aboutEvent": {
+    "description": "Heading for event information section"
+  },
+  "registerEvent": "REGISTER",
+  "@registerEvent": {
+    "description": "Button text for registering to event"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "export": "Export",
+  "@export": {
+    "description": "Export text"
+  },
+  "more": "More",
+  "@more": {
+    "description": "Button to show more text"
+  },
+  "less": "Less",
+  "@less": {
+    "description": "Button to show less text"
+  },
+  "topEvents": "Popular Events",
+  "@topEvents": {
+    "description": "Title for popular events section"
+  },
+  "yourName": "Your name",
+  "@yourName": {
+    "description": "Text for user's name input"
+  },
+  "yourAbout": "About you",
+  "@yourAbout": {
+    "description": "Text for user's about section"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button"
+  },
+  "updateYourProfile": "Update your information",
+  "@updateYourProfile": {
+    "description": "Text for updating profile information"
+  }
+}

@@ -1,18 +1,18 @@
-import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/services/injection/di.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
-import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../shared/constants/app_routes.dart';
+import '../../../../../shared/services/injection/di.dart';
+import '../../../../../shared/services/local/secure_service.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/events/delete_event/delete_event_cubit.dart';
+import '../../../../cubits/events/get_events/get_events_cubit.dart';
 import '../../../../utils/messages/messages.dart';
+import '../../profile_tab/service/theme_cubit.dart';
+import '../widgets/event_card_item.dart';
 
 class EventsTab extends StatefulWidget {
   const EventsTab({super.key});
@@ -105,12 +105,12 @@ class _EventsTabState extends State<EventsTab> {
                       focusNode: _searchFocusNode,
                       onChanged: _filterEvents,
                       decoration: InputDecoration(
-                        hintText: AppTexts.searchEvent,
+                        hintText: AppLocalizations.of(context).searchEvent,
                         border: InputBorder.none,
                       ),
                       style: TextStyle(color: textColor),
                     )
-                    : Text(AppTexts.events);
+                    : Text(AppLocalizations.of(context).events);
               },
             );
           },

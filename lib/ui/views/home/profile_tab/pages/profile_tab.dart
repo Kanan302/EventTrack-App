@@ -1,19 +1,20 @@
-import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_card_item.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_log_out_dialog.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_name.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/widgets/profile_photo.dart';
-import 'package:ascca_app/ui/views/home/services/log_out.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/services/injection/di.dart';
 import '../../../../../shared/services/local/secure_service.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/profile/user/user_profile_cubit.dart';
+import '../../services/log_out.dart';
 import '../widgets/profile_app_bar.dart';
+import '../widgets/profile_card_item.dart';
+import '../widgets/profile_log_out_dialog.dart';
+import '../widgets/profile_name.dart';
+import '../widgets/profile_photo.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -25,7 +26,9 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   final LogOut _logOut = LogOut();
 
-  final ValueNotifier<String> selectedLanguage = ValueNotifier<String>("AZ");
+  // final ValueNotifier<String> selectedLanguage = ValueNotifier<String>("AZ");
+  ValueNotifier<String>? selectedLanguageNotifier;
+
   final ValueNotifier<bool> isDarkMode = ValueNotifier<bool>(false);
 
   final _secureStorage = getIt.get<SecureService>();
@@ -38,9 +41,17 @@ class _ProfileTabState extends State<ProfileTab> {
     });
   }
 
+  Future<void> _loadSelectedLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final langCode = prefs.getString('selected_locale') ?? 'az';
+    selectedLanguageNotifier = ValueNotifier(langCode.toUpperCase());
+    setState(() {});
+  }
+
   @override
   void initState() {
     _loadUserStatus();
+    _loadSelectedLanguage();
     context.read<UserProfileCubit>().getUserData();
     super.initState();
   }
@@ -83,7 +94,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ProfileCardItem(
                             leadingIcon: Icons.document_scanner_outlined,
                             leadingIconColor: AppColors.lavenderBlue,
-                            title: AppTexts.doScan,
+                            title: AppLocalizations.of(context).doScan,
                             onTap: () {
                               context.push(AppRoutes.doScan.path);
                             },
@@ -92,7 +103,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ProfileCardItem(
                             leadingIcon: Icons.event_seat_outlined,
                             leadingIconColor: AppColors.lavenderBlue,
-                            title: AppTexts.myEvents,
+                            title: AppLocalizations.of(context).myEvents,
                             onTap: () {
                               context.push(AppRoutes.myEvents.path);
                             },
@@ -101,7 +112,8 @@ class _ProfileTabState extends State<ProfileTab> {
                           ProfileCardItem(
                             leadingIcon: Icons.bookmark_outline,
                             leadingIconColor: AppColors.lavenderBlue,
-                            title: AppTexts.bookmarkedEvents,
+                            title:
+                                AppLocalizations.of(context).bookmarkedEvents,
                             onTap: () {
                               context
                                   .push(AppRoutes.bookmarkedEvents.path)
@@ -115,7 +127,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ProfileCardItem(
                           leadingIcon: Icons.edit,
                           leadingIconColor: AppColors.lavenderBlue,
-                          title: AppTexts.editProfile,
+                          title: AppLocalizations.of(context).editProfile,
                           onTap: () {
                             context.push(AppRoutes.updateProfile.path).then((
                               _,
@@ -129,7 +141,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ProfileCardItem(
                           leadingIcon: Icons.notifications_none_outlined,
                           leadingIconColor: AppColors.lavenderBlue,
-                          title: AppTexts.notifications,
+                          title: AppLocalizations.of(context).notifications,
                           onTap: () {
                             context.push(AppRoutes.notification.path);
                           },
@@ -137,21 +149,21 @@ class _ProfileTabState extends State<ProfileTab> {
                         ProfileCardItem(
                           leadingIcon: Icons.language_outlined,
                           leadingIconColor: AppColors.lavenderBlue,
-                          title: AppTexts.language,
+                          title: AppLocalizations.of(context).language,
                           isLanguageSelection: true,
-                          selectedLanguage: selectedLanguage,
+                          selectedLanguage: selectedLanguageNotifier,
                         ),
                         ProfileCardItem(
                           leadingIcon: Icons.dark_mode_outlined,
                           leadingIconColor: AppColors.lavenderBlue,
-                          title: AppTexts.darkMode,
+                          title: AppLocalizations.of(context).darkMode,
                           isDarkMode: true,
                         ),
 
                         ProfileCardItem(
                           leadingIcon: Icons.logout,
                           leadingIconColor: AppColors.red,
-                          title: AppTexts.logOut,
+                          title: AppLocalizations.of(context).logOut,
                           onTap: () {
                             showDialog(
                               context: context,
@@ -181,7 +193,7 @@ class _ProfileTabState extends State<ProfileTab> {
 
   @override
   void dispose() {
-    selectedLanguage.dispose();
+    selectedLanguageNotifier?.dispose();
     super.dispose();
   }
 }

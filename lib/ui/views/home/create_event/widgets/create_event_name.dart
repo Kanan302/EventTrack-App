@@ -1,7 +1,6 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../utils/validators/validators.dart';
 import 'create_event_formfield.dart';
 
 class CreateEventName extends StatelessWidget {
@@ -12,7 +11,7 @@ class CreateEventName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CreateEventFormField(
-      labelText: AppTexts.eventName,
+      labelText: AppLocalizations.of(context).eventName,
       controller: eventNameController,
       validator: Validators.writeEventName,
     );

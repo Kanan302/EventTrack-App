@@ -3,6 +3,8 @@ import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../service/locale_cubit.dart';
+
 class ProfileCardItem extends StatelessWidget {
   final IconData leadingIcon;
   final String title;
@@ -75,6 +77,9 @@ class ProfileCardItem extends StatelessWidget {
                       onChanged: (newLang) {
                         if (newLang != null && newLang != lang) {
                           selectedLanguage!.value = newLang;
+                          context.read<LocaleCubit>().setLocale(
+                            newLang.toLowerCase(),
+                          );
                         }
                       },
                       items:

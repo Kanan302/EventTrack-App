@@ -62,7 +62,7 @@ class AuthVerificationService {
     try {
       final response = await baseDio.post(
         '/auth/otpReset',
-        data: {"otp": otp},
+        data: {"otp": otp.toString()},
         options: Options(validateStatus: (status) => status != null),
       );
 

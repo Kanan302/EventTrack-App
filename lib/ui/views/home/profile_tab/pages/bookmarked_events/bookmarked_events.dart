@@ -1,14 +1,15 @@
-import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/services/injection/di.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../../shared/constants/app_routes.dart';
+import '../../../../../../shared/services/injection/di.dart';
+import '../../../../../../shared/services/local/secure_service.dart';
+import '../../../../../cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
+import '../../../../../utils/messages/messages.dart';
+import '../../../events_tab/widgets/event_card_item.dart';
 
 class BookmarkedEventsPage extends StatefulWidget {
   const BookmarkedEventsPage({super.key});
@@ -38,7 +39,9 @@ class _BookmarkedEventsPageState extends State<BookmarkedEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppTexts.bookmarkedEvents)),
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context).bookmarkedEvents),
+      ),
       body: SafeArea(
         child: BlocBuilder<BookmarkedEventsCubit, BookmarkedEventsState>(
           builder: (context, state) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../shared/theme/app_colors.dart';
 import '../../../../../shared/constants/app_routes.dart';
-import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/theme/app_colors.dart';
 
 class NavigationSignIn extends StatelessWidget {
   const NavigationSignIn({super.key});
@@ -13,12 +13,12 @@ class NavigationSignIn extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(AppTexts.alreadyHaveAccount),
+        Text(AppLocalizations.of(context).alreadyHaveAccount),
         const SizedBox(width: 5),
         GestureDetector(
           onTap: () => context.push(AppRoutes.login.path),
-          child: const Text(
-            AppTexts.signIn,
+          child: Text(
+            AppLocalizations.of(context).signIn,
             style: TextStyle(color: AppColors.lavenderBlue),
           ),
         ),

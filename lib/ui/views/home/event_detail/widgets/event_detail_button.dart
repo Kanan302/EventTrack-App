@@ -1,15 +1,14 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/cubits/events/export_event/export_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/utils/notifications/snackbar.dart';
-import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../shared/services/injection/di.dart';
 import '../../../../../shared/services/local/secure_service.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/events/export_event/export_event_cubit.dart';
+import '../../../../cubits/events/register_event/register_event_cubit.dart';
+import '../../../../utils/messages/messages.dart';
+import '../../../../utils/notifications/snackbar.dart';
+import '../../../../utils/widgets/app_elevated_button.dart';
 
 class EventDetailButton extends StatefulWidget {
   final String eventId;
@@ -65,7 +64,7 @@ class _EventDetailButtonState extends State<EventDetailButton> {
                       widget.eventId,
                     ),
                 buttonColor: AppColors.lavenderBlue,
-                text: AppTexts.export,
+                text: AppLocalizations.of(context).export,
                 textColor: AppColors.white,
                 isLoading: state is ExportEventLoading,
               );
@@ -97,7 +96,7 @@ class _EventDetailButtonState extends State<EventDetailButton> {
                       widget.eventId,
                     ),
                 buttonColor: AppColors.lavenderBlue,
-                text: AppTexts.registerEvent,
+                text: AppLocalizations.of(context).registerEvent,
                 textColor: AppColors.white,
                 isLoading: state is RegisterEventLoading,
               );

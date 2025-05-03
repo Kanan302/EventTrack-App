@@ -1,6 +1,7 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/_expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '_expandable_text.dart';
 
 class EventDetailAbout extends StatelessWidget {
   final String eventAbout;
@@ -11,10 +12,10 @@ class EventDetailAbout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Align(
+        Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            AppTexts.aboutEvent,
+            AppLocalizations.of(context).aboutEvent,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),

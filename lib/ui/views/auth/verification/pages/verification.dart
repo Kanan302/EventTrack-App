@@ -1,10 +1,10 @@
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/constants/app_routes.dart';
-import '../../../../../shared/constants/app_texts.dart';
 import '../../../../../shared/theme/app_colors.dart';
+import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
@@ -100,10 +100,10 @@ class _VerificationPageState extends State<VerificationPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      AppTexts.verification,
+                      AppLocalizations.of(context).verification,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -111,17 +111,17 @@ class _VerificationPageState extends State<VerificationPage> {
                     ),
                   ),
                   SizedBox(height: height * 0.02),
-                  const SizedBox(
+                  SizedBox(
                     width: 250,
                     child: Text.rich(
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: AppTexts.sendOTP,
+                            text: AppLocalizations.of(context).sendOTP,
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           TextSpan(
-                            text: AppTexts.abc,
+                            text: AppLocalizations.of(context).abc,
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.lavenderBlue,
@@ -143,7 +143,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     child: AppElevatedButton(
                       onPressed: () => _handleVerification(fromReset),
                       buttonColor: AppColors.lavenderBlue,
-                      text: AppTexts.contine,
+                      text: AppLocalizations.of(context).contine,
                       textColor: AppColors.white,
                     ),
                   ),

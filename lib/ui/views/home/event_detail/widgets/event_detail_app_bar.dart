@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../shared/services/injection/di.dart';
 import '../../../../../shared/services/local/secure_service.dart';
+import '../../../../../shared/theme/app_colors.dart';
 
 class EventDetailAppBar extends StatefulWidget {
   final Function()? onTap;
@@ -43,8 +43,8 @@ class _EventDetailAppBarState extends State<EventDetailAppBar> {
         onPressed: Navigator.of(context).pop,
         icon: const Icon(Icons.arrow_back_ios, color: AppColors.white),
       ),
-      title: const Text(
-        AppTexts.eventDetails,
+      title: Text(
+        AppLocalizations.of(context).eventDetails,
         style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.white),
       ),
       titleSpacing: 0,

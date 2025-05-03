@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../utils/messages/messages.dart';
 
 class CreateEventPhoto extends StatelessWidget {
   final ValueNotifier<File?> imageNotifier;
@@ -76,12 +76,12 @@ class CreateEventPhoto extends StatelessWidget {
                             ),
                           ],
                         )
-                        : const Center(
+                        : Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                AppTexts.clickToUploadImage,
+                                AppLocalizations.of(context).clickToUploadImage,
                                 style: TextStyle(
                                   color: AppColors.graphiteGray,
                                   fontSize: 16,

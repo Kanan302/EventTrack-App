@@ -1,7 +1,8 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/utils/widgets/app_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../utils/widgets/app_elevated_button.dart';
 
 class LogoutDialog extends StatelessWidget {
   final VoidCallback onConfirm;
@@ -12,13 +13,13 @@ class LogoutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      title: const Text(
-        AppTexts.exit,
+      title: Text(
+        AppLocalizations.of(context).exit,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
-      content: const Text(
-        AppTexts.sureToExit,
+      content: Text(
+        AppLocalizations.of(context).sureToExit,
         style: TextStyle(fontSize: 16),
         textAlign: TextAlign.center,
       ),
@@ -30,7 +31,7 @@ class LogoutDialog extends StatelessWidget {
               child: AppElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 buttonColor: AppColors.white,
-                text: AppTexts.cancel,
+                text: AppLocalizations.of(context).cancel,
                 textColor: AppColors.lavenderBlue,
                 borderColor: AppColors.lavenderBlue,
               ),
@@ -40,7 +41,7 @@ class LogoutDialog extends StatelessWidget {
               child: AppElevatedButton(
                 onPressed: onConfirm,
                 buttonColor: AppColors.red,
-                text: AppTexts.logOut,
+                text: AppLocalizations.of(context).logOut,
                 textColor: AppColors.white,
               ),
             ),

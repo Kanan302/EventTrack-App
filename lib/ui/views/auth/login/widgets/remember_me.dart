@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../../shared/constants/app_texts.dart';
 import '../services/remember_me_notifier.dart';
 
 class RememberMe extends StatefulWidget {
@@ -31,7 +32,10 @@ class _RememberMeState extends State<RememberMe> {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
-            const Text(AppTexts.rememberMe, style: TextStyle(fontSize: 15)),
+            Text(
+              AppLocalizations.of(context).rememberMe,
+              style: TextStyle(fontSize: 15),
+            ),
           ],
         );
       },

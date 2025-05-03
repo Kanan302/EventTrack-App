@@ -1,9 +1,8 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:latlong2/latlong.dart';
-
 import '../../../../../shared/theme/app_colors.dart';
 import '../../widgets/map_widget.dart';
 
@@ -94,8 +93,8 @@ class _CreateEventMapState extends State<CreateEventMap> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          AppTexts.choosePlaceFromMap,
+        Text(
+          AppLocalizations.of(context).choosePlaceFromMap,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -116,14 +115,14 @@ class _CreateEventMapState extends State<CreateEventMap> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${AppTexts.coordinates}'
+                  '${AppLocalizations.of(context).coordinates}'
                   'Lat: ${_selectedLocation!.latitude.toStringAsFixed(5)}, '
                   'Lng: ${_selectedLocation!.longitude.toStringAsFixed(5)}',
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${AppTexts.address}: $address',
+                  '${AppLocalizations.of(context).address}: $address',
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ],

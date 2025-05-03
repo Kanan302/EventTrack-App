@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../shared/constants/app_texts.dart';
 import '../../../../shared/theme/app_colors.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -28,17 +28,23 @@ class _BottomNavBarState extends State<BottomNavBar> {
       labelColor: AppColors.lavenderBlue,
       unselectedLabelColor: AppColors.graphiteGray,
       padding: const EdgeInsets.only(bottom: 8, top: 8),
-      tabs: const [
+      tabs: [
         Tab(
-          text: AppTexts.events,
+          text: AppLocalizations.of(context).events,
           icon: Icon(Icons.event_seat_outlined, size: 25),
         ),
         Tab(
-          text: AppTexts.popular,
+          text: AppLocalizations.of(context).popular,
           icon: Icon(Icons.trending_up_outlined, size: 25),
         ),
-        Tab(text: AppTexts.map, icon: Icon(Icons.map, size: 25)),
-        Tab(text: AppTexts.profile, icon: Icon(Icons.person, size: 25)),
+        Tab(
+          text: AppLocalizations.of(context).map,
+          icon: Icon(Icons.map, size: 25),
+        ),
+        Tab(
+          text: AppLocalizations.of(context).profile,
+          icon: Icon(Icons.person, size: 25),
+        ),
       ],
     );
   }

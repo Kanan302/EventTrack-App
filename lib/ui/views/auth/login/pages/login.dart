@@ -1,16 +1,15 @@
-import 'package:ascca_app/shared/constants/app_images.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
-import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/constants/app_routes.dart';
-import '../../../../../shared/constants/app_texts.dart';
 import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/auth/auth_login/auth_login_cubit.dart';
 import '../../../../cubits/auth/auth_login/auth_login_state.dart';
+import '../../../../utils/validators/validators.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../../../../utils/widgets/app_text_form_field.dart';
 import '../services/remember_me_notifier.dart';
@@ -69,10 +68,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       spacing: height * 0.02,
                       children: [
-                        const Align(
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            AppTexts.signIn,
+                            AppLocalizations.of(context).signIn,
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 24,
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         AppTextFormField(
                           obscureText: false,
-                          hintText: AppTexts.abc,
+                          hintText: AppLocalizations.of(context).abc,
                           prefixIcon: Icons.email_outlined,
                           controller: _emailController,
                           validator: Validators.writeMail,
@@ -93,7 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                           builder: (context, isVisible, child) {
                             return AppTextFormField(
                               obscureText: !isVisible,
-                              hintText: AppTexts.yourPassword,
+                              hintText:
+                                  AppLocalizations.of(context).yourPassword,
                               prefixIcon: Icons.lock_outline,
                               suffixIcon:
                                   isVisible
@@ -117,8 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                                   () => context.push(
                                     AppRoutes.resetPassword.path,
                                   ),
-                              child: const Text(
-                                AppTexts.forgotPassword,
+                              child: Text(
+                                AppLocalizations.of(context).forgotPassword,
                                 style: TextStyle(fontSize: 15),
                               ),
                             ),
@@ -133,14 +133,15 @@ class _LoginPageState extends State<LoginPage> {
                                       ? () {}
                                       : () => _handleLogin(context),
                               buttonColor: AppColors.lavenderBlue,
-                              text: AppTexts.signInUppercase,
+                              text:
+                                  AppLocalizations.of(context).signInUppercase,
                               textColor: AppColors.white,
                               isLoading: state is AuthLoginLoading,
                             );
                           },
                         ),
-                        const Text(
-                          AppTexts.or,
+                        Text(
+                          AppLocalizations.of(context).or,
                           style: TextStyle(
                             color: AppColors.softGray,
                             fontSize: 16,
@@ -154,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           onPressed: () {},
                           buttonColor: AppColors.white,
-                          text: AppTexts.loginWithGoogle,
+                          text: AppLocalizations.of(context).loginWithGoogle,
                           textColor: AppColors.black,
                         ),
                         const NavigationSignUp(),

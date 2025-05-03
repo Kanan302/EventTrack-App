@@ -1,10 +1,11 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/service/theme_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+
+import '../../../../../shared/theme/app_colors.dart';
+import '../../profile_tab/service/theme_cubit.dart';
 
 class EventsCardItem extends StatelessWidget {
   final String cardId;
@@ -155,7 +156,7 @@ class EventsCardItem extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     Text(
-                      AppTexts.delete,
+                      AppLocalizations.of(context).delete,
                       style: TextStyle(
                         fontSize: 16,
                         color: AppColors.white,

@@ -1,5 +1,5 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
 
@@ -18,8 +18,7 @@ class _ExpandableTextState extends State<ExpandableText>
 
   bool get _isTextOverflowing {
     final textLength = widget.text.length;
-    final maxTextLengthForTwoLines =
-        100; // Adjust this value based on your font size and padding
+    final maxTextLengthForTwoLines = 100;
     return textLength > maxTextLengthForTwoLines && !_isExpanded.value;
   }
 
@@ -53,7 +52,9 @@ class _ExpandableTextState extends State<ExpandableText>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        isExpanded ? AppTexts.less : AppTexts.more,
+                        isExpanded
+                            ? AppLocalizations.of(context).less
+                            : AppLocalizations.of(context).more,
                         style: const TextStyle(
                           color: AppColors.lavenderBlue,
                           fontWeight: FontWeight.bold,

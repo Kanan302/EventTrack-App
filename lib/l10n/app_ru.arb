@@ -1,0 +1,290 @@
+{
+  "next": "Следующий",
+  "@next": {
+    "description": "Кнопка 'Следующий'"
+  },
+  "skip": "Пропустить",
+  "@skip": {
+    "description": "Кнопка 'Пропустить'"
+  },
+  "signIn": "Войти",
+  "@signIn": {
+    "description": "Кнопка 'Войти'"
+  },
+  "abc": " abc@gmail.com",
+  "@abc": {
+    "description": "Пример адреса электронной почты"
+  },
+  "yourPassword": "Ваш пароль",
+  "@yourPassword": {
+    "description": "Текст для поля пароля"
+  },
+  "rememberMe": "Запомнить меня",
+  "@rememberMe": {
+    "description": "Флажок 'Запомнить меня'"
+  },
+  "forgotPassword": "Забыли пароль?",
+  "@forgotPassword": {
+    "description": "Ссылка на восстановление пароля"
+  },
+  "signInUppercase": "ВОЙТИ",
+  "@signInUppercase": {
+    "description": "Текст 'ВОЙТИ' заглавными буквами"
+  },
+  "or": "ИЛИ",
+  "@or": {
+    "description": "Текст 'или'"
+  },
+  "loginWithGoogle": "Войти через Google",
+  "@loginWithGoogle": {
+    "description": "Кнопка 'Войти через Google'"
+  },
+  "dontHaveAccount": "Нет аккаунта?",
+  "@dontHaveAccount": {
+    "description": "Текст 'Нет аккаунта?'"
+  },
+  "signUp": "Зарегистрироваться",
+  "@signUp": {
+    "description": "Кнопка 'Зарегистрироваться'"
+  },
+  "fullName": "Ваше имя",
+  "@fullName": {
+    "description": "Текст для поля имени"
+  },
+  "confirmPassword": "Подтвердите пароль",
+  "@confirmPassword": {
+    "description": "Текст для поля подтверждения пароля"
+  },
+  "signUpUppercase": "РЕГИСТРАЦИЯ",
+  "@signUpUppercase": {
+    "description": "Текст 'РЕГИСТРАЦИЯ' заглавными буквами"
+  },
+  "alreadyHaveAccount": "Уже есть аккаунт?",
+  "@alreadyHaveAccount": {
+    "description": "Текст 'Уже есть аккаунт?'"
+  },
+  "resetPassword": "Сбросить пароль",
+  "@resetPassword": {
+    "description": "Кнопка 'Сбросить пароль'"
+  },
+  "resetDecryption": "Введите свой адрес электронной почты, чтобы сбросить пароль",
+  "@resetDecryption": {
+    "description": "Описание на странице сброса пароля"
+  },
+  "contine": "Продолжить",
+  "@contine": {
+    "description": "Кнопка 'Продолжить'"
+  },
+  "verification": "Подтверждение",
+  "@verification": {
+    "description": "Заголовок подтверждения"
+  },
+  "sendOTP": "Код подтверждения был отправлен вам",
+  "@sendOTP": {
+    "description": "Текст о том, что код отправлен"
+  },
+  "send": "Отправить",
+  "@send": {
+    "description": "Кнопка 'Отправить'"
+  },
+  "validityTime": "Время действия:",
+  "@validityTime": {
+    "description": "Текст времени действия кода"
+  },
+  "newPassword": "Новый пароль",
+  "@newPassword": {
+    "description": "Заголовок 'Новый пароль'"
+  },
+  "yourNewPassword": "Ваш новый пароль",
+  "@yourNewPassword": {
+    "description": "Текст для нового пароля"
+  },
+  "confirmYourNewPassword": "Подтвердите новый пароль",
+  "@confirmYourNewPassword": {
+    "description": "Текст для подтверждения нового пароля"
+  },
+  "update": "Обновить",
+  "@update": {
+    "description": "Кнопка 'Обновить'"
+  },
+  "events": "События",
+  "@events": {
+    "description": "cобытия"
+  },
+  "popular": "Популярное",
+  "@popular": {
+    "description": "популярное"
+  },
+  "map": "Карта",
+  "@map": {
+    "description": "карта"
+  },
+  "profile": "Профиль",
+  "@profile": {
+    "description": "профиль"
+  },
+  "searchEvent": "Поиск мероприятия...",
+  "@searchEvent": {
+    "description": "Текст для поля поиска"
+  },
+  "doScan": "Сканировать",
+  "@doScan": {
+    "description": "Кнопка 'Сканировать'"
+  },
+  "myEvents": "Мои мероприятия",
+  "@myEvents": {
+    "description": "Текст для страницы с мероприятиями пользователя"
+  },
+  "bookmarkedEvents": "Избранные мероприятия",
+  "@bookmarkedEvents": {
+    "description": "Текст для избранных мероприятий"
+  },
+  "editProfile": "Редактировать",
+  "@editProfile": {
+    "description": "Кнопка 'Редактировать профиль'"
+  },
+  "notifications": "Уведомления",
+  "@notifications": {
+    "description": "Текст для уведомлений"
+  },
+  "about": "О приложении",
+  "@about": {
+    "description": "Текст для страницы 'О приложении'"
+  },
+  "language": "Язык",
+  "@language": {
+    "description": "Выбор языка"
+  },
+  "darkMode": "Темный режим",
+  "@darkMode": {
+    "description": "Настройка темного режима"
+  },
+  "logOut": "Выйти",
+  "@logOut": {
+    "description": "Кнопка 'Выйти'"
+  },
+  "exit": "Выход",
+  "@exit": {
+    "description": "Текст 'Выход'"
+  },
+  "sureToExit": "Вы уверены, что хотите выйти?",
+  "@sureToExit": {
+    "description": "Текст подтверждения выхода"
+  },
+  "cancel": "Отмена",
+  "@cancel": {
+    "description": "Кнопка 'Отмена'"
+  },
+  "createYourEvent": "Создайте своё мероприятие",
+  "@createYourEvent": {
+    "description": "Заголовок для создания нового мероприятия"
+  },
+  "eventName": "Название мероприятия",
+  "@eventName": {
+    "description": "Текст для ввода названия мероприятия"
+  },
+  "eventDescription": "Описание мероприятия",
+  "@eventDescription": {
+    "description": "Текст для описания мероприятия"
+  },
+  "eventPrice": "Стоимость мероприятия",
+  "@eventPrice": {
+    "description": "Текст для цены мероприятия"
+  },
+  "eventCity": "Город мероприятия",
+  "@eventCity": {
+    "description": "Город проведения мероприятия"
+  },
+  "eventStreet": "Улица мероприятия",
+  "@eventStreet": {
+    "description": "Улица проведения мероприятия"
+  },
+  "eventStartDate": "Дата начала мероприятия",
+  "@eventStartDate": {
+    "description": "Дата начала мероприятия"
+  },
+  "eventEndDate": "Дата окончания мероприятия",
+  "@eventEndDate": {
+    "description": "Дата окончания мероприятия"
+  },
+  "create": "Создать",
+  "@create": {
+    "description": "Кнопка создания мероприятия"
+  },
+  "clickToUploadImage": "Нажмите для загрузки изображения",
+  "@clickToUploadImage": {
+    "description": "Кнопка для загрузки изображения"
+  },
+  "startDate": "Дата начала",
+  "@startDate": {
+    "description": "Текст для даты начала"
+  },
+  "endDate": "Дата окончания",
+  "@endDate": {
+    "description": "Текст для даты окончания"
+  },
+  "choosePlaceFromMap": "Выберите место на карте: ",
+  "@choosePlaceFromMap": {
+    "description": "Текст для выбора места на карте"
+  },
+  "coordinates": "Координаты: ",
+  "@coordinates": {
+    "description": "Текст для отображения координат"
+  },
+  "address": "Адрес",
+  "@address": {
+    "description": "Текст для адреса"
+  },
+  "eventDetails": "Детали мероприятия",
+  "@eventDetails": {
+    "description": "Заголовок страницы с деталями мероприятия"
+  },
+  "organizer": "Организатор",
+  "@organizer": {
+    "description": "Текст для имени организатора"
+  },
+  "aboutEvent": "О мероприятии",
+  "@aboutEvent": {
+    "description": "Заголовок информации о мероприятии"
+  },
+  "registerEvent": "ЗАРЕГИСТРИРОВАТЬСЯ",
+  "@registerEvent": {
+    "description": "Кнопка регистрации на мероприятие"
+  },
+  "delete": "Удалить",
+  "@delete": {
+    "description": "Кнопка 'Удалить'"
+  },
+  "export": "Экспорт",
+  "@export": {
+    "description": "Текст для экспорта"
+  },
+  "more": "Показать больше",
+  "@more": {
+    "description": "Кнопка 'Показать больше'"
+  },
+  "less": "Показать меньше",
+  "@less": {
+    "description": "Кнопка 'Показать меньше'"
+  },
+  "topEvents": "Популярные мероприятия",
+  "@topEvents": {
+    "description": "Заголовок для раздела популярных мероприятий"
+  },
+  "yourName": "Ваше имя",
+  "@yourName": {
+    "description": "Текст для ввода имени пользователя"
+  },
+  "yourAbout": "О вас",
+  "@yourAbout": {
+    "description": "Текст для информации о пользователе"
+  },
+  "add": "Добавить",
+  "@add": {
+    "description": "Кнопка 'Добавить'"
+  },
+  "updateYourProfile": "Обновите вашу информацию",
+  "@updateYourProfile": {
+    "description": "Текст для обновления профиля"
+  }
+}

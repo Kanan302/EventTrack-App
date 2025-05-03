@@ -1,11 +1,11 @@
-import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../shared/constants/app_texts.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 import '../../../utils/notifications/flushbar.dart';
+import '../../../utils/validators/validators.dart';
 import '../../../utils/widgets/app_elevated_button.dart';
 import '../../../utils/widgets/app_text_form_field.dart';
 
@@ -46,26 +46,26 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   spacing: height * 0.02,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        AppTexts.resetPassword,
+                        AppLocalizations.of(context).resetPassword,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 300,
                       child: Text(
-                        AppTexts.resetDescryption,
+                        AppLocalizations.of(context).resetDecryption,
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
                     AppTextFormField(
                       obscureText: false,
-                      hintText: AppTexts.abc,
+                      hintText: AppLocalizations.of(context).abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
                       validator: Validators.writeMail,
@@ -101,7 +101,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                               }
                             },
                             buttonColor: AppColors.lavenderBlue,
-                            text: AppTexts.send,
+                            text: AppLocalizations.of(context).send,
                             textColor: AppColors.white,
                             isLoading: state is AuthResetPasswordLoading,
                           ),

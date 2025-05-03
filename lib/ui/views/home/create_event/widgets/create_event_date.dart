@@ -1,8 +1,8 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
-import 'package:ascca_app/ui/utils/validators/validators.dart';
-import 'package:ascca_app/ui/views/home/create_event/service/create_event_date_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../utils/validators/validators.dart';
+import '../service/create_event_date_service.dart';
 import 'create_event_formfield.dart';
 
 class CreateEventDate extends StatelessWidget {
@@ -23,7 +23,7 @@ class CreateEventDate extends StatelessWidget {
       children: [
         Expanded(
           child: CreateEventFormField(
-            labelText: AppTexts.startDate,
+            labelText: AppLocalizations.of(context).startDate,
             controller: eventStartDateTimeController,
             onTap:
                 () => pickDateTime(
@@ -38,7 +38,7 @@ class CreateEventDate extends StatelessWidget {
         const SizedBox(width: 20),
         Expanded(
           child: CreateEventFormField(
-            labelText: AppTexts.endDate,
+            labelText: AppLocalizations.of(context).endDate,
             controller: eventEndDateTimeController,
             onTap:
                 () => pickDateTime(

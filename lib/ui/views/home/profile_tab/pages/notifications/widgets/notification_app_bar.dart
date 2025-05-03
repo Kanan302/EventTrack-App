@@ -1,5 +1,5 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotificationAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -8,7 +8,7 @@ class NotificationAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text(AppTexts.notifications),
+      title: Text(AppLocalizations.of(context).notifications),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
         onPressed: () => Navigator.pop(context),

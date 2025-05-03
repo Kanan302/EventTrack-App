@@ -1,0 +1,290 @@
+{
+  "next": "Növbəti",
+  "@next": {
+    "description": "Növbəti düyməsi"
+  },
+  "skip": "Keçmək",
+  "@skip": {
+    "description": "Keçmək düyməsi"
+  },
+  "signIn": "Daxil olun",
+  "@signIn": {
+    "description": "Daxil olun düyməsi"
+  },
+  "abc": " abc@gmail.com",
+  "@abc": {
+    "description": "E-poçt nümunəsi"
+  },
+  "yourPassword": "Parolunuz",
+  "@yourPassword": {
+    "description": "Parol sahəsi üçün mətn"
+  },
+  "rememberMe": "Məni xatırla",
+  "@rememberMe": {
+    "description": "Məni xatırla seçim qutusu"
+  },
+  "forgotPassword": "Şifrəni unutmusunuz?",
+  "@forgotPassword": {
+    "description": "Şifrə bərpası linki"
+  },
+  "signInUppercase": "DAXİL OLUN",
+  "@signInUppercase": {
+    "description": "Böyük hərflərlə 'Daxil olun' mətn"
+  },
+  "or": "VƏ YA",
+  "@or": {
+    "description": "'və ya' mətn"
+  },
+  "loginWithGoogle": "Google ilə daxil olun",
+  "@loginWithGoogle": {
+    "description": "Google ilə daxil ol düyməsi"
+  },
+  "dontHaveAccount": "Hesabınız yoxdur?",
+  "@dontHaveAccount": {
+    "description": "Hesabınız yoxdur? mətni"
+  },
+  "signUp": "Qeydiyyatdan keçin",
+  "@signUp": {
+    "description": "Qeydiyyatdan keçin düyməsi"
+  },
+  "fullName": "Adınız",
+  "@fullName": {
+    "description": "Ad sahəsi üçün mətn"
+  },
+  "confirmPassword": "Parolunuzu təsdiqləyin",
+  "@confirmPassword": {
+    "description": "Parol təsdiqi sahəsi üçün mətn"
+  },
+  "signUpUppercase": "QEYDİYYAT",
+  "@signUpUppercase": {
+    "description": "Böyük hərflərlə 'Qeydiyyat' mətn"
+  },
+  "alreadyHaveAccount": "Artıq hesabınız var?",
+  "@alreadyHaveAccount": {
+    "description": "Artıq hesabınız var? mətni"
+  },
+  "resetPassword": "Şifrəni sıfırla",
+  "@resetPassword": {
+    "description": "Şifrə sıfırlama düyməsi"
+  },
+  "resetDecryption": "Şifrəni sıfırlamaq üçün e-poçt ünvanınızı daxil edin",
+  "@resetDecryption": {
+    "description": "Şifrə sıfırlama səhifəsi üçün təsvir mətn"
+  },
+  "contine": "Davam et",
+  "@contine": {
+    "description": "Davam et düyməsi"
+  },
+  "verification": "Təsdiqləmə",
+  "@verification": {
+    "description": "Təsdiqləmə başlığı"
+  },
+  "sendOTP": "Təsdiqləmə kodu sizə göndərildi",
+  "@sendOTP": {
+    "description": "Təsdiqləmə kodu göndərildi mətni"
+  },
+  "send": "Göndər",
+  "@send": {
+    "description": "Göndər düyməsi"
+  },
+  "validityTime": "Etibarlılıq vaxtı:",
+  "@validityTime": {
+    "description": "Kodun etibarlılıq müddəti üçün mətn"
+  },
+  "newPassword": "Yeni Şifrə",
+  "@newPassword": {
+    "description": "Yeni şifrə başlığı"
+  },
+  "yourNewPassword": "Yeni şifrəniz",
+  "@yourNewPassword": {
+    "description": "Yeni şifrə üçün mətn"
+  },
+  "confirmYourNewPassword": "Yeni şifrəni təsdiqləyin",
+  "@confirmYourNewPassword": {
+    "description": "Yeni şifrə təsdiqləmə sahəsi üçün mətn"
+  },
+  "update": "Yenilə",
+  "@update": {
+    "description": "Yenilə düyməsi"
+  },
+  "events": "Tədbirlər",
+  "@events": {
+    "description": "tedbirler"
+  },
+  "popular": "Populyar",
+  "@popular": {
+    "description": "populyar"
+  },
+  "map": "Xəritə",
+  "@map": {
+    "description": "xerite"
+  },
+  "profile": "Profil",
+  "@profile": {
+    "description": "profil"
+  },
+  "searchEvent": "Tədbir axtarın...",
+  "@searchEvent": {
+    "description": "Axtarış sahəsi üçün mətn"
+  },
+  "doScan": "Skan et",
+  "@doScan": {
+    "description": "Skan et düyməsi"
+  },
+  "myEvents": "Tədbirlərim",
+  "@myEvents": {
+    "description": "İstifadəçinin öz tədbirləri səhifəsi üçün mətn"
+  },
+  "bookmarkedEvents": "Seçilmiş tədbirlər",
+  "@bookmarkedEvents": {
+    "description": "Seçilmiş tədbirlər üçün mətn"
+  },
+  "editProfile": "Redaktə et",
+  "@editProfile": {
+    "description": "Profil redaktə düyməsi"
+  },
+  "notifications": "Bildirişlər",
+  "@notifications": {
+    "description": "Bildirişlər səhifəsi üçün mətn"
+  },
+  "about": "Haqqında",
+  "@about": {
+    "description": "Haqqında səhifəsi üçün mətn"
+  },
+  "language": "Dil",
+  "@language": {
+    "description": "Dil seçimi üçün mətn"
+  },
+  "darkMode": "Tünd rejim",
+  "@darkMode": {
+    "description": "Tünd rejim ayarı üçün mətn"
+  },
+  "logOut": "Çıxış et",
+  "@logOut": {
+    "description": "Çıxış et düyməsi"
+  },
+  "exit": "Çıxış",
+  "@exit": {
+    "description": "Çıxış mətn"
+  },
+  "sureToExit": "Çıxış etmək istədiyinizdən əminsiniz?",
+  "@sureToExit": {
+    "description": "Çıxış təsdiqləmə mətni"
+  },
+  "cancel": "Ləğv et",
+  "@cancel": {
+    "description": "Ləğv et düyməsi"
+  },
+  "createYourEvent": "Tədbirinizi yaradın",
+  "@createYourEvent": {
+    "description": "Yeni tədbir yaratmaq üçün başlıq"
+  },
+  "eventName": "Tədbirin adı",
+  "@eventName": {
+    "description": "Tədbir adı üçün mətn"
+  },
+  "eventDescription": "Tədbirin təsviri",
+  "@eventDescription": {
+    "description": "Tədbir təsviri üçün mətn"
+  },
+  "eventPrice": "Tədbirin qiyməti",
+  "@eventPrice": {
+    "description": "Tədbirin qiyməti üçün mətn"
+  },
+  "eventCity": "Tədbirin şəhəri",
+  "@eventCity": {
+    "description": "Tədbirin keçiriləcəyi şəhər"
+  },
+  "eventStreet": "Tədbirin küçəsi",
+  "@eventStreet": {
+    "description": "Tədbirin keçiriləcəyi küçə"
+  },
+  "eventStartDate": "Tədbirin başlama tarixi",
+  "@eventStartDate": {
+    "description": "Tədbirin başlanğıc tarixi"
+  },
+  "eventEndDate": "Tədbirin bitmə tarixi",
+  "@eventEndDate": {
+    "description": "Tədbirin bitmə tarixi"
+  },
+  "create": "Yarat",
+  "@create": {
+    "description": "Tədbir yarat düyməsi"
+  },
+  "clickToUploadImage": "Şəkil yükləmək üçün klikləyin",
+  "@clickToUploadImage": {
+    "description": "Şəkil yükləmək üçün düymə"
+  },
+  "startDate": "Başlanğıc Tarixi",
+  "@startDate": {
+    "description": "Başlanğıc tarixi üçün mətn"
+  },
+  "endDate": "Bitiş Tarixi",
+  "@endDate": {
+    "description": "Bitiş tarixi üçün mətn"
+  },
+  "choosePlaceFromMap": "Xəritədən ünvan seçin: ",
+  "@choosePlaceFromMap": {
+    "description": "Xəritədən yer seçmək üçün mətn"
+  },
+  "coordinates": "Koordinatlar: ",
+  "@coordinates": {
+    "description": "Koordinatlar üçün mətn"
+  },
+  "address": "Ünvan",
+  "@address": {
+    "description": "Ünvan üçün mətn"
+  },
+  "eventDetails": "Tədbir Təfərrüatları",
+  "@eventDetails": {
+    "description": "Tədbir təfərrüatları səhifəsinin başlığı"
+  },
+  "organizer": "Təşkilatçı",
+  "@organizer": {
+    "description": "Təşkilatçı adı üçün mətn"
+  },
+  "aboutEvent": "Tədbir Haqqında",
+  "@aboutEvent": {
+    "description": "Tədbir haqqında məlumat başlığı"
+  },
+  "registerEvent": "QEYDİYYATDAN KEÇ",
+  "@registerEvent": {
+    "description": "Tədbirə qeydiyyat düyməsi"
+  },
+  "delete": "Sil",
+  "@delete": {
+    "description": "Sil düyməsi"
+  },
+  "export": "İxrac",
+  "@export": {
+    "description": "İxrac funksiyası üçün mətn"
+  },
+  "more": "Daha çox",
+  "@more": {
+    "description": "Daha çox mətnini göstərmək üçün düymə"
+  },
+  "less": "Daha az",
+  "@less": {
+    "description": "Daha az mətnini göstərmək üçün düymə"
+  },
+  "topEvents": "Populyar Tədbirlər",
+  "@topEvents": {
+    "description": "Populyar tədbirlər bölməsi üçün başlıq"
+  },
+  "yourName": "Adınız",
+  "@yourName": {
+    "description": "İstifadəçinin adı üçün mətn"
+  },
+  "yourAbout": "Haqqınızda",
+  "@yourAbout": {
+    "description": "İstifadəçi haqqında məlumat üçün mətn"
+  },
+  "add": "Əlavə edin",
+  "@add": {
+    "description": "Əlavə et düyməsi"
+  },
+  "updateYourProfile": "Məlumatlarınızı yeniləyin",
+  "@updateYourProfile": {
+    "description": "Profil məlumatlarını yeniləmə mətn"
+  }
+}

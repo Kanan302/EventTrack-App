@@ -1,15 +1,15 @@
-import 'package:ascca_app/shared/constants/app_images.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../shared/constants/app_texts.dart';
+import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
+import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
+import '../../../../utils/validators/validators.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../../../../utils/widgets/app_text_form_field.dart';
 import '../widgets/navigation_sign_in.dart';
@@ -60,10 +60,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   spacing: height * 0.02,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        AppTexts.signUp,
+                        AppLocalizations.of(context).signUp,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -73,14 +73,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     AppTextFormField(
                       obscureText: false,
-                      hintText: AppTexts.fullName,
+                      hintText: AppLocalizations.of(context).fullName,
                       prefixIcon: Icons.person_2_outlined,
                       controller: _fullNameController,
                       validator: Validators.writeName,
                     ),
                     AppTextFormField(
                       obscureText: false,
-                      hintText: AppTexts.abc,
+                      hintText: AppLocalizations.of(context).abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
                       validator: Validators.writeMail,
@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       builder: (context, isVisible, child) {
                         return AppTextFormField(
                           obscureText: !isVisible,
-                          hintText: AppTexts.yourPassword,
+                          hintText: AppLocalizations.of(context).yourPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
                               isVisible
@@ -110,7 +110,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       builder: (context, isConfirmVisible, child) {
                         return AppTextFormField(
                           obscureText: !isConfirmVisible,
-                          hintText: AppTexts.confirmPassword,
+                          hintText:
+                              AppLocalizations.of(context).confirmPassword,
                           prefixIcon: Icons.lock_outline,
                           suffixIcon:
                               isConfirmVisible
@@ -159,15 +160,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                     }
                                   },
                           buttonColor: AppColors.lavenderBlue,
-                          text: AppTexts.signUpUppercase,
+                          text: AppLocalizations.of(context).signUpUppercase,
                           textColor: AppColors.white,
                           isLoading: state is AuthRegistrationLoading,
                         );
                       },
                     ),
 
-                    const Text(
-                      AppTexts.or,
+                    Text(
+                      AppLocalizations.of(context).or,
                       style: TextStyle(color: AppColors.softGray, fontSize: 16),
                     ),
                     AppElevatedButton(
@@ -178,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       onPressed: () {},
                       buttonColor: AppColors.white,
-                      text: AppTexts.loginWithGoogle,
+                      text: AppLocalizations.of(context).loginWithGoogle,
                       textColor: AppColors.black,
                     ),
 

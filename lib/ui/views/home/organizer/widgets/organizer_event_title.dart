@@ -1,5 +1,5 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrganizerEventTitle extends StatelessWidget {
   const OrganizerEventTitle({super.key});
@@ -9,7 +9,7 @@ class OrganizerEventTitle extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        AppTexts.events,
+        AppLocalizations.of(context).events,
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );

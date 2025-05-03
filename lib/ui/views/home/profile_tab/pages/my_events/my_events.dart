@@ -1,13 +1,13 @@
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../data/models/profile/organizer/organizer_profile_model.dart';
-import '../../../../../../shared/constants/app_texts.dart';
 import '../../../../../../shared/services/injection/di.dart';
 import '../../../../../../shared/services/local/secure_service.dart';
 import '../../../../../cubits/profile/organizer/organizer_profile_cubit.dart';
+import '../../../../../utils/messages/messages.dart';
 import '../../../events_tab/widgets/event_card_item.dart';
 
 class MyEventsPage extends StatefulWidget {
@@ -39,7 +39,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppTexts.myEvents)),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).myEvents)),
       body: BlocBuilder<OrganizerProfileCubit, OrganizerProfileState>(
         builder: (context, state) {
           if (state is OrganizerProfileLoading) {
