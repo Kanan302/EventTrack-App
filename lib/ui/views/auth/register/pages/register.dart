@@ -7,7 +7,6 @@ import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/validators/validators.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
@@ -76,14 +75,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: AppLocalizations.of(context).fullName,
                       prefixIcon: Icons.person_2_outlined,
                       controller: _fullNameController,
-                      validator: Validators.writeName,
+                      validator:
+                          (value) => Validators.writeName(value, context),
                     ),
                     AppTextFormField(
                       obscureText: false,
                       hintText: AppLocalizations.of(context).abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: Validators.writeMail,
+                      validator:
+                          (value) => Validators.writeMail(value, context),
                     ),
                     ValueListenableBuilder(
                       valueListenable: _isPasswordVisible,
@@ -101,7 +102,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 !_isPasswordVisible.value;
                           },
                           controller: _passwordController,
-                          validator: Validators.writePassword,
+                          validator:
+                              (value) =>
+                                  Validators.writePassword(value, context),
                         );
                       },
                     ),
@@ -122,7 +125,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 !_isConfirmPasswordVisible.value;
                           },
                           controller: _confirmPasswordController,
-                          validator: Validators.writePassword,
+                          validator:
+                              (value) =>
+                                  Validators.writePassword(value, context),
                         );
                       },
                     ),
@@ -139,7 +144,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                           _confirmPasswordController.text) {
                                         SnackBarService.showSnackBar(
                                           context,
-                                          Messages.passwordsDoNotMatch,
+                                          AppLocalizations.of(
+                                            context,
+                                          ).passwordsDoNotMatch,
                                           AppColors.red,
                                         );
                                       } else {

@@ -7,7 +7,6 @@ import 'package:latlong2/latlong.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/events/create_event/create_event_cubit.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../service/create_event_date_service.dart';
 import '../widgets/create_event_app_bar.dart';
@@ -118,7 +117,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                   if (_formKey.currentState!.validate()) {
                                     if (_selectedImage.value == null) {
                                       _imageErrorNotifier.value =
-                                          Messages.uploadImage;
+                                          AppLocalizations.of(
+                                            context,
+                                          ).uploadImage;
                                       return;
                                     }
 

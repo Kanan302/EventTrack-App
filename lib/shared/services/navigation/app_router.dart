@@ -1,45 +1,45 @@
-import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
-import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
-import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
-import 'package:ascca_app/shared/constants/app_routes.dart';
-import 'package:ascca_app/shared/services/injection/di.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_login/auth_login_cubit.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
-import 'package:ascca_app/ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/create_event/create_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/delete_event/delete_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/export_event/export_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/get_events/get_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/register_event/register_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/scan_event/scan_event_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/top_events/top_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
-import 'package:ascca_app/ui/cubits/profile/update_profile/update_profile_cubit.dart';
-import 'package:ascca_app/ui/cubits/profile/user/user_profile_cubit.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/views/auth/login/pages/login.dart';
-import 'package:ascca_app/ui/views/auth/new_password/new_password.dart';
-import 'package:ascca_app/ui/views/auth/register/pages/register.dart';
-import 'package:ascca_app/ui/views/auth/reset_password/reset_password.dart';
-import 'package:ascca_app/ui/views/home/create_event/pages/create_event.dart';
-import 'package:ascca_app/ui/views/home/event_detail/pages/event_detail.dart';
-import 'package:ascca_app/ui/views/home/home.dart';
-import 'package:ascca_app/ui/views/home/organizer/pages/organizer.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/pages/my_events/my_events.dart';
-import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
-import 'package:ascca_app/ui/views/onboarding/pages/onboarding.dart';
-import 'package:ascca_app/ui/views/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../data/models/events/bookmarked_events/bookmarked_events_model.dart';
+import '../../../data/models/events/get_events/get_events_model.dart';
+import '../../../data/models/events/top_events/top_events_model.dart';
+import '../../../ui/cubits/auth/auth_login/auth_login_cubit.dart';
+import '../../../ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
+import '../../../ui/cubits/auth/auth_registration/auth_registration_cubit.dart';
+import '../../../ui/cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
+import '../../../ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
+import '../../../ui/cubits/events/bookmarked_events/get_bookmarked_events/bookmarked_events_cubit.dart';
+import '../../../ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
+import '../../../ui/cubits/events/create_event/create_event_cubit.dart';
+import '../../../ui/cubits/events/delete_event/delete_event_cubit.dart';
+import '../../../ui/cubits/events/export_event/export_event_cubit.dart';
+import '../../../ui/cubits/events/get_events/get_events_cubit.dart';
+import '../../../ui/cubits/events/register_event/register_event_cubit.dart';
+import '../../../ui/cubits/events/scan_event/scan_event_cubit.dart';
+import '../../../ui/cubits/events/top_events/top_events_cubit.dart';
+import '../../../ui/cubits/profile/organizer/organizer_profile_cubit.dart';
+import '../../../ui/cubits/profile/update_profile/update_profile_cubit.dart';
+import '../../../ui/cubits/profile/user/user_profile_cubit.dart';
+import '../../../ui/views/auth/login/pages/login.dart';
+import '../../../ui/views/auth/new_password/new_password.dart';
+import '../../../ui/views/auth/register/pages/register.dart';
+import '../../../ui/views/auth/reset_password/reset_password.dart';
+import '../../../ui/views/home/create_event/pages/create_event.dart';
+import '../../../ui/views/home/event_detail/pages/event_detail.dart';
+import '../../../ui/views/home/home.dart';
+import '../../../ui/views/home/organizer/pages/organizer.dart';
+import '../../../ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
 import '../../../ui/views/home/profile_tab/pages/do_scan/do_scan.dart';
+import '../../../ui/views/home/profile_tab/pages/my_events/my_events.dart';
+import '../../../ui/views/home/profile_tab/pages/notifications/pages/notifications.dart';
 import '../../../ui/views/home/profile_tab/pages/update_profile/update_profile.dart';
+import '../../../ui/views/onboarding/pages/onboarding.dart';
+import '../../../ui/views/splash/splash.dart';
+import '../../constants/app_routes.dart';
+import '../injection/di.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -160,7 +160,9 @@ class AppRouter {
               child: EventDetailPage(eventModel: eventModel),
             );
           }
-          return Scaffold(body: Center(child: Text(Messages.wrongModel)));
+          return Scaffold(
+            body: Center(child: Text(AppLocalizations.of(context).wrongModel)),
+          );
         },
       ),
       GoRoute(

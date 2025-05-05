@@ -52,7 +52,7 @@ class _ProfileTabState extends State<ProfileTab> {
   void initState() {
     _loadUserStatus();
     _loadSelectedLanguage();
-    context.read<UserProfileCubit>().getUserData();
+    context.read<UserProfileCubit>().getUserData(context);
     super.initState();
   }
 
@@ -72,6 +72,7 @@ class _ProfileTabState extends State<ProfileTab> {
               child: RefreshIndicator(
                 onRefresh: () async {
                   await context.read<UserProfileCubit>().getUserData(
+                    context,
                     forceRefresh: true,
                   );
                 },
@@ -120,7 +121,7 @@ class _ProfileTabState extends State<ProfileTab> {
                                   .then((_) {
                                     context
                                         .read<UserProfileCubit>()
-                                        .getUserData();
+                                        .getUserData(context);
                                   });
                             },
                           ),
@@ -133,6 +134,7 @@ class _ProfileTabState extends State<ProfileTab> {
                               _,
                             ) {
                               context.read<UserProfileCubit>().getUserData(
+                                context,
                                 forceRefresh: true,
                               );
                             });

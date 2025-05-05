@@ -1,9 +1,9 @@
-import 'package:ascca_app/data/models/auth/auth_registration/auth_registration_request.dart';
-import 'package:ascca_app/data/repositories/auth/auth_registration/auth_registration_repository.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../data/models/auth/auth_registration/auth_registration_request.dart';
+import '../../../../data/repositories/auth/auth_registration/auth_registration_repository.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
@@ -34,7 +34,7 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
             confirmPassword: confirmPassword,
           );
 
-      await repository.register(authRegisterRequestModel);
+      await repository.register(authRegisterRequestModel, context);
       emit(AuthRegistrationSuccess());
 
       Navigator.push(
@@ -46,7 +46,7 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
       );
       SnackBarService.showSnackBar(
         context,
-        Messages.registrationSuccessfully,
+        AppLocalizations.of(context).registrationSuccessfully,
         AppColors.black,
       );
     } catch (e) {

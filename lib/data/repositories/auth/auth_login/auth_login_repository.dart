@@ -1,11 +1,11 @@
-import 'package:ascca_app/data/models/auth/auth_login/auth_login_request_model.dart';
 // import 'package:ascca_app/shared/utils/app_keys.dart';
-import 'package:ascca_app/data/services/auth/auth_api_client.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../../shared/services/local/secure_service.dart';
+import '../../../models/auth/auth_login/auth_login_request_model.dart';
+import '../../../services/auth/auth_api_client.dart';
 
 class AuthLoginRepository {
   final SecureService _secureStorage;
@@ -13,7 +13,10 @@ class AuthLoginRepository {
 
   AuthLoginRepository(this._secureStorage, this._authApiClient);
 
-  Future<void> login(AuthLoginRequestModel authLoginRequestModel) async {
+  Future<void> login(
+    AuthLoginRequestModel authLoginRequestModel,
+    BuildContext context,
+  ) async {
     //  bool isAuth = await _authApiClient.login(mail, password);
     // final response = await baseDio.post('/auth/login', data: model.toJson());
 
@@ -37,16 +40,19 @@ class AuthLoginRepository {
       await _secureStorage.saveUserStatus(status.toString());
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? Messages.unknownError;
+      final errorMessage =
+          e.message ?? AppLocalizations.of(context).unknownError;
       if (statusCode == 404) {
-        throw Exception(Messages.notFoundUser);
+        throw Exception(AppLocalizations.of(context).notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $errorMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $errorMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 }

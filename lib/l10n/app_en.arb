@@ -286,5 +286,185 @@
   "updateYourProfile": "Update your information",
   "@updateYourProfile": {
     "description": "Text for updating profile information"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Warning message when passwords do not match"
+  },
+  "uploadImage": "Please upload an image",
+  "@uploadImage": {
+    "description": "Notification shown when image upload is required"
+  },
+  "wrongModel": "Wrong model sent",
+  "@wrongModel": {
+    "description": "Message shown when an incorrect model is sent"
+  },
+  "notFoundData": "\"data\" not found in response.",
+  "@notFoundData": {
+    "description": "Message when the response object does not contain data"
+  },
+  "unknownError": "An unknown error occurred.",
+  "@unknownError": {
+    "description": "Message shown when an unknown error occurs"
+  },
+  "successLogin": "Login successful",
+  "@successLogin": {
+    "description": "Message shown when login is successful"
+  },
+  "passwordsUpdated": "Password successfully updated!",
+  "@passwordsUpdated": {
+    "description": "Message shown when password is successfully changed"
+  },
+  "registrationSuccessfully": "Registration successful",
+  "@registrationSuccessfully": {
+    "description": "Notification upon successful registration"
+  },
+  "userIdNotFound": "User ID not found!",
+  "@userIdNotFound": {
+    "description": "Message shown when the user ID is not found"
+  },
+  "wrongUserId": "Invalid User ID!",
+  "@wrongUserId": {
+    "description": "Message shown when an invalid user ID is provided"
+  },
+  "eventCreatedSuccessfully": "Event successfully created!",
+  "@eventCreatedSuccessfully": {
+    "description": "Notification when a new event is successfully created"
+  },
+  "wrongOTP": "Please wait 30 seconds after entering an incorrect OTP.",
+  "@wrongOTP": {
+    "description": "Message displayed when an incorrect OTP is entered"
+  },
+  "verificationSuccessfully": "Verification completed successfully!",
+  "@verificationSuccessfully": {
+    "description": "Notification upon successful verification"
+  },
+  "errorDuringVerification": "Error during verification:",
+  "@errorDuringVerification": {
+    "description": "Message displayed when an error occurs during verification"
+  },
+  "checkMail": "Invalid OTP. Please check your email and try again.",
+  "@checkMail": {
+    "description": "Notification when OTP is incorrect and user should check email"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "Message shown when no data is available"
+  },
+  "noNamedEvent": "Untitled event",
+  "@noNamedEvent": {
+    "description": "Title for an event without a name"
+  },
+  "noEventFound": "No events found.",
+  "@noEventFound": {
+    "description": "Message when no events are found"
+  },
+  "anErrorOccurred": "An error occurred:",
+  "@anErrorOccurred": {
+    "description": "Generic system error message"
+  },
+  "error": "Error:",
+  "@error": {
+    "description": "General error notification"
+  },
+  "dateNotAvailable": "Date not available",
+  "@dateNotAvailable": {
+    "description": "Message when a date is unavailable"
+  },
+  "organizerHasNoEvents": "This organizer has no events.",
+  "@organizerHasNoEvents": {
+    "description": "Message when the organizer has no events"
+  },
+  "qrCodeSent": "QR code has been sent to your email.",
+  "@qrCodeSent": {
+    "description": "Notification when a QR code is sent"
+  },
+  "code": "Code:",
+  "@code": {
+    "description": "Label text for code"
+  },
+  "eventsWillUpdate": "Events will be loaded...",
+  "@eventsWillUpdate": {
+    "description": "Message when events list is being updated"
+  },
+  "dataUpdatedSuccessfully": "Your data has been updated successfully",
+  "@dataUpdatedSuccessfully": {
+    "description": "Notification when data is successfully updated"
+  },
+  "problemWithSystem": "There is a system issue, we apologize.",
+  "@problemWithSystem": {
+    "description": "Message when a system error occurs"
+  },
+  "notFoundUser": "User not found. Please check again.",
+  "@notFoundUser": {
+    "description": "Notification when a user is not found"
+  },
+  "notFoundAdmin": "Organizer data not found. Please check the request and try again.",
+  "@notFoundAdmin": {
+    "description": "Message when organizer data is not found"
+  },
+  "notFoundEvents": "Event not found. Please check again.",
+  "@notFoundEvents": {
+    "description": "Message when no events are found"
+  },
+  "attendanceConfirmed": "Check-in completed successfully",
+  "@attendanceConfirmed": {
+    "description": "Message after successful QR code check-in"
+  },
+  "alreadyScanned": "QR code has already been scanned",
+  "@alreadyScanned": {
+    "description": "Message if QR code was already scanned"
+  },
+  "exported": "Exported",
+  "@exported": {
+    "description": "Message after successful export"
+  },
+  "enterValue": "Enter value",
+  "@enterValue": {
+    "description": "Message when input is empty"
+  },
+  "enterEmail": "Enter your email address",
+  "@enterEmail": {
+    "description": "Warning for empty email field"
+  },
+  "invalidEmail": "Email address must contain '@'",
+  "@invalidEmail": {
+    "description": "Warning for invalid email format"
+  },
+  "enterPassword": "Enter your password",
+  "@enterPassword": {
+    "description": "Warning for empty password"
+  },
+  "shortPassword": "Password must be at least 6 characters long",
+  "@shortPassword": {
+    "description": "Warning for short password"
+  },
+  "enterName": "Enter your name",
+  "@enterName": {
+    "description": "Warning for empty name field"
+  },
+  "enterEventCity": "Please enter the event city",
+  "@enterEventCity": {
+    "description": "Warning for empty event city field"
+  },
+  "enterEventDescription": "Please enter the event description",
+  "@enterEventDescription": {
+    "description": "Warning for empty event description"
+  },
+  "enterEventName": "Please enter the event name",
+  "@enterEventName": {
+    "description": "Warning for empty event name"
+  },
+  "enterEventStreet": "Please enter the event street",
+  "@enterEventStreet": {
+    "description": "Warning for empty event street field"
+  },
+  "selectDate": "Please select a date",
+  "@selectDate": {
+    "description": "Warning when no date is selected"
+  },
+  "invalidDateFormat": "Enter date in correct format (dd.MM.yyyy HH:mm)",
+  "@invalidDateFormat": {
+    "description": "Warning for invalid date format"
   }
 }

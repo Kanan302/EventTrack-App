@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../utils/messages/messages.dart';
 
 class CreateEventPhoto extends StatelessWidget {
   final ValueNotifier<File?> imageNotifier;
@@ -21,7 +20,10 @@ class CreateEventPhoto extends StatelessWidget {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      requestFullMetadata: false,
+    );
     if (pickedFile != null) {
       imageNotifier.value = File(pickedFile.path);
       onImageSelected(imageNotifier.value);
@@ -66,7 +68,8 @@ class CreateEventPhoto extends StatelessWidget {
                                 onTap: () {
                                   imageNotifier.value = null;
                                   onImageSelected(null);
-                                  errorNotifier.value = Messages.uploadImage;
+                                  errorNotifier.value =
+                                      AppLocalizations.of(context).uploadImage;
                                 },
                                 child: const CircleAvatar(
                                   backgroundColor: Colors.white,

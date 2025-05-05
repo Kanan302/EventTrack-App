@@ -16,7 +16,7 @@ class CreateEventDescription extends StatelessWidget {
     return CreateEventFormField(
       labelText: AppLocalizations.of(context).eventDescription,
       controller: eventDescriptionController,
-      validator: Validators.writeEventDescription,
+      validator:(value) => Validators.writeEventDescription(value, context),
     );
   }
 }

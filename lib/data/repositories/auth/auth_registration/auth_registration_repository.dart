@@ -1,11 +1,11 @@
-import 'package:ascca_app/data/models/auth/auth_registration/auth_registration_request.dart';
-import 'package:ascca_app/data/services/auth/auth_api_client.dart';
-import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../../shared/constants/app_keys.dart';
+import '../../../models/auth/auth_registration/auth_registration_request.dart';
+import '../../../services/auth/auth_api_client.dart';
 
 class AuthRegistrationRepository {
   final AuthApiClient _authApiClient;
@@ -14,6 +14,7 @@ class AuthRegistrationRepository {
 
   Future<void> register(
     AuthRegistrationRequestModel authRegistrationRequestModel,
+    BuildContext context,
   ) async {
     try {
       final response = await _authApiClient.register(
@@ -31,18 +32,21 @@ class AuthRegistrationRepository {
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
       final serverMessage =
-          e.response?.data[AppKeys.message] ?? Messages.unknownError;
+          e.response?.data[AppKeys.message] ??
+          AppLocalizations.of(context).unknownError;
       debugPrint('Dio error: $serverMessage');
 
       if (statusCode == 404 || statusCode == 403) {
         throw Exception(serverMessage);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $serverMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $serverMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 

@@ -1,9 +1,10 @@
-import 'package:ascca_app/data/repositories/events/bookmark_events/delete_bookmarked_event/delete_bookmark_event_repository.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../../data/repositories/events/bookmark_events/delete_bookmarked_event/delete_bookmark_event_repository.dart';
+import '../../../../../shared/services/local/secure_service.dart';
 
 part 'delete_bookmarked_events_state.dart';
 
@@ -16,18 +17,20 @@ class DeleteBookmarkedEventsCubit extends Cubit<DeleteBookmarkedEventsState> {
     required this.secureService,
   }) : super(DeleteBookmarkedEventsInitial());
 
-  Future<void> deleteBookmarkEvent(String eventId) async {
+  Future<void> deleteBookmarkEvent(BuildContext context, String eventId) async {
     emit(DeleteBookmarkedEventsLoading());
     try {
       final userId = await secureService.userId;
 
       if (userId == null || userId.isEmpty) {
         emit(
-          DeleteBookmarkedEventsFailure(errorMessage: Messages.userIdNotFound),
+          DeleteBookmarkedEventsFailure(
+            errorMessage: AppLocalizations.of(context).userIdNotFound,
+          ),
         );
         return;
       }
-      await repository.deleteBookmarkEvent(userId, eventId);
+      await repository.deleteBookmarkEvent(userId, eventId, context);
       emit(DeleteBookmarkedEventsSuccess());
     } catch (e) {
       debugPrint("Error: ${e.toString()}");

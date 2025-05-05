@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../../../../shared/services/injection/di.dart';
 import '../../../../../shared/services/local/secure_service.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/events/export_event/export_event_cubit.dart';
 import '../../../../cubits/events/register_event/register_event_cubit.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 
@@ -46,13 +46,13 @@ class _EventDetailButtonState extends State<EventDetailButton> {
               if (state is ExportEventSuccess) {
                 SnackBarService.showSnackBar(
                   context,
-                  Messages.exported,
+                  AppLocalizations.of(context).exported,
                   AppColors.black,
                 );
               } else if (state is ExportEventFailure) {
                 SnackBarService.showSnackBar(
                   context,
-                  '${Messages.anErrorOccurred} ${state.errorMessage}',
+                  '${AppLocalizations.of(context).anErrorOccurred} ${state.errorMessage}',
                   AppColors.red,
                 );
               }
@@ -61,6 +61,7 @@ class _EventDetailButtonState extends State<EventDetailButton> {
               return AppElevatedButton(
                 onPressed:
                     () => context.read<ExportEventCubit>().exportEvent(
+                      context,
                       widget.eventId,
                     ),
                 buttonColor: AppColors.lavenderBlue,
@@ -78,13 +79,13 @@ class _EventDetailButtonState extends State<EventDetailButton> {
               if (state is RegisterEventSuccess) {
                 SnackBarService.showSnackBar(
                   context,
-                  Messages.qrCodeSent,
+                  AppLocalizations.of(context).qrCodeSent,
                   AppColors.black,
                 );
               } else if (state is RegisterEventFailure) {
                 SnackBarService.showSnackBar(
                   context,
-                  '${Messages.anErrorOccurred} ${state.errorMessage}',
+                  '${AppLocalizations.of(context).anErrorOccurred} ${state.errorMessage}',
                   AppColors.red,
                 );
               }
@@ -93,6 +94,7 @@ class _EventDetailButtonState extends State<EventDetailButton> {
               return AppElevatedButton(
                 onPressed:
                     () => context.read<RegisterEventCubit>().registerEvent(
+                      context,
                       widget.eventId,
                     ),
                 buttonColor: AppColors.lavenderBlue,

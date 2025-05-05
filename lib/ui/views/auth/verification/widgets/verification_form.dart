@@ -37,7 +37,7 @@ class VerificationForm extends StatelessWidget {
                 onSavedOtp(otp);
               }
             },
-            validator: Validators.isEmpty,
+            validator: (value) => Validators.isEmpty(value, context),
           );
         }),
       ),

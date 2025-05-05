@@ -1,10 +1,10 @@
-import 'package:ascca_app/data/models/auth/auth_reset_password/auth_reset_password_request_model.dart';
-import 'package:ascca_app/data/services/auth/auth_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../models/auth/auth_reset_password/auth_reset_password_request_model.dart';
+import '../../../services/auth/auth_api_client.dart';
 
 class AuthResetPasswordRepository {
   final AuthApiClient _authApiClient;
@@ -13,6 +13,7 @@ class AuthResetPasswordRepository {
 
   Future<void> resetPassword(
     AuthResetPasswordRequestModel authResetPasswordRequestModel,
+    BuildContext context,
   ) async {
     try {
       final response = await _authApiClient.resetPassword(
@@ -28,16 +29,19 @@ class AuthResetPasswordRepository {
       debugPrint('Şifrəniz sıfırlandı, e-poçt qeyd olundu.');
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? Messages.unknownError;
+      final errorMessage =
+          e.message ?? AppLocalizations.of(context).unknownError;
       if (statusCode == 404) {
-        throw Exception(Messages.notFoundUser);
+        throw Exception(AppLocalizations.of(context).notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $errorMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $errorMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 }

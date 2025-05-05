@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:ascca_app/data/services/profile/profile_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../services/profile/profile_api_client.dart';
 
 class UpdateProfileRepository {
   final ProfileApiClient _profileApiClient;
@@ -16,6 +16,7 @@ class UpdateProfileRepository {
     String? fullName,
     String? aboutMe,
     File? profilePictureFile,
+    BuildContext context,
   ) async {
     try {
       MultipartFile? profilePicture;
@@ -37,16 +38,19 @@ class UpdateProfileRepository {
       debugPrint('Response: $response');
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? Messages.unknownError;
+      final errorMessage =
+          e.message ?? AppLocalizations.of(context).unknownError;
       if (statusCode == 404) {
-        throw Exception(Messages.notFoundUser);
+        throw Exception(AppLocalizations.of(context).notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $errorMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $errorMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 }

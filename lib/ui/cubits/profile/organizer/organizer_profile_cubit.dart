@@ -14,6 +14,7 @@ class OrganizerProfileCubit extends Cubit<OrganizerProfileState> {
     : super(OrganizerProfileInitial());
 
   Future<void> getOrganizerData(
+    BuildContext context,
     int organizerId, {
     bool forceRefresh = false,
   }) async {
@@ -21,7 +22,7 @@ class OrganizerProfileCubit extends Cubit<OrganizerProfileState> {
 
     emit(OrganizerProfileLoading());
     try {
-      final organizer = await repository.getOrganizerData(organizerId);
+      final organizer = await repository.getOrganizerData(organizerId, context);
       emit(OrganizerProfileSuccess(organizer));
       _hasFetched = true;
     } catch (e) {

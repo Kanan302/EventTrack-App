@@ -1,11 +1,10 @@
-import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-
+import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/events/get_events/get_events_cubit.dart';
-import '../../../utils/messages/messages.dart';
 import '../widgets/map_widget.dart';
 
 class MapTab extends StatefulWidget {
@@ -22,7 +21,7 @@ class _MapTabState extends State<MapTab> {
   @override
   void initState() {
     super.initState();
-    context.read<GetEventsCubit>().getEvents();
+    context.read<GetEventsCubit>().getEvents(context);
   }
 
   @override
@@ -36,7 +35,9 @@ class _MapTabState extends State<MapTab> {
 
           if (state is GetEventsFailure) {
             return Center(
-              child: Text('${Messages.error} ${state.errorMessage}'),
+              child: Text(
+                '${AppLocalizations.of(context).error} ${state.errorMessage}',
+              ),
             );
           }
 

@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
 import '../../../../shared/constants/app_routes.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/events/top_events/top_events_cubit.dart';
-import '../../../utils/messages/messages.dart';
 import '../events_tab/widgets/event_card_item.dart';
 
 class TrendingTab extends StatefulWidget {
@@ -23,7 +23,7 @@ class _TrendingTabState extends State<TrendingTab> {
 
   @override
   void initState() {
-    context.read<TopEventsCubit>().getTopEvents();
+    context.read<TopEventsCubit>().getTopEvents(context);
     super.initState();
   }
 
@@ -98,17 +98,22 @@ class _TrendingTabState extends State<TrendingTab> {
                     } else if (state is TopEventsFailure) {
                       return Center(
                         child: Text(
-                          '${Messages.anErrorOccurred} ${state.errorMessage}',
+                          '${AppLocalizations.of(context).anErrorOccurred} ${state.errorMessage}',
                         ),
                       );
                     } else if (state is TopEventsSuccess) {
                       final topEvents = state.topEvents;
                       if (topEvents.isEmpty) {
-                        return const Center(child: Text(Messages.noEventFound));
+                        return Center(
+                          child: Text(
+                            AppLocalizations.of(context).noEventFound,
+                          ),
+                        );
                       }
                       return RefreshIndicator(
                         onRefresh: () async {
                           await context.read<TopEventsCubit>().getTopEvents(
+                            context,
                             forceRefresh: true,
                           );
                         },
@@ -135,10 +140,16 @@ class _TrendingTabState extends State<TrendingTab> {
                                             ).format(
                                               DateTime.parse(event.startDate!),
                                             )
-                                            : Messages.noData,
+                                            : AppLocalizations.of(
+                                              context,
+                                            ).noData,
                                     title: event.name!,
-                                    street: event.street ?? Messages.noData,
-                                    city: event.city ?? Messages.noData,
+                                    street:
+                                        event.street ??
+                                        AppLocalizations.of(context).noData,
+                                    city:
+                                        event.city ??
+                                        AppLocalizations.of(context).noData,
                                   ),
                                   Positioned(
                                     top: 0,

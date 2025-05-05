@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:ascca_app/data/models/events/scan_event/scan_event_response_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
 import '../../../models/events/scan_event/scan_event_request_model.dart';
+import '../../../models/events/scan_event/scan_event_response_model.dart';
 import '../../../services/events/events_api_client.dart';
 
 class ScanEventRepository {
@@ -13,7 +13,10 @@ class ScanEventRepository {
 
   const ScanEventRepository(this._eventsApiClient);
 
-  Future<ScanEventResponseModel> scanEvent(String qrText) async {
+  Future<ScanEventResponseModel> scanEvent(
+    String qrText,
+    BuildContext context,
+  ) async {
     try {
       final request = ScanEventRequestModel(qrText: qrText);
       debugPrint("📤 Göndərilən JSON: ${jsonEncode(request.toJson())}");
@@ -22,18 +25,21 @@ class ScanEventRepository {
       return response;
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? Messages.unknownError;
+      final errorMessage =
+          e.message ?? AppLocalizations.of(context).unknownError;
       if (statusCode == 404) {
-        throw Exception(Messages.notFoundEvents);
+        throw Exception(AppLocalizations.of(context).notFoundEvents);
       } else if (statusCode == 400) {
-        throw Exception(Messages.alreadyScanned);
+        throw Exception(AppLocalizations.of(context).alreadyScanned);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $errorMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $errorMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 }

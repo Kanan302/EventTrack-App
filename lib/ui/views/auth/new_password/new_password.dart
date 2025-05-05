@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/auth/auth_new_password/auth_new_password_cubit.dart';
-import '../../../utils/messages/messages.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
 import '../../../utils/validators/validators.dart';
@@ -84,7 +83,9 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                 !_isPasswordVisible.value;
                           },
                           controller: _passwordController,
-                          validator: Validators.writePassword,
+                          validator:
+                              (value) =>
+                                  Validators.writePassword(value, context),
                         );
                       },
                     ),
@@ -107,7 +108,9 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                 !_isConfirmPasswordVisible.value;
                           },
                           controller: _confirmPasswordController,
-                          validator: Validators.writePassword,
+                          validator:
+                              (value) =>
+                                  Validators.writePassword(value, context),
                         );
                       },
                     ),
@@ -133,7 +136,9 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                     _confirmPasswordController.text) {
                                   SnackBarService.showSnackBar(
                                     context,
-                                    Messages.passwordsDoNotMatch,
+                                    AppLocalizations.of(
+                                      context,
+                                    ).passwordsDoNotMatch,
                                     AppColors.red,
                                   );
                                   return;

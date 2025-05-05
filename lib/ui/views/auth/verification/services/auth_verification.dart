@@ -1,12 +1,11 @@
-import 'package:ascca_app/shared/constants/app_keys.dart';
-import 'package:ascca_app/shared/constants/app_routes.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../../../shared/constants/app_keys.dart';
+import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/services/jwt/dio_configuration.dart';
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
 
 class AuthVerificationService {
@@ -31,7 +30,7 @@ class AuthVerificationService {
       if (response.statusCode == 200) {
         SnackBarService.showSnackBar(
           context,
-          Messages.verificationSuccessfully,
+          AppLocalizations.of(context).verificationSuccessfully,
           AppColors.black,
         );
         context.go(AppRoutes.home.path);
@@ -39,16 +38,16 @@ class AuthVerificationService {
       } else {
         SnackBarService.showSnackBar(
           context,
-          '${Messages.errorDuringVerification} ${response.statusCode}',
+          '${AppLocalizations.of(context).errorDuringVerification} ${response.statusCode}',
           AppColors.red,
         );
         return false;
       }
     } catch (e) {
-      debugPrint('${Messages.errorDuringVerification} $e');
+      debugPrint('${AppLocalizations.of(context).errorDuringVerification} $e');
       SnackBarService.showSnackBar(
         context,
-        '${Messages.errorDuringVerification} $e',
+        '${AppLocalizations.of(context).errorDuringVerification} $e',
         AppColors.red,
       );
       return false;
@@ -76,33 +75,33 @@ class AuthVerificationService {
       if (response.statusCode == 200) {
         SnackBarService.showSnackBar(
           context,
-          Messages.verificationSuccessfully,
+          AppLocalizations.of(context).verificationSuccessfully,
           AppColors.black,
         );
         return true;
       } else {
         SnackBarService.showSnackBar(
           context,
-          '${Messages.errorDuringVerification} ${response.statusCode}',
+          '${AppLocalizations.of(context).errorDuringVerification} ${response.statusCode}',
           AppColors.red,
         );
         return false;
       }
     } catch (e) {
-      debugPrint('${Messages.errorDuringVerification} $e');
+      debugPrint('${AppLocalizations.of(context).errorDuringVerification} $e');
 
       if (e is DioException &&
           e.response != null &&
           e.response!.statusCode == 404) {
         SnackBarService.showSnackBar(
           context,
-          Messages.checkMail,
+          AppLocalizations.of(context).checkMail,
           AppColors.red,
         );
       } else {
         SnackBarService.showSnackBar(
           context,
-          '${Messages.errorDuringVerification} $e',
+          '${AppLocalizations.of(context).errorDuringVerification} $e',
           AppColors.red,
         );
       }

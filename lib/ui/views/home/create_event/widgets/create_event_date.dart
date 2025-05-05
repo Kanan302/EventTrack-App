@@ -32,7 +32,8 @@ class CreateEventDate extends StatelessWidget {
                   true,
                   dateService,
                 ),
-            validator: Validators.validateDateTimeFormat,
+            validator:
+                (value) => Validators.validateDateTimeFormat(value, context),
           ),
         ),
         const SizedBox(width: 20),
@@ -47,7 +48,8 @@ class CreateEventDate extends StatelessWidget {
                   false,
                   dateService,
                 ),
-            validator: Validators.validateDateTimeFormat,
+            validator:
+                (value) => Validators.validateDateTimeFormat(value, context),
           ),
         ),
       ],

@@ -1,10 +1,11 @@
-import 'package:ascca_app/data/models/profile/user/user_profile_model.dart';
-import 'package:ascca_app/data/repositories/profile/user/user_profile_repository.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../data/models/profile/user/user_profile_model.dart';
+import '../../../../data/repositories/profile/user/user_profile_repository.dart';
+import '../../../../shared/services/local/secure_service.dart';
 
 part 'user_profile_state.dart';
 
@@ -16,25 +17,36 @@ class UserProfileCubit extends Cubit<UserProfileState> {
   UserProfileCubit({required this.repository, required this.secureService})
     : super(UserProfileInitial());
 
-  Future<void> getUserData({bool forceRefresh = false}) async {
+  Future<void> getUserData(
+    BuildContext context, {
+    bool forceRefresh = false,
+  }) async {
     if (_hasFetched && !forceRefresh) return;
 
     emit(UserProfileLoading());
     try {
       final userId = await secureService.userId;
       if (userId == null || userId.isEmpty) {
-        emit(UserProfileFailure(errorMessage: Messages.userIdNotFound));
+        emit(
+          UserProfileFailure(
+            errorMessage: AppLocalizations.of(context).userIdNotFound,
+          ),
+        );
         return;
       }
 
       final intUserId = int.tryParse(userId);
 
       if (intUserId == null) {
-        emit(UserProfileFailure(errorMessage: Messages.wrongUserId));
+        emit(
+          UserProfileFailure(
+            errorMessage: AppLocalizations.of(context).wrongUserId,
+          ),
+        );
         return;
       }
 
-      final user = await repository.getUserData(intUserId);
+      final user = await repository.getUserData(intUserId, context);
       emit(UserProfileSuccess(user));
       _hasFetched = true;
     } catch (e) {

@@ -7,7 +7,6 @@ import '../../../../../../data/models/profile/organizer/organizer_profile_model.
 import '../../../../../../shared/services/injection/di.dart';
 import '../../../../../../shared/services/local/secure_service.dart';
 import '../../../../../cubits/profile/organizer/organizer_profile_cubit.dart';
-import '../../../../../utils/messages/messages.dart';
 import '../../../events_tab/widgets/event_card_item.dart';
 
 class MyEventsPage extends StatefulWidget {
@@ -33,7 +32,10 @@ class _MyEventsPageState extends State<MyEventsPage> {
     setState(() {
       _userId = userId;
     });
-    context.read<OrganizerProfileCubit>().getOrganizerData(int.parse(userId!));
+    context.read<OrganizerProfileCubit>().getOrganizerData(
+      context,
+      int.parse(userId!),
+    );
   }
 
   @override
@@ -58,6 +60,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
                         await context
                             .read<OrganizerProfileCubit>()
                             .getOrganizerData(
+                              context,
                               int.parse(_userId!),
                               forceRefresh: true,
                             );
@@ -78,10 +81,18 @@ class _MyEventsPageState extends State<MyEventsPage> {
                                     ? DateFormat(
                                       'MMM d - EEE - h:mm a',
                                     ).format(DateTime.parse(event.startDate!))
-                                    : Messages.dateNotAvailable,
-                            title: event.name ?? Messages.noNamedEvent,
-                            street: event.street ?? Messages.noData,
-                            city: event.city ?? Messages.noData,
+                                    : AppLocalizations.of(
+                                      context,
+                                    ).dateNotAvailable,
+                            title:
+                                event.name ??
+                                AppLocalizations.of(context).noNamedEvent,
+                            street:
+                                event.street ??
+                                AppLocalizations.of(context).noData,
+                            city:
+                                event.city ??
+                                AppLocalizations.of(context).noData,
                             onDelete: () {},
                             userStatus: '0',
                           ),
@@ -93,7 +104,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
               ),
             );
           }
-          return const Center(child: Text(Messages.noData));
+          return Center(child: Text(AppLocalizations.of(context).noData));
         },
       ),
     );

@@ -286,5 +286,185 @@
   "updateYourProfile": "Məlumatlarınızı yeniləyin",
   "@updateYourProfile": {
     "description": "Profil məlumatlarını yeniləmə mətn"
+  },
+  "passwordsDoNotMatch": "Şifrələr uyğun gəlmir",
+  "@passwordsDoNotMatch": {
+    "description": "Şifrələr uyğun gəlmədikdə göstərilən xəbərdarlıq"
+  },
+  "uploadImage": "Zəhmət olmasa, şəkil yükləyin",
+  "@uploadImage": {
+    "description": "Şəkil yükləmək tələb olunduqda göstərilən xəbərdarlıq"
+  },
+  "wrongModel": "Yanlış model göndərildi",
+  "@wrongModel": {
+    "description": "Yanlış model göndərildikdə göstərilən xəbərdarlıq"
+  },
+  "notFoundData": "Cavabda \"data\" tapılmadı.",
+  "@notFoundData": {
+    "description": "Cavab obyektində data tapılmadıqda çıxan mesaj"
+  },
+  "unknownError": "Bilinməyən xəta baş verdi.",
+  "@unknownError": {
+    "description": "Naməlum xəta baş verdikdə göstərilən mesaj"
+  },
+  "successLogin": "Daxil olma uğurlu oldu",
+  "@successLogin": {
+    "description": "Uğurlu daxil olma zamanı çıxan bildiriş"
+  },
+  "passwordsUpdated": "Şifrə uğurla yeniləndi!",
+  "@passwordsUpdated": {
+    "description": "Şifrə uğurla dəyişdirildikdə göstərilən mesaj"
+  },
+  "registrationSuccessfully": "Qeydiyyat uğurlu oldu",
+  "@registrationSuccessfully": {
+    "description": "Uğurlu qeydiyyat zamanı çıxan bildiriş"
+  },
+  "userIdNotFound": "User ID tapılmadı!",
+  "@userIdNotFound": {
+    "description": "İstifadəçi ID-si tapılmadıqda göstərilən xəbərdarlıq"
+  },
+  "wrongUserId": "User ID düzgün deyil!",
+  "@wrongUserId": {
+    "description": "Yanlış istifadəçi ID-si daxil edildikdə göstərilən mesaj"
+  },
+  "eventCreatedSuccessfully": "Tədbir uğurla yarandı!",
+  "@eventCreatedSuccessfully": {
+    "description": "Yeni tədbir yaradıldıqda çıxan bildiriş"
+  },
+  "wrongOTP": "Xahiş edirik, yanlış OTP daxil etdiyiniz üçün 30 saniyə gözləyin.",
+  "@wrongOTP": {
+    "description": "Yanlış OTP daxil edildikdə göstərilən xəbərdarlıq"
+  },
+  "verificationSuccessfully": "Təsdiqləmə uğurla tamamlandı!",
+  "@verificationSuccessfully": {
+    "description": "Uğurlu təsdiqləmə zamanı çıxan bildiriş"
+  },
+  "errorDuringVerification": "Təsdiqləmə zamanı xəta oldu:",
+  "@errorDuringVerification": {
+    "description": "Təsdiqləmə prosesində xəta olduqda çıxan mesaj"
+  },
+  "checkMail": "Yanlış OTP. Zəhmət olmasa, e-poçtunuzu yoxlayın və yenidən cəhd edin.",
+  "@checkMail": {
+    "description": "Yanlış OTP daxil edildikdə istifadəçiyə göstərilən bildiriş"
+  },
+  "noData": "Məlumat yoxdur",
+  "@noData": {
+    "description": "Məlumat olmadıqda göstərilən mesaj"
+  },
+  "noNamedEvent": "Adsız tədbir",
+  "@noNamedEvent": {
+    "description": "Adı olmayan tədbir üçün göstərilən başlıq"
+  },
+  "noEventFound": "Heç bir tədbir tapılmadı.",
+  "@noEventFound": {
+    "description": "Tədbir tapılmadıqda göstərilən mesaj"
+  },
+  "anErrorOccurred": "Xəta baş verdi:",
+  "@anErrorOccurred": {
+    "description": "Sistem xətası baş verdikdə göstərilən ümumi mesaj"
+  },
+  "error": "Xəta:",
+  "@error": {
+    "description": "Ümumi xəta bildirişi"
+  },
+  "dateNotAvailable": "Tarix mövcud deyil",
+  "@dateNotAvailable": {
+    "description": "Seçim üçün tarix olmadıqda göstərilən mesaj"
+  },
+  "organizerHasNoEvents": "Bu təşkilatçının tədbiri yoxdur.",
+  "@organizerHasNoEvents": {
+    "description": "Təşkilatçının heç bir tədbiri olmadıqda göstərilən mesaj"
+  },
+  "qrCodeSent": "QR kod e-poçt ünvanınıza göndərildi.",
+  "@qrCodeSent": {
+    "description": "Tədbirdə iştirak üçün QR kod göndərildiyi barədə bildiriş"
+  },
+  "code": "Kod:",
+  "@code": {
+    "description": "Kod etiket yazısı"
+  },
+  "eventsWillUpdate": "Tədbirlər yüklənəcək...",
+  "@eventsWillUpdate": {
+    "description": "Tədbirlər siyahısı yenilənərkən çıxan bildiriş"
+  },
+  "dataUpdatedSuccessfully": "Məlumatlarınız uğurla yeniləndi",
+  "@dataUpdatedSuccessfully": {
+    "description": "Məlumatlar uğurla yeniləndikdə çıxan bildiriş"
+  },
+  "problemWithSystem": "Sistemdə problem var, üzr istəyirik.",
+  "@problemWithSystem": {
+    "description": "Sistem problemi olduqda göstərilən mesaj"
+  },
+  "notFoundUser": "İstifadəçi tapılmadı. Zəhmət olmasa, yenidən yoxlayın.",
+  "@notFoundUser": {
+    "description": "İstifadəçi tapılmadıqda çıxan bildiriş"
+  },
+  "notFoundAdmin": "Təşkilatçı məlumatı tapılmadı. Zəhmət olmasa, sorğunu yoxlayın və yenidən cəhd edin.",
+  "@notFoundAdmin": {
+    "description": "Təşkilatçı məlumatı tapılmadıqda göstərilən mesaj"
+  },
+  "notFoundEvents": "Tədbir tapılmadı. Zəhmət olmasa, yenidən yoxlayın.",
+  "@notFoundEvents": {
+    "description": "Heç bir tədbir tapılmadıqda göstərilən bildiriş"
+  },
+  "attendanceConfirmed": "Yoxlama uğurla tamamlandı",
+  "@attendanceConfirmed": {
+    "description": "QR yoxlaması uğurla başa çatanda çıxan mesaj"
+  },
+  "alreadyScanned": "QR kod scan edilib",
+  "@alreadyScanned": {
+    "description": "QR kod artıq oxunubsa çıxan bildiriş"
+  },
+  "exported": "İxrac edildi",
+  "@exported": {
+    "description": "Uğurla ixrac edildikdə çıxan mesaj"
+  },
+  "enterValue": "Daxil edin",
+  "@enterValue": {
+    "description": "Input boş olduqda çıxan mesaj"
+  },
+  "enterEmail": "E-poçt ünvanınızı daxil edin",
+  "@enterEmail": {
+    "description": "Boş e-poçt sahəsi üçün xəbərdarlıq"
+  },
+  "invalidEmail": "E-poçt ünvanında '@' işarəsi olmalıdır",
+  "@invalidEmail": {
+    "description": "Yanlış e-poçt formatı üçün xəbərdarlıq"
+  },
+  "enterPassword": "Şifrənizi daxil edin",
+  "@enterPassword": {
+    "description": "Boş şifrə sahəsi üçün xəbərdarlıq"
+  },
+  "shortPassword": "Şifrə ən azı 6 simvoldan ibarət olmalıdır",
+  "@shortPassword": {
+    "description": "Qısa şifrə üçün xəbərdarlıq"
+  },
+  "enterName": "Adınızı daxil edin",
+  "@enterName": {
+    "description": "Boş ad sahəsi üçün xəbərdarlıq"
+  },
+  "enterEventCity": "Zəhmət olmasa, tədbirin şəhərini daxil edin",
+  "@enterEventCity": {
+    "description": "Tədbir şəhəri boş olduqda xəbərdarlıq"
+  },
+  "enterEventDescription": "Zəhmət olmasa, tədbirin təsvirini daxil edin",
+  "@enterEventDescription": {
+    "description": "Tədbir təsviri boş olduqda xəbərdarlıq"
+  },
+  "enterEventName": "Zəhmət olmasa, tədbirin adını daxil edin",
+  "@enterEventName": {
+    "description": "Tədbir adı boş olduqda xəbərdarlıq"
+  },
+  "enterEventStreet": "Zəhmət olmasa, tədbirin küçəsini daxil edin",
+  "@enterEventStreet": {
+    "description": "Tədbir küçəsi boş olduqda xəbərdarlıq"
+  },
+  "selectDate": "Zəhmət olmasa, tarixi seçin",
+  "@selectDate": {
+    "description": "Boş tarix seçimi üçün xəbərdarlıq"
+  },
+  "invalidDateFormat": "Tarixi düzgün formatda daxil edin (dd.MM.yyyy HH:mm)",
+  "@invalidDateFormat": {
+    "description": "Yanlış tarix formatı üçün xəbərdarlıq"
   }
 }

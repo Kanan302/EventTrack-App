@@ -1,21 +1,22 @@
-import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
-import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
-import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
-import 'package:ascca_app/shared/theme/app_colors.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
-import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_about.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_app_bar.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_button.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_date.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_location.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_organizer.dart';
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_title.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../../data/models/events/bookmarked_events/bookmarked_events_model.dart';
+import '../../../../../data/models/events/get_events/get_events_model.dart';
+import '../../../../../data/models/events/top_events/top_events_model.dart';
+import '../../../../../shared/theme/app_colors.dart';
+import '../../../../cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
+import '../../../../cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';
+import '../../../../cubits/profile/organizer/organizer_profile_cubit.dart';
+import '../widgets/event_detail_about.dart';
+import '../widgets/event_detail_app_bar.dart';
+import '../widgets/event_detail_button.dart';
+import '../widgets/event_detail_date.dart';
+import '../widgets/event_detail_location.dart';
+import '../widgets/event_detail_organizer.dart';
+import '../widgets/event_detail_title.dart';
 
 class EventDetailPage extends StatelessWidget {
   final dynamic eventModel;
@@ -46,6 +47,7 @@ class EventDetailPage extends StatelessWidget {
 
     if (organizerId != null) {
       context.read<OrganizerProfileCubit>().getOrganizerData(
+        context,
         int.parse(organizerId),
       );
     }
@@ -65,7 +67,7 @@ class EventDetailPage extends StatelessWidget {
                   Icon(Icons.error, color: AppColors.red, size: 40),
                   const SizedBox(height: 20),
                   Text(
-                    '${Messages.anErrorOccurred} ${state.errorMessage}',
+                    '${AppLocalizations.of(context).anErrorOccurred} ${state.errorMessage}',
                     style: TextStyle(color: AppColors.red, fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
@@ -82,6 +84,7 @@ class EventDetailPage extends StatelessWidget {
                 if (organizerId != null) {
                   context.read<OrganizerProfileCubit>().getOrganizerData(
                     forceRefresh: true,
+                    context,
                     int.parse(organizerId),
                   );
                 }
@@ -114,12 +117,12 @@ class EventDetailPage extends StatelessWidget {
                                   if (value) {
                                     context
                                         .read<DeleteBookmarkedEventsCubit>()
-                                        .deleteBookmarkEvent(eventId);
+                                        .deleteBookmarkEvent(context, eventId);
                                     isBookmarked.value = false;
                                   } else {
                                     context
                                         .read<BookmarkEventsCubit>()
-                                        .bookmarkEvent(eventId);
+                                        .bookmarkEvent(context, eventId);
                                     isBookmarked.value = true;
                                   }
                                 }
@@ -152,9 +155,11 @@ class EventDetailPage extends StatelessWidget {
                                   const SizedBox(height: 20),
                                   EventDetailLocation(
                                     eventCity:
-                                        eventModel.city ?? Messages.noData,
+                                        eventModel.city ??
+                                        AppLocalizations.of(context).noData,
                                     eventStreet:
-                                        eventModel.street ?? Messages.noData,
+                                        eventModel.street ??
+                                        AppLocalizations.of(context).noData,
                                   ),
                                   const SizedBox(height: 10),
                                   EventDetailOrganizer(
@@ -186,7 +191,7 @@ class EventDetailPage extends StatelessWidget {
             );
           }
 
-          return const Center(child: Text(Messages.noData));
+          return Center(child: Text(AppLocalizations.of(context).notFoundData));
         },
       ),
     );

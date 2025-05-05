@@ -1,10 +1,11 @@
-import 'package:ascca_app/data/models/events/bookmarked_events/bookmarked_events_model.dart';
-import 'package:ascca_app/data/repositories/events/bookmark_events/get_bookmarked_events/bookmarked_events_repository.dart';
-import 'package:ascca_app/shared/services/local/secure_service.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../../data/models/events/bookmarked_events/bookmarked_events_model.dart';
+import '../../../../../data/repositories/events/bookmark_events/get_bookmarked_events/bookmarked_events_repository.dart';
+import '../../../../../shared/services/local/secure_service.dart';
 
 part 'bookmarked_events_state.dart';
 
@@ -15,24 +16,32 @@ class BookmarkedEventsCubit extends Cubit<BookmarkedEventsState> {
   BookmarkedEventsCubit({required this.repository, required this.secureService})
     : super(BookmarkedEventsInitial());
 
-  Future<void> getBookmarkedEvents() async {
+  Future<void> getBookmarkedEvents(BuildContext context) async {
     emit(BookmarkedEventsLoading());
 
     try {
       final userId = await secureService.userId;
       if (userId == null || userId.isEmpty) {
-        emit(BookmarkedEventsFailure(errorMessage: Messages.userIdNotFound));
+        emit(
+          BookmarkedEventsFailure(
+            errorMessage: AppLocalizations.of(context).userIdNotFound,
+          ),
+        );
         return;
       }
 
       final intUserId = int.tryParse(userId);
 
       if (intUserId == null) {
-        emit(BookmarkedEventsFailure(errorMessage: Messages.wrongUserId));
+        emit(
+          BookmarkedEventsFailure(
+            errorMessage: AppLocalizations.of(context).wrongUserId,
+          ),
+        );
         return;
       }
 
-      final events = await repository.getBookmarkedEvents(intUserId);
+      final events = await repository.getBookmarkedEvents(intUserId, context);
 
       emit(BookmarkedEventsSuccess(events: events));
     } catch (e) {

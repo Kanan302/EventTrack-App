@@ -286,5 +286,185 @@
   "updateYourProfile": "Обновите вашу информацию",
   "@updateYourProfile": {
     "description": "Текст для обновления профиля"
+  },
+  "passwordsDoNotMatch": "Пароли не совпадают",
+  "@passwordsDoNotMatch": {
+    "description": "Предупреждение, когда пароли не совпадают"
+  },
+  "uploadImage": "Пожалуйста, загрузите изображение",
+  "@uploadImage": {
+    "description": "Уведомление при необходимости загрузки изображения"
+  },
+  "wrongModel": "Отправлена неверная модель",
+  "@wrongModel": {
+    "description": "Сообщение при отправке неверной модели"
+  },
+  "notFoundData": "В ответе не найдено \"data\".",
+  "@notFoundData": {
+    "description": "Сообщение при отсутствии поля data в ответе"
+  },
+  "unknownError": "Произошла неизвестная ошибка.",
+  "@unknownError": {
+    "description": "Сообщение при неизвестной ошибке"
+  },
+  "successLogin": "Вход выполнен успешно",
+  "@successLogin": {
+    "description": "Сообщение при успешном входе"
+  },
+  "passwordsUpdated": "Пароль успешно обновлён!",
+  "@passwordsUpdated": {
+    "description": "Сообщение при успешном обновлении пароля"
+  },
+  "registrationSuccessfully": "Регистрация прошла успешно",
+  "@registrationSuccessfully": {
+    "description": "Уведомление о успешной регистрации"
+  },
+  "userIdNotFound": "ID пользователя не найден!",
+  "@userIdNotFound": {
+    "description": "Сообщение при отсутствии ID пользователя"
+  },
+  "wrongUserId": "Неверный ID пользователя!",
+  "@wrongUserId": {
+    "description": "Сообщение при неправильном ID пользователя"
+  },
+  "eventCreatedSuccessfully": "Мероприятие успешно создано!",
+  "@eventCreatedSuccessfully": {
+    "description": "Сообщение при успешном создании мероприятия"
+  },
+  "wrongOTP": "Пожалуйста, подождите 30 секунд после неправильного ввода OTP.",
+  "@wrongOTP": {
+    "description": "Сообщение при неверном OTP"
+  },
+  "verificationSuccessfully": "Подтверждение успешно завершено!",
+  "@verificationSuccessfully": {
+    "description": "Уведомление о успешном подтверждении"
+  },
+  "errorDuringVerification": "Ошибка при подтверждении:",
+  "@errorDuringVerification": {
+    "description": "Сообщение при ошибке во время подтверждения"
+  },
+  "checkMail": "Неверный OTP. Пожалуйста, проверьте почту и попробуйте снова.",
+  "@checkMail": {
+    "description": "Уведомление о неправильном OTP и необходимости проверить почту"
+  },
+  "noData": "Нет данных",
+  "@noData": {
+    "description": "Сообщение при отсутствии данных"
+  },
+  "noNamedEvent": "Мероприятие без названия",
+  "@noNamedEvent": {
+    "description": "Заголовок для мероприятия без имени"
+  },
+  "noEventFound": "Мероприятия не найдены.",
+  "@noEventFound": {
+    "description": "Сообщение, если мероприятия не найдены"
+  },
+  "anErrorOccurred": "Произошла ошибка:",
+  "@anErrorOccurred": {
+    "description": "Общее сообщение об ошибке в системе"
+  },
+  "error": "Ошибка:",
+  "@error": {
+    "description": "Универсальное уведомление об ошибке"
+  },
+  "dateNotAvailable": "Дата недоступна",
+  "@dateNotAvailable": {
+    "description": "Сообщение при отсутствии доступной даты"
+  },
+  "organizerHasNoEvents": "У этого организатора нет мероприятий.",
+  "@organizerHasNoEvents": {
+    "description": "Сообщение, если у организатора нет мероприятий"
+  },
+  "qrCodeSent": "QR-код отправлен на вашу электронную почту.",
+  "@qrCodeSent": {
+    "description": "Уведомление о отправке QR-кода"
+  },
+  "code": "Код:",
+  "@code": {
+    "description": "Текст ярлыка для кода"
+  },
+  "eventsWillUpdate": "Мероприятия загружаются...",
+  "@eventsWillUpdate": {
+    "description": "Сообщение при обновлении списка мероприятий"
+  },
+  "dataUpdatedSuccessfully": "Ваши данные успешно обновлены",
+  "@dataUpdatedSuccessfully": {
+    "description": "Уведомление об успешном обновлении данных"
+  },
+  "problemWithSystem": "Произошла системная ошибка, извините.",
+  "@problemWithSystem": {
+    "description": "Сообщение при системной ошибке"
+  },
+  "notFoundUser": "Пользователь не найден. Пожалуйста, проверьте еще раз.",
+  "@notFoundUser": {
+    "description": "Уведомление, если пользователь не найден"
+  },
+  "notFoundAdmin": "Данные организатора не найдены. Пожалуйста, проверьте запрос и попробуйте снова.",
+  "@notFoundAdmin": {
+    "description": "Сообщение, если данные организатора не найдены"
+  },
+  "notFoundEvents": "Мероприятие не найдено. Пожалуйста, проверьте еще раз.",
+  "@notFoundEvents": {
+    "description": "Сообщение при отсутствии мероприятий"
+  },
+  "attendanceConfirmed": "Проверка успешно завершена",
+  "@attendanceConfirmed": {
+    "description": "Сообщение после успешной проверки QR-кода"
+  },
+  "alreadyScanned": "QR-код уже был отсканирован",
+  "@alreadyScanned": {
+    "description": "Сообщение, если QR-код уже отсканирован"
+  },
+  "exported": "Экспортировано",
+  "@exported": {
+    "description": "Сообщение после успешного экспорта"
+  },
+  "enterValue": "Введите значение",
+  "@enterValue": {
+    "description": "Сообщение при пустом вводе"
+  },
+  "enterEmail": "Введите свой адрес электронной почты",
+  "@enterEmail": {
+    "description": "Предупреждение при пустом поле электронной почты"
+  },
+  "invalidEmail": "Адрес электронной почты должен содержать символ '@'",
+  "@invalidEmail": {
+    "description": "Предупреждение при неверном формате почты"
+  },
+  "enterPassword": "Введите свой пароль",
+  "@enterPassword": {
+    "description": "Предупреждение при пустом пароле"
+  },
+  "shortPassword": "Пароль должен содержать не менее 6 символов",
+  "@shortPassword": {
+    "description": "Предупреждение при слишком коротком пароле"
+  },
+  "enterName": "Введите своё имя",
+  "@enterName": {
+    "description": "Предупреждение при пустом поле имени"
+  },
+  "enterEventCity": "Пожалуйста, введите город события",
+  "@enterEventCity": {
+    "description": "Предупреждение при пустом поле города события"
+  },
+  "enterEventDescription": "Пожалуйста, введите описание события",
+  "@enterEventDescription": {
+    "description": "Предупреждение при пустом описании события"
+  },
+  "enterEventName": "Пожалуйста, введите название события",
+  "@enterEventName": {
+    "description": "Предупреждение при пустом названии события"
+  },
+  "enterEventStreet": "Пожалуйста, введите улицу события",
+  "@enterEventStreet": {
+    "description": "Предупреждение при пустом поле улицы"
+  },
+  "selectDate": "Пожалуйста, выберите дату",
+  "@selectDate": {
+    "description": "Предупреждение при пустом выборе даты"
+  },
+  "invalidDateFormat": "Введите дату в правильном формате (dd.MM.yyyy HH:mm)",
+  "@invalidDateFormat": {
+    "description": "Предупреждение при неправильном формате даты"
   }
 }

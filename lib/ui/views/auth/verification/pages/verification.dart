@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/theme/app_colors.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
@@ -37,7 +36,7 @@ class _VerificationPageState extends State<VerificationPage> {
         if (!tempResponse) {
           SnackBarService.showSnackBar(
             context,
-            Messages.wrongOTP,
+            AppLocalizations.of(context).wrongOTP,
             AppColors.red,
           );
           return;

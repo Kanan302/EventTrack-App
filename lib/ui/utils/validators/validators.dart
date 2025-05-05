@@ -1,75 +1,77 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 class Validators {
-  static String? isEmpty(String? value) {
+  static String? isEmpty(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Daxil edin';
+      return AppLocalizations.of(context).enterValue;
     }
     return null;
   }
 
-  static String? writeMail(String? value) {
+  static String? writeMail(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'E-poçt ünvanınızı daxil edin';
+      return AppLocalizations.of(context).enterEmail;
     } else if (!value.contains('@')) {
-      return 'E-poçt ünvanında "@" işarəsi olmalıdır';
+      return AppLocalizations.of(context).invalidEmail;
     }
     return null;
   }
 
-  static String? writePassword(String? value) {
+  static String? writePassword(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Şifrənizi daxil edin';
+      return AppLocalizations.of(context).enterPassword;
     } else if (value.length < 6) {
-      return 'Şifrə ən azı 6 simvoldan ibarət olmalıdır';
+      return AppLocalizations.of(context).shortPassword;
     }
     return null;
   }
 
-  static String? writeName(String? value) {
+  static String? writeName(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Adınızı daxil edin';
+      return AppLocalizations.of(context).enterName;
     }
     return null;
   }
 
-  static String? writeEventCity(String? value) {
+  static String? writeEventCity(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Zəhmət olmasa, tədbirin şəhərini daxil edin';
+      return AppLocalizations.of(context).enterEventCity;
     }
     return null;
   }
 
-  static String? writeEventDescription(String? value) {
+  static String? writeEventDescription(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Zəhmət olmasa, tədbirin təsvirini daxil edin';
+      return AppLocalizations.of(context).enterEventDescription;
     }
     return null;
   }
 
-  static String? writeEventName(String? value) {
+  static String? writeEventName(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Zəhmət olmasa, tədbirin adını daxil edin';
+      return AppLocalizations.of(context).enterEventName;
     }
     return null;
   }
 
-  static String? writeEventStreet(String? value) {
+  static String? writeEventStreet(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Zəhmət olmasa, tədbirin küçəsini daxil edin';
+      return AppLocalizations.of(context).enterEventStreet;
     }
     return null;
   }
 
-  static String? validateDateTimeFormat(String? value) {
+  static String? validateDateTimeFormat(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return 'Zəhmət olmasa, tarixi seçin';
+      return AppLocalizations.of(context).selectDate;
     }
 
     try {
       DateFormat("dd.MM.yyyy HH:mm").parseStrict(value);
     } catch (e) {
-      return 'Tarixi düzgün formatda daxil edin (dd.MM.yyyy HH:mm)';
+      return AppLocalizations.of(context).invalidDateFormat;
     }
 
     return null;

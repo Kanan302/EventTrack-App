@@ -1,7 +1,6 @@
-import 'package:ascca_app/shared/constants/app_keys.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../../shared/constants/app_keys.dart';
 
 @JsonSerializable()
 class AuthLoginResponseModel {
@@ -31,9 +30,6 @@ class AuthLoginResponseModel {
   }
 
   factory AuthLoginResponseModel.fromJson(Map<String, dynamic> json) {
-    if (json[AppKeys.response][AppKeys.data] == null) {
-      throw Exception(Messages.notFoundData);
-    }
     return AuthLoginResponseModel(
       accessToken:
           json[AppKeys.response][AppKeys.data][AppKeys.accessToken] as String?,

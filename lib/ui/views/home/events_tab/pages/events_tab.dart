@@ -10,7 +10,6 @@ import '../../../../../shared/services/local/secure_service.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/events/delete_event/delete_event_cubit.dart';
 import '../../../../cubits/events/get_events/get_events_cubit.dart';
-import '../../../../utils/messages/messages.dart';
 import '../../profile_tab/service/theme_cubit.dart';
 import '../widgets/event_card_item.dart';
 
@@ -67,14 +66,14 @@ class _EventsTabState extends State<EventsTab> {
   }
 
   void _deleteEvent(String eventId) {
-    deleteEventCubit.deleteEvent(eventId);
+    deleteEventCubit.deleteEvent(context, eventId);
 
     filteredEvents.value =
         filteredEvents.value
             .where((event) => event.id.toString() != eventId)
             .toList();
 
-    getEventsCubit.getEvents();
+    getEventsCubit.getEvents(context);
   }
 
   @override
@@ -83,7 +82,7 @@ class _EventsTabState extends State<EventsTab> {
     _loadUserStatus();
     getEventsCubit = context.read<GetEventsCubit>();
     deleteEventCubit = context.read<DeleteEventCubit>();
-    getEventsCubit.getEvents();
+    getEventsCubit.getEvents(context);
   }
 
   @override
@@ -133,7 +132,7 @@ class _EventsTabState extends State<EventsTab> {
           BlocListener<DeleteEventCubit, DeleteEventState>(
             listener: (context, deleteState) {
               if (deleteState is DeleteEventSuccess) {
-                getEventsCubit.getEvents();
+                getEventsCubit.getEvents(context);
               }
             },
           ),
@@ -150,11 +149,16 @@ class _EventsTabState extends State<EventsTab> {
                 builder: (context, events, child) {
                   final eventList = isSearching.value ? events : state.events;
                   if (eventList.isEmpty) {
-                    return Center(child: Text(Messages.noEventFound));
+                    return Center(
+                      child: Text(AppLocalizations.of(context).noEventFound),
+                    );
                   }
                   return RefreshIndicator(
                     onRefresh: () async {
-                      await getEventsCubit.getEvents(forceRefresh: true);
+                      await getEventsCubit.getEvents(
+                        context,
+                        forceRefresh: true,
+                      );
                     },
                     child: ListView.builder(
                       itemCount: eventList.length,
@@ -175,10 +179,14 @@ class _EventsTabState extends State<EventsTab> {
                                     ? DateFormat(
                                       'MMM d - EEE - h:mm a',
                                     ).format(DateTime.parse(event.startDate!))
-                                    : Messages.noData,
+                                    : AppLocalizations.of(context).noData,
                             title: event.name!,
-                            street: event.street ?? Messages.noData,
-                            city: event.city ?? Messages.noData,
+                            street:
+                                event.street ??
+                                AppLocalizations.of(context).noData,
+                            city:
+                                event.city ??
+                                AppLocalizations.of(context).noData,
                             onDelete: () {
                               _deleteEvent(event.id.toString());
                             },

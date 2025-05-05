@@ -1,13 +1,13 @@
-import 'package:ascca_app/data/models/auth/auth_new_password/auth_new_password_request_model.dart';
-import 'package:ascca_app/data/repositories/auth/auth_new_password/auth_new_password_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../shared/theme/app_colors.dart';
+import '../../../../data/models/auth/auth_new_password/auth_new_password_request_model.dart';
+import '../../../../data/repositories/auth/auth_new_password/auth_new_password_repository.dart';
 import '../../../../shared/constants/app_routes.dart';
-import '../../../utils/messages/messages.dart';
+import '../../../../shared/theme/app_colors.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';
 
@@ -33,12 +33,12 @@ class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
             confirmPassword: confirmPassword,
           );
 
-      await repository.newPassword(authNewPasswordRequestModel);
+      await repository.newPassword(authNewPasswordRequestModel, context);
       emit(AuthNewPasswordSuccess());
 
       SnackBarService.showSnackBar(
         context,
-        Messages.passwordsUpdated,
+        AppLocalizations.of(context).passwordsUpdated,
         AppColors.black,
       );
 

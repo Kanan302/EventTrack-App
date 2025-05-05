@@ -13,7 +13,7 @@ class CreateEventStreet extends StatelessWidget {
     return CreateEventFormField(
       labelText: AppLocalizations.of(context).eventStreet,
       controller: eventStreetController,
-      validator: Validators.writeEventStreet,
+      validator: (value) => Validators.writeEventStreet(value, context),
     );
   }
 }

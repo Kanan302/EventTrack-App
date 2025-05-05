@@ -1,8 +1,9 @@
-import 'package:ascca_app/data/models/events/top_events/top_events_model.dart';
-import 'package:ascca_app/data/repositories/events/top_events/top_events_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../data/models/events/top_events/top_events_model.dart';
+import '../../../../data/repositories/events/top_events/top_events_repository.dart';
 
 part 'top_events_state.dart';
 
@@ -12,12 +13,15 @@ class TopEventsCubit extends Cubit<TopEventsState> {
 
   TopEventsCubit({required this.repository}) : super(TopEventsInitial());
 
-  Future<void> getTopEvents({bool forceRefresh = false}) async {
+  Future<void> getTopEvents(
+    BuildContext context, {
+    bool forceRefresh = false,
+  }) async {
     if (_hasFetched && !forceRefresh) return;
 
     emit(TopEventsLoading());
     try {
-      final topEvents = await repository.getTopEvents();
+      final topEvents = await repository.getTopEvents(context);
       emit(TopEventsSuccess(topEvents: topEvents));
       _hasFetched = true;
     } catch (e) {

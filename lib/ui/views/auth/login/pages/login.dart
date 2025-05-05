@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/constants/app_routes.dart';
 import '../../../../../shared/theme/app_colors.dart';
@@ -84,7 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                           hintText: AppLocalizations.of(context).abc,
                           prefixIcon: Icons.email_outlined,
                           controller: _emailController,
-                          validator: Validators.writeMail,
+                          validator:
+                              (value) => Validators.writeMail(value, context),
                         ),
 
                         ValueListenableBuilder<bool>(
@@ -104,7 +106,9 @@ class _LoginPageState extends State<LoginPage> {
                                     !_isPasswordVisible.value;
                               },
                               controller: _passwordController,
-                              validator: Validators.writePassword,
+                              validator:
+                                  (value) =>
+                                      Validators.writePassword(value, context),
                             );
                           },
                         ),

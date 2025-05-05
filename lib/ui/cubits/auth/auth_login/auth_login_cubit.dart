@@ -1,12 +1,12 @@
-import 'package:ascca_app/data/models/auth/auth_login/auth_login_request_model.dart';
-import 'package:ascca_app/ui/utils/messages/messages.dart';
-import 'package:ascca_app/ui/utils/notifications/flushbar.dart';
-import 'package:ascca_app/data/repositories/auth/auth_login/auth_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../data/models/auth/auth_login/auth_login_request_model.dart';
+import '../../../../data/repositories/auth/auth_login/auth_login_repository.dart';
 import '../../../../shared/constants/app_routes.dart';
+import '../../../utils/notifications/flushbar.dart';
 import 'auth_login_state.dart';
 
 class AuthLoginCubit extends Cubit<AuthLoginState> {
@@ -27,13 +27,16 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
         password: password,
       );
 
-      await repository.login(authLoginRequestModel);
+      await repository.login(authLoginRequestModel, context);
       emit(AuthLoginSuccess());
 
       if (context.mounted) {
         context.go(
           AppRoutes.home.path,
-          extra: {'message': Messages.successLogin, 'isSuccess': true},
+          extra: {
+            'message': AppLocalizations.of(context).successLogin,
+            'isSuccess': true,
+          },
         );
       }
     } catch (e) {

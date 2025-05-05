@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:ascca_app/ui/utils/messages/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-
 import '../../../../../../shared/theme/app_colors.dart';
 import '../../../../../cubits/events/scan_event/scan_event_cubit.dart';
 
@@ -32,7 +31,7 @@ class _DoScanPageState extends State<DoScanPage> {
           isScanned = true;
         });
 
-        context.read<ScanEventCubit>().scanEvent(code);
+        context.read<ScanEventCubit>().scanEvent(context, code);
 
         debugPrint('scanned code is: $scannedCode');
 
@@ -79,7 +78,7 @@ class _DoScanPageState extends State<DoScanPage> {
                 return CircularProgressIndicator();
               } else if (state is ScanEventSuccess) {
                 return _buildMessageBox(
-                  Messages.attendanceConfirmed,
+                  AppLocalizations.of(context).attendanceConfirmed,
                   AppColors.lavenderBlue,
                 );
               } else if (state is ScanEventFailure) {
@@ -101,7 +100,7 @@ class _DoScanPageState extends State<DoScanPage> {
           //       ),
           //       padding: const EdgeInsets.all(12),
           //       child: Text(
-          //         '${Messages.code} $scannedCode',
+          //         '${AppLocalizations.of(context).code} $scannedCode',
           //         style: const TextStyle(color: AppColors.white),
           //       ),
           //     ),

@@ -1,10 +1,10 @@
-import 'package:ascca_app/data/models/events/get_events/get_events_model.dart';
-import 'package:ascca_app/ui/views/home/events_tab/widgets/event_card_item.dart';
-import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_event_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../utils/messages/messages.dart';
+import '../../../../../data/models/events/get_events/get_events_model.dart';
+import '../../events_tab/widgets/event_card_item.dart';
+import 'organizer_event_title.dart';
 
 class OrganizerEventsList extends StatelessWidget {
   final List<GetEventsModel> events;
@@ -33,17 +33,19 @@ class OrganizerEventsList extends StatelessWidget {
                         ? DateFormat(
                           'MMM d - EEE - h:mm a',
                         ).format(DateTime.parse(event.startDate!))
-                        : Messages.dateNotAvailable,
-                title: event.name ?? Messages.noNamedEvent,
-                street: event.street ?? Messages.noData,
-                city: event.city ?? Messages.noData,
+                        : AppLocalizations.of(context).dateNotAvailable,
+                title: event.name ?? AppLocalizations.of(context).noNamedEvent,
+                street: event.street ?? AppLocalizations.of(context).noData,
+                city: event.city ?? AppLocalizations.of(context).noData,
                 onDelete: () {},
                 userStatus: '0',
               ),
             );
           })
         else
-          const Center(child: Text(Messages.organizerHasNoEvents)),
+          Center(
+            child: Text(AppLocalizations.of(context).organizerHasNoEvents),
+          ),
       ],
     );
   }

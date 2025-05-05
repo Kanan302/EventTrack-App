@@ -68,7 +68,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       hintText: AppLocalizations.of(context).abc,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: Validators.writeMail,
+                      validator:
+                          (value) => Validators.writeMail(value, context),
                     ),
                     SizedBox(height: height * 0.01),
                     BlocConsumer<

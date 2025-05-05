@@ -1,9 +1,9 @@
-import 'package:ascca_app/data/models/events/create_event/create_event_request_model.dart';
-import 'package:ascca_app/data/services/events/events_api_client.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../ui/utils/messages/messages.dart';
+import '../../../models/events/create_event/create_event_request_model.dart';
+import '../../../services/events/events_api_client.dart';
 
 class CreateEventRepository {
   final EventsApiClient _eventsApiClient;
@@ -12,6 +12,7 @@ class CreateEventRepository {
 
   Future<void> createEvent(
     CreateEventRequestModel createEventRequestModel,
+    BuildContext context,
   ) async {
     try {
       FormData formData = FormData.fromMap({
@@ -36,16 +37,19 @@ class CreateEventRepository {
       debugPrint('Response: $response');
     } on DioException catch (e) {
       final statusCode = e.response?.statusCode;
-      final errorMessage = e.message ?? Messages.unknownError;
+      final errorMessage =
+          e.message ?? AppLocalizations.of(context).unknownError;
       if (statusCode == 404) {
-        throw Exception(Messages.notFoundUser);
+        throw Exception(AppLocalizations.of(context).notFoundUser);
       } else if (statusCode == 500) {
-        throw Exception(Messages.problemWithSystem);
+        throw Exception(AppLocalizations.of(context).problemWithSystem);
       } else {
-        throw Exception('${Messages.anErrorOccurred} $errorMessage');
+        throw Exception(
+          '${AppLocalizations.of(context).anErrorOccurred} $errorMessage',
+        );
       }
     } catch (e) {
-      throw Exception('${Messages.anErrorOccurred} $e');
+      throw Exception('${AppLocalizations.of(context).anErrorOccurred} $e');
     }
   }
 }

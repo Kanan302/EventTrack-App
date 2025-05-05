@@ -1,13 +1,13 @@
-import 'package:ascca_app/data/models/profile/organizer/organizer_profile_model.dart';
-import 'package:ascca_app/ui/cubits/profile/organizer/organizer_profile_cubit.dart';
-import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_about.dart';
-import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_events_list.dart';
-import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_name.dart';
-import 'package:ascca_app/ui/views/home/organizer/widgets/organizer_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../utils/messages/messages.dart';
+import '../../../../../data/models/profile/organizer/organizer_profile_model.dart';
+import '../../../../cubits/profile/organizer/organizer_profile_cubit.dart';
+import '../widgets/organizer_about.dart';
+import '../widgets/organizer_events_list.dart';
+import '../widgets/organizer_name.dart';
+import '../widgets/organizer_photo.dart';
 
 class OrganizerPage extends StatefulWidget {
   final int organizerId;
@@ -21,7 +21,10 @@ class OrganizerPage extends StatefulWidget {
 class _OrganizerPageState extends State<OrganizerPage> {
   @override
   void initState() {
-    context.read<OrganizerProfileCubit>().getOrganizerData(widget.organizerId);
+    context.read<OrganizerProfileCubit>().getOrganizerData(
+      context,
+      widget.organizerId,
+    );
     super.initState();
   }
 
@@ -48,6 +51,7 @@ class _OrganizerPageState extends State<OrganizerPage> {
               child: RefreshIndicator(
                 onRefresh: () async {
                   await context.read<OrganizerProfileCubit>().getOrganizerData(
+                    context,
                     widget.organizerId,
                     forceRefresh: true,
                   );
@@ -72,7 +76,7 @@ class _OrganizerPageState extends State<OrganizerPage> {
               ),
             );
           }
-          return const Center(child: Text(Messages.noData));
+          return Center(child: Text(AppLocalizations.of(context).noData));
         },
       ),
     );
