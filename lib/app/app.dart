@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import '../l10n/l10n.dart';
+import '../shared/l10n/l10n.dart';
 import '../shared/services/navigation/app_router.dart';
 import '../ui/views/home/profile_tab/service/locale_cubit.dart';
 import '../ui/views/home/profile_tab/service/theme_cubit.dart';
