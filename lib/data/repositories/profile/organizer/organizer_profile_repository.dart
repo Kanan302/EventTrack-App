@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../models/profile/organizer/organizer_profile_model.dart';
 import '../../../services/profile/profile_api_client.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../data/models/auth/auth_registration/auth_registration_request.dart';
 import '../../../../data/repositories/auth/auth_registration/auth_registration_repository.dart';
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../utils/notifications/flushbar.dart';
 import '../../../utils/notifications/snackbar.dart';

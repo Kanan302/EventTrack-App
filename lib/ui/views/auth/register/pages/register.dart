@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';

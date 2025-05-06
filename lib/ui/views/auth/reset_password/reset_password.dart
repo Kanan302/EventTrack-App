@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/auth/auth_reset_password/auth_reset_password_cubit.dart';
 import '../../../utils/notifications/flushbar.dart';

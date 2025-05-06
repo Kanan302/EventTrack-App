@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../data/models/events/get_events/get_events_model.dart';
+import '../../../../../generated/l10n/app_localizations.dart';
 import '../../events_tab/widgets/event_card_item.dart';
 import 'organizer_event_title.dart';
 

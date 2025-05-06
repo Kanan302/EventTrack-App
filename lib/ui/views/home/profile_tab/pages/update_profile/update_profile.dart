@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../../shared/theme/app_colors.dart';
 import '../../../../../cubits/profile/update_profile/update_profile_cubit.dart';
 import '../../../../../utils/notifications/snackbar.dart';

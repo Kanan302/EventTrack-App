@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../data/repositories/events/export_event/export_event_repository.dart';
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/services/local/secure_service.dart';
 
 part 'export_event_state.dart';

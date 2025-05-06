@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../data/models/auth/auth_login/auth_login_request_model.dart';
 import '../../../../data/repositories/auth/auth_login/auth_login_repository.dart';
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/constants/app_routes.dart';
 import '../../../utils/notifications/flushbar.dart';
 import 'auth_login_state.dart';

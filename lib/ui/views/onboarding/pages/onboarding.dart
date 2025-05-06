@@ -1,9 +1,9 @@
 import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/constants/app_routes.dart';
 import '../services/onboarding_notifier.dart';
 

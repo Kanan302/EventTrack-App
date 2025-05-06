@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import '../../../data/models/events/get_events/get_events_model.dart';
 import '../../../data/models/events/top_events/top_events_model.dart';
+import '../../../generated/l10n/app_localizations.dart';
 import '../../../ui/cubits/auth/auth_login/auth_login_cubit.dart';
 import '../../../ui/cubits/auth/auth_new_password/auth_new_password_cubit.dart';
 import '../../../ui/cubits/auth/auth_registration/auth_registration_cubit.dart';

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/events/create_event/create_event_cubit.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';

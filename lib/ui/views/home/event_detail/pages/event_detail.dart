@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../data/models/events/bookmarked_events/bookmarked_events_model.dart';
 import '../../../../../data/models/events/get_events/get_events_model.dart';
 import '../../../../../data/models/events/top_events/top_events_model.dart';
+import '../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/events/bookmarked_events/delete_bookmarked_event.dart/delete_bookmarked_events_cubit.dart';
 import '../../../../cubits/events/bookmarked_events/post_bookmark_event/bookmark_events_cubit.dart';

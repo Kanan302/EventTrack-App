@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../data/models/events/create_event/create_event_request_model.dart';
 import '../../../../data/repositories/events/create_event/create_event_repository.dart';
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/services/local/secure_service.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../utils/notifications/snackbar.dart';

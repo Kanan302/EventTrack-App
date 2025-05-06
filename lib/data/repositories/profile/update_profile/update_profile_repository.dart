@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../services/profile/profile_api_client.dart';
 
 class UpdateProfileRepository {

@@ -1,8 +1,8 @@
 // import 'package:ascca_app/shared/utils/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/services/local/secure_service.dart';
 import '../../../models/auth/auth_login/auth_login_request_model.dart';
 import '../../../services/auth/auth_api_client.dart';

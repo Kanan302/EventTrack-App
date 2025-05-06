@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+
+import '../../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../../shared/theme/app_colors.dart';
 import '../../../../../cubits/events/scan_event/scan_event_cubit.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../data/models/profile/organizer/organizer_profile_model.dart';
+import '../../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../../shared/services/injection/di.dart';
 import '../../../../../../shared/services/local/secure_service.dart';
 import '../../../../../cubits/profile/organizer/organizer_profile_cubit.dart';

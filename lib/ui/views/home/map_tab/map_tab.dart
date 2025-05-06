@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../cubits/events/get_events/get_events_cubit.dart';
 import '../widgets/map_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../generated/l10n/app_localizations.dart';
 import '../../../models/events/create_event/create_event_request_model.dart';
 import '../../../services/events/events_api_client.dart';
 
