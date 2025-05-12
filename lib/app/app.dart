@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../generated/l10n/app_localizations.dart';
@@ -10,8 +11,8 @@ import '../shared/services/navigation/app_router.dart';
 import '../ui/views/home/profile_tab/service/locale_cubit.dart';
 import '../ui/views/home/profile_tab/service/theme_cubit.dart';
 
-class VApp extends StatelessWidget {
-  const VApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class VApp extends StatelessWidget {
           return BlocBuilder<LocaleCubit, Locale>(
             builder: (context, locale) {
               return MaterialApp.router(
-                title: 'Go Event',
+                title: 'GoEvent',
                 locale: locale,
                 supportedLocales: L10n.all,
                 localizationsDelegates: const [

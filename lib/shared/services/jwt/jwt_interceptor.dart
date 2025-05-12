@@ -49,7 +49,7 @@ class JwtInterceptor extends Interceptor {
 
   // @override
   // void onError(DioException err, ErrorInterceptorHandler handler) async {
-  //   // super.onError(err, handler);
+  //   super.onError(err, handler);
   //   if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
   //     final newAccessToken = await refreshToken();
   //     if (newAccessToken != null) {
@@ -70,6 +70,8 @@ class JwtInterceptor extends Interceptor {
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
+    // super.onError(err, handler);
+
     if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
       if (!_isRefreshing) {
         _isRefreshing = true;
@@ -79,13 +81,11 @@ class JwtInterceptor extends Interceptor {
         _isRefreshing = false;
 
         if (newToken != null) {
-          // Bütün saxlanmış request-ləri icra et
           for (final queued in _queuedRequests) {
             queued();
           }
           _queuedRequests.clear();
 
-          // Retry the current request
           final retryRequest = err.requestOptions;
           retryRequest.headers['Authorization'] = 'Bearer $newToken';
           final response = await baseDio.fetch(retryRequest);
@@ -96,7 +96,6 @@ class JwtInterceptor extends Interceptor {
           return handler.reject(err);
         }
       } else {
-        // Refresh gedir, bu request-i saxla
         final completer = Completer<void>();
         _queuedRequests.add(() async {
           final retryRequest = err.requestOptions;
