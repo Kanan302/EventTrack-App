@@ -144,24 +144,24 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           },
                         ),
-                        Text(
-                          AppLocalizations.of(context).or,
-                          style: TextStyle(
-                            color: AppColors.softGray,
-                            fontSize: 16,
-                          ),
-                        ),
-                        AppElevatedButton(
-                          icon: SvgPicture.asset(
-                            AppImages.google.path,
-                            width: 24,
-                            height: 24,
-                          ),
-                          onPressed: () {},
-                          buttonColor: AppColors.white,
-                          text: AppLocalizations.of(context).loginWithGoogle,
-                          textColor: AppColors.black,
-                        ),
+                        // Text(
+                        //   AppLocalizations.of(context).or,
+                        //   style: TextStyle(
+                        //     color: AppColors.softGray,
+                        //     fontSize: 16,
+                        //   ),
+                        // ),
+                        // AppElevatedButton(
+                        //   icon: SvgPicture.asset(
+                        //     AppImages.google.path,
+                        //     width: 24,
+                        //     height: 24,
+                        //   ),
+                        //   onPressed: () {},
+                        //   buttonColor: AppColors.white,
+                        //   text: AppLocalizations.of(context).loginWithGoogle,
+                        //   textColor: AppColors.black,
+                        // ),
                         const NavigationSignUp(),
                       ],
                     ),

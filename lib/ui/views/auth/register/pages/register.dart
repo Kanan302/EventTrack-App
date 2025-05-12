@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../../generated/l10n/app_localizations.dart';
-import '../../../../../shared/constants/app_images.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_cubit.dart';
 import '../../../../cubits/auth/auth_registration/auth_registration_state.dart';
@@ -174,22 +172,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
 
-                    Text(
-                      AppLocalizations.of(context).or,
-                      style: TextStyle(color: AppColors.softGray, fontSize: 16),
-                    ),
-                    AppElevatedButton(
-                      icon: SvgPicture.asset(
-                        AppImages.google.path,
-                        width: 24,
-                        height: 24,
-                      ),
-                      onPressed: () {},
-                      buttonColor: AppColors.white,
-                      text: AppLocalizations.of(context).loginWithGoogle,
-                      textColor: AppColors.black,
-                    ),
-
+                    // Text(
+                    //   AppLocalizations.of(context).or,
+                    //   style: TextStyle(color: AppColors.softGray, fontSize: 16),
+                    // ),
+                    // AppElevatedButton(
+                    //   icon: SvgPicture.asset(
+                    //     AppImages.google.path,
+                    //     width: 24,
+                    //     height: 24,
+                    //   ),
+                    //   onPressed: () {},
+                    //   buttonColor: AppColors.white,
+                    //   text: AppLocalizations.of(context).loginWithGoogle,
+                    //   textColor: AppColors.black,
+                    // ),
                     const NavigationSignIn(),
                   ],
                 ),

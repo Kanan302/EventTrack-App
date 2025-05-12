@@ -7,7 +7,6 @@ import '../../../../../shared/theme/app_colors.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import '../services/auth_verification.dart';
-import '../widgets/validity_time.dart';
 import '../widgets/verification_form.dart';
 
 class VerificationPage extends StatefulWidget {
@@ -147,7 +146,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     ),
                   ),
                   SizedBox(height: height * 0.04),
-                  const Center(child: ValidityTimer()),
+                  // const Center(child: ValidityTimer()),
                 ],
               ),
             ),
