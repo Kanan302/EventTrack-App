@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../generated/l10n/app_localizations.dart';
-import '_expandable_text.dart';
+import 'expandable_text.dart';
 
 class EventDetailAbout extends StatelessWidget {
   final String eventAbout;

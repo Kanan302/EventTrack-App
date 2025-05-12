@@ -16,10 +16,11 @@ class _ExpandableTextState extends State<ExpandableText>
     with SingleTickerProviderStateMixin {
   final ValueNotifier<bool> _isExpanded = ValueNotifier<bool>(false);
 
+  static const maxTextLengthForTwoLines = 100;
+
   bool get _isTextOverflowing {
     final textLength = widget.text.length;
-    final maxTextLengthForTwoLines = 100;
-    return textLength > maxTextLengthForTwoLines && !_isExpanded.value;
+    return textLength > maxTextLengthForTwoLines;
   }
 
   @override
@@ -43,33 +44,32 @@ class _ExpandableTextState extends State<ExpandableText>
               ),
             ),
             const SizedBox(height: 4),
-            _isTextOverflowing
-                ? GestureDetector(
-                  onTap: () {
-                    _isExpanded.value = !_isExpanded.value;
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        isExpanded
-                            ? AppLocalizations.of(context).less
-                            : AppLocalizations.of(context).more,
-                        style: const TextStyle(
-                          color: AppColors.lavenderBlue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Icon(
-                        isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
+            if (_isTextOverflowing)
+              GestureDetector(
+                onTap: () {
+                  _isExpanded.value = !_isExpanded.value;
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      isExpanded
+                          ? AppLocalizations.of(context).less
+                          : AppLocalizations.of(context).more,
+                      style: const TextStyle(
                         color: AppColors.lavenderBlue,
-                        size: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                )
-                : const SizedBox.shrink(),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
+                      color: AppColors.lavenderBlue,
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
           ],
         );
       },
