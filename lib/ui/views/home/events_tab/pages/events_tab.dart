@@ -125,6 +125,11 @@ class _EventsTabState extends State<EventsTab> {
               );
             },
           ),
+          InkWell(
+            onTap: () => context.push(AppRoutes.notification.path),
+            child: Icon(Icons.notifications_none_outlined),
+          ),
+          SizedBox(width: 15),
         ],
       ),
       body: MultiBlocListener(
@@ -161,11 +166,19 @@ class _EventsTabState extends State<EventsTab> {
                       );
                     },
                     child: ListView.builder(
-                      itemCount: eventList.length,
+                      itemCount: eventList.length + 1,
                       itemBuilder: (context, index) {
+                        if (index == eventList.length) {
+                          return SizedBox(height: 20);
+                        }
                         final event = eventList[index];
                         return Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.only(
+                            left: 20.0,
+                            right: 15.0,
+                            bottom: 20.0,
+                            top: 5.0,
+                          ),
                           child: EventsCardItem(
                             cardId: event.id.toString(),
                             onTapCard:

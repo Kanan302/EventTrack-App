@@ -140,14 +140,14 @@ class _ProfileTabState extends State<ProfileTab> {
                             });
                           },
                         ),
-                        ProfileCardItem(
-                          leadingIcon: Icons.notifications_none_outlined,
-                          leadingIconColor: AppColors.lavenderBlue,
-                          title: AppLocalizations.of(context).notifications,
-                          onTap: () {
-                            context.push(AppRoutes.notification.path);
-                          },
-                        ),
+                        // ProfileCardItem(
+                        //   leadingIcon: Icons.notifications_none_outlined,
+                        //   leadingIconColor: AppColors.lavenderBlue,
+                        //   title: AppLocalizations.of(context).notifications,
+                        //   onTap: () {
+                        //     context.push(AppRoutes.notification.path);
+                        //   },
+                        // ),
                         ProfileCardItem(
                           leadingIcon: Icons.language_outlined,
                           leadingIconColor: AppColors.lavenderBlue,
@@ -178,7 +178,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           showTrailing: false,
                           textColor: AppColors.red,
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 15),
                       ],
                     ),
                   ),

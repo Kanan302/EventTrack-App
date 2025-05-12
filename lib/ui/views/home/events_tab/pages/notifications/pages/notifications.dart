@@ -1,5 +1,6 @@
-import 'package:ascca_app/ui/views/home/profile_tab/pages/notifications/widgets/notification_app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/notification_app_bar.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
