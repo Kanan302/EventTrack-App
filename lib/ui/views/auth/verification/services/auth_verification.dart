@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../shared/constants/app_keys.dart';
 import '../../../../../shared/constants/app_routes.dart';
@@ -28,10 +29,13 @@ class AuthVerificationService {
       debugPrint('${AppKeys.data}: $data');
 
       if (response.statusCode == 200) {
+        final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+        final snackBarColor = isDarkMode ? AppColors.white : AppColors.black;
+
         SnackBarService.showSnackBar(
           context,
           AppLocalizations.of(context).verificationSuccessfully,
-          AppColors.black,
+          snackBarColor,
         );
         context.go(AppRoutes.home.path);
         return true;
@@ -73,10 +77,13 @@ class AuthVerificationService {
       debugPrint('${AppKeys.data}: $data');
 
       if (response.statusCode == 200) {
+        final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+        final snackBarColor = isDarkMode ? AppColors.white : AppColors.black;
+
         SnackBarService.showSnackBar(
           context,
           AppLocalizations.of(context).verificationSuccessfully,
-          AppColors.black,
+          snackBarColor,
         );
         return true;
       } else {

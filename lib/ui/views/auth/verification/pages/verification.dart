@@ -116,7 +116,7 @@ class _VerificationPageState extends State<VerificationPage> {
                         children: [
                           TextSpan(
                             text: AppLocalizations.of(context).sendOTP,
-                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            style: TextStyle(fontSize: 16),
                           ),
                           TextSpan(
                             text: AppLocalizations.of(context).abc,

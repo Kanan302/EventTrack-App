@@ -37,6 +37,9 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
       await repository.register(authRegisterRequestModel, context);
       emit(AuthRegistrationSuccess());
 
+      final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+      final snackBarColor = isDarkMode ? AppColors.white : AppColors.black;
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -47,7 +50,7 @@ class AuthRegistrationCubit extends Cubit<AuthRegistrationState> {
       SnackBarService.showSnackBar(
         context,
         AppLocalizations.of(context).registrationSuccessfully,
-        AppColors.black,
+        snackBarColor,
       );
     } catch (e) {
       _handleError(context, e.toString());

@@ -36,10 +36,13 @@ class AuthNewPasswordCubit extends Cubit<AuthNewPasswordState> {
       await repository.newPassword(authNewPasswordRequestModel, context);
       emit(AuthNewPasswordSuccess());
 
+      final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+      final snackBarColor = isDarkMode ? AppColors.white : AppColors.black;
+
       SnackBarService.showSnackBar(
         context,
         AppLocalizations.of(context).passwordsUpdated,
-        AppColors.black,
+        snackBarColor,
       );
 
       context.go(AppRoutes.login.path);
