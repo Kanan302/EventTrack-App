@@ -331,7 +331,7 @@
   "@eventCreatedSuccessfully": {
     "description": "Yeni tədbir yaradıldıqda çıxan bildiriş"
   },
-  "wrongOTP": "Xahiş edirik, yanlış OTP daxil etdiyiniz üçün 30 saniyə gözləyin.",
+  "wrongOTP": "Xahiş edirik, OTP-ni düzgün daxil edin.",
   "@wrongOTP": {
     "description": "Yanlış OTP daxil edildikdə göstərilən xəbərdarlıq"
   },

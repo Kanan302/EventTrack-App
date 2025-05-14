@@ -331,7 +331,7 @@
   "@eventCreatedSuccessfully": {
     "description": "Notification when a new event is successfully created"
   },
-  "wrongOTP": "Please wait 30 seconds after entering an incorrect OTP.",
+  "wrongOTP": "Please enter the correct OTP.",
   "@wrongOTP": {
     "description": "Message displayed when an incorrect OTP is entered"
   },
