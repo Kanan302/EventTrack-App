@@ -1,5 +1,4 @@
 // class Messages {
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // static const String passwordsDoNotMatch = 'Şifrələr uyğun gəlmir';
 // static const String uploadImage = 'Zəhmət olmasa, şəkil yükləyin';
