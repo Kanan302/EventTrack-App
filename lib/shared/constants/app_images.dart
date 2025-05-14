@@ -7,5 +7,6 @@ enum AppImages {
   onboarding3('assets/images/onboarding3.svg');
 
   const AppImages(this.path);
+
   final String path;
 }

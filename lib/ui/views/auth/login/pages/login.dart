@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(height: height * 0.02),
-                SvgPicture.asset(AppImages.logo.path),
+                SvgPicture.asset(AppImages.splash.path, width: 300),
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: Form(

@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: SvgPicture.asset(AppImages.splash.path, width: 250),
+          child: SvgPicture.asset(AppImages.splash.path, width: 350),
         ),
       ),
     );
