@@ -9,7 +9,7 @@ class NotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NotificationAppBar(),
-      body: SafeArea(child: Center(child: Text('notification page'))),
+      body: SafeArea(child: Center(child: Text('notifications will be here'))),
     );
   }
 }

@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Bu tətbiq şəkil çəkmək üçün kameraya icazə tələb edir.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Mikrofona giriş üçün icazə tələb olunur</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Bu tətbiq qalereyaya şəkil əlavə etmək üçün icazə tələb edir.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
