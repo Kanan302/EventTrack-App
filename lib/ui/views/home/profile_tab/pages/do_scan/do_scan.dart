@@ -76,7 +76,7 @@ class _DoScanPageState extends State<DoScanPage> {
           BlocBuilder<ScanEventCubit, ScanEventState>(
             builder: (context, state) {
               if (state is ScanEventLoading) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               } else if (state is ScanEventSuccess) {
                 return _buildMessageBox(
                   AppLocalizations.of(context).attendanceConfirmed,
