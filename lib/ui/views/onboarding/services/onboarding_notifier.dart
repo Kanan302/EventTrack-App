@@ -1,10 +1,11 @@
+import 'package:ascca_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../shared/constants/app_images.dart';
-import '../../../../shared/constants/app_texts.dart';
 
 class OnboardingNotifier extends ValueNotifier<int> {
-  OnboardingNotifier() : super(0); 
+  OnboardingNotifier() : super(0);
 
   final List<String> onboardingImages = [
     AppImages.onboarding1.path,
@@ -12,10 +13,16 @@ class OnboardingNotifier extends ValueNotifier<int> {
     AppImages.onboarding3.path,
   ];
 
-  final List<String> titles = [
-    AppTexts.firstOnboardingTitle,
-    AppTexts.secondOnboardingTitle,
-    AppTexts.thirdOnboardingTitle,
+  List<String> titles(BuildContext context) => [
+    AppLocalizations.of(context).discoverUpcomingNearbyEvents,
+    AppLocalizations.of(context).followEventsWithCalendar,
+    AppLocalizations.of(context).discoverNearbyEventsEasily,
+  ];
+
+  List<String> subTitles(BuildContext context) => [
+    AppLocalizations.of(context).findInterestingEvents,
+    AppLocalizations.of(context).planWithGoEvent,
+    AppLocalizations.of(context).findEventsWithMap,
   ];
 
   void updateCurrentPage(int index) {

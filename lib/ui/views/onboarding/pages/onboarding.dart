@@ -1,4 +1,3 @@
-import 'package:ascca_app/shared/constants/app_texts.dart';
 import 'package:ascca_app/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,8 +44,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     itemBuilder: (context, index) {
                       return SvgPicture.asset(
                         _onboardingNotifier.onboardingImages[index],
-                        fit: BoxFit.cover,
-                        width: width * 1.06,
+                        // fit: BoxFit.cover,
+                        width: width * 0.8,
                       );
                     },
                   ),
@@ -64,9 +63,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 300,
+                        width: 380,
                         child: Text(
-                          _onboardingNotifier.titles[_onboardingNotifier.value],
+                          _onboardingNotifier.titles(
+                            context,
+                          )[_onboardingNotifier.value],
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: AppColors.white,
@@ -76,10 +77,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const SizedBox(
+                      SizedBox(
                         width: 300,
                         child: Text(
-                          AppTexts.loremDescryption,
+                          _onboardingNotifier.subTitles(
+                            context,
+                          )[_onboardingNotifier.value],
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.white,

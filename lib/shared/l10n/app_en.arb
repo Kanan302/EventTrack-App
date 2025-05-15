@@ -1,4 +1,28 @@
 {
+  "discoverUpcomingNearbyEvents": "Discover Upcoming and Nearby Events",
+  "@discoverUpcomingNearbyEvents": {
+    "description": "Heading encouraging the user to discover upcoming and nearby events"
+  },
+  "followEventsWithCalendar": "Follow events through the calendar and stay informed",
+  "@followEventsWithCalendar": {
+    "description": "Heading telling the user they can follow events through a calendar and stay informed"
+  },
+  "discoverNearbyEventsEasily": "Easily Discover Events Around You",
+  "@discoverNearbyEventsEasily": {
+    "description": "Heading suggesting the user can easily discover events nearby"
+  },
+  "findInterestingEvents": "Easily find interesting events you can attend here.",
+  "@findInterestingEvents": {
+    "description": "Message encouraging the user to find interesting events to attend"
+  },
+  "planWithGoEvent": "See events in advance with GoEvent and manage your time well.",
+  "@planWithGoEvent": {
+    "description": "Message encouraging the user to plan events in advance and manage time efficiently using GoEvent"
+  },
+  "findEventsWithMap": "Use the map to easily find nearby music, sports, food, and art events.",
+  "@findEventsWithMap": {
+    "description": "Message encouraging the user to discover nearby events via the interactive map"
+  },
   "next": "Next",
   "@next": {
     "description": "Next button"

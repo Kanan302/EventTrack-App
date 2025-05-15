@@ -1,4 +1,28 @@
 {
+  "discoverUpcomingNearbyEvents": "Qarşıdan Gələn və Ətrafınızdakı Tədbirləri Kəşf Edin",
+  "@discoverUpcomingNearbyEvents": {
+    "description": "İstifadəçiyə qarşıdan gələn və yaxınlıqdakı tədbirləri kəşf etməyi təklif edən başlıq"
+  },
+  "followEventsWithCalendar": "Tədbirləri Təqvim vasitəsilə izləyin və tədbirlərdən xəbərdar qalın",
+  "@followEventsWithCalendar": {
+    "description": "İstifadəçiyə tədbirləri təqvim vasitəsilə izləməyin mümkün olduğunu bildirən başlıq"
+  },
+  "discoverNearbyEventsEasily": "Ətrafınızdakı Tədbirləri Asanlıqla Kəşf Edin",
+  "@discoverNearbyEventsEasily": {
+    "description": "İstifadəçiyə yaxınlıqdakı tədbirləri rahat şəkildə kəşf etməyi bildirən başlıq"
+  },
+  "findInterestingEvents": "İştirak edə biləcəyiniz maraqlı tədbirləri buradan asanlıqla tapın.",
+  "@findInterestingEvents": {
+    "description": "İstifadəçiyə iştirak edə biləcəyi maraqlı tədbirləri tapmağı bildirən məlumat başlığı"
+  },
+  "planWithGoEvent": "GoEvent ilə tədbirləri əvvəlcədən görün və vaxtınızı səmərəli idarə edin.",
+  "@planWithGoEvent": {
+    "description": "GoEvent tətbiqi ilə tədbirləri öncədən planlamağı və vaxtı səmərəli istifadə etməyi təşviq edən məlumat başlığı"
+  },
+  "findEventsWithMap": "Xəritə ilə yaxınlıqdakı musiqi, idman, yemək və sənət tədbirlərini asanlıqla tapın.",
+  "@findEventsWithMap": {
+    "description": "İstifadəçiyə interaktiv xəritə vasitəsilə ətrafdakı tədbirləri tapmağı təşviq edən məlumat başlığı"
+  },
   "next": "Növbəti",
   "@next": {
     "description": "Növbəti düyməsi"

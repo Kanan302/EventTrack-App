@@ -9,6 +9,6 @@ class ThemeCubit extends Cubit<ThemeMode> {
   }
 
   void setSystemTheme(Brightness brightness) {
-     emit(brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
-   }
+    emit(brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
+  }
 }
