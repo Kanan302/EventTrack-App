@@ -510,5 +510,9 @@
   "userAlreadyRegistered": "This user has already registered for this event.",
   "@userAlreadyRegistered": {
     "description": "Message shown when the user is already registered for the event"
+  },
+  "googleMapsOpenFailed": "Failed to open Google Maps",
+  "@googleMapsOpenFailed": {
+    "description": "Error message shown when Google Maps cannot be opened"
   }
 }

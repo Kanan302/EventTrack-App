@@ -152,7 +152,7 @@ class EventDetailPage extends StatelessWidget {
                                     eventStartDate: eventModel.startDate ?? '',
                                     eventEndDate: eventModel.endDate ?? '',
                                   ),
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 10),
                                   EventDetailLocation(
                                     eventCity:
                                         eventModel.city ??
@@ -161,7 +161,7 @@ class EventDetailPage extends StatelessWidget {
                                         eventModel.street ??
                                         AppLocalizations.of(context).noData,
                                   ),
-                                  const SizedBox(height: 10),
+                                  // const SizedBox(height: 10),
                                   EventDetailOrganizer(
                                     eventOrganizer: organizer.fullName ?? '',
                                     organizerId: organizer.id.toString(),

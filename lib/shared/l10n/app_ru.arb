@@ -510,5 +510,9 @@
   "userAlreadyRegistered": "Этот пользователь уже зарегистрирован на это мероприятие.",
   "@userAlreadyRegistered": {
     "description": "Сообщение, если пользователь уже зарегистрировался на мероприятие"
+  },
+  "googleMapsOpenFailed": "Не удалось открыть Google Maps",
+  "@googleMapsOpenFailed": {
+    "description": "Сообщение об ошибке при невозможности открыть Google Maps"
   }
 }
