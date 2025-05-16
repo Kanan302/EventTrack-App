@@ -506,5 +506,9 @@
   "confirmExport": "İxrac etmək istədiyinizdən əminsiniz?",
   "@confirmExport": {
     "description": "İxrac əməliyyatını təsdiqləmə mətni"
+  },
+  "userAlreadyRegistered": "Bu istifadəçi artıq bu tədbir üçün qeydiyyatdan keçib.",
+  "@userAlreadyRegistered": {
+    "description": "İstifadəçi tədbirə artıq qeydiyyatdan keçdiyi halda göstərilən mesaj"
   }
 }

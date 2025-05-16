@@ -506,5 +506,9 @@
   "confirmExport": "Are you sure you want to export?",
   "@confirmExport": {
     "description": "Confirmation text for export action"
+  },
+  "userAlreadyRegistered": "This user has already registered for this event.",
+  "@userAlreadyRegistered": {
+    "description": "Message shown when the user is already registered for the event"
   }
 }
