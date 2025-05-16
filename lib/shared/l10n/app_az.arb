@@ -490,5 +490,21 @@
   "invalidDateFormat": "Tarixi düzgün formatda daxil edin (dd.MM.yyyy HH:mm)",
   "@invalidDateFormat": {
     "description": "Yanlış tarix formatı üçün xəbərdarlıq"
+  },
+  "confirmRegister": "Qeydiyyatdan keçmək istədiyinizdən əminsiniz?",
+  "@confirmRegister": {
+    "description": "Qeydiyyatdan keçmə təsdiqləmə mətni"
+  },
+  "yes": "Bəli",
+  "@yes": {
+    "description": "Təsdiqləyici cavab - Bəli"
+  },
+  "no": "Xeyr",
+  "@no": {
+    "description": "İnkar cavabı - Xeyr"
+  },
+  "confirmExport": "İxrac etmək istədiyinizdən əminsiniz?",
+  "@confirmExport": {
+    "description": "İxrac əməliyyatını təsdiqləmə mətni"
   }
 }

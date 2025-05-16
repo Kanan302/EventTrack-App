@@ -1,3 +1,4 @@
+import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_button_user_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +10,7 @@ import '../../../../cubits/events/export_event/export_event_cubit.dart';
 import '../../../../cubits/events/register_event/register_event_cubit.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
+import 'event_detail_button_admin_dialog.dart';
 
 class EventDetailButton extends StatefulWidget {
   final String eventId;
@@ -59,11 +61,21 @@ class _EventDetailButtonState extends State<EventDetailButton> {
             },
             builder: (context, state) {
               return AppElevatedButton(
-                onPressed:
-                    () => context.read<ExportEventCubit>().exportEvent(
-                      context,
-                      widget.eventId,
-                    ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder:
+                        (_) => EventDetailButtonAdminDialog(
+                          onConfirm: () {
+                            Navigator.of(context).pop();
+                            context.read<ExportEventCubit>().exportEvent(
+                              context,
+                              widget.eventId,
+                            );
+                          },
+                        ),
+                  );
+                },
                 buttonColor: AppColors.lavenderBlue,
                 text: AppLocalizations.of(context).export,
                 textColor: AppColors.white,
@@ -92,11 +104,21 @@ class _EventDetailButtonState extends State<EventDetailButton> {
             },
             builder: (context, state) {
               return AppElevatedButton(
-                onPressed:
-                    () => context.read<RegisterEventCubit>().registerEvent(
-                      context,
-                      widget.eventId,
-                    ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder:
+                        (_) => EventDetailButtonUserDialog(
+                          onConfirm: () {
+                            Navigator.of(context).pop();
+                            context.read<RegisterEventCubit>().registerEvent(
+                              context,
+                              widget.eventId,
+                            );
+                          },
+                        ),
+                  );
+                },
                 buttonColor: AppColors.lavenderBlue,
                 text: AppLocalizations.of(context).registerEvent,
                 textColor: AppColors.white,

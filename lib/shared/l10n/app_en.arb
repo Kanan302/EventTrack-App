@@ -490,5 +490,21 @@
   "invalidDateFormat": "Enter date in correct format (dd.MM.yyyy HH:mm)",
   "@invalidDateFormat": {
     "description": "Warning for invalid date format"
+  },
+  "confirmRegister": "Are you sure you want to register?",
+  "@confirmRegister": {
+    "description": "Confirmation text for event registration"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Confirmation answer - Yes"
+  },
+  "no": "No",
+  "@no": {
+    "description": "Negative answer - No"
+  },
+  "confirmExport": "Are you sure you want to export?",
+  "@confirmExport": {
+    "description": "Confirmation text for export action"
   }
 }
