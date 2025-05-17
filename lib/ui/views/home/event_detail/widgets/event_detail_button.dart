@@ -1,4 +1,3 @@
-import 'package:ascca_app/ui/views/home/event_detail/widgets/event_detail_button_user_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +10,7 @@ import '../../../../cubits/events/register_event/register_event_cubit.dart';
 import '../../../../utils/notifications/snackbar.dart';
 import '../../../../utils/widgets/app_elevated_button.dart';
 import 'event_detail_button_admin_dialog.dart';
+import 'event_detail_button_user_dialog.dart';
 
 class EventDetailButton extends StatefulWidget {
   final String eventId;
