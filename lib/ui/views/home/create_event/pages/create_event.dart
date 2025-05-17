@@ -106,7 +106,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       _selectedLocation = selected;
                     },
                   ),
-                  SizedBox(height: height * 0.01),
+                  SizedBox(height: height * 0.005),
                   BlocBuilder<CreateEventCubit, CreateEventState>(
                     builder: (context, state) {
                       return AppElevatedButton(
@@ -160,6 +160,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       );
                     },
                   ),
+                  SizedBox(height: 10),
                 ],
               ),
             ),

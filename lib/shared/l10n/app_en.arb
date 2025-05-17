@@ -514,5 +514,17 @@
   "googleMapsOpenFailed": "Failed to open Google Maps",
   "@googleMapsOpenFailed": {
     "description": "Error message shown when Google Maps cannot be opened"
+  },
+  "addressNotFound": "Address not found",
+  "@addressNotFound": {
+    "description": "Error message shown when address is not found"
+  },
+  "searchError": "An error occurred during the search",
+  "@searchError": {
+    "description": "Error message shown when a search error occurs"
+  },
+  "searchHint": "Search address...",
+  "@searchHint": {
+    "description": "Hint text for the search field"
   }
 }

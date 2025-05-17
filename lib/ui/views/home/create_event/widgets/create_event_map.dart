@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../../generated/l10n/app_localizations.dart';
 import '../../../../../shared/theme/app_colors.dart';
 import '../../widgets/map_widget.dart';
+import '../service/create_event_map_service.dart';
 
 class CreateEventMap extends StatefulWidget {
   final ValueNotifier<String?> addressNotifier;
@@ -33,44 +33,46 @@ class CreateEventMap extends StatefulWidget {
 
 class _CreateEventMapState extends State<CreateEventMap> {
   final MapController _mapController = MapController();
+  final TextEditingController searchController = TextEditingController();
   LatLng? _selectedLocation;
+  bool _isSearchOpen = false;
 
-  void _handleMapTap(TapPosition tapPosition, LatLng latlng) async {
-    _selectedLocation = latlng;
-    widget.locationErrorNotifier.value = null;
+  void _handleMapTap(TapPosition tapPosition, LatLng latlng) {
+    CreateEventMapService.handleMapTap(
+      latlng: latlng,
+      cityController: widget.cityController,
+      streetController: widget.streetController,
+      addressNotifier: widget.addressNotifier,
+      locationErrorNotifier: widget.locationErrorNotifier,
+      cityNotifier: widget.cityNotifier,
+      streetNotifier: widget.streetNotifier,
+      onLocationSelected: (location) {
+        setState(() {
+          _selectedLocation = location;
+        });
+        widget.onLocationSelected(location);
+      },
+    );
+  }
 
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        latlng.latitude,
-        latlng.longitude,
-      );
-
-      if (placemarks.isNotEmpty) {
-        final place = placemarks.first;
-
-        List<String> parts = [];
-        if ((place.street ?? '').isNotEmpty) {
-          parts.add(place.street!);
-          widget.streetNotifier.value = place.street;
-          widget.streetController.text = place.street!;
-        }
-        if ((place.locality ?? '').isNotEmpty) {
-          parts.add(place.locality!);
-          widget.cityNotifier.value = place.locality;
-          widget.cityController.text = place.locality!;
-        }
-        if ((place.country ?? '').isNotEmpty) {
-          parts.add(place.country!);
-        }
-
-        widget.addressNotifier.value = parts.join(', ');
-      }
-    } catch (e) {
-      debugPrint("Ünvan alınarkən xəta baş verdi: $e");
-    }
-
-    widget.onLocationSelected(_selectedLocation!);
-    setState(() {});
+  Future<void> _searchAddress() async {
+    await CreateEventMapService.searchAddress(
+      context: context,
+      query: searchController.text,
+      mapController: _mapController,
+      cityController: widget.cityController,
+      streetController: widget.streetController,
+      addressNotifier: widget.addressNotifier,
+      locationErrorNotifier: widget.locationErrorNotifier,
+      cityNotifier: widget.cityNotifier,
+      streetNotifier: widget.streetNotifier,
+      onLocationSelected: widget.onLocationSelected,
+      updateSelectedLocation: (location) {
+        setState(() {
+          _selectedLocation = location;
+        });
+      },
+    );
   }
 
   @override
@@ -96,14 +98,77 @@ class _CreateEventMapState extends State<CreateEventMap> {
       children: [
         Text(
           AppLocalizations.of(context).choosePlaceFromMap,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        MapWidget(
-          mapController: _mapController,
-          onTap: _handleMapTap,
-          markers: markers,
-          height: 250,
+        Stack(
+          children: [
+            MapWidget(
+              mapController: _mapController,
+              onTap: _handleMapTap,
+              markers: markers,
+              height: 300,
+            ),
+            Positioned(
+              top: 12,
+              right: 12,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_isSearchOpen)
+                    Container(
+                      width: 200,
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withAlpha(25),
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        controller: searchController,
+                        autofocus: true,
+                        style: TextStyle(color: AppColors.black),
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context).searchHint,
+                          hintStyle: TextStyle(color: AppColors.black),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+
+                  IconButton(
+                    icon: Icon(
+                      _isSearchOpen ? Icons.search : Icons.search_outlined,
+                    ),
+                    color: Colors.black,
+                    onPressed: () {
+                      if (_isSearchOpen && searchController.text.isNotEmpty) {
+                        _searchAddress();
+                      }
+                      setState(() {
+                        _isSearchOpen = true;
+                      });
+                    },
+                  ),
+                  if (_isSearchOpen)
+                    GestureDetector(
+                      child: const Icon(Icons.close, color: AppColors.black),
+                      onTap: () {
+                        setState(() {
+                          _isSearchOpen = false;
+                          searchController.clear();
+                        });
+                      },
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         ValueListenableBuilder<String?>(
@@ -138,7 +203,7 @@ class _CreateEventMapState extends State<CreateEventMap> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 error,
-                style: const TextStyle(color: Colors.red, fontSize: 14),
+                style: const TextStyle(color: AppColors.red, fontSize: 14),
               ),
             );
           },
@@ -150,6 +215,7 @@ class _CreateEventMapState extends State<CreateEventMap> {
   @override
   void dispose() {
     _mapController.dispose();
+    searchController.dispose();
     super.dispose();
   }
 }

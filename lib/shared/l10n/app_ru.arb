@@ -514,5 +514,17 @@
   "googleMapsOpenFailed": "Не удалось открыть Google Maps",
   "@googleMapsOpenFailed": {
     "description": "Сообщение об ошибке при невозможности открыть Google Maps"
+  },
+  "addressNotFound": "Адрес не найден",
+  "@addressNotFound": {
+    "description": "Сообщение об ошибке, показываемое когда адрес не найден"
+  },
+  "searchError": "Произошла ошибка при поиске",
+  "@searchError": {
+    "description": "Сообщение об ошибке при возникновении ошибки поиска"
+  },
+  "searchHint": "Поиск адреса...",
+  "@searchHint": {
+    "description": "Подсказка для поля поиска"
   }
 }

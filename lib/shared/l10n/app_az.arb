@@ -514,5 +514,17 @@
   "googleMapsOpenFailed": "Google Maps açıla bilmədi",
   "@googleMapsOpenFailed": {
     "description": "Xəta mesajı, Google Maps açılmadıqda göstərilir"
+  },
+  "addressNotFound": "Ünvan tapılmadı",
+  "@addressNotFound": {
+    "description": "Ünvan tapılmadıqda istifadə olunan xəta mesajı"
+  },
+  "searchError": "Axtarış zamanı xəta baş verdi",
+  "@searchError": {
+    "description": "Axtarış zamanı xəta baş verdikdə göstərilən mesaj"
+  },
+  "searchHint": "Ünvan axtar...",
+  "@searchHint": {
+    "description": "Axtarış sahəsi üçün göstəriş mətn"
   }
 }
