@@ -3,8 +3,11 @@ import 'package:ascca_app/shared/services/injection/di.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-  await init();
   WidgetsFlutterBinding.ensureInitialized();
+  await init();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await NotificationService.init();
+
   runApp(const MyApp());
 }
 
@@ -13,6 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return App();
+    return const App();
   }
 }

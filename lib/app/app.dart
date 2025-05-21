@@ -19,6 +19,7 @@ class App extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        // BlocProvider(create: (_) => NotificationCubit()),
         BlocProvider(
           create: (_) {
             final themeCubit = ThemeCubit();

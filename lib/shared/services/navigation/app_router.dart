@@ -29,8 +29,8 @@ import '../../../ui/views/auth/register/pages/register.dart';
 import '../../../ui/views/auth/reset_password/reset_password.dart';
 import '../../../ui/views/home/create_event/pages/create_event.dart';
 import '../../../ui/views/home/event_detail/pages/event_detail.dart';
-import '../../../ui/views/home/events_tab/pages/notifications/pages/notifications.dart';
 import '../../../ui/views/home/home.dart';
+import '../../../ui/views/home/notifications/pages/notifications.dart';
 import '../../../ui/views/home/organizer/pages/organizer.dart';
 import '../../../ui/views/home/profile_tab/pages/bookmarked_events/bookmarked_events.dart';
 import '../../../ui/views/home/profile_tab/pages/do_scan/do_scan.dart';
@@ -44,6 +44,7 @@ import '../injection/di.dart';
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash.path,
+    // navigatorKey: NotificationService.globalNavigatorKey,
     routes: [
       GoRoute(
         path: AppRoutes.splash.path,

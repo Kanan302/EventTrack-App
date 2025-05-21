@@ -22,9 +22,13 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
     emit(AuthLoginLoading());
 
     try {
+      // String? fcmToken = await FirebaseMessaging.instance.getToken();
+      // debugPrint("Login zamanı alınan FCM Token: $fcmToken");
+
       AuthLoginRequestModel authLoginRequestModel = AuthLoginRequestModel(
         email: email,
         password: password,
+        // fcmToken: fcmToken,
       );
 
       await repository.login(authLoginRequestModel, context);

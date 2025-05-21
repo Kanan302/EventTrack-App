@@ -177,22 +177,29 @@ class _CreateEventMapState extends State<CreateEventMap> {
             if (address == null || _selectedLocation == null) {
               return const SizedBox.shrink();
             }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${AppLocalizations.of(context).coordinates}'
-                  'Lat: ${_selectedLocation!.latitude.toStringAsFixed(5)}, '
-                  'Lng: ${_selectedLocation!.longitude.toStringAsFixed(5)}',
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${AppLocalizations.of(context).address}: $address',
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ],
+            return Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${AppLocalizations.of(context).address}: $address',
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
             );
+            // return Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Text(
+            //       '${AppLocalizations.of(context).coordinates}'
+            //       'Lat: ${_selectedLocation!.latitude.toStringAsFixed(5)}, '
+            //       'Lng: ${_selectedLocation!.longitude.toStringAsFixed(5)}',
+            //       style: const TextStyle(fontWeight: FontWeight.w500),
+            //     ),
+            //     const SizedBox(height: 4),
+            //     Text(
+            //       '${AppLocalizations.of(context).address}: $address',
+            //       style: const TextStyle(fontWeight: FontWeight.w500),
+            //     ),
+            //   ],
+            // );
           },
         ),
         ValueListenableBuilder<String?>(
