@@ -279,7 +279,7 @@
   "@delete": {
     "description": "Delete button"
   },
-  "export": "Export",
+  "export": "GET THE LIST",
   "@export": {
     "description": "Export text"
   },

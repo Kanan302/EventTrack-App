@@ -51,19 +51,22 @@ class _EventDetailAppBarState extends State<EventDetailAppBar> {
       actions:
           userStatus != '1'
               ? [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 1000),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      color: AppColors.softWhite,
-                      child: InkWell(
-                        onTap: widget.onTap,
-                        child: Icon(
-                          widget.icon,
-                          color: AppColors.white,
-                          size: 25,
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 1000),
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        color: AppColors.softWhite,
+                        child: InkWell(
+                          onTap: widget.onTap,
+                          child: Icon(
+                            widget.icon,
+                            color: AppColors.white,
+                            size: 25,
+                          ),
                         ),
                       ),
                     ),

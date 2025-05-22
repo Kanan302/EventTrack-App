@@ -279,7 +279,7 @@
   "@delete": {
     "description": "Кнопка 'Удалить'"
   },
-  "export": "Экспорт",
+  "export": "ПОЛУЧИТЬ СПИСОК",
   "@export": {
     "description": "Текст для экспорта"
   },

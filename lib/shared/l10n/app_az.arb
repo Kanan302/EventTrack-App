@@ -279,7 +279,7 @@
   "@delete": {
     "description": "Sil düyməsi"
   },
-  "export": "İxrac",
+  "export": "SİYAHINI ƏLDƏ ET",
   "@export": {
     "description": "İxrac funksiyası üçün mətn"
   },
