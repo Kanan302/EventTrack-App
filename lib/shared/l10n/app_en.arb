@@ -1,5 +1,5 @@
 {
-  "discoverUpcomingNearbyEvents": "Discover Upcoming and Nearby Events",
+  "discoverUpcomingNearbyEvents": "Discover upcoming and nearby events",
   "@discoverUpcomingNearbyEvents": {
     "description": "Heading encouraging the user to discover upcoming and nearby events"
   },
@@ -7,7 +7,7 @@
   "@followEventsWithCalendar": {
     "description": "Heading telling the user they can follow events through a calendar and stay informed"
   },
-  "discoverNearbyEventsEasily": "Easily Discover Events Around You",
+  "discoverNearbyEventsEasily": "Easily discover events around you",
   "@discoverNearbyEventsEasily": {
     "description": "Heading suggesting the user can easily discover events nearby"
   },

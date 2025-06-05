@@ -1,13 +1,13 @@
 {
-  "discoverUpcomingNearbyEvents": "Qarşıdan Gələn və Ətrafınızdakı Tədbirləri Kəşf Edin",
+  "discoverUpcomingNearbyEvents": "Qarşıdan gələn və ətrafınızdakı tədbirləri kəşf edin",
   "@discoverUpcomingNearbyEvents": {
     "description": "İstifadəçiyə qarşıdan gələn və yaxınlıqdakı tədbirləri kəşf etməyi təklif edən başlıq"
   },
-  "followEventsWithCalendar": "Tədbirləri Təqvim vasitəsilə izləyin və tədbirlərdən xəbərdar qalın",
+  "followEventsWithCalendar": "Tədbirləri təqvim vasitəsilə izləyin və tədbirlərdən xəbərdar qalın",
   "@followEventsWithCalendar": {
     "description": "İstifadəçiyə tədbirləri təqvim vasitəsilə izləməyin mümkün olduğunu bildirən başlıq"
   },
-  "discoverNearbyEventsEasily": "Ətrafınızdakı Tədbirləri Asanlıqla Kəşf Edin",
+  "discoverNearbyEventsEasily": "Ətrafınızdakı tədbirləri asanlıqla kəşf edin",
   "@discoverNearbyEventsEasily": {
     "description": "İstifadəçiyə yaxınlıqdakı tədbirləri rahat şəkildə kəşf etməyi bildirən başlıq"
   },
