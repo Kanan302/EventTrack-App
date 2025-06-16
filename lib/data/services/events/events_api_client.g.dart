@@ -10,7 +10,7 @@ part of 'events_api_client.dart';
 
 class _EventsApiClient implements EventsApiClient {
   _EventsApiClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://ascca.onrender.com/eventTrack';
+    baseUrl ??= 'https://ascca2.onrender.com/eventTrack';
   }
 
   final Dio _dio;

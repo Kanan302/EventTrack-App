@@ -10,7 +10,7 @@ part of 'auth_api_client.dart';
 
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://ascca.onrender.com/eventTrack';
+    baseUrl ??= 'https://ascca2.onrender.com/eventTrack';
   }
 
   final Dio _dio;
