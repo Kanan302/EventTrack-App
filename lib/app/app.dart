@@ -35,7 +35,6 @@ class _AppState extends State<App> {
 
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(create: (_) => NotificationCubit()),
         BlocProvider(
           create: (_) {
             final themeCubit = ThemeCubit();

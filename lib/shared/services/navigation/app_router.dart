@@ -44,7 +44,6 @@ import '../injection/di.dart';
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash.path,
-    // navigatorKey: NotificationService.globalNavigatorKey,
     routes: [
       GoRoute(
         path: AppRoutes.splash.path,

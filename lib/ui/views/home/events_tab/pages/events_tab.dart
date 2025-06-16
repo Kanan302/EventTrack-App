@@ -125,10 +125,10 @@ class _EventsTabState extends State<EventsTab> {
               );
             },
           ),
-          InkWell(
-            onTap: () => context.push(AppRoutes.notification.path),
-            child: Icon(Icons.notifications_none_outlined),
-          ),
+          // InkWell(
+          //   onTap: () => context.push(AppRoutes.notification.path),
+          //   child: Icon(Icons.notifications_none_outlined),
+          // ),
           SizedBox(width: 8),
         ],
       ),
