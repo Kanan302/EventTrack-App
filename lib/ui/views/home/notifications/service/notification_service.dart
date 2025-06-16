@@ -79,7 +79,7 @@ class NotificationService {
 
   void _handleMessageClick(BuildContext context, RemoteMessage message) {
     if (context.mounted) {
-      context.push(AppRoutes.notification.path);
+      context.push(AppRoutes.home.path);
     }
   }
 }
