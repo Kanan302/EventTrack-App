@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "275951475813",
+    "project_id": "goevent-c1108",
+    "storage_bucket": "goevent-c1108.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275951475813:android:f5810b348752a0a56dfa8c",
+        "android_client_info": {
+          "package_name": "com.example.ascca_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW2NGVa7rFPfPvGM_-HdHhBkHIrrGIGuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

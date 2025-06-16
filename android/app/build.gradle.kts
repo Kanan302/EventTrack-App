@@ -43,12 +43,14 @@ android {
     }
 }
 
-//dependencies {
-//    // Core library desugaring üçün kitabxana əlavə olunur
+dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    // Core library desugaring üçün kitabxana əlavə olunur
 //    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
-//
-//    // Əlavə olaraq lazım olan digər kitabxanalar buraya yazıla bilər
-//}
+
+    // Əlavə olaraq lazım olan digər kitabxanalar buraya yazıla bilər
+}
 
 flutter {
     source = "../.."

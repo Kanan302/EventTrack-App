@@ -6,11 +6,27 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../generated/l10n/app_localizations.dart';
 import '../shared/l10n/l10n.dart';
 import '../shared/services/navigation/app_router.dart';
+import '../ui/views/home/notifications/service/notification_service.dart';
 import '../ui/views/home/profile_tab/service/locale_cubit.dart';
 import '../ui/views/home/profile_tab/service/theme_cubit.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    super.initState();
+
+    NotificationService().init(context);
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   NotificationService().init(context);
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {

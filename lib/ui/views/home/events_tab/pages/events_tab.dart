@@ -125,11 +125,11 @@ class _EventsTabState extends State<EventsTab> {
               );
             },
           ),
-          // InkWell(
-          //   onTap: () => context.push(AppRoutes.notification.path),
-          //   child: Icon(Icons.notifications_none_outlined),
-          // ),
-          SizedBox(width: 5),
+          InkWell(
+            onTap: () => context.push(AppRoutes.notification.path),
+            child: Icon(Icons.notifications_none_outlined),
+          ),
+          SizedBox(width: 8),
         ],
       ),
       body: MultiBlocListener(
@@ -145,7 +145,7 @@ class _EventsTabState extends State<EventsTab> {
         child: BlocBuilder<GetEventsCubit, GetEventsState>(
           builder: (context, state) {
             if (state is GetEventsLoading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is GetEventsFailure) {
               return Center(child: Text(state.errorMessage));
             } else if (state is GetEventsSuccess) {

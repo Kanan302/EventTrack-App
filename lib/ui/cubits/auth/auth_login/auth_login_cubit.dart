@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -22,13 +23,13 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
     emit(AuthLoginLoading());
 
     try {
-      // String? fcmToken = await FirebaseMessaging.instance.getToken();
-      // debugPrint("Login zamanı alınan FCM Token: $fcmToken");
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
+      debugPrint("Login zamanı alınan FCM Token: $fcmToken");
 
       AuthLoginRequestModel authLoginRequestModel = AuthLoginRequestModel(
         email: email,
         password: password,
-        // fcmToken: fcmToken,
+        fcmToken: fcmToken,
       );
 
       await repository.login(authLoginRequestModel, context);

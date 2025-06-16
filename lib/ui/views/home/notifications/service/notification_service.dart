@@ -1,94 +1,85 @@
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-//
-// import 'notification_cubit.dart';
-//
-// class NotificationService {
-//   static final FirebaseMessaging _firebaseMessaging =
-//       FirebaseMessaging.instance;
-//   static final FlutterLocalNotificationsPlugin _localNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
-//
-//   static final GlobalKey<NavigatorState> globalNavigatorKey =
-//       GlobalKey<NavigatorState>();
-//
-//   static Future<void> init() async {
-//     await _firebaseMessaging.requestPermission();
-//     await _initLocalNotifications();
-//     await _getFCMToken();
-//     _setupFCMListeners();
-//     await _checkInitialMessage();
-//   }
-//
-//   static Future<void> _getFCMToken() async {
-//     String? token = await _firebaseMessaging.getToken();
-//     debugPrint("FCM Token: $token");
-//   }
-//
-//   static Future<void> _initLocalNotifications() async {
-//     const androidSettings = AndroidInitializationSettings(
-//       '@mipmap/ic_launcher',
-//     );
-//     const initSettings = InitializationSettings(android: androidSettings);
-//     await _localNotificationsPlugin.initialize(initSettings);
-//   }
-//
-//   static void _setupFCMListeners() {
-//     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-//       _showLocalNotification(message);
-//     });
-//
-//     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-//       _handleMessageNavigation(message);
-//     });
-//   }
-//
-//   static Future<void> _checkInitialMessage() async {
-//     RemoteMessage? initialMessage =
-//         await _firebaseMessaging.getInitialMessage();
-//     if (initialMessage != null) {
-//       _handleMessageNavigation(initialMessage);
-//     }
-//   }
-//
-//   static Future<void> _showLocalNotification(RemoteMessage message) async {
-//     RemoteNotification? notification = message.notification;
-//     if (notification != null) {
-//       const androidDetails = AndroidNotificationDetails(
-//         'channel_id',
-//         'General Notifications',
-//         importance: Importance.max,
-//         priority: Priority.high,
-//       );
-//       const platformDetails = NotificationDetails(android: androidDetails);
-//       await _localNotificationsPlugin.show(
-//         notification.hashCode,
-//         notification.title,
-//         notification.body,
-//         platformDetails,
-//       );
-//
-//       // Bildirişi Cubit-ə göndər
-//       BlocProvider.of<NotificationCubit>(
-//         globalNavigatorKey.currentContext!,
-//       ).addNotification('${notification.title}: ${notification.body}');
-//     }
-//   }
-//
-//   static void _handleMessageNavigation(RemoteMessage message) {
-//     final targetPage = message.data['targetPage'];
-//     if (targetPage == 'details') {
-//       globalNavigatorKey.currentState?.pushNamed('/details');
-//     }
-//   }
-//
-//   static Future<void> subscribeToTopic(String topic) async {
-//     await _firebaseMessaging.subscribeToTopic(topic);
-//   }
-//
-//   static Future<void> unsubscribeFromTopic(String topic) async {
-//     await _firebaseMessaging.unsubscribeFromTopic(topic);
-//   }
-// }
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../shared/constants/app_routes.dart';
+
+class NotificationService {
+  final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+
+  Future<void> init(BuildContext context) async {
+    await _requestPermission();
+
+    // Foreground – App açıq olanda
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      _showDialog(
+        context,
+        message.notification?.title,
+        message.notification?.body,
+      );
+    });
+
+    // Background – App arxa planda, bildirişə klik olunub
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      debugPrint('Arxa planda kliklə açıldı: ${message.notification?.title}');
+      _handleMessageClick(context, message);
+    });
+
+    // Terminated – App bağlı idi, bildiriş kliklə açılıb
+    RemoteMessage? initialMessage = await _messaging.getInitialMessage();
+    if (initialMessage != null) {
+      debugPrint(
+        'App bağlı idi, kliklə açıldı: ${initialMessage.notification?.title}',
+      );
+      _handleMessageClick(context, initialMessage);
+    }
+  }
+
+  Future<void> _requestPermission() async {
+    NotificationSettings settings = await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.denied) {
+      debugPrint("Bildiriş icazəsi verilmədi");
+    }
+  }
+
+  Future<String?> getFcmToken() async {
+    try {
+      final token = await _messaging.getToken();
+      debugPrint('Alınan FCM Token: $token');
+      return token;
+    } catch (e) {
+      debugPrint("FCM token alınarkən xəta: $e");
+      return null;
+    }
+  }
+
+  void _showDialog(BuildContext context, String? title, String? body) {
+    if (context.mounted) {
+      showDialog(
+        context: context,
+        builder:
+            (_) => AlertDialog(
+              title: Text(title ?? 'Bildiriş'),
+              content: Text(body ?? ''),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Bağla'),
+                ),
+              ],
+            ),
+      );
+    }
+  }
+
+  void _handleMessageClick(BuildContext context, RemoteMessage message) {
+    if (context.mounted) {
+      context.push(AppRoutes.notification.path);
+    }
+  }
+}
